@@ -36,23 +36,48 @@ enum GooblinType{
 
 var _att_timer = Timer.new()
 
+var _jump_timer = Timer.new()
+
 var _can_attack = true
 
 #sprite should be called - Sprite
 @onready var _sprite:Sprite2D = $Sprite
 #collider should be called - Collider
-@onready var _collider = $Collider
+@onready var _collider:CollisionShape2D = $Collider
+
+@onready var _anim:AnimationPlayer = $AnimationPlayer
 
 var _upcoming_fling = Vector2()
 
 var _is_at_home = false
 
 func _ready():
+	#this timer is used to delay a jump
+	#and allow for the anticipation animation to play
+	_jump_timer.autostart = false
+	_jump_timer.set_wait_time(0.6)
+	_jump_timer.one_shot = true
+	_jump_timer.timeout.connect(_jump_trigger)
+	add_child(_jump_timer)
+	#
+	randomize()
+	var i = randi_range(0, 2)
+	if(i == 0):
+		_sprite.scale = Vector2(2, 2)
+		_sprite.set_position(Vector2(0, 0))
+		_collider
+	elif(i == 1):
+		_sprite.scale = Vector2(2, 1.5)
+		_sprite.set_position(Vector2(0, 8))
+	elif(i == 2):
+		_sprite.scale = Vector2(2, 2.5)
+		_sprite.set_position(Vector2(0, -4))
+	
 	#setup for the attack timeframe
 	if(unit_type == GooblinType.BASIC):
 		_can_attack = true
 	elif(unit_type == GooblinType.SHIELD):
-		_sprite.set_self_modulate(Color(1, 0, 1))
+		_sprite.texture = load("res://Textures/Entities/GoblinShield.png")
 		_can_attack = false
 
 	else:
@@ -96,7 +121,11 @@ func _move_to_target_range(delta:float):
 			if(abs(difference) > 8.0):
 				velocity.x -= sign(difference) * move_speed * delta
 				_is_at_home = false
+				if(_anim.current_animation != "Walk" && is_on_floor()):
+					if(_anim.current_animation != "Jump" || !_anim.is_playing()):
+						_anim.play("Walk")
 			else:
+				_anim.play("Idle")
 				_is_at_home = true
 
 func _attack_target():
@@ -104,5 +133,10 @@ func _attack_target():
 	#to make sure the attack is acurate
 	if(_is_at_home && is_on_floor() && _can_attack):
 		if(abs(get_position().x - enemy_target.get_position().x) <= attack_radius):
-			var diff = (get_position() - enemy_target.get_position()).normalized()
-			_upcoming_fling = -diff * Vector2(300, 400) * 100
+			_anim.play("Jump")
+			_jump_timer.start()
+
+
+func _jump_trigger():
+	var diff = (get_position() - enemy_target.get_position()).normalized()
+	_upcoming_fling = -diff * Vector2(400, 600) * 100

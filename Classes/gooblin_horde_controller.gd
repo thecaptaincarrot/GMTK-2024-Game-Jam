@@ -66,7 +66,7 @@ func distribute_target_spacing():
 	
 		var bindex = 0
 		for bg in _basic_gooblins:
-			bg.target_range = horde_range + (((gooblin_size.x / 8) / (_basic_gooblins.size() * .01)) * bindex)
+			bg.target_range = horde_range + (((gooblin_size.x / 16) / (_basic_gooblins.size() * .01)) * bindex)
 			bg.x_home = horde_target.get_position().x - bg.target_range
 			bindex += 1
 
@@ -75,7 +75,7 @@ func distribute_target_spacing():
 	
 		var sindex = 0
 		for sg in _shield_gooblins:
-			sg.target_range = horde_range + (((gooblin_size.x / 2)) * sindex)
+			sg.target_range = horde_range + (((gooblin_size.x / 4)) * sindex)
 			sg.x_home = horde_target.get_position().x - sg.target_range
 			sindex += 1
 

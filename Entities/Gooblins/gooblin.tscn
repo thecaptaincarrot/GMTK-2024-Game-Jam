@@ -1,18 +1,101 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm4dao57dh4uf"]
+[gd_scene load_steps=9 format=3 uid="uid://cm4dao57dh4uf"]
 
 [ext_resource type="Script" path="res://Entities/Gooblins/gooblin.gd" id="1_qqrn7"]
-[ext_resource type="Texture2D" uid="uid://bxvj0e46gm327" path="res://Textures/Gooblin.png" id="2_dq31j"]
+[ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="2_uqsqc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yumhv"]
-radius = 32.0
-height = 64.0
+radius = 16.0
+height = 50.0
+
+[sub_resource type="Animation" id="Animation_6tbyr"]
+resource_name = "Walk"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_j5onn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_yv47e"]
+resource_name = "Idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_ncqjt"]
+resource_name = "Jump"
+length = 1.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 32, 32, 32), Rect2(32, 32, 32, 32), Rect2(64, 32, 32, 32), Rect2(96, 32, 32, 32), Rect2(128, 32, 32, 32), Rect2(160, 32, 32, 32), Rect2(192, 32, 32, 32), Rect2(224, 32, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjir5"]
+_data = {
+"Idle": SubResource("Animation_yv47e"),
+"Jump": SubResource("Animation_ncqjt"),
+"RESET": SubResource("Animation_j5onn"),
+"Walk": SubResource("Animation_6tbyr")
+}
 
 [node name="Gooblin" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_qqrn7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_dq31j")
+position = Vector2(0, 8)
+scale = Vector2(2, 1.5)
+texture = ExtResource("2_uqsqc")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5)
 shape = SubResource("CapsuleShape2D_yumhv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wjir5")
+}
