@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqr3q111ffuwe"]
+
+[ext_resource type="Script" path="res://Classes/gooblin_horde_controller.gd" id="1_gvws4"]
+[ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="1_qkvfo"]
+[ext_resource type="Texture2D" uid="uid://j4yl5qmydg48" path="res://Textures/Enemy.png" id="3_iu6mw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqx4q"]
+size = Vector2(1152, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llc3r"]
+size = Vector2(64, 64)
+
+[node name="TestStage" type="Node2D"]
+
+[node name="GooblinHordeController" type="Node2D" parent="."]
+script = ExtResource("1_gvws4")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 296)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(3.00001, 24.5)
+scale = Vector2(8.96875, 0.617188)
+texture = ExtResource("1_qkvfo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_lqx4q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(467, 243)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("3_iu6mw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_llc3r")

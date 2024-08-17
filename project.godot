@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="Gooblins Vs Dragon"
+run/main_scene="res://Stages/test_stage.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Hurtboxes"
+2d_physics/layer_3="Hitboxes"
 
 [rendering]
 
