@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm4dao57dh4uf"]
+[gd_scene load_steps=4 format=3 uid="uid://dtbkr6sw241vr"]
 
 [ext_resource type="Script" path="res://Entities/Gooblins/gooblin.gd" id="1_qqrn7"]
 [ext_resource type="Texture2D" uid="uid://bxvj0e46gm327" path="res://Textures/Gooblin.png" id="2_dq31j"]
