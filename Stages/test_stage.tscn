@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8au76l7attcs"]
+[gd_scene load_steps=6 format=3 uid="uid://cemdst0s8vqyf"]
 
 [ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="1_qkvfo"]
-[ext_resource type="PackedScene" uid="uid://dtbkr6sw241vr" path="res://Entities/Gooblins/gooblin.tscn" id="2_d5j1r"]
+[ext_resource type="PackedScene" path="res://Entities/Gooblins/gooblin.tscn" id="2_d5j1r"]
 [ext_resource type="Texture2D" uid="uid://j4yl5qmydg48" path="res://Textures/Enemy.png" id="3_iu6mw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqx4q"]
