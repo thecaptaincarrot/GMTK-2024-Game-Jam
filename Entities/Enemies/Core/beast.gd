@@ -16,7 +16,7 @@ var health = max_health
 # Actual logic
 func _ready():
 	state_machine.state_changed.connect(_fsm_state_changed)
-	animation_player.animation_finished.connect(_on_animation_changed)
+	animation_player.animation_finished.connect(_on_animation_finished)
 
 func _fsm_state_changed(state: String):
 	# Debug printer
@@ -25,7 +25,7 @@ func _fsm_state_changed(state: String):
 	# Delegates finding the animation to the state. Fallback is universal_idle
 	animation_player.play(state_machine.find_child(state).animation)
 
-func _on_animation_changed(anim):
+func _on_animation_finished(anim):
 	state_machine.change_to_state("IdleState")
 
 func take_damage(dmg):
