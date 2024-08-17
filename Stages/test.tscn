@@ -20,4 +20,4 @@ position = Vector2(0, 1)
 shape = SubResource("WorldBoundaryShape2D_lngyu")
 
 [node name="Dragon" parent="." instance=ExtResource("2_wl7ne")]
-position = Vector2(323, 201)
+position = Vector2(2, 438)

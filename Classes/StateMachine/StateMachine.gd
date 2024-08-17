@@ -15,13 +15,13 @@ var previous_state: Node
 
 
 ## Change this variable via the parent's script to log every state change in output!
-var log_changes = false
+var log_changes = true
 
 
 
 func _ready():
 	if initial_state:
-		change_to_state(initial_state)
+		call_deferred("change_to_state", initial_state)
 
 
 func _unhandled_input(event: InputEvent):
