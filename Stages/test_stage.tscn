@@ -20,8 +20,7 @@ texture_filter = 1
 position = Vector2(-288, 0)
 script = ExtResource("1_gvws4")
 horde_target = NodePath("../Enemy")
-spawn_basic_count = 10
-spawn_shield_count = 10
+spawn_shield_count = 15
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(-32, 240)
