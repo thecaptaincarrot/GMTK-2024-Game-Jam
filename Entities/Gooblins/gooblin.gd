@@ -2,15 +2,22 @@ extends CharacterBody2D
 
 class_name Gooblin
 
-@export var max_health = 2
+@export var enemy_target:CharacterBody2D
 
-@export var move_speed = 1.0
+@export var target_range = 256.0
 
 @export var attack_strength = 0.1
 
 @export var attack_cooldown = 1.0
 
-@export var enemy_target:CharacterBody2D
+@export var max_health = 2
+
+@export var move_speed = 300.0
+
+#used to move the velocity back to zero
+#when input is not being sent to movement
+#functions off of a vector lerp
+@export var dampening = 0.03
 
 @onready var _health = max_health
 
@@ -19,7 +26,10 @@ var _att_timer = Timer.new()
 var _can_attack = true
 
 #sprite should be called - Sprite
+@onready var _sprite = $Sprite
 #collider should be called - Collider
+@onready var _collider = $Collider
+
 
 func _ready():
 	#setup for the attack timeframe
@@ -30,21 +40,46 @@ func _ready():
 
 func _process(delta: float) -> void:
 	#a lerp might be better here. testing will need to be done
-	velocity = Vector2()
+	velocity = velocity.lerp(Vector2(), dampening)
 	#a global request to get local gravity managed in the global settings
-	velocity += get_gravity()
+	velocity += get_gravity() * delta
 	
 	#put here as an example
-	_move_to_target_by_range(0.1, delta)
+	_move_to_target_range(delta)
 	
-	#this is important for the sake of framerate synchronization
-	velocity = velocity * delta
+	if(Input.is_action_just_pressed("ui_accept")):
+		fling(Vector2(-600, -800), delta)
 	
 	move_and_slide()
-	
-func _move_to_target_by_range(range:float, delta:float):
-	var difference = get_position() - enemy_target.get_position()
-	velocity += sign(difference.x) * move_speed
+
+func hurt(amount:int):
+	_health -= amount
+	if(_health <= 0):
+		_health = 0
+		die()
+
+func heal(amount:int):
+	_health += amount
+	if(_health > max_health):
+		_health = max_health
+
+func die():
+	pass
+
+func fling(fling_direction:Vector2, delta:float):
+	if(is_on_floor()):
+		velocity += fling_direction * 100 * delta
+
+func _move_to_target_range(delta:float):
+	if(enemy_target != null):
+		if(is_on_floor()):
+			var difference = get_position().x - enemy_target.get_position().x
+			if(abs(difference) > target_range):
+				velocity.x -= sign(difference) * move_speed * delta
+				#the 3 used here is just to fuzz the range calculation 
+				#and not create an oscillation in the gooblin movement
+			elif(abs(difference) + 3 <= target_range):
+				velocity.x += sign(difference) * move_speed * delta
 
 func _attack_target():
 	#a within range check can be done in adition 
