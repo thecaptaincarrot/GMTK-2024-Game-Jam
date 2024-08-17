@@ -14,7 +14,7 @@ script = ExtResource("1_wynlo")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="GroundCollider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 170)
+position = Vector2(0, 106)
 shape = SubResource("RectangleShape2D_uda88")
 debug_color = Color(1, 0.808333, 0.5, 0.196078)
 

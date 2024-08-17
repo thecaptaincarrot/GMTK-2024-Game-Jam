@@ -6,8 +6,11 @@ class_name GenericState extends Node
 # Reference to FSM added so you can swap between states from inside the state
 @onready var state_machine = $".."
 
-# Reference to the enemy in question
+# Reference to the stats of the enemy in question
 @onready var beast = state_machine.get_parent()
+
+# Fallback Animation
+@export var animation: String = "universal_idle"
 
 func enter(_msg):
 	pass

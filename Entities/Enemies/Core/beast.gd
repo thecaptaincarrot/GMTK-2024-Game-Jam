@@ -30,9 +30,13 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	move_and_slide()
 
-func _fsm_state_changed(state):
+func _fsm_state_changed(state: String):
 	#prints(owner.name,"is registering that the state changed to", state)
-	animation_player.play(state)
+	
+	# Delegates finding the animation to the state. Fallback is Generic Beast/Idle
+	animation_player.play(state_machine.find_child(state).animation)
 
 func take_damage(dmg):
 	health -= dmg
+	if health >= 0:
+		state_machine.change_to_state("DeadState")
