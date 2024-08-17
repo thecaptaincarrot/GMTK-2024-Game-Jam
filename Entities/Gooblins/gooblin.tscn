@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtbkr6sw241vr"]
+
+[ext_resource type="Script" path="res://Entities/Gooblins/gooblin.gd" id="1_qqrn7"]
+[ext_resource type="Texture2D" uid="uid://bxvj0e46gm327" path="res://Textures/Gooblin.png" id="2_dq31j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yumhv"]
+radius = 32.0
+height = 64.0
+
+[node name="Gooblin" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_qqrn7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_dq31j")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_yumhv")
