@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://byrmqaqlddrrn"]
+[gd_scene load_steps=18 format=3 uid="uid://byrmqaqlddrrn"]
 
+[ext_resource type="Script" path="res://Entities/Enemies/Dragon/dragon.gd" id="1_kxca4"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_n3g6u"]
-[ext_resource type="Script" path="res://Entities/Enemies/IdleState.gd" id="2_npnky"]
+[ext_resource type="Script" path="res://Entities/Enemies/Dragon/IdleState.gd" id="2_npnky"]
 [ext_resource type="Texture2D" uid="uid://b355x63jijamw" path="res://alleged_dragon.png" id="3_2xufx"]
+[ext_resource type="Script" path="res://Classes/hurtbox_component.gd" id="4_pakg3"]
+[ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="6_nc4nu"]
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_g5rsv"]
 target_nodepath = NodePath("../IKTargets/footLTarget")
@@ -28,8 +31,8 @@ bone_index = 7
 bone2d_node = NodePath("body1/legL/shinL/footL")
 target_nodepath = NodePath("../IKTargets/footLTarget/footLLookAt")
 enable_constraint = true
-constraint_angle_min = -21.772
-constraint_angle_max = 107.737
+constraint_angle_min = -0.749
+constraint_angle_max = 65.693
 constraint_angle_invert = true
 constraint_in_localspace = true
 
@@ -72,6 +75,7 @@ atlas = ExtResource("3_2xufx")
 region = Rect2(380.637, 524.118, 103.7, 44.6083)
 
 [node name="Dragon" type="Node2D"]
+script = ExtResource("1_kxca4")
 
 [node name="Beast" parent="." instance=ExtResource("1_n3g6u")]
 
@@ -83,6 +87,10 @@ script = ExtResource("2_npnky")
 
 [node name="GroundCollider" parent="Beast" index="2"]
 position = Vector2(0, 137)
+
+[node name="HurtboxComponent" parent="Beast" index="4" node_paths=PackedStringArray("sprites")]
+script = ExtResource("4_pakg3")
+sprites = NodePath("../Sprites")
 
 [node name="SkeletonComponent" parent="Beast" index="5"]
 modification_stack = SubResource("SkeletonModificationStack2D_0mc3s")
@@ -127,7 +135,7 @@ remote_path = NodePath("../../../../../../../Sprites/head")
 
 [node name="legL" type="Bone2D" parent="Beast/SkeletonComponent/body1"]
 position = Vector2(-29, 81)
-rotation = -0.466239
+rotation = -0.366495
 scale = Vector2(0.999941, 0.999941)
 rest = Transform2D(0.999907, 0.00821487, -0.00821487, 0.999907, -29, 81)
 metadata/_local_pose_override_enabled_ = true
@@ -136,8 +144,8 @@ metadata/_local_pose_override_enabled_ = true
 remote_path = NodePath("../../../../Sprites/legL")
 
 [node name="shinL" type="Bone2D" parent="Beast/SkeletonComponent/body1/legL"]
-position = Vector2(62.006, 69.0058)
-rotation = 0.340429
+position = Vector2(62.0059, 69.0058)
+rotation = -0.295991
 scale = Vector2(0.999992, 0.999992)
 rest = Transform2D(0.996318, 0.0856444, -0.0856444, 0.996318, 62.0059, 69.0058)
 metadata/_local_pose_override_enabled_ = true
@@ -147,8 +155,8 @@ remote_path = NodePath("../../../../../Sprites/shinL")
 
 [node name="footL" type="Bone2D" parent="Beast/SkeletonComponent/body1/legL/shinL"]
 position = Vector2(-54.0098, 103.02)
-rotation = 0.375302
-scale = Vector2(0.999973, 0.999973)
+rotation = 0.67799
+scale = Vector2(0.999972, 0.999972)
 rest = Transform2D(0.995561, -0.0938251, 0.0938251, 0.995561, -54.0098, 103.02)
 auto_calculate_length_and_angle = false
 length = 100.0
@@ -180,25 +188,31 @@ texture = SubResource("AtlasTexture_fcxco")
 
 [node name="legL" type="Sprite2D" parent="Beast/Sprites" index="5"]
 position = Vector2(-29, -50)
-rotation = 0.175831
+rotation = -0.318878
 scale = Vector2(0.99994, 0.99994)
 texture = SubResource("AtlasTexture_p501j")
 
 [node name="shinL" type="Sprite2D" parent="Beast/Sprites" index="6"]
-position = Vector2(19.976, 28.7836)
-rotation = -0.292786
-scale = Vector2(0.999931, 0.999931)
+position = Vector2(51.5088, -3.91451)
+rotation = -0.686238
+scale = Vector2(0.999932, 0.999932)
 texture = SubResource("AtlasTexture_iqa5l")
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="7"]
-position = Vector2(-2, 143)
-scale = Vector2(0.999905, 0.999905)
+position = Vector2(75, 110)
+scale = Vector2(0.999904, 0.999904)
 texture = SubResource("AtlasTexture_gpxg6")
 
 [node name="footLTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
-position = Vector2(-2, 143)
+position = Vector2(75, 110)
 
 [node name="footLLookAt" type="Node2D" parent="Beast/IKTargets/footLTarget"]
 position = Vector2(216, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Beast/IKTargets/footLTarget"]
+texture = ExtResource("6_nc4nu")
+
+[node name="jiggleTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
+position = Vector2(595, -364)
 
 [editable path="Beast"]
