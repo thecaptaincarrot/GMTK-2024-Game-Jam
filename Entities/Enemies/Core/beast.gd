@@ -13,9 +13,6 @@ class_name Beast extends Node2D
 @export var max_health := 100 #placeholder
 var health = max_health
 
-# attackareas dictionary?
-
-
 # Actual logic
 func _ready():
 	state_machine.state_changed.connect(_fsm_state_changed)
@@ -33,5 +30,12 @@ func _on_animation_changed(anim):
 
 func take_damage(dmg):
 	health -= dmg
-	if health >= 0:
-		state_machine.change_to_state("DeadState")
+	if health <= 0:
+		die()
+
+func die():
+	state_machine.change_to_state("DeadState")
+	
+func _process(delta):
+	# gonna need to acquire gooblins and choose attacks
+	pass

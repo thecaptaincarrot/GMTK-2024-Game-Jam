@@ -11,6 +11,8 @@ script = ExtResource("1_wynlo")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
 
