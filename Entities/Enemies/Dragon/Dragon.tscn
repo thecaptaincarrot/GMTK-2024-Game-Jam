@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://byrmqaqlddrrn"]
+[gd_scene load_steps=23 format=3 uid="uid://byrmqaqlddrrn"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/dragon.gd" id="1_kxca4"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_n3g6u"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Classes/hurtbox_component.gd" id="4_pakg3"]
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/States/DeadState.gd" id="4_vppk3"]
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/BiteState.gd" id="5_vyu4a"]
+[ext_resource type="Script" path="res://Classes/hitbox_component.gd" id="7_mcf1o"]
 [ext_resource type="Texture2D" uid="uid://cif3nt6kg5f3q" path="res://Textures/great_kazan.png" id="8_qvjol"]
 
 [sub_resource type="Animation" id="Animation_xnciy"]
@@ -193,8 +194,11 @@ libraries = {
 "": SubResource("AnimationLibrary_fhkft")
 }
 
+[node name="HitboxComponent" parent="Beast" index="2"]
+script = ExtResource("7_mcf1o")
+
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-552.691, 831.882)
+position = Vector2(-552.692, 831.882)
 rotation = 2.88471
 scale = Vector2(0.999931, 0.999931)
 shape = SubResource("CircleShape2D_krs6l")
@@ -445,17 +449,17 @@ region_rect = Rect2(1336, 1826, 435, 308)
 
 [node name="legL" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -55
-position = Vector2(-289.801, 399.027)
-rotation = -0.022688
-scale = Vector2(0.999896, 0.999896)
+position = Vector2(-289.796, 399.028)
+rotation = -0.0227195
+scale = Vector2(0.999902, 0.999902)
 texture = ExtResource("8_qvjol")
 region_enabled = true
 region_rect = Rect2(129, 331, 366, 559)
 
 [node name="shinL" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -54
-position = Vector2(-313.519, 659.392)
-rotation = 0.248325
+position = Vector2(-313.511, 659.391)
+rotation = 0.248343
 scale = Vector2(0.999869, 0.999869)
 texture = ExtResource("8_qvjol")
 region_enabled = true
@@ -463,35 +467,35 @@ region_rect = Rect2(72, 939, 478, 399)
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -53
-position = Vector2(-577.382, 841.066)
+position = Vector2(-577.383, 841.067)
 rotation = -0.101607
-scale = Vector2(0.999833, 0.999833)
+scale = Vector2(0.99984, 0.99984)
 texture = ExtResource("8_qvjol")
 region_enabled = true
 region_rect = Rect2(32, 1446, 371, 187)
 
 [node name="legR" type="Sprite2D" parent="Beast/Sprites" index="11"]
 z_index = -40
-position = Vector2(-142.903, 384.412)
-rotation = -0.128374
-scale = Vector2(0.999928, 0.999928)
+position = Vector2(-142.901, 384.413)
+rotation = -0.128385
+scale = Vector2(0.999935, 0.999935)
 texture = ExtResource("8_qvjol")
 region_enabled = true
 region_rect = Rect2(129, 331, 366, 559)
 
 [node name="shinR" type="Sprite2D" parent="Beast/Sprites" index="12"]
 z_index = -39
-position = Vector2(-155.873, 681.7)
-rotation = 0.0185637
-scale = Vector2(0.999901, 0.999901)
+position = Vector2(-155.869, 681.699)
+rotation = 0.0185704
+scale = Vector2(0.999911, 0.999911)
 texture = ExtResource("8_qvjol")
 region_enabled = true
 region_rect = Rect2(72, 939, 478, 399)
 
 [node name="footR" type="Sprite2D" parent="Beast/Sprites" index="13"]
 z_index = -38
-position = Vector2(-360.363, 894.579)
-scale = Vector2(0.99989, 0.99989)
+position = Vector2(-360.364, 894.579)
+scale = Vector2(0.9999, 0.9999)
 texture = ExtResource("8_qvjol")
 region_enabled = true
 region_rect = Rect2(32, 1446, 371, 187)
