@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqr3q111ffuwe"]
+[gd_scene load_steps=8 format=3 uid="uid://cqr3q111ffuwe"]
 
 [ext_resource type="Script" path="res://Classes/gooblin_horde_controller.gd" id="1_gvws4"]
 [ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="1_qkvfo"]
 [ext_resource type="Texture2D" uid="uid://j4yl5qmydg48" path="res://Textures/Enemy.png" id="3_iu6mw"]
+[ext_resource type="PackedScene" uid="uid://byrmqaqlddrrn" path="res://Entities/Enemies/Dragon/Dragon.tscn" id="4_3xbs0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ojq"]
 size = Vector2(1075, 33)
@@ -19,7 +20,7 @@ size = Vector2(64, 215)
 texture_filter = 1
 position = Vector2(-288, 0)
 script = ExtResource("1_gvws4")
-horde_target = NodePath("../Enemy")
+horde_target = NodePath("../Dragon/LungePoint")
 spawn_shield_count = 15
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -74,3 +75,9 @@ texture = ExtResource("3_iu6mw")
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_llc3r")
 disabled = true
+
+[node name="Dragon" parent="." instance=ExtResource("4_3xbs0")]
+position = Vector2(803, -691)
+
+[node name="LungePoint" type="Node2D" parent="Dragon"]
+position = Vector2(-297, 534)
