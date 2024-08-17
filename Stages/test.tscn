@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs7d88ot775b5"]
+
+[ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="1_ghpdn"]
+[ext_resource type="PackedScene" uid="uid://byrmqaqlddrrn" path="res://Entities/Enemies/Dragon/Dragon.tscn" id="2_wl7ne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yih0"]
+size = Vector2(1264, 130)
+
+[node name="Test" type="Node2D"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(571, 588)
+
+[node name="AllegedlyTheGround" type="Sprite2D" parent="Ground"]
+scale = Vector2(9.96, 1)
+texture = ExtResource("1_ghpdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_8yih0")
+
+[node name="Dragon" parent="." instance=ExtResource("2_wl7ne")]
+position = Vector2(323, 201)
