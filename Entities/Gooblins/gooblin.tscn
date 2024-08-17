@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://btrnquby788nf"]
+
+[ext_resource type="Texture2D" uid="uid://bglepraamj4hk" path="res://Textures/Entities/GoblinDev.png" id="1_nuarw"]
+[ext_resource type="Script" path="res://Entities/Gooblins/gooblin.gd" id="1_qqrn7"]
+
+[node name="Gooblin" type="CharacterBody2D"]
+script = ExtResource("1_qqrn7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nuarw")
