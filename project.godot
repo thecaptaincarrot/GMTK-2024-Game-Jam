@@ -15,6 +15,10 @@ run/main_scene="res://Stages/test_stage.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GooblinUpgrades="*res://Globals/GooblinUpgrades.gd"
+
 [layer_names]
 
 2d_physics/layer_1="Ground"
