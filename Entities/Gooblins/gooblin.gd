@@ -27,7 +27,7 @@ enum GooblinType{
 
 @export var move_speed = 300.0
 
-@export var despawn_timer = 5.0
+@export var despawn_timer_time = 5.0
 
 #used to move the velocity back to zero
 #when input is not being sent to movement
@@ -122,10 +122,10 @@ func heal(amount:int):
 
 func die():
 	_is_dead = true
-	emit_signal("Dead", self)
+	emit_signal("died", self)
 	var despawn_timer = Timer.new()
-	despawn_timer.auto_start = true
-	despawn_timer.set_wait_time(despawn_timer)
+	despawn_timer.autostart = true
+	despawn_timer.set_wait_time(despawn_timer_time)
 	despawn_timer.timeout.connect(_despawn_timeout)
 	add_child(despawn_timer)
 	_anim.play("Dead")
