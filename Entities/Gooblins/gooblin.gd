@@ -11,6 +11,8 @@ enum GooblinType{
 
 @export var unit_type:GooblinType
 
+@export var enemy_node:Node2D
+
 @export var enemy_target:Node2D
 
 @export var target_range = 256.0
@@ -157,6 +159,8 @@ func _attack_target():
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
 	_upcoming_fling = -diff * Vector2(400, 600) * 100
+	#add damange multiplyers in here when it comes up
+	enemy_target.take_damage(GooblinUpgrades.gooblin_attack)
 
 func is_dead():
 	return _is_dead
