@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpn5os62xeqhx"]
+[gd_scene load_steps=5 format=3 uid="uid://bpn5os62xeqhx"]
 
 [ext_resource type="Script" path="res://Menus/OutOfCombatr/out_of_combat.gd" id="1_2xjpg"]
 [ext_resource type="Script" path="res://Menus/OutOfCombatr/shop_panel.gd" id="1_tqmy8"]
 [ext_resource type="Script" path="res://Menus/OutOfCombatr/army_comp_panel.gd" id="3_24mlq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwusg"]
+line_spacing = 0.0
+font_size = 14
 
 [node name="OutOfCombat" type="Control"]
 layout_mode = 3
@@ -20,24 +24,39 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -54.0
-offset_top = -122.0
-offset_right = 56.0
-offset_bottom = -79.0
+offset_left = -53.0
+offset_top = -64.0
+offset_right = 57.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "To combat!"
 
-[node name="ShopPanel" type="Panel" parent="."]
+[node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -478.0
 offset_right = 483.0
-offset_bottom = 340.0
+offset_bottom = 438.0
 grow_horizontal = 2
 script = ExtResource("1_tqmy8")
+total_gooblin_label = NodePath("GooblinInfoContainer/TotalGooblinContainer/TotalGooblins")
+gold_label = NodePath("GoldContainer/Gold")
+gooblin_current_attack_label = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer/CurrentAttack")
+gooblin_next_attack_label = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer/NewAttack")
+gooblin_current_speed_label = NodePath("UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/CurrentMove")
+gooblin_next_speed_label = NodePath("UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/NewMove")
+gooblin_current_shield_label = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/CurrentShield")
+gooblin_next_shield_label = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/NewShield")
+one_gooblin_button = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2/OneGooblinButton")
+ten_gooblin_button = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer/TenGooblinButton")
+gooblin_attack_upgrade_button = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/AttackUpButton")
+gooblin_speed_upgrade_button = NodePath("UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/MoveUpButton")
+purchase_shield_button = NodePath("UpgradesHbox/ShieldUpgrades/HBoxContainer/ShieldPurchaseButton")
+shield_health_upgrade_button = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/ShieldUpgradeButton")
+cost_per_gooblin = 20
 
 [node name="Label" type="Label" parent="ShopPanel"]
 layout_mode = 1
@@ -109,7 +128,7 @@ layout_mode = 2
 layout_mode = 2
 text = "10 Gooblins"
 
-[node name="Button" type="Button" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
+[node name="TenGooblinButton" type="Button" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
 layout_mode = 2
 text = "100 gold"
 
@@ -126,11 +145,18 @@ layout_mode = 2
 text = "999"
 
 [node name="UpgradesHbox" type="HBoxContainer" parent="ShopPanel"]
-layout_mode = 0
-offset_left = 113.0
-offset_top = 161.0
-offset_right = 769.0
-offset_bottom = 298.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -383.5
+offset_top = -172.0
+offset_right = 391.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="GooblinUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
 layout_mode = 2
@@ -200,6 +226,28 @@ layout_mode = 2
 [node name="ShieldUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
 layout_mode = 2
 
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Blockers protect your gooblins
+from enemy attacks with
+their shields"
+label_settings = SubResource("LabelSettings_iwusg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer"]
+layout_mode = 2
+text = "Purchase Shield:"
+
+[node name="ShieldPurchaseButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer"]
+custom_minimum_size = Vector2(97.31, 48)
+layout_mode = 2
+text = "20 Gold"
+
 [node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -229,7 +277,7 @@ text = "→"
 layout_mode = 2
 text = "2"
 
-[node name="AttackUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+[node name="ShieldUpgradeButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
 custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
 text = "9999 Gold"
@@ -268,7 +316,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Scaler Upgrades"
+text = "Scaler Upgrades
+SCALERS NOT IMPLEMENTED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -328,13 +377,16 @@ custom_minimum_size = Vector2(112, 40)
 layout_mode = 2
 text = "9999 Gold"
 
-[node name="ArmyCompPanel" type="Panel" parent="."]
+[node name="ArmyCompPanel" type="Panel" parent="." node_paths=PackedStringArray("available_gooblins_label", "available_shields_label", "shield_gooblin_spinbox")]
 layout_mode = 0
-offset_left = 310.0
-offset_top = 366.0
-offset_right = 845.0
-offset_bottom = 484.0
+offset_left = 309.0
+offset_top = 454.0
+offset_right = 844.0
+offset_bottom = 572.0
 script = ExtResource("3_24mlq")
+available_gooblins_label = NodePath("AvailableContainer/AvailableLabel")
+available_shields_label = NodePath("ShieldSpinbox/VBoxContainer/Shields")
+shield_gooblin_spinbox = NodePath("ShieldSpinbox")
 
 [node name="Label" type="Label" parent="ArmyCompPanel"]
 layout_mode = 1
@@ -360,10 +412,10 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="ArmyCompPanel/AvailableContainer"]
 layout_mode = 2
-text = "Available"
+text = "Basic Gooblins"
 horizontal_alignment = 1
 
-[node name="AvailableLable" type="Label" parent="ArmyCompPanel/AvailableContainer"]
+[node name="AvailableLabel" type="Label" parent="ArmyCompPanel/AvailableContainer"]
 layout_mode = 2
 text = "999"
 horizontal_alignment = 1
@@ -459,22 +511,12 @@ layout_mode = 2
 text = "999"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="."]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 320.0
-offset_top = 131.0
-offset_right = 876.0
-offset_bottom = 154.0
-text = "Need to add a button in this area to purchase shield and climbing hooks"
-
-[node name="Label2" type="Label" parent="."]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 352.0
-offset_top = 314.0
-offset_right = 837.0
-offset_bottom = 337.0
-text = "NONE OF THESE BUTTONS WORK YET, DO NOT BE DECEIVED"
-
 [connection signal="pressed" from="ToCombatButton" to="." method="_on_to_combat_button_pressed"]
+[connection signal="army_composition_update" from="ShopPanel" to="ArmyCompPanel" method="update_all"]
+[connection signal="pressed" from="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2/OneGooblinButton" to="ShopPanel" method="_on_one_gooblin_button_pressed"]
+[connection signal="pressed" from="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer/TenGooblinButton" to="ShopPanel" method="_on_ten_gooblin_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/AttackUpButton" to="ShopPanel" method="_on_basic_gooblin_attack_up_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/MoveUpButton" to="ShopPanel" method="_on_basic_gooblin_speed_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/ShieldPurchaseButton" to="ShopPanel" method="_on_shield_purchase_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/ShieldUpgradeButton" to="ShopPanel" method="_on_shield_upgrade_button_pressed"]
+[connection signal="value_changed" from="ArmyCompPanel/ShieldSpinbox" to="ArmyCompPanel" method="_on_shield_spinbox_value_changed"]
