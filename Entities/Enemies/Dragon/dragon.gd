@@ -1,10 +1,15 @@
 extends Node2D
 
 @onready var enemy = $Beast
+@export var horde_controller: GooblinHordeController
+var target_list: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if horde_controller:
+		target_list = horde_controller._basic_gooblins
+	else:
+		print("no horde controller configured for enemy!")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

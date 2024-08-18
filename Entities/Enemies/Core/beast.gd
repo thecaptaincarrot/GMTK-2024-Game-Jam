@@ -13,10 +13,13 @@ class_name Beast extends Node2D
 @export var max_health := 100 #placeholder
 var health = max_health
 
+@export var targets := []
+
 # Actual logic
 func _ready():
 	state_machine.state_changed.connect(_fsm_state_changed)
 	animation_player.animation_finished.connect(_on_animation_finished)
+	call_deferred("acquire_targets", owner)
 
 func _fsm_state_changed(state: String):
 	# Debug printer
@@ -35,7 +38,14 @@ func take_damage(dmg):
 
 func die():
 	state_machine.change_to_state("DeadState")
-	
-func _process(delta):
-	# gonna need to acquire gooblins and choose attacks
-	pass
+
+func acquire_targets(source: Node2D):
+	if source.get("target_list") == null:
+		print("invalid target_list!!!!!")
+	else:
+		targets = source.target_list
+		print("target_list valid")
+
+
+func _on_random_target_timer_timeout() -> void:
+	print(targets.pick_random().name)
