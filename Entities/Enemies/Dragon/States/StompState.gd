@@ -13,4 +13,5 @@ func physics_update(_delta):
 	pass
 
 func exit():
-	pass
+	# once it's done
+	beast.restart_targeting()
