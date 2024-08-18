@@ -27,6 +27,8 @@ enum GooblinType{
 
 @export var move_speed = 300.0
 
+@export var despawn_timer = 5.0
+
 #used to move the velocity back to zero
 #when input is not being sent to movement
 #functions off of a vector lerp
@@ -40,6 +42,8 @@ var _jump_timer = Timer.new()
 
 var _can_attack = true
 
+var _is_dead = false
+
 #sprite should be called - Sprite
 @onready var _sprite:Sprite2D = $Sprite
 #collider should be called - Collider
@@ -50,6 +54,8 @@ var _can_attack = true
 var _upcoming_fling = Vector2()
 
 var _is_at_home = false
+
+signal died
 
 func _ready():
 	#this timer is used to delay a jump
@@ -87,20 +93,21 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
-	#a lerp might be better here. testing will need to be done
-	velocity = velocity.lerp(Vector2(), dampening)
-	#a global request to get local gravity managed in the global settings
-	velocity += get_gravity() * delta
-	
-	#put here as an example
-	_move_to_target_range(delta)
-	
-	velocity += _upcoming_fling * delta
-	_upcoming_fling = Vector2()
-	
-	_attack_target()
-	
-	move_and_slide()
+	if(!_is_dead):
+		#a lerp might be better here. testing will need to be done
+		velocity = velocity.lerp(Vector2(), dampening)
+		#a global request to get local gravity managed in the global settings
+		velocity += get_gravity() * delta
+		
+		#put here as an example
+		_move_to_target_range(delta)
+		
+		velocity += _upcoming_fling * delta
+		_upcoming_fling = Vector2()
+		
+		_attack_target()
+		
+		move_and_slide()
 
 func hurt(amount:int):
 	_health -= amount
@@ -114,7 +121,17 @@ func heal(amount:int):
 		_health = max_health
 
 func die():
-	pass
+	_is_dead = true
+	emit_signal("Dead", self)
+	var despawn_timer = Timer.new()
+	despawn_timer.auto_start = true
+	despawn_timer.set_wait_time(despawn_timer)
+	despawn_timer.timeout.connect(_despawn_timeout)
+	add_child(despawn_timer)
+	_anim.play("Dead")
+
+func _despawn_timeout():
+	queue_free()
 
 func _move_to_target_range(delta:float):
 	if(enemy_target != null):
@@ -142,3 +159,6 @@ func _attack_target():
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
 	_upcoming_fling = -diff * Vector2(400, 600) * 100
+
+func is_dead():
+	return _is_dead
