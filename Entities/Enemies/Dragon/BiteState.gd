@@ -13,6 +13,6 @@ func physics_update(_delta):
 	pass
 
 func exit():
-	beast.current_target.hurt(2)
+	beast.current_target.hurt()
 	# once it's done
 	beast.restart_targeting()
