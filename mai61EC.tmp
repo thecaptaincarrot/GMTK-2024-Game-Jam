@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuvrgahogu1ld"]
+
+[ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_7omm2"]
+[ext_resource type="Script" path="res://main.gd" id="1_467fc"]
+[ext_resource type="PackedScene" uid="uid://bpn5os62xeqhx" path="res://Menus/OutOfCombatr/OutOfCombat.tscn" id="3_m8ns0"]
+[ext_resource type="PackedScene" uid="uid://cqr3q111ffuwe" path="res://Stages/test_stage.tscn" id="4_ooj5i"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_467fc")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7omm2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -21.5
+offset_right = 67.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="NewRun" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "New Run"
+
+[node name="Quit" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="OutOfCombat" parent="." instance=ExtResource("3_m8ns0")]
+visible = false
+
+[node name="TestStage" parent="." instance=ExtResource("4_ooj5i")]
+visible = false
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/Continue" to="MainMenu" method="_on_continue_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/NewRun" to="MainMenu" method="_on_new_run_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Quit" to="MainMenu" method="_on_quit_pressed"]

@@ -1,0 +1,480 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpn5os62xeqhx"]
+
+[ext_resource type="Script" path="res://Menus/OutOfCombatr/out_of_combat.gd" id="1_2xjpg"]
+[ext_resource type="Script" path="res://Menus/OutOfCombatr/shop_panel.gd" id="1_tqmy8"]
+[ext_resource type="Script" path="res://Menus/OutOfCombatr/army_comp_panel.gd" id="3_24mlq"]
+
+[node name="OutOfCombat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2xjpg")
+
+[node name="ToCombatButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -122.0
+offset_right = 56.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "To combat!"
+
+[node name="ShopPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -478.0
+offset_right = 483.0
+offset_bottom = 340.0
+grow_horizontal = 2
+script = ExtResource("1_tqmy8")
+
+[node name="Label" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.5
+offset_top = 13.0
+offset_right = 81.5
+offset_bottom = 36.0
+grow_horizontal = 2
+text = "Adventurer's surplus"
+
+[node name="GoldContainer" type="HBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="ShopPanel/GoldContainer"]
+layout_mode = 2
+text = "Gold:"
+
+[node name="Gold" type="Label" parent="ShopPanel/GoldContainer"]
+layout_mode = 2
+text = "99
+"
+
+[node name="GooblinInfoContainer" type="VBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -156.5
+offset_top = 46.0
+offset_right = 157.5
+offset_bottom = 131.0
+grow_horizontal = 2
+
+[node name="GooblinPurchaseContainer" type="HBoxContainer" parent="ShopPanel/GooblinInfoContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+text = "Purchase Gooblin:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2"]
+layout_mode = 2
+text = "1 Gooblin"
+
+[node name="OneGooblinButton" type="Button" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2"]
+layout_mode = 2
+text = "10 Gold"
+
+[node name="VSeparator" type="VSeparator" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
+layout_mode = 2
+text = "10 Gooblins"
+
+[node name="Button" type="Button" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
+layout_mode = 2
+text = "100 gold"
+
+[node name="TotalGooblinContainer" type="HBoxContainer" parent="ShopPanel/GooblinInfoContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/TotalGooblinContainer"]
+layout_mode = 2
+text = "Total Gooblins:"
+
+[node name="TotalGooblins" type="Label" parent="ShopPanel/GooblinInfoContainer/TotalGooblinContainer"]
+layout_mode = 2
+text = "999"
+
+[node name="UpgradesHbox" type="HBoxContainer" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 161.0
+offset_right = 769.0
+offset_bottom = 298.0
+
+[node name="GooblinUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+layout_mode = 2
+text = "Gooblin Upgrades
+(Applies to all Gooblins)"
+horizontal_alignment = 1
+
+[node name="AttackUpgradeContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer"]
+layout_mode = 2
+text = "Attack:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentAttack" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="NewAttack" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="AttackUpButton" type="Button" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="MoveUpgradeContainer2" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "Speed"
+
+[node name="CurrentMove" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "300"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "350"
+
+[node name="MoveUpButton" type="Button" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="VSeparator" type="VSeparator" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="ShieldUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Blocker Upgrades
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldUpgradeContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "Shield
+Strength"
+horizontal_alignment = 1
+
+[node name="CurrentShield" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="NewShield" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="AttackUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="MoveUpgradeContainer2" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "Attack:"
+
+[node name="CurrentMove" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "2"
+
+[node name="MoveUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="VSeparator3" type="VSeparator" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="ScalerUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Scaler Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackUpgradeContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer"]
+layout_mode = 2
+text = "Critical
+Multiplier"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentMult" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMult" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="AttackUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="ClimbUpgradeContainer2" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+custom_minimum_size = Vector2(76, 0)
+layout_mode = 2
+text = "Climb
+Speed:"
+
+[node name="CurrentMove" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+layout_mode = 2
+text = "200"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+layout_mode = 2
+text = "225"
+
+[node name="MoveUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="ArmyCompPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 366.0
+offset_right = 845.0
+offset_bottom = 484.0
+script = ExtResource("3_24mlq")
+
+[node name="Label" type="Label" parent="ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.0
+offset_right = 72.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Army Composition"
+
+[node name="AvailableContainer" type="VBoxContainer" parent="ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -25.5
+offset_right = 88.0
+offset_bottom = 24.5
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ArmyCompPanel/AvailableContainer"]
+layout_mode = 2
+text = "Available"
+horizontal_alignment = 1
+
+[node name="AvailableLable" type="Label" parent="ArmyCompPanel/AvailableContainer"]
+layout_mode = 2
+text = "999"
+horizontal_alignment = 1
+
+[node name="ShieldSpinbox" type="SpinBox" parent="ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 149.0
+offset_right = 232.063
+offset_bottom = 31.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ArmyCompPanel/ShieldSpinbox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5313
+offset_top = -26.0
+offset_right = 53.4688
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "Blockers"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ArmyCompPanel/ShieldSpinbox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 7.9375
+offset_top = -24.5
+offset_right = 67.9375
+offset_bottom = 25.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ArmyCompPanel/ShieldSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "Shields:"
+
+[node name="Shields" type="Label" parent="ArmyCompPanel/ShieldSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "999"
+horizontal_alignment = 1
+
+[node name="ScalersSpinbox" type="SpinBox" parent="ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = 2.0
+offset_right = 423.063
+offset_bottom = 33.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ArmyCompPanel/ScalersSpinbox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5313
+offset_top = -26.0
+offset_right = 53.4688
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "Scalers"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ArmyCompPanel/ScalersSpinbox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 7.9375
+offset_top = -24.5
+offset_right = 67.9375
+offset_bottom = 25.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ArmyCompPanel/ScalersSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "Hooks:"
+
+[node name="Hooks" type="Label" parent="ArmyCompPanel/ScalersSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "999"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 320.0
+offset_top = 131.0
+offset_right = 876.0
+offset_bottom = 154.0
+text = "Need to add a button in this area to purchase shield and climbing hooks"
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 352.0
+offset_top = 314.0
+offset_right = 837.0
+offset_bottom = 337.0
+text = "NONE OF THESE BUTTONS WORK YET, DO NOT BE DECEIVED"
+
+[connection signal="pressed" from="ToCombatButton" to="." method="_on_to_combat_button_pressed"]

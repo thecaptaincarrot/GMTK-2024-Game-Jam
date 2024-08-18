@@ -47,6 +47,8 @@ func _setup_horde_rotation_lines():
 func _process(delta: float) -> void:
 	distribute_target_spacing()
 
+
+
 func spawn_basic_gooblin(position:Vector2):
 	var goob = gooblin_scene.instantiate()
 	goob.set_position(position)
