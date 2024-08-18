@@ -54,7 +54,7 @@ func spawn_basic_gooblin(position:Vector2):
 	goob.set_position(position)
 	goob.unit_type = Gooblin.GooblinType.BASIC
 	get_parent().call_deferred("add_child", goob)
-	goob.Dead.connect(_basic_gooblin_died)
+	goob.died.connect(_basic_gooblin_died)
 	_basic_gooblins.append(goob)
 
 func spawn_shield_gooblin(position:Vector2):
