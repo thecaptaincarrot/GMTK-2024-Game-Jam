@@ -7,7 +7,9 @@ extends GenericState
 @export var bite_max_range := 700
 @export var track_height := 250
 
-#func enter(_msg):
+func enter(_msg):
+	#target_and_attack()
+	pass
 	#pass
 	#print("dragon")
 
@@ -32,7 +34,14 @@ func target_and_attack():
 		#var current_target = beast.targets.pick_random()
 		var current_target
 		var msg = 0
-		var attack_to_do = 0 #randi_range(0,2)
+		var attack_to_do = randi_range(0,100)
+		if attack_to_do < 40:
+			attack_to_do = 0
+		elif attack_to_do < 80:
+			attack_to_do = 1
+		else:
+			attack_to_do = 2
+		print(attack_to_do)
 		match attack_to_do:
 			0:
 				current_target = randf_range(stomp_range, bite_max_range)

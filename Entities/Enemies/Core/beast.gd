@@ -21,7 +21,7 @@ signal attack_call(target)
 @export var attack_chance := 1 # 1 in X
 
 signal died
-@export var max_health := 100 #placeholder
+@export var max_health := 1000 #placeholder
 var health = max_health
 
 signal reacquire_targets

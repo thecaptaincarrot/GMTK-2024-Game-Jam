@@ -160,7 +160,7 @@ func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
 	_upcoming_fling = -diff * Vector2(400, 600) * 100
 	#add damange multiplyers in here when it comes up
-	enemy_target.take_damage(GooblinUpgrades.gooblin_attack)
+	enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 
 func is_dead():
 	return _is_dead
