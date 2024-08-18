@@ -31,14 +31,15 @@ func enter(msg):
 	tween.tween_property(head_pointer, "global_position", msg.global_position - Vector2(0, attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
 	await tween.finished
 	
-	attacker.disabled = false
+	## KILL
+	#attacker.disabled = false
 	
 	var timer = get_tree().create_timer(0.2)
 	
 	hurt_gooblins()
 	
 	await timer.timeout	
-	attacker.disabled = true
+	#attacker.disabled = true
 	final_targets.clear()
 	
 
@@ -72,13 +73,14 @@ func exit():
 	beast.random_target_timer.start()
 
 func hurt_gooblins():
-	print("KILLLLLL")
+	#print("KILLLLLL")
 	var counter = damage
 	for goob in intersecting_goobs:
-		print("KILL")
+		if goob.unit_type = Gooblin.GooblinType.SHIELD:
+			if dmg > shield
+		#print("KILL")
 		if counter > 0: #and hitbox.overlaps_body(goob): #and randi_range(0,1) == 0:
 			print(counter)
 			#if not goob.is_dead():
-			goob.scale *= 5
 			goob.hurt(2)
 			counter -= 1
