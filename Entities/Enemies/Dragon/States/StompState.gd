@@ -16,6 +16,7 @@ var intersecting_goobs := []
 
 
 func enter(_msg):
+	stomper.disabled = false
 	beast.random_target_timer.stop()
 	var prev_foot_pointer_position = foot_pointer.global_position
 	
@@ -58,4 +59,5 @@ func physics_update(_delta):
 
 func exit():
 	# once it's done
+	stomper.disabled = true
 	beast.random_target_timer.start()

@@ -31,7 +31,7 @@ enum GooblinType{
 
 @export var jump_vector = Vector2(400, 600)
 
-@export var fling_vector = Vector2(-500, 800)
+@export var fling_vector = Vector2(-500, -800)
 
 #used to move the velocity back to zero
 #when input is not being sent to movement

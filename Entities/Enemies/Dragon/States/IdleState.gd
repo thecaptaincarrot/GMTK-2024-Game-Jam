@@ -27,6 +27,11 @@ func enter(_msg):
 
 var tween
 
+
+# this function is connected to the timeout of the randomtarget timer
+# the attack_to_do picks what to deliberate. 0 is bite, 1 is stomp, 2 is nothing
+# further along the function, there's another check with attack_chance that decides if the dragon will do
+#what it is deliberating on and swaps into the appropriate state if it chooses to
 func target_and_attack():
 	if get("head_pointer"):
 		var tween_target

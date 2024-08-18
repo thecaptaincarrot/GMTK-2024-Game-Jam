@@ -12,18 +12,19 @@ class_name Beast extends Node2D
 @onready var ik_targets: Node2D = $IKTargets
 @onready var hitbox_component: Area2D = $HitboxComponent
 
-
+# Refer to the timer itself
 @onready var random_target_timer: Timer = $RandomTargetTimer
 @export var min_retarget_time := 2
 @export var max_retarget_time := 4
 
-signal attack_call(target)
-@export var attack_chance := 1 # 1 in X
+@export var attack_chance := 1 # 1 in X chance to launch the attack it's deliberating on
 
+# i havent really developed the deadstate but it's pretty straightforward i think
 signal died
 @export var max_health := 1000 #placeholder
 var health = max_health
 
+# Universal functionality but customized use in states
 signal reacquire_targets
 @export var targets := []
 var current_target: Gooblin
@@ -42,6 +43,7 @@ func _fsm_state_changed(state: String):
 	animation_player.play(state_machine.find_child(state).animation)
 
 func _on_animation_finished(_anim):
+	# never uncomment this line under any circumstance
 	#state_machine.change_to_state("IdleState")
 	pass
 
