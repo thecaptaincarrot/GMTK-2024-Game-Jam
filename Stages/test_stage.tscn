@@ -16,10 +16,11 @@ size = Vector2(64, 215)
 
 [node name="TestStage" type="Node2D"]
 
-[node name="GooblinHordeController" type="Node2D" parent="." node_paths=PackedStringArray("horde_target")]
+[node name="GooblinHordeController" type="Node2D" parent="." node_paths=PackedStringArray("enemy_node", "horde_target")]
 texture_filter = 1
 position = Vector2(-288, 0)
 script = ExtResource("1_gvws4")
+enemy_node = NodePath("../Dragon")
 horde_target = NodePath("../Dragon/LungePoint")
 spawn_shield_count = 15
 rotation_rate = 2.0
@@ -66,6 +67,7 @@ shape = SubResource("RectangleShape2D_lqx4q")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
+visible = false
 position = Vector2(467, 115)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
