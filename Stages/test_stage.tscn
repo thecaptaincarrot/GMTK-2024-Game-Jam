@@ -78,8 +78,9 @@ position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_llc3r")
 disabled = true
 
-[node name="Dragon" parent="." instance=ExtResource("4_3xbs0")]
+[node name="Dragon" parent="." node_paths=PackedStringArray("horde_controller") instance=ExtResource("4_3xbs0")]
 position = Vector2(803, -691)
+horde_controller = NodePath("../GooblinHordeController")
 
 [node name="LungePoint" type="Node2D" parent="Dragon"]
 position = Vector2(-297, 534)
