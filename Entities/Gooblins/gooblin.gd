@@ -55,6 +55,7 @@ var _upcoming_fling = Vector2()
 
 var _is_at_home = false
 
+signal gooblin_changed
 signal died
 
 func _ready():
@@ -130,6 +131,13 @@ func die():
 	add_child(despawn_timer)
 	_anim.play("Dead")
 
+func convert_to_basic_gooblin():
+	if(unit_type == GooblinType.SHIELD):
+		#spawn a shield entity to bounce around
+		_sprite.texture = load("res://Textures/Entities/GoblinBasic.png")
+		_can_attack = true
+		emit_signal("gooblin_changed", GooblinType.SHIELD, GooblinType.BASIC, self)
+
 func _despawn_timeout():
 	queue_free()
 
@@ -154,7 +162,6 @@ func _attack_target():
 		if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
 			_anim.play("Jump")
 			_jump_timer.start()
-
 
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
