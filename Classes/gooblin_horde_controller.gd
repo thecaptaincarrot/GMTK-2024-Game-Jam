@@ -54,6 +54,7 @@ func spawn_basic_gooblin(position:Vector2):
 	goob.set_position(position)
 	goob.unit_type = Gooblin.GooblinType.BASIC
 	get_parent().call_deferred("add_child", goob)
+	goob.Dead.connect(_basic_gooblin_died)
 	_basic_gooblins.append(goob)
 
 func spawn_shield_gooblin(position:Vector2):
@@ -87,3 +88,16 @@ func _rotate_out_basic():
 	if(_basic_gooblins.size() > 1):
 		var goob = _basic_gooblins.pop_front()
 		_basic_gooblins.append(goob)
+
+func _basic_gooblin_died(gooblin):
+	if(_basic_gooblins.has(gooblin)):
+		_basic_gooblins.erase(gooblin)
+
+func _shield_gooblin_died(gooblin):
+	pass
+
+func get_basic_gooblins():
+	return _basic_gooblins
+
+func get_shield_gooblins():
+	return _shield_gooblins

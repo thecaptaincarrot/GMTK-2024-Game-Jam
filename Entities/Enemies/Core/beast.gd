@@ -48,4 +48,4 @@ func acquire_targets(source: Node2D):
 
 
 func _on_random_target_timer_timeout() -> void:
-	print(targets.pick_random().name)
+	pass
