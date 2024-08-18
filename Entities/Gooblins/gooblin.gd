@@ -5,7 +5,7 @@ class_name Gooblin
 enum GooblinType{
 	BASIC,
 	SHIELD,
-	ASSASSIN,
+	SCALER,
 	CATAPULT
 }
 
@@ -28,6 +28,10 @@ enum GooblinType{
 @export var move_speed = 300.0
 
 @export var despawn_timer_time = 5.0
+
+@export var jump_vector = Vector2(400, 600)
+
+@export var fling_vector = Vector2(-500, 800)
 
 #used to move the velocity back to zero
 #when input is not being sent to movement
@@ -123,6 +127,9 @@ func die():
 	add_child(despawn_timer)
 	_anim.play("Dead")
 
+func fling():
+	_upcoming_fling = fling_vector * 100
+
 func convert_to_basic_gooblin():
 	if(unit_type == GooblinType.SHIELD):
 		#spawn a shield entity to bounce around
@@ -158,9 +165,11 @@ func _attack_target():
 
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
-	_upcoming_fling = -diff * Vector2(400, 600) * 100
-	#add damange multiplyers in here when it comes up
-	enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
+	if(_upcoming_fling != Vector2()):
+		_upcoming_fling = -diff * jump_vector * 100
+		#add damange multiplyers in here when it comes up
+		enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
+
 
 func is_dead():
 	return _is_dead
