@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cshwo6wiegxqm"]
+[gd_scene load_steps=4 format=3 uid="uid://cshwo6wiegxqm"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Core/beast.gd" id="1_wynlo"]
 [ext_resource type="PackedScene" uid="uid://n3orbhr3tvny" path="res://Classes/StateMachine/state_machine.tscn" id="2_7nikn"]
+[ext_resource type="Script" path="res://Entities/Enemies/Core/random_target_timer.gd" id="2_bboou"]
 
 [node name="Beast" type="Node2D"]
 script = ExtResource("1_wynlo")
 
 [node name="RandomTargetTimer" type="Timer" parent="."]
 autostart = true
+script = ExtResource("2_bboou")
 
 [node name="StateMachine" parent="." instance=ExtResource("2_7nikn")]
 
@@ -15,12 +17,16 @@ autostart = true
 
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
 
 [node name="SkeletonComponent" type="Skeleton2D" parent="."]
 
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="IKTargets" type="Node2D" parent="."]
+
+[connection signal="timeout" from="RandomTargetTimer" to="RandomTargetTimer" method="_on_timeout"]

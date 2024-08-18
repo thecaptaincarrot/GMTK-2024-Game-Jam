@@ -1,7 +1,8 @@
 extends GenericState
 
 func enter(_msg):
-	pass
+	beast.random_target_timer.stop()
+	#print(beast.random_target_timer.is_stopped())
 
 func handle_input(_event):
 	pass
