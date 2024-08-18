@@ -5,6 +5,7 @@ var current_retarget_time: float
 
 func _ready():
 	_on_timeout()
+	start(wait_time)
 
 #func restart_targeting():
 	#print("trigger")
@@ -14,3 +15,4 @@ func _ready():
 func _on_timeout() -> void:
 	current_retarget_time = randf_range(beast.min_retarget_time, beast.max_retarget_time)
 	wait_time = current_retarget_time
+	start(wait_time)

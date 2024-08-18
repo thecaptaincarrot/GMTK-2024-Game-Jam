@@ -7,7 +7,7 @@ extends GenericState
 
 @export var damage := 10
 @export var attack_time := 2.0
-@export var attack_height := 80
+@export var attack_height := 40
 
 var intersecting_goobs : Array
 
@@ -28,7 +28,7 @@ func enter(msg):
 	
 	var tween
 	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", msg.global_position - Vector2(0, attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(head_pointer, "global_position", Vector2(msg, 0) - Vector2(0, attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
 	await tween.finished
 	
 	## KILL
@@ -76,11 +76,13 @@ func hurt_gooblins():
 	#print("KILLLLLL")
 	var counter = damage
 	for goob in intersecting_goobs:
-		if goob.unit_type = Gooblin.GooblinType.SHIELD:
-			if dmg > shield
-		#print("KILL")
-		if counter > 0: #and hitbox.overlaps_body(goob): #and randi_range(0,1) == 0:
+		if counter > 0:
 			print(counter)
-			#if not goob.is_dead():
 			goob.hurt(2)
 			counter -= 1
+		#if goob.unit_type == Gooblin.GooblinType.SHIELD:
+			#if counter > GooblinUpgrades.shield_health * :
+				#goob.hurt()
+				#counter -= 1
+			#else:
+				

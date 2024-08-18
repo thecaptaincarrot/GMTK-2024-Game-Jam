@@ -22,6 +22,9 @@ func die():
 func _process(_delta: float) -> void:
 	attacker.global_position.x = head_pointer.global_position.x
 
+func take_damage(dmg):
+	enemy.take_damage(dmg)
+
 #func _unhandled_key_input(event: InputEvent) -> void:
 	## this is getting deleted asap
 	#if event.is_action_pressed("ui_cancel"):
