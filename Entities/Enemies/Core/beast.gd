@@ -10,20 +10,21 @@ class_name Beast extends Node2D
 @onready var state_machine: Node = $StateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ik_targets: Node2D = $IKTargets
+@onready var hitbox_component: Area2D = $HitboxComponent
+
 
 @onready var random_target_timer: Timer = $RandomTargetTimer
-
 @export var min_retarget_time := 2
 @export var max_retarget_time := 4
-var current_retarget_time := 3.0
 
 signal attack_call(target)
+@export var attack_chance := 1 # 1 in X
 
+signal died
 @export var max_health := 100 #placeholder
 var health = max_health
 
-signal target_changed(target)
-
+signal reacquire_targets
 @export var targets := []
 var current_target: Gooblin
 
@@ -31,8 +32,7 @@ var current_target: Gooblin
 func _ready():
 	state_machine.state_changed.connect(_fsm_state_changed)
 	animation_player.animation_finished.connect(_on_animation_finished)
-	call_deferred("acquire_targets", owner)
-	current_retarget_time = randf_range(min_retarget_time, max_retarget_time)
+	call_deferred("acquire_targets")
 
 func _fsm_state_changed(state: String):
 	# Debug printer
@@ -42,7 +42,8 @@ func _fsm_state_changed(state: String):
 	animation_player.play(state_machine.find_child(state).animation)
 
 func _on_animation_finished(_anim):
-	state_machine.change_to_state("IdleState")
+	#state_machine.change_to_state("IdleState")
+	pass
 
 func take_damage(dmg):
 	health -= dmg
@@ -50,23 +51,12 @@ func take_damage(dmg):
 		die()
 
 func die():
-	state_machine.change_to_state("DeadState")
+	died.emit()
 
-func acquire_targets(source: Node2D):
-	if source.get("target_list") == null:
+func acquire_targets():
+	if owner.get("target_list") == null:
 		print("invalid target_list!!!!!")
 	else:
-		targets = source.target_list
+		reacquire_targets.emit()
+		targets = owner.target_list
 		print("target_list valid")
-
-
-func _on_random_target_timer_timeout() -> void:
-	current_retarget_time = randf_range(min_retarget_time, max_retarget_time)
-	current_target = targets.pick_random()
-	target_changed.emit(current_target)
-	if randi_range(1,3) == 1 and current_target:
-		random_target_timer.stop()
-		attack_call.emit(current_target)
-
-func restart_targeting():
-	random_target_timer.start(current_retarget_time)

@@ -21,7 +21,7 @@ texture_filter = 1
 position = Vector2(-288, 0)
 script = ExtResource("1_gvws4")
 horde_target = NodePath("../Dragon/LungePoint")
-spawn_shield_count = 15
+spawn_shield_count = 0
 rotation_rate = 2.0
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -79,7 +79,7 @@ shape = SubResource("RectangleShape2D_llc3r")
 disabled = true
 
 [node name="Dragon" parent="." node_paths=PackedStringArray("horde_controller") instance=ExtResource("4_3xbs0")]
-position = Vector2(803, -691)
+position = Vector2(655, -80)
 horde_controller = NodePath("../GooblinHordeController")
 
 [node name="LungePoint" type="Node2D" parent="Dragon"]

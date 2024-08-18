@@ -53,7 +53,7 @@ func change_to_state(state: String, msg = {}):
 	else:
 		current_state = get_node(state)
 	
-	# Call enter function on new state, pass a message to inform new state if needed
+	# Call enter function on new state, pass a message to inform new state if needed (the message can be anything)
 	current_state.enter(msg)
 
 	# Emit signal
