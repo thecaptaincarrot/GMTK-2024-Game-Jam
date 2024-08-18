@@ -62,6 +62,7 @@ func spawn_shield_gooblin(position:Vector2):
 	goob.set_position(position)
 	goob.unit_type = Gooblin.GooblinType.SHIELD
 	get_parent().call_deferred("add_child", goob)
+	goob.gooblin_changed.connect(_on_gooblin_changed)
 	_shield_gooblins.append(goob)
 
 func distribute_target_spacing():
@@ -95,6 +96,13 @@ func _basic_gooblin_died(gooblin):
 
 func _shield_gooblin_died(gooblin):
 	pass
+
+func _on_gooblin_changed(from_type, to_type, gooblin):
+	if(from_type == Gooblin.GooblinType.SHIELD && to_type == Gooblin.GooblinType.BASIC):
+		if(_shield_gooblins.has(gooblin)):
+			_shield_gooblins.erase(gooblin)
+			#push it to the front to they run up to the front line
+			_basic_gooblins.push_front(gooblin)
 
 func get_basic_gooblins():
 	return _basic_gooblins

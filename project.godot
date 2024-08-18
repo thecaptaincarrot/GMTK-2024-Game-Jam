@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GooblinUpgrades="*res://Globals/GooblinUpgrades.gd"
 
+[global_group]
+
+Gooblin=""
+
 [layer_names]
 
 2d_physics/layer_1="Ground"
