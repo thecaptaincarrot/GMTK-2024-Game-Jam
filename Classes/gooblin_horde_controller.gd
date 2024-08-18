@@ -6,6 +6,8 @@ class_name GooblinHordeController
 
 @export var horde_target:Node2D
 
+@export var climb_target:Path2D
+
 @export var gooblin_size = Vector2(64, 64)
 
 @export var horde_range = 128
