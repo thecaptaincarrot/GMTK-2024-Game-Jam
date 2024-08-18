@@ -156,7 +156,7 @@ _data = {
 "Walk": SubResource("Animation_6tbyr")
 }
 
-[node name="Gooblin" type="CharacterBody2D"]
+[node name="Gooblin" type="CharacterBody2D" groups=["Gooblin"]]
 collision_layer = 2
 script = ExtResource("1_qqrn7")
 
