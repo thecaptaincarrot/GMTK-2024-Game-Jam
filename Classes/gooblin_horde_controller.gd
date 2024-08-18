@@ -16,6 +16,8 @@ class_name GooblinHordeController
 
 @export var spawn_catapult_count = 0
 
+@export var rotation_rate = 1.0
+
 @onready var gooblin_scene = preload("res://Entities/Gooblins/gooblin.tscn")
 
 
@@ -39,7 +41,7 @@ func _setup_horde_rotation_lines():
 	var basic_gooblin_timer_rotation = Timer.new()
 	basic_gooblin_timer_rotation.timeout.connect(_rotate_out_basic)
 	basic_gooblin_timer_rotation.autostart = true
-	basic_gooblin_timer_rotation.set_wait_time(1.0)
+	basic_gooblin_timer_rotation.set_wait_time(rotation_rate)
 	add_child(basic_gooblin_timer_rotation)
 
 func _process(delta: float) -> void:
@@ -66,7 +68,7 @@ func distribute_target_spacing():
 	
 		var bindex = 0
 		for bg in _basic_gooblins:
-			bg.target_range = horde_range + (((gooblin_size.x / 16) / (_basic_gooblins.size() * .01)) * bindex)
+			bg.target_range = horde_range + (((gooblin_size.x / 8) / (_basic_gooblins.size() * .01)) * bindex)
 			bg.x_home = horde_target.get_position().x - bg.target_range
 			bindex += 1
 

@@ -61,17 +61,19 @@ func _ready():
 	add_child(_jump_timer)
 	#
 	randomize()
-	var i = randi_range(0, 2)
+	var i = randi_range(0, 3)
 	if(i == 0):
-		_sprite.scale = Vector2(2, 2)
-		_sprite.set_position(Vector2(0, 0))
-		_collider
+		_sprite.position = Vector2(0, 64)
+		_sprite.z_index = 3
 	elif(i == 1):
-		_sprite.scale = Vector2(2, 1.5)
-		_sprite.set_position(Vector2(0, 8))
+		_sprite.position = Vector2(0, 32)
+		_sprite.z_index = 2
 	elif(i == 2):
-		_sprite.scale = Vector2(2, 2.5)
-		_sprite.set_position(Vector2(0, -4))
+		_sprite.position = Vector2(0, 16)
+		_sprite.z_index = 1
+	elif(i == 3):
+		_sprite.position = Vector2(0, 0)
+		_sprite.z_index = 0
 	
 	#setup for the attack timeframe
 	if(unit_type == GooblinType.BASIC):
@@ -132,11 +134,11 @@ func _attack_target():
 	#a within range check can be done in adition 
 	#to make sure the attack is acurate
 	if(_is_at_home && is_on_floor() && _can_attack):
-		if(abs(get_position().x - enemy_target.get_position().x) <= attack_radius):
+		if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
 			_anim.play("Jump")
 			_jump_timer.start()
 
 
 func _jump_trigger():
-	var diff = (get_position() - enemy_target.get_position()).normalized()
+	var diff = (get_position() - enemy_target.get_global_position()).normalized()
 	_upcoming_fling = -diff * Vector2(400, 600) * 100
