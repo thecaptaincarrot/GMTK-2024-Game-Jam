@@ -1,5 +1,28 @@
 extends Node
 
+var save_path = "users://game_save.dat"
+
+
+func save_game():
+	var config_file = ConfigFile.new()
+	config_file.set_value("App","Gold", gold)
+	config_file.set_value("App","GooblinCount", gooblin_count)
+	
+	var err = config_file.save(save_path)
+	#do something with the error
+
+func load_game():
+	var config_file = ConfigFile.new()
+	var err = config_file.load(save_path)
+	if(err):
+		return
+	gold = config_file.get_value("App", "Gold")
+	gooblin_count = config_file.get_value("App", "GoblinCount")
+	
+
+func can_load():
+	return FileAccess.file_exists(save_path)
+
 var gooblin_count = 20
 
 var gold = 0

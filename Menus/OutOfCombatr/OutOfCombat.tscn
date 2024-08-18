@@ -476,3 +476,5 @@ offset_top = 314.0
 offset_right = 837.0
 offset_bottom = 337.0
 text = "NONE OF THESE BUTTONS WORK YET, DO NOT BE DECEIVED"
+
+[connection signal="pressed" from="ToCombatButton" to="." method="_on_to_combat_button_pressed"]

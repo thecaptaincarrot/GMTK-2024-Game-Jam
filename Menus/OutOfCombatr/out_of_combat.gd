@@ -9,3 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_to_combat_button_pressed() -> void:
+	get_parent().get_parent().show_test_stage()
