@@ -23,8 +23,6 @@ enum GooblinType{
 
 @export var attack_radius = 256.0
 
-@export var max_health = 2
-
 @export var move_speed = 300.0
 
 @export var despawn_timer_time = 5.0
@@ -33,8 +31,6 @@ enum GooblinType{
 #when input is not being sent to movement
 #functions off of a vector lerp
 @export var dampening = 0.03
-
-@onready var _health = max_health
 
 var _att_timer = Timer.new()
 
@@ -88,7 +84,6 @@ func _ready():
 	elif(unit_type == GooblinType.SHIELD):
 		_sprite.texture = load("res://Textures/Entities/GoblinShield.png")
 		_can_attack = false
-
 	else:
 		pass
 	
@@ -110,16 +105,11 @@ func _process(delta: float) -> void:
 		
 		move_and_slide()
 
-func hurt(amount:int):
-	_health -= amount
-	if(_health <= 0):
-		_health = 0
+func hurt():
+	if(unit_type == GooblinType.SHIELD):
+		convert_to_basic_gooblin()
+	elif(unit_type == GooblinType.BASIC):
 		die()
-
-func heal(amount:int):
-	_health += amount
-	if(_health > max_health):
-		_health = max_health
 
 func die():
 	_is_dead = true
@@ -136,6 +126,7 @@ func convert_to_basic_gooblin():
 		#spawn a shield entity to bounce around
 		_sprite.texture = load("res://Textures/Entities/GoblinBasic.png")
 		_can_attack = true
+		unit_type = GooblinType.BASIC
 		emit_signal("gooblin_changed", GooblinType.SHIELD, GooblinType.BASIC, self)
 
 func _despawn_timeout():
