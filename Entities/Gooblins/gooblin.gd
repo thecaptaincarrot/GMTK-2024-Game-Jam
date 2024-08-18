@@ -31,7 +31,7 @@ enum GooblinType{
 
 @export var jump_vector = Vector2(400, 600)
 
-@export var fling_vector = Vector2(-500, 800)
+@export var fling_vector = Vector2(-500, -800)
 
 #used to move the velocity back to zero
 #when input is not being sent to movement
@@ -95,19 +95,21 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
-	if(!_is_dead):
+	
 		#a lerp might be better here. testing will need to be done
 		velocity = velocity.lerp(Vector2(), dampening)
 		#a global request to get local gravity managed in the global settings
 		velocity += get_gravity() * delta
 		
-		#put here as an example
-		_move_to_target_range(delta)
-		
 		velocity += _upcoming_fling * delta
+		
 		_upcoming_fling = Vector2()
 		
-		_attack_target()
+		if(!_is_dead):
+			#put here as an example
+			_move_to_target_range(delta)
+			_attack_target()
+		
 		
 		move_and_slide()
 
