@@ -46,7 +46,8 @@ func _ready():
 func end_level():
 	active = false
 	for n in get_children():
-		queue_free()
+		if n.name != "SpawnPoint":
+			n.queue_free()
 	enemy_node = null
 	horde_target = null
 	climb_target = null

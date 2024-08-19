@@ -60,6 +60,7 @@ func load_level(level_index : int):
 	
 	Enemy = ENEMY_SCENE[level_index].instantiate()
 	Enemy.horde_controller = GooblinController
+	print(GooblinController)
 	Enemy.position = ENEMY_POS[level_index]
 	add_child(Enemy)
 	BeastNode = Enemy.enemy #haha that's a naming oops
