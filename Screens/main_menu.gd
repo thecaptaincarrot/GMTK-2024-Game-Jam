@@ -1,5 +1,7 @@
 extends Control
 
+signal NewGame
+signal Continue
 
 func _ready():
 	if(!GooblinUpgrades.can_load()):
@@ -7,11 +9,11 @@ func _ready():
 
 func _on_continue_pressed() -> void:
 	GooblinUpgrades.load()
-	get_parent().get_parent().show_out_of_combat_screen()
+	emit_signal("Continue")
 
 
 func _on_new_run_pressed() -> void:
-	get_parent().get_parent().show_out_of_combat_screen()
+	emit_signal("NewGame")
 
 
 func _on_quit_pressed() -> void:

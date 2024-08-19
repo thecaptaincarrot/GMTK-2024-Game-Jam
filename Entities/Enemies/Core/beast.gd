@@ -21,8 +21,12 @@ class_name Beast extends Node2D
 # need to make death anims but those are easy since i won't have to account for anything
 # just need to stop the timer in the state code and play the death animation
 signal died
-@export var max_health := 1000 #placeholder
+signal enemy_hurt
+@export var max_health := 1000.0 #placeholder
 var health = max_health
+
+@export var gold_value = 10000.0 #how much you earn for defeating it
+#You earn a weighted percentage of 50% of total for dealing damage
 
 # Universal functionality but customized use in states
 signal reacquire_targets
@@ -53,6 +57,7 @@ func _on_animation_finished(_anim):
 func take_damage(dmg):
 	took_damage.emit()
 	health -= dmg
+	emit_signal("enemy_hurt")
 	if health <= 0:
 		die()
 
@@ -69,8 +74,6 @@ func acquire_targets():
 		targets = owner.target_list
 		print("target_list valid")
 
-func get_lunge_point():
-	return $LungePoint
 
-func get_climb_target():
-	return $ScalerPath
+func get_gold_value():
+	return gold_value
