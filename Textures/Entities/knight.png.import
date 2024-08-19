@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n08npj3a5rxu"
-path="res://.godot/imported/kazan_atlasv2.png-873f7c4b4e56d33ddf3d72bb8d707c25.ctex"
+uid="uid://jcxmnqypmula"
+path="res://.godot/imported/knight.png-2093f979f6b6055ca71f9b1c81e98856.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/kazan_atlasv2.png"
-dest_files=["res://.godot/imported/kazan_atlasv2.png-873f7c4b4e56d33ddf3d72bb8d707c25.ctex"]
+source_file="res://Textures/Entities/knight.png"
+dest_files=["res://.godot/imported/knight.png-2093f979f6b6055ca71f9b1c81e98856.ctex"]
 
 [params]
 

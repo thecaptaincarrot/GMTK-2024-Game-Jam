@@ -14,8 +14,8 @@ class_name Beast extends Node2D
 
 # Refer to the timer itself
 @onready var random_target_timer: Timer = $RandomTargetTimer
-@export var min_retarget_time := 2
-@export var max_retarget_time := 4
+@export var min_retarget_time := 2.0
+@export var max_retarget_time := 4.0
 
 @export var attack_chance := 1 # 1 in X chance to launch the attack it's deliberating on
 
