@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1fpqglobsqbu"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/Knight/knight.gd" id="1_4enup"]
+[ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_p11pc"]
+[ext_resource type="Script" path="res://Entities/Enemies/Knight/States/IdleState.gd" id="3_8jgim"]
+[ext_resource type="Texture2D" uid="uid://jcxmnqypmula" path="res://Textures/Entities/knight.png" id="3_rfubd"]
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_vlpu2"]
+target_nodepath = NodePath("../IKTargets/armTarget")
+tip_nodepath = NodePath("hip/body/shoulder/arm")
+ccdik_data_chain_length = 2
+joint_data/0/bone_index = 3
+joint_data/0/bone2d_node = NodePath("hip/body")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = 3.622
+joint_data/0/constraint_angle_max = -2.31
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 4
+joint_data/1/bone2d_node = NodePath("hip/body/shoulder")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = false
+joint_data/1/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_c2ge4"]
+target_nodepath = NodePath("../IKTargets/legTarget")
+tip_nodepath = NodePath("hip/leg/foot")
+ccdik_data_chain_length = 1
+joint_data/0/bone_index = 1
+joint_data/0/bone2d_node = NodePath("hip/leg")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = 341.68
+joint_data/0/constraint_angle_max = 138.073
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_k1hcn"]
+enabled = true
+modification_count = 2
+modifications/0 = SubResource("SkeletonModification2DCCDIK_vlpu2")
+modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
+
+[node name="Knight" type="Node2D"]
+script = ExtResource("1_4enup")
+
+[node name="Beast" parent="." instance=ExtResource("1_p11pc")]
+
+[node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
+script = ExtResource("3_8jgim")
+
+[node name="SkeletonComponent" parent="Beast" index="5"]
+modification_stack = SubResource("SkeletonModificationStack2D_k1hcn")
+
+[node name="hip" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/hip"]
+remote_path = NodePath("../../../Sprites/base")
+
+[node name="leg" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
+position = Vector2(-112, 86)
+rotation = 0.0542845
+scale = Vector2(0.999991, 0.999991)
+rest = Transform2D(1, 0, 0, 1, -127, 85)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="foot" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg"]
+position = Vector2(10, 319)
+rotation = -0.0403169
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/hip/leg/foot"]
+position = Vector2(-21.3268, -165.995)
+rotation = 0.0403169
+remote_path = NodePath("../../../../../Sprites/leg")
+
+[node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
+position = Vector2(0, -208)
+rotation = 0.0479183
+rest = Transform2D(0.999178, -0.0403056, 0.0403056, 0.999178, 0, -208)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
+position = Vector2(-192.967, -4.78156)
+rotation = 0.18994
+scale = Vector2(1, 1)
+rest = Transform2D(0.951617, 0.30732, -0.30732, 0.951617, -192.974, -4.78149)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="arm" type="Bone2D" parent="Beast/SkeletonComponent/hip/body/shoulder"]
+position = Vector2(-193.659, 285.426)
+rest = Transform2D(1, 0, 0, 1, -193.659, 285.426)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/hip/body/shoulder/arm"]
+position = Vector2(-140.569, -112.757)
+remote_path = NodePath("../../../../../../Sprites/arm")
+
+[node name="base" type="Sprite2D" parent="Beast/Sprites" index="0"]
+z_index = -40
+texture = ExtResource("3_rfubd")
+region_enabled = true
+region_rect = Rect2(879, 286, 554, 948)
+
+[node name="leg" type="Sprite2D" parent="Beast/Sprites" index="1"]
+z_index = -50
+position = Vector2(-138.329, 238.794)
+rotation = 0.0542844
+scale = Vector2(0.99999, 0.99999)
+texture = ExtResource("3_rfubd")
+region_enabled = true
+region_rect = Rect2(346, 844, 146, 395)
+
+[node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
+z_index = -45
+position = Vector2(-561.337, -128.496)
+rotation = 0.272063
+scale = Vector2(0.999999, 0.999999)
+texture = ExtResource("3_rfubd")
+region_enabled = true
+region_rect = Rect2(42, 313, 733, 418)
+
+[node name="armTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
+position = Vector2(-467, 27)
+
+[node name="legTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
+position = Vector2(-119, 391)
+
+[editable path="Beast"]
