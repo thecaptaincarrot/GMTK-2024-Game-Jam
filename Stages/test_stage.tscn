@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqr3q111ffuwe"]
+[gd_scene load_steps=10 format=3 uid="uid://cqr3q111ffuwe"]
 
 [ext_resource type="Script" path="res://Classes/gooblin_horde_controller.gd" id="1_gvws4"]
 [ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="1_qkvfo"]
 [ext_resource type="Texture2D" uid="uid://j4yl5qmydg48" path="res://Textures/Enemy.png" id="3_iu6mw"]
 [ext_resource type="PackedScene" uid="uid://byrmqaqlddrrn" path="res://Entities/Enemies/Dragon/Dragon.tscn" id="4_3xbs0"]
+[ext_resource type="PackedScene" uid="uid://by0cqitx42f6i" path="res://Entities/Enemies/Slime/Slime.tscn" id="5_gwl3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ojq"]
 size = Vector2(1242, 33)
@@ -27,7 +28,7 @@ texture_filter = 1
 position = Vector2(-288, 0)
 script = ExtResource("1_gvws4")
 enemy_node = NodePath("../Dragon")
-horde_target = NodePath("../Dragon/LungePoint")
+horde_target = NodePath("../Slime/LungePoint")
 climb_target = NodePath("../ScalerPath")
 spawn_shield_count = 0
 spawn_scaler_count = 5
@@ -48,6 +49,7 @@ position = Vector2(118, 0.5)
 shape = SubResource("RectangleShape2D_g6ojq")
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(-528, 64)
 rotation = 1.57079
 
@@ -61,6 +63,7 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_lqx4q")
 
 [node name="WallRight" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(728, 64)
 rotation = -1.5708
 
@@ -91,11 +94,15 @@ shape = SubResource("RectangleShape2D_llc3r")
 disabled = true
 
 [node name="Dragon" parent="." node_paths=PackedStringArray("horde_controller") instance=ExtResource("4_3xbs0")]
-position = Vector2(655, -80)
+position = Vector2(1183, -751)
 horde_controller = NodePath("../GooblinHordeController")
-
-[node name="LungePoint" type="Node2D" parent="Dragon"]
-position = Vector2(-297, 534)
 
 [node name="ScalerPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_fkpq6")
+
+[node name="Slime" parent="." node_paths=PackedStringArray("horde_controller") instance=ExtResource("5_gwl3l")]
+position = Vector2(646, 200)
+horde_controller = NodePath("../GooblinHordeController")
+
+[node name="LungePoint" type="Node2D" parent="Slime"]
+position = Vector2(-26, -168)
