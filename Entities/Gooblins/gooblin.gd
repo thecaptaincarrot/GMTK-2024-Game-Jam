@@ -74,6 +74,8 @@ var _climb_started = false
 
 var _scaler_attack_started = false
 
+var _is_being_flung = false
+
 signal gooblin_changed
 
 signal died
@@ -82,7 +84,7 @@ func _ready():
 	#this timer is used to delay a jump
 	#and allow for the anticipation animation to play
 	_jump_timer.autostart = false
-	_jump_timer.set_wait_time(0.6)
+	_jump_timer.set_wait_time(0.3)
 	_jump_timer.one_shot = true
 	_jump_timer.timeout.connect(_jump_trigger)
 	add_child(_jump_timer)
@@ -161,6 +163,7 @@ func die():
 	$Splat.emitting = true
 
 func fling():
+	_is_being_flung = true
 	_upcoming_fling = fling_vector * 100
 	
 
@@ -181,6 +184,7 @@ func _move_to_target_range(delta:float):
 	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
 		if(enemy_target != null):
 			if(is_on_floor()):
+				if _is_being_flung: _is_being_flung = false
 				var difference = get_position().x - x_home
 				if(abs(difference) > 8.0):
 					velocity.x -= sign(difference) * move_speed * delta
@@ -192,7 +196,8 @@ func _move_to_target_range(delta:float):
 					_anim.play("Idle")
 					_is_at_home = true
 			else:
-				_anim.play("Fling")
+				if _is_being_flung:
+					_anim.play("Fling")
 	elif(unit_type == Gooblin.GooblinType.SCALER):
 		var difference = get_position().x - path_follower.get_global_position().x
 		if(abs(difference) > 1 && is_on_floor()):
@@ -228,8 +233,9 @@ func _attack_target():
 
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
-	if(_upcoming_fling != Vector2()):
+	if(_upcoming_fling == Vector2()):
 		_upcoming_fling = -diff * jump_vector * 100
+		print("I am attacking")
 		#add damange multiplyers in here when it comes up
 		enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 

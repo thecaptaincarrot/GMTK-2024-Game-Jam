@@ -16,10 +16,13 @@ _data = {
 }
 point_count = 2
 
-[node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("camera", "GooblinController")]
+[node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel")]
 script = ExtResource("1_o8qmv")
 camera = NodePath("CombatCamera")
 GooblinController = NodePath("GooblinHordeController")
+HealthBar = NodePath("CanvasLayer/HealthBar")
+CurrentHealthLabel = NodePath("CanvasLayer/HealthBar/HBoxContainer/CurrentHealthLabel")
+MaxHealthLabel = NodePath("CanvasLayer/HealthBar/HBoxContainer/MaxHealthLabel")
 
 [node name="GooblinHordeController" parent="." instance=ExtResource("2_63q2r")]
 
@@ -80,5 +83,48 @@ position = Vector2(1690, 706)
 
 [node name="TEST_CLIMB_PATH" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0li55")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -558.0
+offset_right = 592.0
+offset_bottom = 38.0
+grow_horizontal = 2
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HealthBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentHealthLabel" type="Label" parent="CanvasLayer/HealthBar/HBoxContainer"]
+layout_mode = 2
+text = "1000
+"
+
+[node name="Label2" type="Label" parent="CanvasLayer/HealthBar/HBoxContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="MaxHealthLabel" type="Label" parent="CanvasLayer/HealthBar/HBoxContainer"]
+layout_mode = 2
+text = "1000
+"
 
 [editable path="GooblinHordeController"]

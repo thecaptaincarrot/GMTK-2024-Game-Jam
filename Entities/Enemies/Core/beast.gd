@@ -21,6 +21,7 @@ class_name Beast extends Node2D
 
 # i havent really developed the deadstate but it's pretty straightforward i think
 signal died
+signal enemy_hurt
 @export var max_health := 1000 #placeholder
 var health = max_health
 
@@ -49,6 +50,8 @@ func _on_animation_finished(_anim):
 
 func take_damage(dmg):
 	health -= dmg
+	print("Hola")
+	emit_signal("enemy_hurt")
 	if health <= 0:
 		die()
 

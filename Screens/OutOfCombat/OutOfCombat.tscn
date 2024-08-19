@@ -24,15 +24,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -64.0
-offset_right = 57.0
-offset_bottom = -21.0
+offset_left = -52.0
+offset_top = -204.0
+offset_right = 58.0
+offset_bottom = -161.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "To combat!"
 
 [node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button")]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -378,11 +379,18 @@ layout_mode = 2
 text = "9999 Gold"
 
 [node name="ArmyCompPanel" type="Panel" parent="." node_paths=PackedStringArray("available_gooblins_label", "available_shields_label", "shield_gooblin_spinbox")]
-layout_mode = 0
-offset_left = 309.0
-offset_top = 454.0
-offset_right = 844.0
-offset_bottom = 572.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -267.0
+offset_top = -348.0
+offset_right = 268.0
+offset_bottom = -230.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("3_24mlq")
 available_gooblins_label = NodePath("AvailableContainer/AvailableLabel")
 available_shields_label = NodePath("ShieldSpinbox/VBoxContainer/Shields")
@@ -510,6 +518,30 @@ text = "Hooks:"
 layout_mode = 2
 text = "999"
 horizontal_alignment = 1
+
+[node name="ArmyDisplay" type="Node2D" parent="."]
+
+[node name="MapPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 20.0
+offset_right = 1122.0
+offset_bottom = 340.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MapPanel/MarginContainer"]
+layout_mode = 2
 
 [connection signal="pressed" from="ToCombatButton" to="." method="_on_to_combat_button_pressed"]
 [connection signal="army_composition_update" from="ShopPanel" to="ArmyCompPanel" method="update_all"]

@@ -36,7 +36,6 @@ var active = false
 
 func _ready():
 	randomize()
-	reset()
 
 
 func end_level():

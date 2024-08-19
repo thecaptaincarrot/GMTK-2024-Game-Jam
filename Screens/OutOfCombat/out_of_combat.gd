@@ -1,5 +1,6 @@
 extends Control
 
+signal go_to_combat
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,4 +13,5 @@ func _process(delta):
 
 
 func _on_to_combat_button_pressed() -> void:
-	get_parent().get_parent().show_test_stage()
+	var level = 0
+	emit_signal("go_to_combat",level)
