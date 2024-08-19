@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuvrgahogu1ld"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_467fc"]
+[ext_resource type="PackedScene" uid="uid://clqyaaowq4uap" path="res://Screens/MainMenu/main_menu.tscn" id="2_wa1aj"]
+[ext_resource type="PackedScene" uid="uid://bpn5os62xeqhx" path="res://Screens/OutOfCombat/OutOfCombat.tscn" id="3_m8ns0"]
+[ext_resource type="PackedScene" uid="uid://bq18iom53hl48" path="res://Screens/Combat/combat_screen.tscn" id="4_3lo2r"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_467fc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("2_wa1aj")]
+
+[node name="OutOfCombat" parent="CanvasLayer" instance=ExtResource("3_m8ns0")]
+visible = false
+
+[node name="CombatScreen" parent="." instance=ExtResource("4_3lo2r")]
+
+[connection signal="go_to_combat" from="CanvasLayer/OutOfCombat" to="." method="_on_out_of_combat_go_to_combat"]
+[connection signal="ReturnFromCombat" from="CombatScreen" to="." method="_on_combat_screen_return_from_combat"]

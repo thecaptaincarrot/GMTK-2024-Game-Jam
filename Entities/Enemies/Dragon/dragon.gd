@@ -13,7 +13,7 @@ var target_list: Array
 func _ready() -> void:
 	enemy.reacquire_targets.connect(reacquire_targets)
 	reacquire_targets()
-
+	
 	enemy.died.connect(die)
 
 func reacquire_targets():
@@ -22,9 +22,11 @@ func reacquire_targets():
 func die():
 	enemy.state_machine.change_to_state("DeadState")
 
-func _process(_delta: float) -> void:
-	attacker.global_position.x = head_pointer.global_position.x
 
 # Surface level dmg function for the horde to access
 func take_damage(dmg):
 	enemy.take_damage(dmg)
+
+# the hitbox slider
+func _process(_delta: float) -> void:
+	attacker.global_position.x = head_pointer.global_position.x

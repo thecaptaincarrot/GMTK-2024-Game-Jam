@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnvjtcr6sajdx"]
+
+[ext_resource type="Texture2D" uid="uid://dlpet2r0x26de" path="res://Textures/Entities/gelatinousmass.png" id="1_7lhuj"]
+[ext_resource type="Script" path="res://Entities/Enemies/Slime/projectile.gd" id="1_i4bu1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hifxp"]
+radius = 60.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf1t1"]
+radius = 134.172
+
+[node name="Projectile" type="RigidBody2D"]
+collision_layer = 0
+center_of_mass_mode = 1
+center_of_mass = Vector2(100, 0)
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_i4bu1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 0)
+shape = SubResource("CircleShape2D_hifxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -30
+rotation = -3.14159
+texture = ExtResource("1_7lhuj")
+region_enabled = true
+region_rect = Rect2(1072, 126, 210, 53)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lf1t1")
+debug_color = Color(0.5, 0, 0, 0.196078)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

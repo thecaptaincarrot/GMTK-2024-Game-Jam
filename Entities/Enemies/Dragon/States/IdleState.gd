@@ -7,28 +7,10 @@ extends GenericState
 @export var bite_max_range := 700
 @export var track_height := 250
 
-func enter(_msg):
-	#target_and_attack()
-	pass
-	#pass
-	#print("dragon")
-
-#func handle_input(event):
-	#pass
-
-#func update(_delta):
-	#pass
-
-#func physics_update(_delta):
-	#pass
-
-#func exit():
-	#pass
-
 var tween
 
 
-# this function is connected to the timeout of the randomtarget timer
+# this function is connected to the timeout of the randomtarget timer (most IdleStates do this)
 # the attack_to_do picks what to deliberate. 0 is bite, 1 is stomp, 2 is nothing
 # further along the function, there's another check with attack_chance that decides if the dragon will do
 #what it is deliberating on and swaps into the appropriate state if it chooses to
@@ -52,6 +34,7 @@ func target_and_attack():
 				current_target = randf_range(stomp_range, bite_max_range)
 				tween_target = beast.global_position + Vector2(-current_target, -track_height)
 				state_target = "BiteState"
+				# the generated target x position is turned into global for the bite to go to
 				msg = beast.to_global(Vector2(-current_target, 0)).x
 				#printt(current_target,tween_target)
 			1:
@@ -64,7 +47,7 @@ func target_and_attack():
 		await tween.finished
 		if randi_range(1,beast.attack_chance) == 1:
 			print("gonna atack")
+			# if it is going to attack, you shouldn't start the timer until after the attack is done
 			beast.random_target_timer.stop()
-			# pass the target gooblin object as the message 
+			# pass the target x coordinate as the message 
 			state_machine.change_to_state(state_target, msg)
-		#head_pointer.set_global_position(beast.current_target.get_global_position())

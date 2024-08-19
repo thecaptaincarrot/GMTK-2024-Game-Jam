@@ -1,0 +1,841 @@
+[gd_scene load_steps=20 format=3 uid="uid://bpn5os62xeqhx"]
+
+[ext_resource type="Script" path="res://Screens/OutOfCombat/out_of_combat.gd" id="1_2xjpg"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/shop_panel.gd" id="1_tqmy8"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/army_comp_panel.gd" id="3_24mlq"]
+[ext_resource type="Texture2D" uid="uid://c0spvpuiu32cn" path="res://Textures/Entities/GoblinScaler.png" id="4_3aia6"]
+[ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="4_414d3"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/army_display.gd" id="4_qmd5j"]
+[ext_resource type="Texture2D" uid="uid://du17l32qafwjf" path="res://Textures/Map/mapdry.png" id="7_3jfk2"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/map_panel.gd" id="7_cgvmn"]
+[ext_resource type="Texture2D" uid="uid://doya5n6n41aer" path="res://Textures/Map/mapline0.png" id="8_a00ix"]
+[ext_resource type="Texture2D" uid="uid://c8al8er0nk1y2" path="res://Textures/Map/mapline1.png" id="9_u3feb"]
+[ext_resource type="Texture2D" uid="uid://ck6lrxmiueokw" path="res://Textures/Map/mapline2.png" id="10_mfrbi"]
+[ext_resource type="Texture2D" uid="uid://mr77n06jgful" path="res://Textures/Map/mapline3.png" id="11_mvphp"]
+[ext_resource type="Texture2D" uid="uid://dlcrkocalul24" path="res://Textures/Map/dot00.png" id="12_hysbw"]
+[ext_resource type="Texture2D" uid="uid://dknqsdq3b1q2m" path="res://Textures/Map/dot01.png" id="13_kvlbh"]
+
+[sub_resource type="Gradient" id="Gradient_oratd"]
+colors = PackedColorArray(0, 0, 0, 1, 0.005, 0, 0.15, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4vn6m"]
+gradient = SubResource("Gradient_oratd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56sx3"]
+atlas = ExtResource("4_414d3")
+region = Rect2(0, 10, 32, 22)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwusg"]
+line_spacing = 0.0
+font_size = 14
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evla7"]
+atlas = ExtResource("4_3aia6")
+region = Rect2(0, 10, 32, 22)
+
+[node name="OutOfCombat" type="Control" node_paths=PackedStringArray("background_texture", "shop_control", "planning_menus", "army_comp_panel", "army_display", "map_panel", "combat_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2xjpg")
+background_texture = NodePath("TextureRect")
+background_scroll_divider = 1
+shop_control = NodePath("ShopPanel")
+planning_menus = NodePath("PlanningMenus")
+army_comp_panel = NodePath("PlanningMenus/ArmyCompPanel")
+army_display = NodePath("PlanningMenus/ArmyDisplay")
+map_panel = NodePath("PlanningMenus/MapPanel")
+combat_button = NodePath("PlanningMenus/ToCombatButton")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_4vn6m")
+
+[node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "current_shields_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "current_hooks_label", "gooblin_current_climb_speed_label", "gooblin_next_climb_speed_label", "gooblin_damage_multiplier_label", "gooblin_next_damage_multiplier_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button", "purchase_hook_button", "scaler_mult_upgrade_button", "scaler_climb_speed_upgrade_button")]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -481.0
+offset_top = 59.0
+offset_right = 480.0
+offset_bottom = 560.0
+grow_horizontal = 2
+script = ExtResource("1_tqmy8")
+total_gooblin_label = NodePath("GooblinInfoContainer/TotalGooblinContainer/TotalGooblins")
+gold_label = NodePath("GoldContainer/Gold")
+gooblin_current_attack_label = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer/CurrentAttack")
+gooblin_next_attack_label = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer/NewAttack")
+gooblin_current_speed_label = NodePath("UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/CurrentMove")
+gooblin_next_speed_label = NodePath("UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/NewMove")
+current_shields_label = NodePath("UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer/HBoxContainer/NumShield")
+gooblin_current_shield_label = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/CurrentShield")
+gooblin_next_shield_label = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/NewShield")
+current_hooks_label = NodePath("UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer/HBoxContainer/NumHooks")
+gooblin_current_climb_speed_label = NodePath("UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/CurrentMove")
+gooblin_next_climb_speed_label = NodePath("UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/NewMove")
+gooblin_damage_multiplier_label = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer/CurrentMult")
+gooblin_next_damage_multiplier_label = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer/NewMult")
+one_gooblin_button = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2/OneGooblinButton")
+ten_gooblin_button = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer/TenGooblinButton")
+gooblin_attack_upgrade_button = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/AttackUpButton")
+gooblin_speed_upgrade_button = NodePath("UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/MoveUpButton")
+purchase_shield_button = NodePath("UpgradesHbox/ShieldUpgrades/HBoxContainer/ShieldPurchaseButton")
+shield_health_upgrade_button = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/ShieldUpgradeButton")
+purchase_hook_button = NodePath("UpgradesHbox/ScalerUpgrades/HBoxContainer/HookPurchaseButton")
+scaler_mult_upgrade_button = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/MultUpButton")
+scaler_climb_speed_upgrade_button = NodePath("UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/ClimbUpButton")
+cost_per_gooblin = 20
+
+[node name="ReturnButton" type="Button" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -65.5
+offset_top = 34.0
+offset_right = 61.5
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return
+"
+
+[node name="Label" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.5
+offset_top = 13.0
+offset_right = 81.5
+offset_bottom = 36.0
+grow_horizontal = 2
+text = "Adventurer's surplus"
+
+[node name="GoldContainer" type="HBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="ShopPanel/GoldContainer"]
+layout_mode = 2
+text = "Gold:"
+
+[node name="Gold" type="Label" parent="ShopPanel/GoldContainer"]
+layout_mode = 2
+text = "99
+"
+
+[node name="GooblinInfoContainer" type="VBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -156.5
+offset_top = 46.0
+offset_right = 157.5
+offset_bottom = 131.0
+grow_horizontal = 2
+
+[node name="GooblinPurchaseContainer" type="HBoxContainer" parent="ShopPanel/GooblinInfoContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+text = "Purchase Gooblin:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2"]
+layout_mode = 2
+text = "1 Gooblin"
+
+[node name="OneGooblinButton" type="Button" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2"]
+layout_mode = 2
+text = "10 Gold"
+
+[node name="VSeparator" type="VSeparator" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
+layout_mode = 2
+text = "10 Gooblins"
+
+[node name="TenGooblinButton" type="Button" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
+layout_mode = 2
+text = "100 gold"
+
+[node name="TotalGooblinContainer" type="HBoxContainer" parent="ShopPanel/GooblinInfoContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/TotalGooblinContainer"]
+layout_mode = 2
+text = "Total Gooblins:"
+
+[node name="TotalGooblins" type="Label" parent="ShopPanel/GooblinInfoContainer/TotalGooblinContainer"]
+layout_mode = 2
+text = "999"
+
+[node name="UpgradesHbox" type="HBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -383.5
+offset_top = -172.0
+offset_right = 391.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GooblinUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+layout_mode = 2
+text = "Gooblin Upgrades
+(Applies to all Gooblins)"
+horizontal_alignment = 1
+
+[node name="GooblinTexture" type="TextureRect" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_56sx3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AttackUpgradeContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer"]
+layout_mode = 2
+text = "Attack:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentAttack" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="NewAttack" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="AttackUpButton" type="Button" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="MoveUpgradeContainer2" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/GooblinUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "Speed"
+
+[node name="CurrentMove" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "300"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "350"
+
+[node name="MoveUpButton" type="Button" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="VSeparator" type="VSeparator" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="ShieldUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+layout_mode = 2
+text = "Blocker Upgrades"
+horizontal_alignment = 1
+
+[node name="GooblinTexture" type="TextureRect" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_56sx3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Blockers protect your gooblins
+from enemy attacks with
+their shields"
+label_settings = SubResource("LabelSettings_iwusg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Purchase Shield:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current:"
+
+[node name="NumShield" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "9999"
+
+[node name="ShieldPurchaseButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer"]
+custom_minimum_size = Vector2(97.31, 48)
+layout_mode = 2
+text = "20 Gold"
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+layout_mode = 2
+text = "Blocker Upgrades
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShieldUpgradeContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "Shield
+Strength"
+horizontal_alignment = 1
+
+[node name="CurrentShield" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="NewShield" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="ShieldUpgradeButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="MoveUpgradeContainer2" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "Attack:"
+
+[node name="CurrentMove" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "1"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+layout_mode = 2
+text = "2"
+
+[node name="MoveUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/MoveUpgradeContainer2"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="VSeparator3" type="VSeparator" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="ScalerUpgrades" type="VBoxContainer" parent="ShopPanel/UpgradesHbox"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+text = "Scaler Upgrades"
+horizontal_alignment = 1
+
+[node name="GooblinTexture" type="TextureRect" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = SubResource("AtlasTexture_evla7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Scalers climb the enemy to
+attack their weak points"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Purchase Hook:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current:"
+
+[node name="NumHooks" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "9999"
+
+[node name="HookPurchaseButton" type="Button" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer"]
+custom_minimum_size = Vector2(97.31, 48)
+layout_mode = 2
+text = "40 Gold"
+
+[node name="Label3" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+text = "Scaler Upgrades
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackUpgradeContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer"]
+layout_mode = 2
+text = "Critical
+Multiplier"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentMult" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMult" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="MultUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="ClimbUpgradeContainer2" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+custom_minimum_size = Vector2(76, 0)
+layout_mode = 2
+text = "Climb
+Speed:"
+
+[node name="CurrentMove" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+layout_mode = 2
+text = "200"
+
+[node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+layout_mode = 2
+text = "→"
+
+[node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+layout_mode = 2
+text = "225"
+
+[node name="ClimbUpButton" type="Button" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
+custom_minimum_size = Vector2(112, 40)
+layout_mode = 2
+text = "9999 Gold"
+
+[node name="PlanningMenus" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ArmyCompPanel" type="Panel" parent="PlanningMenus" node_paths=PackedStringArray("available_gooblins_label", "available_shields_label", "available_hook_label", "shield_gooblin_spinbox", "hook_gooblin_spinbox")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -267.0
+offset_top = -348.0
+offset_right = 268.0
+offset_bottom = -230.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("3_24mlq")
+available_gooblins_label = NodePath("AvailableContainer/AvailableLabel")
+available_shields_label = NodePath("ShieldSpinbox/VBoxContainer/Shields")
+available_hook_label = NodePath("ScalersSpinbox/VBoxContainer/Hooks")
+shield_gooblin_spinbox = NodePath("ShieldSpinbox")
+hook_gooblin_spinbox = NodePath("ScalersSpinbox")
+
+[node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.0
+offset_right = 72.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Army Composition"
+
+[node name="AvailableContainer" type="VBoxContainer" parent="PlanningMenus/ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -25.5
+offset_right = 88.0
+offset_bottom = 24.5
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/AvailableContainer"]
+layout_mode = 2
+text = "Basic Gooblins"
+horizontal_alignment = 1
+
+[node name="AvailableLabel" type="Label" parent="PlanningMenus/ArmyCompPanel/AvailableContainer"]
+layout_mode = 2
+text = "999"
+horizontal_alignment = 1
+
+[node name="ShieldSpinbox" type="SpinBox" parent="PlanningMenus/ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 149.0
+offset_right = 232.063
+offset_bottom = 31.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/ShieldSpinbox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5313
+offset_top = -26.0
+offset_right = 53.4688
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "Blockers"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlanningMenus/ArmyCompPanel/ShieldSpinbox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 7.9375
+offset_top = -24.5
+offset_right = 67.9375
+offset_bottom = 25.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/ShieldSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "Shields:"
+
+[node name="Shields" type="Label" parent="PlanningMenus/ArmyCompPanel/ShieldSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "999"
+horizontal_alignment = 1
+
+[node name="ScalersSpinbox" type="SpinBox" parent="PlanningMenus/ArmyCompPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = 2.0
+offset_right = 423.063
+offset_bottom = 33.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/ScalersSpinbox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5313
+offset_top = -26.0
+offset_right = 53.4688
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "Scalers"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlanningMenus/ArmyCompPanel/ScalersSpinbox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 7.9375
+offset_top = -24.5
+offset_right = 67.9375
+offset_bottom = 25.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/ScalersSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "Hooks:"
+
+[node name="Hooks" type="Label" parent="PlanningMenus/ArmyCompPanel/ScalersSpinbox/VBoxContainer"]
+layout_mode = 2
+text = "999"
+horizontal_alignment = 1
+
+[node name="ArmyDisplay" type="Node2D" parent="PlanningMenus"]
+script = ExtResource("4_qmd5j")
+
+[node name="MapPanel" type="Panel" parent="PlanningMenus" node_paths=PackedStringArray("map_line_0", "map_line_1", "map_line_2", "map_line_3", "level_button_0", "level_button_1", "level_button_2", "level_button_3", "level_button_4")]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 20.0
+offset_right = 1122.0
+offset_bottom = 340.0
+script = ExtResource("7_cgvmn")
+map_line_0 = NodePath("MarginContainer/Map/Mapline0")
+map_line_1 = NodePath("MarginContainer/Map/Mapline1")
+map_line_2 = NodePath("MarginContainer/Map/Mapline2")
+map_line_3 = NodePath("MarginContainer/Map/Mapline3")
+level_button_0 = NodePath("MarginContainer/Map/LevelButtonControl/LevelButton0")
+level_button_1 = NodePath("MarginContainer/Map/LevelButtonControl/LevelButton1")
+level_button_2 = NodePath("MarginContainer/Map/LevelButtonControl/LevelButton2")
+level_button_3 = NodePath("MarginContainer/Map/LevelButtonControl/LevelButton3")
+level_button_4 = NodePath("MarginContainer/Map/LevelButtonControl/LevelButton4")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlanningMenus/MapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Map" type="TextureRect" parent="PlanningMenus/MapPanel/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_3jfk2")
+
+[node name="Mapline0" type="TextureRect" parent="PlanningMenus/MapPanel/MarginContainer/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_a00ix")
+
+[node name="Mapline1" type="TextureRect" parent="PlanningMenus/MapPanel/MarginContainer/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_u3feb")
+
+[node name="Mapline2" type="TextureRect" parent="PlanningMenus/MapPanel/MarginContainer/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_mfrbi")
+
+[node name="Mapline3" type="TextureRect" parent="PlanningMenus/MapPanel/MarginContainer/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_mvphp")
+
+[node name="LevelButtonControl" type="Control" parent="PlanningMenus/MapPanel/MarginContainer/Map"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelButton0" type="TextureButton" parent="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 127.0
+offset_right = 100.0
+offset_bottom = 176.0
+scale = Vector2(0.8, 0.8)
+toggle_mode = true
+texture_normal = ExtResource("12_hysbw")
+texture_pressed = ExtResource("13_kvlbh")
+texture_disabled = ExtResource("13_kvlbh")
+
+[node name="LevelButton1" type="TextureButton" parent="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl"]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 156.0
+offset_right = 307.0
+offset_bottom = 205.0
+scale = Vector2(0.8, 0.8)
+toggle_mode = true
+texture_normal = ExtResource("12_hysbw")
+texture_pressed = ExtResource("13_kvlbh")
+
+[node name="LevelButton2" type="TextureButton" parent="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 57.0
+offset_right = 522.0
+offset_bottom = 106.0
+scale = Vector2(0.8, 0.8)
+toggle_mode = true
+texture_normal = ExtResource("12_hysbw")
+texture_pressed = ExtResource("13_kvlbh")
+
+[node name="LevelButton3" type="TextureButton" parent="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 231.0
+offset_right = 484.0
+offset_bottom = 280.0
+scale = Vector2(0.8, 0.8)
+toggle_mode = true
+texture_normal = ExtResource("12_hysbw")
+texture_pressed = ExtResource("13_kvlbh")
+
+[node name="LevelButton4" type="TextureButton" parent="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl"]
+layout_mode = 0
+offset_left = 811.0
+offset_top = 202.0
+offset_right = 860.0
+offset_bottom = 251.0
+scale = Vector2(0.8, 0.8)
+toggle_mode = true
+texture_normal = ExtResource("12_hysbw")
+texture_pressed = ExtResource("13_kvlbh")
+
+[node name="ShopButton" type="Button" parent="PlanningMenus"]
+layout_mode = 0
+offset_left = 939.0
+offset_top = 414.0
+offset_right = 1050.0
+offset_bottom = 460.0
+text = "Open Shop"
+
+[node name="ToCombatButton" type="Button" parent="PlanningMenus"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -204.0
+offset_right = 58.0
+offset_bottom = -161.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "To combat!"
+
+[connection signal="army_composition_update" from="ShopPanel" to="PlanningMenus/ArmyCompPanel" method="update_all"]
+[connection signal="pressed" from="ShopPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2/OneGooblinButton" to="ShopPanel" method="_on_one_gooblin_button_pressed"]
+[connection signal="pressed" from="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer/TenGooblinButton" to="ShopPanel" method="_on_ten_gooblin_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/AttackUpButton" to="ShopPanel" method="_on_basic_gooblin_attack_up_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2/MoveUpButton" to="ShopPanel" method="_on_basic_gooblin_speed_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/ShieldPurchaseButton" to="ShopPanel" method="_on_shield_purchase_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer/ShieldUpgradeButton" to="ShopPanel" method="_on_shield_upgrade_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/HookPurchaseButton" to="ShopPanel" method="_on_hook_purchase_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/MultUpButton" to="ShopPanel" method="_on_mult_up_button_pressed"]
+[connection signal="pressed" from="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/ClimbUpButton" to="ShopPanel" method="_on_climb_up_button_pressed"]
+[connection signal="value_changed" from="PlanningMenus/ArmyCompPanel/ShieldSpinbox" to="PlanningMenus/ArmyCompPanel" method="_on_shield_spinbox_value_changed"]
+[connection signal="value_changed" from="PlanningMenus/ArmyCompPanel/ScalersSpinbox" to="PlanningMenus/ArmyCompPanel" method="_on_scalers_spinbox_value_changed"]
+[connection signal="level_changed" from="PlanningMenus/MapPanel" to="." method="_on_map_panel_level_changed"]
+[connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton0" to="PlanningMenus/MapPanel" method="_on_level_button_0_pressed"]
+[connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton1" to="PlanningMenus/MapPanel" method="_on_level_button_1_pressed"]
+[connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton2" to="PlanningMenus/MapPanel" method="_on_level_button_2_pressed"]
+[connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton3" to="PlanningMenus/MapPanel" method="_on_level_button_3_pressed"]
+[connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton4" to="PlanningMenus/MapPanel" method="_on_level_button_4_pressed"]
+[connection signal="pressed" from="PlanningMenus/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="PlanningMenus/ToCombatButton" to="." method="_on_to_combat_button_pressed"]

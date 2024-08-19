@@ -1,5 +1,6 @@
-extends Control
+extends Node2D
 
+enum {BASIC, SHIELD, SCALER}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,5 +12,11 @@ func _process(delta):
 	pass
 
 
-func _on_to_combat_button_pressed() -> void:
-	get_parent().get_parent().show_test_stage()
+func spawn_initial():
+	pass
+
+
+
+func spawn_gooblin():
+	for i in GooblinUpgrades.basic_gooblins:
+		print(i)
