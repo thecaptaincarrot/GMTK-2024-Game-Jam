@@ -33,6 +33,13 @@ enum GooblinType{
 
 @export var fling_vector = Vector2(-500, -800)
 
+@export var dismount_fling_vector = Vector2(-800, -800)
+
+@export var scaler_climb_speed = 1.0
+
+
+@export var path_follower:PathFollow2D
+
 #used to move the velocity back to zero
 #when input is not being sent to movement
 #functions off of a vector lerp
@@ -41,6 +48,8 @@ enum GooblinType{
 var _att_timer = Timer.new()
 
 var _jump_timer = Timer.new()
+
+var _scaler_attack_timer = Timer.new()
 
 var _can_attack = true
 
@@ -53,11 +62,20 @@ var _is_dead = false
 
 @onready var _anim:AnimationPlayer = $AnimationPlayer
 
+
+
 var _upcoming_fling = Vector2()
 
 var _is_at_home = false
 
+var _climbing = false
+
+var _climb_started = false
+
+var _scaler_attack_started = false
+
 signal gooblin_changed
+
 signal died
 
 func _ready():
@@ -68,6 +86,13 @@ func _ready():
 	_jump_timer.one_shot = true
 	_jump_timer.timeout.connect(_jump_trigger)
 	add_child(_jump_timer)
+	
+	
+	_scaler_attack_timer.timeout.connect(_scaler_attack_timeout)
+	_scaler_attack_timer.wait_time = 1.0
+	_scaler_attack_timer.autostart = false
+	_scaler_attack_timer.one_shot = true
+	add_child(_scaler_attack_timer)
 	#
 	randomize()
 	var i = randi_range(0, 3)
@@ -90,16 +115,17 @@ func _ready():
 	elif(unit_type == GooblinType.SHIELD):
 		_sprite.texture = load("res://Textures/Entities/GoblinShield.png")
 		_can_attack = false
-	else:
+	elif(unit_type == GooblinType.SCALER):
+		_can_attack = true
 		pass
-	
 
 func _process(delta: float) -> void:
-	
 		#a lerp might be better here. testing will need to be done
 		velocity = velocity.lerp(Vector2(), dampening)
-		#a global request to get local gravity managed in the global settings
-		velocity += get_gravity() * delta
+		
+		if(!_climbing):
+			#a global request to get local gravity managed in the global settings
+			velocity += get_gravity() * delta
 		
 		velocity += _upcoming_fling * delta
 		
@@ -118,6 +144,8 @@ func hurt():
 		convert_to_basic_gooblin()
 	elif(unit_type == GooblinType.BASIC):
 		die()
+	elif(unit_type == GooblinType.SCALER):
+		die()
 
 func die():
 	_is_dead = true
@@ -128,6 +156,7 @@ func die():
 	despawn_timer.timeout.connect(_despawn_timeout)
 	add_child(despawn_timer)
 	_anim.play("Dead")
+	$Splat.emitting = true
 
 func fling():
 	_upcoming_fling = fling_vector * 100
@@ -144,26 +173,46 @@ func _despawn_timeout():
 	queue_free()
 
 func _move_to_target_range(delta:float):
-	if(enemy_target != null):
-		if(is_on_floor()):
-			var difference = get_position().x - x_home
-			if(abs(difference) > 8.0):
-				velocity.x -= sign(difference) * move_speed * delta
-				_is_at_home = false
-				if(_anim.current_animation != "Walk" && is_on_floor()):
-					if(_anim.current_animation != "Jump" || !_anim.is_playing()):
-						_anim.play("Walk")
-			else:
-				_anim.play("Idle")
-				_is_at_home = true
+	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
+		if(enemy_target != null):
+			if(is_on_floor()):
+				var difference = get_position().x - x_home
+				if(abs(difference) > 8.0):
+					velocity.x -= sign(difference) * move_speed * delta
+					_is_at_home = false
+					if(_anim.current_animation != "Walk" && is_on_floor()):
+						if(_anim.current_animation != "Jump" || !_anim.is_playing()):
+							_anim.play("Walk")
+				else:
+					_anim.play("Idle")
+					_is_at_home = true
+	elif(unit_type == Gooblin.GooblinType.SCALER):
+		var difference = get_position().x - path_follower.get_global_position().x
+		if(abs(difference) > 1 && is_on_floor()):
+			velocity.x -= sign(difference) * move_speed * delta
+		elif(abs(difference) <= 1 && !_climbing):
+			_climbing = true
+		elif(_climbing):
+			set_position(path_follower.get_global_position())
+			if(path_follower.progress_ratio < 1.0):
+				path_follower.progress += scaler_climb_speed * 50 * delta
+		else:
+			pass
+
 
 func _attack_target():
-	#a within range check can be done in adition 
-	#to make sure the attack is acurate
-	if(_is_at_home && is_on_floor() && _can_attack):
-		if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
-			_anim.play("Jump")
-			_jump_timer.start()
+	if(unit_type == GooblinType.BASIC):
+		#a within range check can be done in adition 
+		#to make sure the attack is acurate
+		if(_is_at_home && is_on_floor() && _can_attack):
+			if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
+				_anim.play("Jump")
+				_jump_timer.start()
+	
+	if(unit_type == GooblinType.SCALER && path_follower.progress_ratio == 1 && _climbing == true && !_scaler_attack_started):
+		_scaler_attack_timer.start()
+		_scaler_attack_started = true
+		$ScalerDamage.emitting = true
 
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
@@ -172,6 +221,12 @@ func _jump_trigger():
 		#add damange multiplyers in here when it comes up
 		enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 
+func _scaler_attack_timeout():
+	enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
+	fling()
+	_climbing = false
+	path_follower.progress_ratio = 0
+	_scaler_attack_started = false
 
 func is_dead():
 	return _is_dead

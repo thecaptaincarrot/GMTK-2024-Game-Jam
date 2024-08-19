@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byrmqaqlddrrn" path="res://Entities/Enemies/Dragon/Dragon.tscn" id="4_3xbs0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ojq"]
-size = Vector2(1242, 33)
+size = Vector2(1075, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqx4q"]
 size = Vector2(1152, 32)
@@ -16,9 +16,9 @@ size = Vector2(64, 215)
 
 [sub_resource type="Curve2D" id="Curve2D_fkpq6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 465, 218, 0, 0, 0, 0, 593, 101, 0, 0, 0, 0, 639, -44, 0, 0, 0, 0, 578, -102, 0, 0, 0, 0, 548, -201, 0, 0, 0, 0, 391, -298)
+"points": PackedVector2Array(0, 0, 0, 0, 465, 218, 0, 0, 0, 0, 622, 121, 0, 0, 0, 0, 639, -44)
 }
-point_count = 6
+point_count = 3
 
 [node name="TestStage" type="Node2D"]
 
@@ -37,18 +37,16 @@ rotation_rate = 2.0
 position = Vector2(-32, 240)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
-z_index = -100
-z_as_relative = false
-position = Vector2(119.5, 24.5)
-scale = Vector2(9.74218, 0.617188)
+position = Vector2(35.0001, 24.5)
+scale = Vector2(8.42187, 0.617188)
 texture = ExtResource("1_qkvfo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(118, 0.5)
+position = Vector2(34.5, 0.5)
 shape = SubResource("RectangleShape2D_g6ojq")
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
-position = Vector2(-528, 64)
+position = Vector2(-552, 64)
 rotation = 1.57079
 
 [node name="Sprite2D" type="Sprite2D" parent="WallLeft"]
@@ -61,7 +59,8 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_lqx4q")
 
 [node name="WallRight" type="StaticBody2D" parent="."]
-position = Vector2(728, 64)
+visible = false
+position = Vector2(560, 64)
 rotation = -1.5708
 
 [node name="Sprite2D" type="Sprite2D" parent="WallRight"]
@@ -74,7 +73,7 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_lqx4q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
+zoom = Vector2(0.5, 0.5)
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 visible = false
