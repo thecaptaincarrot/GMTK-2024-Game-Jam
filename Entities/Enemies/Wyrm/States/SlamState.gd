@@ -26,15 +26,8 @@ func enter(msg):
 	## KILL
 	hurt_gooblins()
 	
+	# pass both the position and attack time to the stagger state so it can get up properly
 	state_machine.change_to_state("StaggerState", [prev_position, attack_time])
-
-#func handle_input(_event):
-	#pass
-#
-#func update(_delta):
-	#pass
-	#if intersecting_goobs:
-		#print(intersecting_goobs)
 
 func physics_update(_delta):
 	intersecting_goobs = hitbox.get_overlapping_bodies()

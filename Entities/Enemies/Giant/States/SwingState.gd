@@ -12,8 +12,7 @@ func enter(_msg):
 	beast.random_target_timer.stop()
 	attacker.disabled = false
 	var prev_position = arm_target.position
-	
-	print("YIPPE")
+
 	var tween
 	tween = get_tree().create_tween()
 	tween.tween_property(arm_target, "position", peak_position, attack_time *2 ).set_trans(Tween.TRANS_CIRC)
@@ -29,9 +28,10 @@ func enter(_msg):
 	state_machine.change_to_state("IdleState")
 
 var intersecting_goobs := []
+
 func physics_update(_delta):
 	intersecting_goobs = hitbox.get_overlapping_bodies()
-	attacker.position = arm_target.position - Vector2(120, 0) 
+	attacker.position = arm_target.position - Vector2(120, 0) # the additional vector is needed to match the sprite
 
 func exit():
 	# once it's done

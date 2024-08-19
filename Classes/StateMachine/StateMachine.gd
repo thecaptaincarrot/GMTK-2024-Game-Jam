@@ -1,12 +1,13 @@
 extends Node
 
 ## Adaptable Finite State Machine
-# Don't forget to set the initial_state from the editor!
 
 # You can instantiate the state_machine.tscn to get a fsm easily
 # I don't think there's going to be a need to create more types of state machines
 # Since functionality is delegated to the states and their methods are universal
 
+
+## Don't forget to set the initial_state from the editor! This is critical!
 @export var initial_state: NodePath
 @onready var current_state = get_node(initial_state)
 
@@ -14,13 +15,14 @@ signal state_changed(to: String)
 var previous_state: Node
 
 
-## Change this variable via the parent's script to log every state change in output!
+## Change this variable to log every state change in output
 @export var log_changes := true
 
 
 
 func _ready():
 	if initial_state:
+		# swap into the the default state first thing
 		call_deferred("change_to_state", initial_state)
 
 
@@ -44,6 +46,7 @@ func change_to_state(state: String, msg = {}):
 	previous_state = current_state
 
 	# Call exit function on previous state
+	#if an error is thrown out here it's probably because the initial_state wasn't set properly
 	current_state.exit()
 
 	# Swap into new state (pass the NODE NAME of the state you want to change to)

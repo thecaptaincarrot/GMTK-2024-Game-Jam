@@ -4,10 +4,13 @@ extends GenericState
 
 @export var return_hint: Node2D # the ground
 
+@export var damage := 10
+@export var non_lethal_damage := 10
 @export var jump_peak := -300 #global
 @export var jump_time := 3.0 
 
 func enter(x_target):
+	# genuinely horrible jump code but it works
 	var return_pos = return_hint.global_position.y
 	attacker.disabled = false
 	var tween

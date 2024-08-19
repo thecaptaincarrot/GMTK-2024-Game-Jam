@@ -13,6 +13,9 @@ func enter(_msg):
 	tween = get_tree().create_tween()
 	tween.tween_property(head_pointer, "position", reset_pos, 1.0).set_trans(Tween.TRANS_QUART)
 
+# very similar to the dragon code except it goes into StaggerState where it does nothing for a while after attacking
+
+
 func target_and_attack():
 	if get("head_pointer"):
 		var tween_target
@@ -27,6 +30,7 @@ func target_and_attack():
 		tween = get_tree().create_tween()
 		tween.tween_property(head_pointer,"global_position" , tween_target, beast.random_target_timer.wait_time).set_trans(Tween.TRANS_SINE)
 		await tween.finished
+
 		if randi_range(1,beast.attack_chance) == 1:
 			print("gonna atack")
 			beast.random_target_timer.stop()

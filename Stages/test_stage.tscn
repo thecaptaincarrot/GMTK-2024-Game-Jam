@@ -28,7 +28,7 @@ texture_filter = 1
 position = Vector2(-288, 0)
 script = ExtResource("1_gvws4")
 enemy_node = NodePath("../Dragon")
-horde_target = NodePath("../Dragon/LungePoint")
+horde_target = NodePath("../Slime/LungePoint")
 climb_target = NodePath("../ScalerPath")
 spawn_shield_count = 0
 spawn_scaler_count = 5
@@ -97,12 +97,12 @@ disabled = true
 position = Vector2(1183, -751)
 horde_controller = NodePath("../GooblinHordeController")
 
-[node name="LungePoint" type="Node2D" parent="Dragon"]
-position = Vector2(-376, -10)
-
 [node name="ScalerPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_fkpq6")
 
 [node name="Slime" parent="." node_paths=PackedStringArray("horde_controller") instance=ExtResource("5_gwl3l")]
 position = Vector2(646, 200)
 horde_controller = NodePath("../GooblinHordeController")
+
+[node name="LungePoint" type="Node2D" parent="Slime"]
+position = Vector2(-26, -168)

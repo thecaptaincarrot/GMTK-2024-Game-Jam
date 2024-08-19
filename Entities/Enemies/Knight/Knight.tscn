@@ -175,7 +175,7 @@ libraries = {
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
 position = Vector2(-42.743, 98.422)
 rotation = 0.199279
-scale = Vector2(0.999989, 0.999989)
+scale = Vector2(0.99999, 0.99999)
 shape = SubResource("CircleShape2D_let37")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
@@ -260,9 +260,9 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-140.649, -43.8956)
+position = Vector2(-140.65, -43.8956)
 rotation = 0.410738
-scale = Vector2(0.241612, 0.241612)
+scale = Vector2(0.241619, 0.241619)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)

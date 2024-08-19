@@ -8,6 +8,7 @@ func enter(msg):
 	await timer.timeout
 	var tween
 	tween = get_tree().create_tween()
+	# retrieve previous position (msg[0]) and get up time (msg[1]) to get up
 	tween.tween_property(head_pointer, "global_position", msg[0], msg[1]/1.5).set_trans(Tween.TRANS_EXPO)
 	await tween.finished
 	state_machine.change_to_state("IdleState")
