@@ -16,10 +16,13 @@ var intersecting_goobs := []
 
 
 func enter(_msg):
+	# enable hitbox
 	stomper.disabled = false
+	# stopped again for good measure
 	beast.random_target_timer.stop()
 	var prev_foot_pointer_position = foot_pointer.global_position
 	
+	# animation
 	var tween
 	tween = get_tree().create_tween()
 	tween.tween_property(foot_pointer, "global_position", prev_foot_pointer_position - Vector2(x_peak, peak), wind_up_time).set_trans(Tween.TRANS_SPRING)
@@ -37,6 +40,7 @@ func enter(_msg):
 	
 	state_machine.change_to_state("IdleState")
 
+# placeholder function. all functions named flingerize_gooblins and hurt_gooblins are placeholder
 func flingerize_gooblins():
 	var counter = damage
 	var fling_counter = non_lethal_damage
@@ -48,16 +52,12 @@ func flingerize_gooblins():
 		if fling_counter > 0 and goob:
 			goob.fling()
 			fling_counter -= 1
-#func handle_input(_event):
-	#pass
-#
-#func update(_delta):
-	#pass
 
 func physics_update(_delta):
+	# the hitbox gets references each frame but hurt_gooblins is called only once
 	intersecting_goobs = hitbox.get_overlapping_bodies()
 
 func exit():
-	# once it's done
+	# once it's done, clean up the state by reenabling the hitbox and counting down to attack again
 	stomper.disabled = true
 	beast.random_target_timer.start()
