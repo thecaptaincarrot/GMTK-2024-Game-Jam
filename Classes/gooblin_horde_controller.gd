@@ -114,9 +114,9 @@ func distribute_target_spacing():
 			sindex += 1
 
 func _rotate_out_basic():
-	if(_basic_gooblins.size() > 1):
+	if(_basic_gooblins.size() > 15):
 		var goob = _basic_gooblins.pop_front()
-		_basic_gooblins.append(goob)
+		_basic_gooblins.insert(5, goob)
 
 func _basic_gooblin_died(gooblin):
 	if(_basic_gooblins.has(gooblin)):
