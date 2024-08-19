@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqr3q111ffuwe"]
+[gd_scene load_steps=10 format=3 uid="uid://cqr3q111ffuwe"]
 
 [ext_resource type="Script" path="res://Classes/gooblin_horde_controller.gd" id="1_gvws4"]
 [ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="1_qkvfo"]
 [ext_resource type="Texture2D" uid="uid://j4yl5qmydg48" path="res://Textures/Enemy.png" id="3_iu6mw"]
 [ext_resource type="PackedScene" uid="uid://byrmqaqlddrrn" path="res://Entities/Enemies/Dragon/Dragon.tscn" id="4_3xbs0"]
+[ext_resource type="PackedScene" uid="uid://d1fpqglobsqbu" path="res://Entities/Enemies/Knight/Knight.tscn" id="5_32vmp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6ojq"]
 size = Vector2(1242, 33)
@@ -99,3 +100,8 @@ position = Vector2(-297, 534)
 
 [node name="ScalerPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_fkpq6")
+
+[node name="Knight" parent="." node_paths=PackedStringArray("horde_controller") instance=ExtResource("5_32vmp")]
+position = Vector2(171, 120)
+scale = Vector2(0.5, 0.5)
+horde_controller = NodePath("../GooblinHordeController")
