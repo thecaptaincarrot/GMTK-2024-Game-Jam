@@ -8,7 +8,7 @@ extends GenericState
 @export var damage := 30
 @export var non_lethal_damage := 30
 @export var attack_time := 1.0
-@export var attack_height := 20
+@export var attack_height := 10
 
 var intersecting_goobs : Array
 
@@ -26,11 +26,7 @@ func enter(msg):
 	## KILL
 	hurt_gooblins()
 	
-	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", prev_position, attack_time/1.5).set_trans(Tween.TRANS_EXPO)
-	await tween.finished
-	
-	state_machine.change_to_state("IdleState")
+	state_machine.change_to_state("StaggerState", [prev_position, attack_time])
 
 #func handle_input(_event):
 	#pass
@@ -46,7 +42,6 @@ func physics_update(_delta):
 func exit():
 	# exit clean up
 	attacker.disabled = true
-	beast.random_target_timer.start()
 
 func hurt_gooblins():
 	#print("KILLLLLL")

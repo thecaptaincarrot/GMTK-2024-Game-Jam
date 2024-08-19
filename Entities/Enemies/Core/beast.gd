@@ -29,6 +29,8 @@ signal reacquire_targets
 @export var targets := []
 var current_target: Gooblin
 
+signal took_damage
+
 # Actual logic
 func _ready():
 	state_machine.state_changed.connect(_fsm_state_changed)
@@ -49,6 +51,7 @@ func _on_animation_finished(_anim):
 	pass
 
 func take_damage(dmg):
+	took_damage.emit()
 	health -= dmg
 	if health <= 0:
 		die()
