@@ -43,7 +43,7 @@ const ENEMY_POS = [ Vector2(2000,560)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_level(0)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -75,6 +75,7 @@ func load_level(level_index : int):
 	#GooblinController.climb_target = BeastNode.get_climb_target()
 	GooblinController.climb_target = $TEST_CLIMB_PATH
 	
+	HealthBar.show()
 	GooblinController.reset()
 
 
@@ -98,4 +99,6 @@ func _on_gooblin_horde_controller_gooblin_extinction():
 func _on_return_button_pressed():
 	GooblinController.end_level()
 	Enemy.queue_free()
-	emit_signal("update_gold_earned")
+	HealthBar.hide()
+	DefeatPanel.hide()
+	emit_signal("ReturnFromCombat")

@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpn5os62xeqhx"]
+[gd_scene load_steps=7 format=3 uid="uid://bpn5os62xeqhx"]
 
 [ext_resource type="Script" path="res://Screens/OutOfCombat/out_of_combat.gd" id="1_2xjpg"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/shop_panel.gd" id="1_tqmy8"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/army_comp_panel.gd" id="3_24mlq"]
+
+[sub_resource type="Gradient" id="Gradient_fc0xs"]
+colors = PackedColorArray(0, 0, 0, 1, 0.00833333, 0, 0.25, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6pcxy"]
+gradient = SubResource("Gradient_fc0xs")
 
 [sub_resource type="LabelSettings" id="LabelSettings_iwusg"]
 line_spacing = 0.0
@@ -16,6 +22,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2xjpg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_6pcxy")
 
 [node name="ToCombatButton" type="Button" parent="."]
 layout_mode = 1

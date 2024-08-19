@@ -226,7 +226,6 @@ func _attack_target():
 	if(unit_type == GooblinType.SCALER && path_follower.progress_ratio == 1 && _climbing == true && !_scaler_attack_started):
 		_scaler_attack_timer.start()
 		_anim.play("ScalerAttack")
-		print(_anim.current_animation)
 		_scaler_attack_started = true
 		$ScalerDamage.emitting = true
 
@@ -235,7 +234,6 @@ func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
 	if(_upcoming_fling == Vector2()):
 		_upcoming_fling = -diff * jump_vector * 100
-		print("I am attacking")
 		#add damange multiplyers in here when it comes up
 		enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 

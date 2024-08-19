@@ -53,7 +53,6 @@ func _on_animation_finished(_anim):
 
 func take_damage(dmg):
 	health -= dmg
-	print("Hola")
 	emit_signal("enemy_hurt")
 	if health <= 0:
 		die()

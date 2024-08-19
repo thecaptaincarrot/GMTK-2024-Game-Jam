@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bpn5os62xeqhx" path="res://Screens/OutOfCombat/OutOfCombat.tscn" id="3_m8ns0"]
 [ext_resource type="PackedScene" uid="uid://bq18iom53hl48" path="res://Screens/Combat/combat_screen.tscn" id="4_3lo2r"]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" node_paths=PackedStringArray("CombatScreen", "OutOfCombatScreen", "MainMenu")]
 script = ExtResource("1_467fc")
+CombatScreen = NodePath("CombatScreen")
+OutOfCombatScreen = NodePath("CanvasLayer/OutOfCombat")
+MainMenu = NodePath("CanvasLayer/MainMenu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -16,6 +19,8 @@ script = ExtResource("1_467fc")
 visible = false
 
 [node name="CombatScreen" parent="." instance=ExtResource("4_3lo2r")]
+visible = false
 
+[connection signal="NewGame" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_new_game"]
 [connection signal="go_to_combat" from="CanvasLayer/OutOfCombat" to="." method="_on_out_of_combat_go_to_combat"]
 [connection signal="ReturnFromCombat" from="CombatScreen" to="." method="_on_combat_screen_return_from_combat"]

@@ -88,12 +88,14 @@ curve = SubResource("Curve2D_0li55")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CameraBoundsRect" type="ReferenceRect" parent="CanvasLayer"]
+visible = false
 offset_top = 51.0
 offset_right = 2140.0
 offset_bottom = 1006.0
 border_width = 2.9
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

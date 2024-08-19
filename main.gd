@@ -19,15 +19,22 @@ func show_main_menu():
 func _hide_all():
 	OutOfCombatScreen.visible = false
 	MainMenu.visible = false
-	Credits.visible = false
-	CombatScreen.visible = true
+	#Credits.visible = false
+	CombatScreen.visible = false
 
 
 func _on_out_of_combat_go_to_combat(level : int):
 	_hide_all()
 	CombatScreen.load_level(level)
+	CombatScreen.visible = true
 
 
 func _on_combat_screen_return_from_combat():
+	print("hello")
+	_hide_all()
+	OutOfCombatScreen.visible =true
+
+
+func _on_main_menu_new_game():
 	_hide_all()
 	OutOfCombatScreen.visible =true
