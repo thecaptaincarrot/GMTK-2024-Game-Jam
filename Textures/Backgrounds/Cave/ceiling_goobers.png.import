@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sysuuc5tunuc"
-path="res://.godot/imported/Floor.png-b17d2873411992399c74e7b24b3ea305.ctex"
+uid="uid://bmj6o4bixipwa"
+path="res://.godot/imported/ceiling_goobers.png-d210678515f35e6d3c77ec83ff179a78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/Backgrounds/Floor.png"
-dest_files=["res://.godot/imported/Floor.png-b17d2873411992399c74e7b24b3ea305.ctex"]
+source_file="res://Textures/Backgrounds/Cave/ceiling_goobers.png"
+dest_files=["res://.godot/imported/ceiling_goobers.png-d210678515f35e6d3c77ec83ff179a78.ctex"]
 
 [params]
 
