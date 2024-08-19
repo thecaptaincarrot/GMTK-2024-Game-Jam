@@ -211,7 +211,7 @@ libraries = {
 script = ExtResource("7_mcf1o")
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-403.591, 271.787)
+position = Vector2(-403.329, 271.557)
 rotation = 2.88471
 scale = Vector2(0.999931, 0.999931)
 shape = SubResource("CircleShape2D_krs6l")
@@ -415,8 +415,8 @@ update_scale = false
 
 [node name="body1" type="Sprite2D" parent="Beast/Sprites" index="0"]
 z_index = -50
-position = Vector2(-89.369, -72.7494)
-rotation = -0.0468653
+position = Vector2(-89.366, -72.7443)
+rotation = -0.0469206
 scale = Vector2(1.20004, 1)
 texture = ExtResource("9_rmtai")
 offset = Vector2(49.9233, -14.9194)
@@ -425,8 +425,8 @@ region_rect = Rect2(1236, 1136, 484, 417)
 
 [node name="body2" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -49
-position = Vector2(-258.943, -123.178)
-rotation = -0.211897
+position = Vector2(-258.942, -123.159)
+rotation = -0.211997
 scale = Vector2(0.999961, 0.999961)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -434,8 +434,8 @@ region_rect = Rect2(1298, 736, 233, 368)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -48
-position = Vector2(-323.667, -273.165)
-rotation = -0.25884
+position = Vector2(-323.678, -273.142)
+rotation = -0.258878
 scale = Vector2(0.999952, 0.999952)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -443,80 +443,80 @@ region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="neck2" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -47
-position = Vector2(-393.795, -331.937)
-rotation = -0.419627
-scale = Vector2(0.999949, 0.999949)
+position = Vector2(-393.807, -331.913)
+rotation = -0.419481
+scale = Vector2(0.99995, 0.99995)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="neck3" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -46
-position = Vector2(-490.723, -375.251)
-rotation = -1.11551
-scale = Vector2(0.999945, 0.999945)
+position = Vector2(-490.729, -375.242)
+rotation = -1.11538
+scale = Vector2(0.999944, 0.999944)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="head" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -45
-position = Vector2(-605.353, -276.066)
-rotation = -1.20856
-scale = Vector2(0.999936, 0.999936)
+position = Vector2(-605.36, -276.069)
+rotation = -1.2086
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(670, 917, 362, 251)
 
 [node name="tongue" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -46
-position = Vector2(-574.427, -246.85)
-rotation = -1.20856
-scale = Vector2(0.999936, 0.999936)
+position = Vector2(-574.433, -246.854)
+rotation = -1.2086
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(834, 1173, 112, 119)
 
 [node name="jaw" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -46
-position = Vector2(-528.961, -266.008)
-rotation = -0.966917
-scale = Vector2(0.999936, 0.999936)
+position = Vector2(-528.968, -266.013)
+rotation = -0.966954
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(838, 1307, 150, 214)
 
 [node name="legL" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -55
-position = Vector2(-180.946, 15.7205)
-rotation = 0.187649
-scale = Vector2(0.999911, 0.999911)
+position = Vector2(-180.633, 15.7464)
+rotation = 0.183995
+scale = Vector2(0.999908, 0.999908)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinL" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -54
-position = Vector2(-255.889, 182.252)
-rotation = 0.273581
-scale = Vector2(0.99981, 0.99981)
+position = Vector2(-255.299, 182.342)
+rotation = 0.277628
+scale = Vector2(0.999808, 0.999808)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -53
-position = Vector2(-382.806, 277.579)
-rotation = -0.0446415
-scale = Vector2(0.999814, 0.999814)
+position = Vector2(-382.54, 277.333)
+rotation = -0.0454467
+scale = Vector2(0.999808, 0.999808)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(364, 1445, 207, 100)
 
 [node name="legR" type="Sprite2D" parent="Beast/Sprites" index="11"]
 z_index = -40
-position = Vector2(-4.54647, 63.5784)
-rotation = -0.000434205
+position = Vector2(-4.54787, 63.5784)
+rotation = -0.000418468
 scale = Vector2(0.999931, 0.999931)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -524,35 +524,35 @@ region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinR" type="Sprite2D" parent="Beast/Sprites" index="12"]
 z_index = -39
-position = Vector2(-41.6728, 226.81)
-rotation = 0.284052
-scale = Vector2(0.999913, 0.999913)
+position = Vector2(-41.676, 226.81)
+rotation = 0.284047
+scale = Vector2(0.99991, 0.99991)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footR" type="Sprite2D" parent="Beast/Sprites" index="13"]
 z_index = -38
-position = Vector2(-172.215, 310.646)
-rotation = -0.0364234
-scale = Vector2(0.999912, 0.999912)
+position = Vector2(-172.217, 310.645)
+rotation = -0.0364182
+scale = Vector2(0.999903, 0.999903)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(364, 1445, 207, 100)
 
 [node name="shadow1" type="Sprite2D" parent="Beast/Sprites" index="14"]
 z_index = -46
-position = Vector2(-580, -214)
-rotation = -1.20856
-scale = Vector2(0.999936, 0.999936)
+position = Vector2(-580.005, -214.004)
+rotation = -1.2086
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(651, 638, 144, 106)
 
 [node name="shadow2" type="Sprite2D" parent="Beast/Sprites" index="15"]
-position = Vector2(-528, -196)
-rotation = -0.966917
-scale = Vector2(0.999936, 0.999936)
+position = Vector2(-528.005, -196.006)
+rotation = -0.966954
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(824, 694, 63, 108)

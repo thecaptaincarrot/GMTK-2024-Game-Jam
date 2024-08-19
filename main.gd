@@ -30,11 +30,12 @@ func _on_out_of_combat_go_to_combat(level : int):
 
 
 func _on_combat_screen_return_from_combat():
-	print("hello")
 	_hide_all()
+	OutOfCombatScreen.reset_to_default()
 	OutOfCombatScreen.visible =true
 
 
 func _on_main_menu_new_game():
 	_hide_all()
+	OutOfCombatScreen.reset_to_default()
 	OutOfCombatScreen.visible =true

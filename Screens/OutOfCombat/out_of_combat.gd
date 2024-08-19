@@ -12,7 +12,13 @@ signal go_to_combat
 @export var army_comp_panel : Panel
 @export var army_display : Node2D
 
+@export var map_panel : Panel
+
+@export var combat_button : Button
+
 var direction = -1
+
+var level_selection = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,14 +42,16 @@ func _physics_process(delta):
 
 
 func reset_to_default():
-	$ShopPanel.hide()
+	shop_control.hide()
+	shop_control.update_all()
+	planning_menus.show()
 	
+	map_panel.update_level_options()
 
 
 
 func _on_to_combat_button_pressed() -> void:
-	var level = 0
-	emit_signal("go_to_combat",level)
+	emit_signal("go_to_combat",level_selection)
 
 
 func _on_shop_button_pressed():
@@ -55,3 +63,8 @@ func _on_shop_button_pressed():
 func _on_return_button_pressed():
 	planning_menus.show()
 	shop_control.hide()
+
+
+func _on_map_panel_level_changed(new_level):
+	print("Switched to level: ", new_level)
+	level_selection = new_level

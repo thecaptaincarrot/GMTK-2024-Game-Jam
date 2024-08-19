@@ -23,6 +23,9 @@ func load_game():
 func can_load():
 	return FileAccess.file_exists(save_path)
 
+#I guess we just have the one global, lol
+var levels_completed = 0
+
 var gooblin_count = 20 #Total gooblins of any class
 #army composition
 var basic_gooblins = 20
