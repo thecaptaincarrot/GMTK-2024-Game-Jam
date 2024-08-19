@@ -49,7 +49,6 @@ text = "Quit"
 visible = false
 
 [node name="TestStage" parent="." instance=ExtResource("4_ooj5i")]
-visible = false
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Continue" to="CanvasLayer/MainMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/NewRun" to="CanvasLayer/MainMenu" method="_on_new_run_pressed"]
