@@ -13,7 +13,7 @@ var target_list: Array
 func _ready() -> void:
 	enemy.reacquire_targets.connect(reacquire_targets)
 	reacquire_targets()
-
+	
 	enemy.died.connect(die)
 
 func reacquire_targets():

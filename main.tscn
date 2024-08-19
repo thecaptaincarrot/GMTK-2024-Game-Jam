@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Screens/main_menu.gd" id="1_7omm2"]
 [ext_resource type="Script" path="res://main.gd" id="1_467fc"]
 [ext_resource type="PackedScene" uid="uid://bpn5os62xeqhx" path="res://Screens/OutOfCombat/OutOfCombat.tscn" id="3_m8ns0"]
-[ext_resource type="PackedScene" uid="uid://cqr3q111ffuwe" path="res://Stages/test_stage.tscn" id="4_ooj5i"]
+[ext_resource type="PackedScene" uid="uid://bq18iom53hl48" path="res://Screens/Combat/combat_screen.tscn" id="4_3lo2r"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_467fc")
@@ -48,7 +48,7 @@ text = "Quit"
 [node name="OutOfCombat" parent="CanvasLayer" instance=ExtResource("3_m8ns0")]
 visible = false
 
-[node name="TestStage" parent="." instance=ExtResource("4_ooj5i")]
+[node name="CombatScreen" parent="." instance=ExtResource("4_3lo2r")]
 
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Continue" to="CanvasLayer/MainMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/NewRun" to="CanvasLayer/MainMenu" method="_on_new_run_pressed"]

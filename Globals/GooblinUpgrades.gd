@@ -25,7 +25,7 @@ func can_load():
 
 var gooblin_count = 20 #Total gooblins of any class
 #army composition
-var basic_gooblins = 0
+var basic_gooblins = 20
 var shield_gooblins = 0
 var climb_gooblins = 0
 var catapult_gooblins = 0
