@@ -2,6 +2,9 @@ extends Node2D
 
 class_name GooblinHordeController
 
+signal gooblin_extinction
+
+#references
 @export var enemy_node:Node2D
 
 @export var horde_target:Node2D
@@ -33,6 +36,8 @@ var _shield_gooblins = []
 var _scaler_gooblins = []
 
 var active = false
+
+var gooblins_alive = true
 
 func _ready():
 	randomize()
@@ -85,6 +90,15 @@ func _setup_horde_rotation_lines():
 func _process(delta: float) -> void:
 	if active:
 		distribute_target_spacing()
+		if gooblins_alive:
+			if get_living_gooblins() <= 0:
+				gooblins_alive = false
+				emit_signal("gooblin_extinction")
+
+
+func get_living_gooblins():
+	var number_gooblins = len(get_scaler_gooblins()) + len(get_basic_gooblins()) + len(get_shield_gooblins())
+	return number_gooblins
 
 
 func spawn_basic_gooblin(position:Vector2):
@@ -182,7 +196,7 @@ func get_shield_gooblins():
 	return _shield_gooblins
 
 
-func get_saler_gooblins():
+func get_scaler_gooblins():
 	return _scaler_gooblins
 
 

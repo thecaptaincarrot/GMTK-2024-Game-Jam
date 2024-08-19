@@ -26,3 +26,8 @@ func _hide_all():
 func _on_out_of_combat_go_to_combat(level : int):
 	_hide_all()
 	CombatScreen.load_level(level)
+
+
+func _on_combat_screen_return_from_combat():
+	_hide_all()
+	OutOfCombatScreen.visible =true
