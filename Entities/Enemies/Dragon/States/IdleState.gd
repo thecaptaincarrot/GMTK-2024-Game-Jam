@@ -52,7 +52,8 @@ func target_and_attack():
 				current_target = randf_range(stomp_range, bite_max_range)
 				tween_target = beast.global_position + Vector2(-current_target, -track_height)
 				state_target = "BiteState"
-				printt(current_target,tween_target)
+				msg = beast.to_global(Vector2(-current_target, 0)).x
+				#printt(current_target,tween_target)
 			1:
 				tween_target = beast.to_global(Vector2(-585, -338))
 				state_target = "StompState"
