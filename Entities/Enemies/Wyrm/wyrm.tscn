@@ -252,99 +252,99 @@ position = Vector2(-108, 11)
 rest = Transform2D(1, 0, 0, 1, -108, 11)
 
 [node name="head" type="Sprite2D" parent="Beast/Sprites" index="0"]
-position = Vector2(-705.99, -561.837)
-rotation = 0.193934
-scale = Vector2(0.999956, 0.999956)
+position = Vector2(-705.991, -561.837)
+rotation = 0.193935
+scale = Vector2(0.999966, 0.999966)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(297, 533, 314, 268)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(21.8987, -82.1304)
-rotation = 1.83137
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(43.8394, -72.8222)
+rotation = 2.11269
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck2" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -49
-position = Vector2(42.0776, -215.129)
-rotation = 1.65675
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(96.7538, -196.215)
+rotation = 1.89561
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck3" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -48
-position = Vector2(38.8427, -349.61)
-rotation = 1.48212
-scale = Vector2(0.999993, 0.999993)
+position = Vector2(121.429, -328.153)
+rotation = 1.67354
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck4" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -47
-position = Vector2(9.46592, -480.67)
-rotation = 1.27289
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(109.179, -461.096)
+rotation = 1.36489
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck5" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -46
-position = Vector2(-49.5195, -601.005)
-rotation = 1.02244
-scale = Vector2(0.999991, 0.999991)
+position = Vector2(55.5986, -583.149)
+rotation = 1.03551
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck6" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -45
-position = Vector2(-138.104, -701.261)
-rotation = 0.744347
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(-36.0549, -679.536)
+rotation = 0.678982
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck7" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -44
-position = Vector2(-252.512, -769.753)
-rotation = 0.419451
-scale = Vector2(0.999991, 0.999991)
+position = Vector2(-159.196, -699.528)
+rotation = -0.134631
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck8" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -44
-position = Vector2(-382.29, -777.868)
-rotation = -0.144611
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(-289.322, -665.758)
+rotation = -0.32398
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck9" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
-position = Vector2(-485.956, -717.766)
-rotation = -1.07152
-scale = Vector2(0.999991, 0.999991)
+position = Vector2(-426.979, -625.449)
+rotation = -0.53538
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck10" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-537.814, -620.847)
-rotation = -0.780492
-scale = Vector2(0.999943, 0.999943)
+position = Vector2(-523.545, -592.143)
+rotation = 0.0348654
+scale = Vector2(0.999949, 0.999949)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)

@@ -83,14 +83,15 @@ remote_path = NodePath("../../../Sprites/base")
 
 [node name="leg" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-125, -10)
-rotation = 0.0542844
+rotation = -0.0883325
 scale = Vector2(0.999988, 0.999988)
 rest = Transform2D(1, 0, 0, 1, -127, 85)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shin" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg"]
 position = Vector2(-12.06, 59.1938)
-rotation = 0.1707
+rotation = 0.170555
+scale = Vector2(1, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/hip/leg/shin"]
@@ -98,8 +99,9 @@ position = Vector2(7.56047, 113.79)
 remote_path = NodePath("../../../../../Sprites/leg")
 
 [node name="foot" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg/shin"]
-position = Vector2(-7.50351, 187.453)
-rotation = -0.0403168
+position = Vector2(-7.5035, 187.453)
+rotation = -0.0872663
+scale = Vector2(1, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/hip/leg/shin/foot"]
@@ -112,11 +114,14 @@ position = Vector2(-19.0512, 180.997)
 
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(0, -208)
+rotation = 0.0632158
 rest = Transform2D(0.999178, -0.0403056, 0.0403056, 0.999178, 0, -208)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
-position = Vector2(-192.967, -4.78157)
+position = Vector2(-192.967, -4.78146)
+rotation = 0.0555305
+scale = Vector2(1, 1)
 rest = Transform2D(0.951617, 0.30732, -0.30732, 0.951617, -192.974, -4.78149)
 metadata/_local_pose_override_enabled_ = true
 
@@ -137,27 +142,27 @@ region_rect = Rect2(839, 263, 533, 980)
 
 [node name="leg" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(-59.4921, 102.07)
-rotation = 0.0826243
-scale = Vector2(0.999991, 0.999991)
+position = Vector2(-59.5852, 102.054)
+rotation = 0.0822822
+scale = Vector2(0.999988, 0.999988)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(417, 982, 130, 247)
 
 [node name="foot" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -50
-position = Vector2(-129.067, 274.426)
-rotation = 0.0356749
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-129.101, 274.429)
+rotation = 0.0353328
+scale = Vector2(0.999991, 0.999991)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(582, 986, 215, 235)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -45
-position = Vector2(-406.001, -0.000192642)
+position = Vector2(-406.002, 0.000541687)
 rotation = 0.11875
-scale = Vector2(0.999995, 0.999995)
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)
