@@ -27,7 +27,7 @@ enum GooblinType{
 
 @export var move_speed = 300.0
 
-@export var despawn_timer_time = 5.0
+@export var despawn_timer_time = 2.0
 
 @export var jump_vector = Vector2(400, 600)
 
@@ -116,6 +116,7 @@ func _ready():
 		_sprite.texture = load("res://Textures/Entities/GoblinShield.png")
 		_can_attack = false
 	elif(unit_type == GooblinType.SCALER):
+		_sprite.texture = load("res://Textures/Entities/GoblinScaler.png")
 		_can_attack = true
 		pass
 
@@ -169,8 +170,10 @@ func convert_to_basic_gooblin():
 		unit_type = GooblinType.BASIC
 		emit_signal("gooblin_changed", GooblinType.SHIELD, GooblinType.BASIC, self)
 
+
 func _despawn_timeout():
 	queue_free()
+
 
 func _move_to_target_range(delta:float):
 	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
@@ -191,6 +194,7 @@ func _move_to_target_range(delta:float):
 		if(abs(difference) > 1 && is_on_floor()):
 			velocity.x -= sign(difference) * move_speed * delta
 		elif(abs(difference) <= 1 && !_climbing):
+			_anim.play("Climb")
 			_climbing = true
 		elif(_climbing):
 			set_position(path_follower.get_global_position())
@@ -211,8 +215,10 @@ func _attack_target():
 	
 	if(unit_type == GooblinType.SCALER && path_follower.progress_ratio == 1 && _climbing == true && !_scaler_attack_started):
 		_scaler_attack_timer.start()
+		_anim.play("ScalerAttack")
 		_scaler_attack_started = true
 		$ScalerDamage.emitting = true
+
 
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
@@ -221,12 +227,14 @@ func _jump_trigger():
 		#add damange multiplyers in here when it comes up
 		enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 
+
 func _scaler_attack_timeout():
 	enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 	fling()
 	_climbing = false
 	path_follower.progress_ratio = 0
 	_scaler_attack_started = false
+
 
 func is_dead():
 	return _is_dead
