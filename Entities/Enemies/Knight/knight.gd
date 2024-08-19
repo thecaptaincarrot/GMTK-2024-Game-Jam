@@ -14,7 +14,6 @@ func _ready() -> void:
 	reacquire_targets()
 	enemy.died.connect(die)
 	
-
 func reacquire_targets():
 	target_list = horde_controller.get_basic_gooblins()
 
@@ -26,4 +25,4 @@ func take_damage(dmg):
 	enemy.take_damage(dmg)
 
 func _process(_delta: float) -> void:
-	attacker.global_position.x = arm_target.global_position.x - 140
+	attacker.global_position.x = arm_target.global_position.x - 65
