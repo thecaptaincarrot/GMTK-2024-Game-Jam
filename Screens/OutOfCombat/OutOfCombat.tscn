@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpn5os62xeqhx"]
 
-[ext_resource type="Script" path="res://Menus/OutOfCombatr/out_of_combat.gd" id="1_2xjpg"]
-[ext_resource type="Script" path="res://Menus/OutOfCombatr/shop_panel.gd" id="1_tqmy8"]
-[ext_resource type="Script" path="res://Menus/OutOfCombatr/army_comp_panel.gd" id="3_24mlq"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/out_of_combat.gd" id="1_2xjpg"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/shop_panel.gd" id="1_tqmy8"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/army_comp_panel.gd" id="3_24mlq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_iwusg"]
 line_spacing = 0.0
