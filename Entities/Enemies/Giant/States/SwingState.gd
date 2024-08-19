@@ -6,6 +6,7 @@ extends GenericState
 func enter(_msg):
 	beast.random_target_timer.stop()
 	attacker.disabled = false
+	
 	await beast.animation_player.animation_finished
 	
 	hurt_gooblins()

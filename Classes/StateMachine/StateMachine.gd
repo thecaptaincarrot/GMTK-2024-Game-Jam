@@ -15,7 +15,7 @@ var previous_state: Node
 
 
 ## Change this variable via the parent's script to log every state change in output!
-var log_changes = true
+@export var log_changes := true
 
 
 
@@ -59,4 +59,4 @@ func change_to_state(state: String, msg = {}):
 	# Emit signal
 	state_changed.emit(state)
 	if log_changes:
-		prints(owner.name, "changed to", current_state.name)
+		prints(owner.get_parent().name, "changed to", current_state.name)

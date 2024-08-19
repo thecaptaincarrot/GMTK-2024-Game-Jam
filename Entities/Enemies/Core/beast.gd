@@ -40,7 +40,8 @@ func _fsm_state_changed(state: String):
 	#prints(owner.name,"is registering that the state changed to", state)
 	
 	# Delegates finding the animation to the state. Fallback is universal_idle
-	animation_player.play(state_machine.find_child(state).animation)
+	if state_machine.find_child(state).animation != "":
+		animation_player.play(state_machine.find_child(state).animation)
 
 func _on_animation_finished(_anim):
 	# never uncomment this line under any circumstance
@@ -62,3 +63,9 @@ func acquire_targets():
 		reacquire_targets.emit()
 		targets = owner.target_list
 		print("target_list valid")
+
+func get_lunge_point():
+	return $LungePoint
+
+func get_climb_target():
+	return $ScalerPath
