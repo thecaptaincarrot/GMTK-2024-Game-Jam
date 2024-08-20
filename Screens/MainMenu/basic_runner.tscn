@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://crl1hyjrpx2di"]
+
+[ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="1_o8rfl"]
+[ext_resource type="Script" path="res://Screens/MainMenu/runner.gd" id="2_pimik"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uiw2"]
+atlas = ExtResource("1_o8rfl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf3kk"]
+atlas = ExtResource("1_o8rfl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06b0x"]
+atlas = ExtResource("1_o8rfl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv5j8"]
+atlas = ExtResource("1_o8rfl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6fdl"]
+atlas = ExtResource("1_o8rfl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc7qp"]
+atlas = ExtResource("1_o8rfl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8jt5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uiw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf3kk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06b0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uv5j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6fdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc7qp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="BasicRunner" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_v8jt5")
+script = ExtResource("2_pimik")

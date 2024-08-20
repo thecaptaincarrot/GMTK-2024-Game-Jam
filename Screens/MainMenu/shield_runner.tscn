@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://vy0c6l87k66d"]
+
+[ext_resource type="Texture2D" uid="uid://b00ndm2k6r6id" path="res://Textures/Entities/GoblinShield.png" id="1_0yjh1"]
+[ext_resource type="Script" path="res://Screens/MainMenu/runner.gd" id="2_557wc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7dau"]
+atlas = ExtResource("1_0yjh1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0pb0"]
+atlas = ExtResource("1_0yjh1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlvgw"]
+atlas = ExtResource("1_0yjh1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmwie"]
+atlas = ExtResource("1_0yjh1")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1rbp"]
+atlas = ExtResource("1_0yjh1")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is6gw"]
+atlas = ExtResource("1_0yjh1")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vbl7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7dau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0pb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlvgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmwie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1rbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is6gw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ShieldRunner" type="AnimatedSprite2D"]
+position = Vector2(8, 62)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_vbl7f")
+script = ExtResource("2_557wc")

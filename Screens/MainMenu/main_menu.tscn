@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://clqyaaowq4uap"]
+[gd_scene load_steps=7 format=3 uid="uid://clqyaaowq4uap"]
 
 [ext_resource type="Script" path="res://Screens/main_menu.gd" id="1_l4us8"]
+[ext_resource type="Texture2D" uid="uid://cplspvpj6lb6s" path="res://Textures/Backgrounds/Field/sky01.png" id="2_cwyox"]
+[ext_resource type="Texture2D" uid="uid://8vbt2ybrqm8l" path="res://Textures/Backgrounds/Field/floor01.png" id="3_glyvt"]
+[ext_resource type="Script" path="res://Screens/MainMenu/spawner.gd" id="4_rtw04"]
+[ext_resource type="Texture2D" uid="uid://kn0s73qvilo" path="res://Textures/Logo/Gooblins-Logo.png" id="5_rhmym"]
+[ext_resource type="Script" path="res://Screens/MainMenu/title.gd" id="6_40cfu"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +16,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l4us8")
 
+[node name="SkyParallax" type="Parallax2D" parent="."]
+z_index = -1000
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-20, 0)
+repeat_times = 2
+
+[node name="SkySprite" type="Sprite2D" parent="SkyParallax"]
+texture = ExtResource("2_cwyox")
+centered = false
+
+[node name="GroundParallax" type="Parallax2D" parent="."]
+z_index = -999
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-40, 0)
+repeat_times = 2
+
+[node name="GroundSprite" type="Sprite2D" parent="GroundParallax"]
+texture = ExtResource("3_glyvt")
+centered = false
+offset = Vector2(0, 240)
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(-87, 564)
+script = ExtResource("4_rtw04")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 0.5
+autostart = true
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -19,9 +53,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -67.0
-offset_top = -21.5
+offset_top = -50.5
 offset_right = 67.0
-offset_bottom = 21.5
+offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -37,6 +71,17 @@ text = "New Run"
 layout_mode = 2
 text = "Quit"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(661, 208)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_rhmym")
+script = ExtResource("6_40cfu")
+y_scale = 10
+speed_scale = 2
+
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/NewRun" to="." method="_on_new_run_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

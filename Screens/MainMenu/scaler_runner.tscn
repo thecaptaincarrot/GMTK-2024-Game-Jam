@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://vyvmmdqy8lsx"]
+
+[ext_resource type="Texture2D" uid="uid://c0spvpuiu32cn" path="res://Textures/Entities/GoblinScaler.png" id="1_224ap"]
+[ext_resource type="Script" path="res://Screens/MainMenu/runner.gd" id="2_5h1nr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53366"]
+atlas = ExtResource("1_224ap")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wtif"]
+atlas = ExtResource("1_224ap")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkr41"]
+atlas = ExtResource("1_224ap")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qonb5"]
+atlas = ExtResource("1_224ap")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaeeo"]
+atlas = ExtResource("1_224ap")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ilb"]
+atlas = ExtResource("1_224ap")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chgxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53366")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wtif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkr41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qonb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaeeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ilb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ScalerRunner" type="AnimatedSprite2D"]
+position = Vector2(31, -59)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_chgxu")
+script = ExtResource("2_5h1nr")
