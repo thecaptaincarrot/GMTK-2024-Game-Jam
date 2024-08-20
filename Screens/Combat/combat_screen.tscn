@@ -318,7 +318,7 @@ offset_top = 51.0
 offset_right = 136.5
 offset_bottom = 74.0
 grow_horizontal = 2
-text = "Your gooblins are forced to retreat"
+text = "Your enemy lies fallen before you!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CanvasLayer/VictoryPanel"]

@@ -427,8 +427,8 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-124.603, 0.749836)
-rotation = -0.120213
+position = Vector2(-124.605, 0.751404)
+rotation = -0.120215
 scale = Vector2(0.241666, 0.241666)
 texture = ExtResource("3_rfubd")
 region_enabled = true
