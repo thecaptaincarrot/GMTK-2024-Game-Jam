@@ -106,10 +106,12 @@ modifications/7 = SubResource("SkeletonModification2DLookAt_nqb65")
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
+projectile_damage_threshold = 10.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
 min_retarget_time = 4.0
 max_retarget_time = 5.0
+attack_chance = 4
 blood_color = Color(0.447636, 0.24912, 0.374506, 1)
 
 [node name="StateMachine" parent="Beast" index="1"]
@@ -119,10 +121,13 @@ initial_state = NodePath("IdleState")
 script = ExtResource("3_wfgqw")
 animation = ""
 
-[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "attacker")]
+[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "animation_player", "slime_node", "hitbox", "attacker", "stomper")]
 script = ExtResource("4_5l287")
 return_hint = NodePath("../../ReturnHint")
+animation_player = NodePath("../../AnimationPlayer")
+slime_node = NodePath("../../..")
 animation = ""
+hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
 damage = 4
 stomper = NodePath("../../HitboxComponent/Attacker")
@@ -478,5 +483,7 @@ position = Vector2(0, -112)
 [node name="ReturnHint" type="Node2D" parent="Beast"]
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_for_jump"]
+[connection signal="jump" from="Beast/StateMachine/JumpState" to="." method="_on_jump_state_jump"]
+[connection signal="jump_over" from="Beast/StateMachine/JumpState" to="." method="_on_jump_state_jump_over"]
 
 [editable path="Beast"]
