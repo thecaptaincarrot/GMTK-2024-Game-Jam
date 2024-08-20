@@ -6,5 +6,5 @@ extends GenericState
 
 func target_for_jump():
 	var target_x = randi_range(jump_range_from, jump_range_to)
-	if randi_range(1,beast.attack_chance) == 1:
-		state_machine.change_to_state("JumpState", target_x)
+	#if randi_range(1,beast.attack_chance) == 1:
+		#state_machine.change_to_state("JumpState", target_x)

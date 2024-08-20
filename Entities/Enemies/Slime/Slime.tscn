@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://by0cqitx42f6i"]
+[gd_scene load_steps=17 format=3 uid="uid://by0cqitx42f6i"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/slime.gd" id="1_rb4j3"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="2_uj5dt"]
@@ -6,43 +6,7 @@
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/States/JumpState.gd" id="4_5l287"]
 [ext_resource type="Texture2D" uid="uid://dlpet2r0x26de" path="res://Textures/Entities/gelatinousmass.png" id="4_hw4sg"]
 
-[sub_resource type="Animation" id="Animation_6f4wn"]
-resource_name = "Jump"
-length = 0.4
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IKTargets/undulator1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -341), Vector2(0, -150), Vector2(0, -341)]
-}
-
-[sub_resource type="Animation" id="Animation_gt14w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IKTargets/undulator1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -341)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aove2"]
-_data = {
-"Jump": SubResource("Animation_6f4wn"),
-"RESET": SubResource("Animation_gt14w")
-}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgu7w"]
 radius = 195.04
@@ -135,7 +99,6 @@ modifications/7 = SubResource("SkeletonModification2DLookAt_nqb65")
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
-projectile_damage_threshold = 10.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
 min_retarget_time = 4.0
@@ -149,17 +112,11 @@ initial_state = NodePath("IdleState")
 script = ExtResource("3_wfgqw")
 animation = ""
 
-[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "animation_player", "slime_node", "hitbox", "attacker", "stomper")]
+[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "attacker")]
 script = ExtResource("4_5l287")
 return_hint = NodePath("../../ReturnHint")
-animation_player = NodePath("../../AnimationPlayer")
-slime_node = NodePath("../../..")
 animation = ""
-hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 4
-stomper = NodePath("../../HitboxComponent/Attacker")
-fling_damage = 20
 
 [node name="AnimationPlayer" parent="Beast" index="2"]
 libraries = {
@@ -430,17 +387,17 @@ region_rect = Rect2(346, 683, 134, 213)
 
 [node name="bone2" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -50
-position = Vector2(-135.325, -351.292)
-rotation = 0.0181716
-scale = Vector2(0.999976, 0.999976)
+position = Vector2(-135.326, -351.291)
+rotation = 0.018172
+scale = Vector2(0.999968, 0.999968)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(151, 407, 112, 206)
 
 [node name="bone3" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -43
-position = Vector2(114.268, -331.316)
-rotation = -0.0316409
+position = Vector2(114.269, -331.316)
+rotation = -0.0316443
 scale = Vector2(1.00001, 1.00001)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -502,7 +459,5 @@ position = Vector2(0, -112)
 [node name="ReturnHint" type="Node2D" parent="Beast"]
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_for_jump"]
-[connection signal="jump" from="Beast/StateMachine/JumpState" to="." method="_on_jump_state_jump"]
-[connection signal="jump_over" from="Beast/StateMachine/JumpState" to="." method="_on_jump_state_jump_over"]
 
 [editable path="Beast"]
