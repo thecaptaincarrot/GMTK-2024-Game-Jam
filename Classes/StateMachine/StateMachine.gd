@@ -6,6 +6,7 @@ extends Node
 # I don't think there's going to be a need to create more types of state machines
 # Since functionality is delegated to the states and their methods are universal
 
+@export var hit_sound_player : AudioStreamPlayer
 
 ## Don't forget to set the initial_state from the editor! This is critical!
 @export var initial_state: NodePath
@@ -25,6 +26,7 @@ func _ready():
 	for n in get_children():
 		n.screen_shake.connect(get_parent()._on_state_machine_shake_screen)
 		n.shake_off.connect(get_parent()._on_state_machine_shake_off_scalers)
+		n.hit_sound_player = hit_sound_player
 	
 	if initial_state and on:
 		# swap into the the default state first thing

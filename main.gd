@@ -61,3 +61,8 @@ func _on_main_menu_credits():
 	Credits.show()
 	
 	
+
+
+func _on_combat_screen_final_credits():
+	Credits.restart()
+	Credits.show()

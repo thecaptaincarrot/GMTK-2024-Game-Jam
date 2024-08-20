@@ -709,3 +709,4 @@ visible = false
 [connection signal="credits_over" from="CanvasLayer/Credits" to="." method="_on_credits_credits_over"]
 [connection signal="credits_over" from="CanvasLayer/Credits" to="CanvasLayer/MainMenu" method="_on_credits_credits_over"]
 [connection signal="ReturnFromCombat" from="CombatScreen" to="." method="_on_combat_screen_return_from_combat"]
+[connection signal="final_credits" from="CombatScreen" to="." method="_on_combat_screen_final_credits"]

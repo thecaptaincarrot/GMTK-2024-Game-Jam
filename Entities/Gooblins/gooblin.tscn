@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtbkr6sw241vr"]
+[gd_scene load_steps=16 format=3 uid="uid://dtbkr6sw241vr"]
 
 [ext_resource type="Script" path="res://Entities/Gooblins/gooblin.gd" id="1_qqrn7"]
 [ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="2_uqsqc"]
+[ext_resource type="AudioStream" uid="uid://dtjnsvv2yfpg4" path="res://SFX/jump.mp3" id="3_uhu1l"]
+[ext_resource type="AudioStream" uid="uid://cogw71u1gfrpi" path="res://SFX/hitsound.mp3" id="4_smbfl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yumhv"]
 radius = 16.0
@@ -151,6 +153,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jump")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_j5onn"]
@@ -359,3 +389,11 @@ color = Color(1, 0, 0, 1)
 
 [node name="ScalerTimeout" type="Timer" parent="."]
 one_shot = true
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_uhu1l")
+volume_db = -15.0
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_smbfl")
+volume_db = -20.0

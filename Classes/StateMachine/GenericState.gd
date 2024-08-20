@@ -20,6 +20,7 @@ signal shake_off
 @export var attacker: CollisionShape2D
 @export var damage = 10
 @export var scaler_shakeoff_chance = 0.5
+@export var hit_sound_player : AudioStreamPlayer
 
 #for Kicks
 @export var stomper: CollisionShape2D
@@ -59,6 +60,9 @@ func flingerize_gooblins():
 
 
 func hurt_gooblins():
+	if hit_sound_player:
+		hit_sound_player.play()
+	
 	if len(intersecting_goobs) == 0:
 		return
 	

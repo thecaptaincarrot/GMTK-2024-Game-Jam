@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bpn5os62xeqhx"]
+[gd_scene load_steps=28 format=3 uid="uid://bpn5os62xeqhx"]
 
 [ext_resource type="Script" path="res://Screens/OutOfCombat/out_of_combat.gd" id="1_2xjpg"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/shop_panel.gd" id="1_tqmy8"]
@@ -50,7 +50,6 @@ line_spacing = -3.0
 font_size = 14
 
 [node name="OutOfCombat" type="Control" node_paths=PackedStringArray("click_sound", "background_texture", "shop_control", "planning_menus", "army_comp_panel", "army_display", "map_panel", "combat_button", "music_player")]
-
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,7 +269,7 @@ text = "1"
 
 [node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
 layout_mode = 2
-text = "→"
+text = "=>"
 
 [node name="NewAttack" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/HBoxContainer"]
 layout_mode = 2
@@ -294,7 +293,7 @@ text = "300"
 
 [node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
 layout_mode = 2
-text = "→"
+text = "=>"
 
 [node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/GooblinUpgrades/MoveUpgradeContainer2"]
 layout_mode = 2
@@ -382,7 +381,7 @@ text = "1"
 
 [node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
 layout_mode = 2
-text = "→"
+text = "=>"
 
 [node name="NewShield" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/ShieldUpgradeContainer"]
 layout_mode = 2
@@ -497,7 +496,7 @@ text = "4"
 
 [node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
 layout_mode = 2
-text = "→"
+text = "=>"
 
 [node name="NewMult" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer"]
 layout_mode = 2
@@ -523,7 +522,7 @@ text = "200"
 
 [node name="Label2" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
 layout_mode = 2
-text = "→"
+text = "=>"
 
 [node name="NewMove" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2"]
 layout_mode = 2
@@ -834,6 +833,21 @@ toggle_mode = true
 texture_normal = ExtResource("12_hysbw")
 texture_pressed = ExtResource("13_kvlbh")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="PlanningMenus/MapPanel"]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 314.0
+offset_right = 508.0
+offset_bottom = 354.0
+
+[node name="Label" type="Label" parent="PlanningMenus/MapPanel/HBoxContainer"]
+layout_mode = 2
+text = "Gold:"
+
+[node name="Gold" type="Label" parent="PlanningMenus/MapPanel/HBoxContainer"]
+layout_mode = 2
+text = "999"
+
 [node name="ShopButton" type="Button" parent="PlanningMenus"]
 layout_mode = 0
 offset_left = 939.0
@@ -869,7 +883,7 @@ script = ExtResource("17_4qvxy")
 txtrect = NodePath("Margins/VBoxContainer/TextureRect")
 beast_name = NodePath("Margins/VBoxContainer/BeastName")
 beast_text = NodePath("Margins/VBoxContainer/RichTextLabel")
-beast_second_text = NodePath("../../Panel/Margins/RichTextLabel2")
+beast_second_text = NodePath("../Panel/Margins/RichTextLabel2")
 
 [node name="Margins" type="MarginContainer" parent="PlanningMenus/BlurbBox"]
 layout_mode = 2
@@ -901,21 +915,21 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_uvi6n")
 autowrap_mode = 3
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="PlanningMenus"]
 layout_mode = 2
 offset_left = 382.0
 offset_top = 597.0
 offset_right = 917.0
 offset_bottom = 694.0
 
-[node name="Margins" type="MarginContainer" parent="Panel"]
+[node name="Margins" type="MarginContainer" parent="PlanningMenus/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="RichTextLabel2" type="Label" parent="Panel/Margins"]
+[node name="RichTextLabel2" type="Label" parent="PlanningMenus/Panel/Margins"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_uvi6n")
 autowrap_mode = 3

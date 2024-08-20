@@ -32,7 +32,7 @@ var scaler_to_spawn = 0
 
 @onready var gooblin_scene = preload("res://Entities/Gooblins/gooblin.tscn")
 
-var max_spawn = 1000
+var max_spawn = 500
 
 
 var _basic_gooblins = []
@@ -52,7 +52,7 @@ func _ready():
 func end_level():
 	active = false
 	for n in get_children():
-		if n.name != "SpawnPoint":
+		if n.name != "SpawnPoint" and n.name != "AudioStreamPlayer":
 			n.queue_free()
 	enemy_node = null
 	horde_target = null
@@ -68,8 +68,8 @@ func reset():
 	spawn_scaler_count = GooblinUpgrades.climb_gooblins
 	print(spawn_basic_count)
 	basic_to_spawn = spawn_basic_count
-	scaler_to_spawn =  spawn_shield_count
-	shield_to_spawn = spawn_scaler_count
+	scaler_to_spawn =  spawn_scaler_count
+	shield_to_spawn = spawn_shield_count
 	_setup_horde_rotation_lines()
 	#spawn_gooblins()
 
@@ -89,6 +89,9 @@ func spawn_gooblins():
 
 
 func kill_all():
+	basic_to_spawn = 0
+	shield_to_spawn = 0
+	scaler_to_spawn = 0
 	print(len(_basic_gooblins))
 	var kill_list = _basic_gooblins.duplicate()
 	for gooblin in kill_list:
@@ -224,16 +227,22 @@ func _rotate_out_basic():
 
 
 func _basic_gooblin_died(gooblin):
+	if $AudioStreamPlayer.playing == false:
+		$AudioStreamPlayer.play()
 	if(_basic_gooblins.has(gooblin)):
 		_basic_gooblins.erase(gooblin)
 
 
 func _shield_gooblin_died(gooblin):
+	if $AudioStreamPlayer.playing == false:
+		$AudioStreamPlayer.play()
 	if(_shield_gooblins.has(gooblin)):
 		_shield_gooblins.erase(gooblin)
 
 
 func _scaler_gooblin_died(gooblin):
+	if $AudioStreamPlayer.playing == false:
+		$AudioStreamPlayer.play()
 	if(_scaler_gooblins.has(gooblin)):
 		_scaler_gooblins.erase(gooblin)
 

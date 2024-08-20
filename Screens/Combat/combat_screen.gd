@@ -23,6 +23,7 @@ var BeastNode : Beast
 
 @export var DefeatPanel :Panel
 @export var VictoryPanel:Panel
+@export var TrueVictoryPanel:Panel
 
 @export var FieldFloor : StaticBody2D
 @export var CaveFloor : StaticBody2D
@@ -32,6 +33,8 @@ const CAVE_BG = 1
 const DRY_BG = 2
 const LAKE_BG = 3
 
+signal final_credits
+
 #Level Definitions
 #Specifics for things like camera bounds, enemy type, other things are stored in an array
 #Array indicies correspond to the level being entered.
@@ -40,7 +43,7 @@ const LAKE_BG = 3
 #Camera bounds always start at position 0,0 on upper left
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
-						Vector2(1600,1100),
+						Vector2(2400,1100),
 						Vector2(1900,900),
 						Vector2(2000,1100),
 						] 
@@ -60,7 +63,7 @@ const ENEMY_POS = [ Vector2(1100, 600),
 					Vector2(1800,540),
 					]
 
-const GOOBLIN_RANGE = [100,
+const GOOBLIN_RANGE = [64,
 					   100,
 					   100,
 					   100,
@@ -74,8 +77,8 @@ const ENEMY_HEALTH = [200,
 					  10000,
 ]
 
-const ENEMY_REWARD = [1000,
-					  5000,
+const ENEMY_REWARD = [500,
+					  2500,
 					  15000,
 					  25000,
 					  100000,
@@ -156,6 +159,7 @@ func load_level(level_index : int):
 	MaxHealthLabel.text = str(BeastNode.max_health)
 	CurrentHealthLabel.text = str(BeastNode.max_health)
 	HealthBar.max_value = BeastNode.max_health
+	HealthBar.value = BeastNode.max_health
 	
 	GooblinController.enemy_node = BeastNode
 	GooblinController.horde_target = BeastNode.get_lunge_point()
@@ -183,7 +187,7 @@ func _on_enemy_hurt():
 func _on_gooblin_horde_controller_gooblin_extinction():
 	#calculate gold earned
 	var percent_damage_dealt = 1.0 - (BeastNode.health / BeastNode.max_health)
-	var gold_earned = round(percent_damage_dealt * BeastNode.get_gold_value())
+	var gold_earned = round(percent_damage_dealt * ENEMY_REWARD[active_loaded_level])
 	print("earned ", gold_earned, " gold")
 	GooblinUpgrades.gold += gold_earned
 	GooblinController.active = false
@@ -193,14 +197,17 @@ func _on_gooblin_horde_controller_gooblin_extinction():
 
 
 func _on_beast_died():
-	var gold_earned = BeastNode.get_gold_value()
+	var gold_earned = ENEMY_REWARD[active_loaded_level]
 	GooblinUpgrades.gold += gold_earned
 	if(GooblinUpgrades.levels_completed <= active_loaded_level):
 		GooblinUpgrades.levels_completed = active_loaded_level + 1
 	GooblinController.celebrate()
 	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
-	VictoryPanel.show()
+	if active_loaded_level == 4:
+		TrueVictoryPanel.show()
+	else:
+		VictoryPanel.show()
 
 
 func _on_return_button_pressed():
@@ -210,10 +217,26 @@ func _on_return_button_pressed():
 	Canvas_Layer.hide()
 	DefeatPanel.hide()
 	VictoryPanel.hide()
+	TrueVictoryPanel.hide()
 	emit_signal("ReturnFromCombat")
 	GooblinController.kill_all()
 
 
 func _on_retreat_button_pressed():
 	click_player.play()
+	defeat_player.stop()
+	victory_player.stop()
+	GooblinController.kill_all()
+
+
+func _on_true_victory_return_button_pressed():
+	music_player.stop()
+	GooblinController.end_level()
+	Enemy.queue_free()
+	Canvas_Layer.hide()
+	DefeatPanel.hide()
+	VictoryPanel.hide()
+	TrueVictoryPanel.hide()
+	emit_signal("final_credits")
+	emit_signal("ReturnFromCombat")
 	GooblinController.kill_all()

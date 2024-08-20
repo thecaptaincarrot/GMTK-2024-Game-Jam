@@ -304,7 +304,7 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_3jw4g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
+"points": PackedVector2Array(0, 0, 0, 0, 11, 75, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
 }
 point_count = 4
 
@@ -400,7 +400,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-48.0825, 1.0628)
-rotation = -0.0798978
+rotation = -0.0798977
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.984793, 0.173713, -0.173713, 0.984793, -48.0822, 1.06243)
 metadata/_local_pose_override_enabled_ = true
@@ -440,7 +440,7 @@ region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)
 
 [node name="armTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
-position = Vector2(-230, 311)
+position = Vector2(-120, 10)
 
 [node name="legTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
 position = Vector2(-39, 102)

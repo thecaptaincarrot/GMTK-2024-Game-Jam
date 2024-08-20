@@ -17,6 +17,7 @@ class_name Beast extends Node2D
 #(1/1 means guaranteed, 1/2 means coinflip etc)
 @export var attack_chance := 1
 
+var dead = false
 # i havent really developed the deadstate but it's pretty straightforward i think
 # need to make death anims but those are easy since i won't have to account for anything
 # just need to stop the timer in the state code and play the death animation
@@ -67,7 +68,9 @@ func take_damage(dmg):
 		die()
 
 func die():
-	died.emit()
+	if !dead:
+		died.emit()
+		dead = true
 
 func get_lunge_point():
 	return $LungePoint

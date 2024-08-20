@@ -120,20 +120,20 @@ func get_next_scaler_climb_speed():
 
 #Cost curve calculation functions
 func get_gooblin_attack_upgrade_cost():
-	return 500 * (pow(gooblin_attack,2))
+	return 1000 * (pow(gooblin_attack,2))
 
 
 func get_gooblin_speed_upgrade_cost():
-	return 250 * (gooblin_speed_upgrade_level + 1)
+	return 250 * pow(gooblin_speed_upgrade_level + 1,2)
 
 
 func get_gooblin_shield_upgrade_cost():
-	return 200 * shield_health
+	return 400 * pow(shield_health,2)
 
 
 func get_gooblin_scaler_mult_upgrade_cost():
-	return 500 * (damage_multiplier_level + 1)
+	return 500 * pow((damage_multiplier_level + 1),2)
 
 
 func get_gooblin_scaler_climb_speed_upgrade_cost():
-	return 500 * (climb_speed_level + 1)
+	return 500 * pow((climb_speed_level + 1),2)
