@@ -355,7 +355,7 @@ debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="1"]
 position = Vector2(-38.4664, 99.4209)
-rotation = 0.148331
+rotation = 1.5708
 scale = Vector2(0.999987, 0.999987)
 shape = SubResource("CapsuleShape2D_q14qj")
 disabled = true

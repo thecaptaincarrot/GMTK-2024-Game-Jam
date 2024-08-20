@@ -20,6 +20,8 @@ signal go_to_combat
 
 @export var music_player : AudioStreamPlayer
 
+var new_game = true
+
 var direction = -1
 
 var level_selection = 0
@@ -51,7 +53,11 @@ func reset_to_default():
 	planning_menus.show()
 	
 	map_panel.update_level_options()
-	music_player.play()
+	if new_game:
+		new_game = false
+		emit_signal("go_to_combat",0)
+	else:
+		music_player.play()
 
 
 

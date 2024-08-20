@@ -80,6 +80,9 @@ signal gooblin_changed
 signal died
 
 func _ready():
+	#get stuff from gooblinupgrades
+	move_speed = GooblinUpgrades.get_gooblin_speed()
+	scaler_climb_speed = GooblinUpgrades.get_scaler_climb_speed()
 	#this timer is used to delay a jump
 	#and allow for the anticipation animation to play
 	_jump_timer.autostart = false
