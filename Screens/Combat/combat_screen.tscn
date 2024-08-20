@@ -130,6 +130,7 @@ scale = Vector2(1, 0.998288)
 shape = SubResource("RectangleShape2D_jmt5r")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="CameraBoundsRect" type="ReferenceRect" parent="CanvasLayer"]
 offset_right = 2037.0
