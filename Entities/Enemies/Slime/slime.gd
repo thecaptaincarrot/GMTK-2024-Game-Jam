@@ -2,11 +2,7 @@ extends Node2D
 
 @onready var enemy = $Beast
 @onready var animation_player: AnimationPlayer = $Beast/AnimationPlayer
-@onready var skeleton: Skeleton2D = $Beast/SkeletonComponent
-
 @export var horde_controller: GooblinHordeController
-
-
 var target_list: Array
 
 @export var projectile_spawn_offset = Vector2(0,-140)

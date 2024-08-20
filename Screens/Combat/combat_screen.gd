@@ -57,7 +57,7 @@ const ENEMY_POS = [ Vector2(1100, 640),
 					Vector2(1100,680),
 					Vector2(1400,860),
 					Vector2(1400,720),
-					Vector2(2000,400),
+					Vector2(2000,560),
 					]
 
 const GOOBLIN_RANGE = [100,
