@@ -144,6 +144,7 @@ script = ExtResource("1_4enup")
 [node name="Beast" parent="." instance=ExtResource("1_p11pc")]
 min_retarget_time = 1.0
 max_retarget_time = 2.0
+blood_color = Color(0.638884, 2.02149e-06, 4.81307e-07, 1)
 
 [node name="StateMachine" parent="Beast" index="1"]
 initial_state = NodePath("IdleState")
@@ -222,7 +223,6 @@ update_scale = false
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-0.999999, -54)
 rotation = -0.0403169
-scale = Vector2(1, 1)
 rest = Transform2D(0.998003, 0.0631737, -0.0631737, 0.998003, -0.999999, -54)
 metadata/_local_pose_override_enabled_ = true
 
@@ -260,7 +260,7 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-140.65, -43.8956)
+position = Vector2(-140.649, -43.8956)
 rotation = 0.410738
 scale = Vector2(0.241619, 0.241619)
 texture = ExtResource("3_rfubd")

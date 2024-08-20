@@ -81,6 +81,7 @@ point_count = 7
 script = ExtResource("1_bnpgt")
 
 [node name="Beast" parent="." instance=ExtResource("2_pwn4p")]
+blood_color = Color(0.0344282, 0.410303, 0.615203, 1)
 
 [node name="StateMachine" parent="Beast" index="1"]
 initial_state = NodePath("IdleState")
@@ -115,7 +116,7 @@ script = ExtResource("6_11aos")
 animation = ""
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-48.7696, 41.3026)
+position = Vector2(-48.7696, 41.3027)
 rotation = -0.5184
 scale = Vector2(0.999997, 0.999997)
 shape = SubResource("CircleShape2D_eilin")
@@ -186,14 +187,12 @@ rest = Transform2D(1, 0, 0, 1, -13.8633, 79.8489)
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(0, -118)
 rotation = 0.0287075
-scale = Vector2(1, 1)
 rest = Transform2D(0.999187, -0.0403059, 0.0403059, 0.999187, 0, -118)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-104.095, 17.6113)
 rotation = 0.968531
-scale = Vector2(1, 1)
 rest = Transform2D(0.979757, 0.200205, -0.200205, 0.979757, -104.096, 17.6109)
 metadata/_local_pose_override_enabled_ = true
 
@@ -216,8 +215,8 @@ region_rect = Rect2(839, 263, 533, 980)
 
 [node name="leg" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(-33.7574, -30.333)
-rotation = 0.496475
+position = Vector2(-33.7575, -30.3329)
+rotation = 0.496474
 scale = Vector2(0.390205, 0.390205)
 texture = ExtResource("4_d1i60")
 region_enabled = true
@@ -225,7 +224,7 @@ region_rect = Rect2(417, 982, 130, 247)
 
 [node name="foot" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -50
-position = Vector2(-48.7696, 41.3026)
+position = Vector2(-48.7696, 41.3027)
 rotation = -0.5184
 scale = Vector2(0.390622, 0.390622)
 texture = ExtResource("4_d1i60")
@@ -234,9 +233,9 @@ region_rect = Rect2(582, 986, 215, 235)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -45
-position = Vector2(-187.859, -177.936)
+position = Vector2(-187.857, -177.936)
 rotation = 1.02353
-scale = Vector2(0.390137, 0.390137)
+scale = Vector2(0.390138, 0.390138)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)
