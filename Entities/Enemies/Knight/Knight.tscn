@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-96, 111)]
+"values": [Vector2(-39, 102)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -174,6 +174,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.241484, 1.1487, 1, 1.8025, 1.68179, 0.241484),
 "update": 0,
 "values": [Vector2(-120, 10), Vector2(-101, 30), Vector2(-109, 21), Vector2(-59, 36), Vector2(-249, 219), Vector2(-120, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTargets/legTarget:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-39, 102)]
 }
 
 [sub_resource type="Animation" id="Animation_x6oct"]
@@ -383,7 +395,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-48.0825, 1.0628)
-rotation = -0.0798977
+rotation = -0.0798978
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.984793, 0.173713, -0.173713, 0.984793, -48.0822, 1.06243)
 metadata/_local_pose_override_enabled_ = true
@@ -406,8 +418,8 @@ region_rect = Rect2(879, 286, 554, 948)
 
 [node name="leg" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(-54.4584, 46.7102)
-rotation = 0.647833
+position = Vector2(-36.938, 58.2548)
+rotation = 0.188648
 scale = Vector2(0.240019, 0.240019)
 texture = ExtResource("3_rfubd")
 region_enabled = true
@@ -415,9 +427,9 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-124.605, 0.751404)
-rotation = -0.120215
-scale = Vector2(0.241664, 0.241664)
+position = Vector2(-124.603, 0.749836)
+rotation = -0.120213
+scale = Vector2(0.241666, 0.241666)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)
@@ -426,7 +438,7 @@ region_rect = Rect2(42, 313, 733, 418)
 position = Vector2(-230, 311)
 
 [node name="legTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
-position = Vector2(-96, 111)
+position = Vector2(-39, 102)
 scale = Vector2(0.999979, 0.999979)
 
 [node name="ScalerPath" parent="Beast" index="8"]

@@ -65,13 +65,6 @@ func _spawn_bullits(dmg):
 		get_parent().add_child(bul)
 		counter -= 1
 
-
-# getting deleted asap, debug function
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		enemy.take_damage(1)
-
-
 func _on_jump_state_jump( new_target , new_jump_time):
 	jump = true
 	jump_target = new_target
