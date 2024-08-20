@@ -6,6 +6,14 @@ extends Node
 @export var MainMenu : Control
 @export var Credits : Control
 
+
+func _process(delta):
+	if $CanvasLayer/OpeningCutscene/AnimationPlayer.is_playing() and Input.is_action_pressed("ui_cancel"):
+		$CanvasLayer/OpeningCutscene/AnimationPlayer.stop()
+		$CanvasLayer/OpeningCutscene/AudioStreamPlayer.stop()
+		cutscene_over()
+
+
 func show_out_of_combat_screen():
 	_hide_all()
 	OutOfCombatScreen.visible = true
