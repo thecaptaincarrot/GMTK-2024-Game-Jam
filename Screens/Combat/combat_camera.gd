@@ -4,6 +4,8 @@ var velocity = Vector2(0,0)
 
 @export var SPEED = 300
 
+var shaking = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -30,3 +32,10 @@ func _process(delta):
 	
 	if position.x < 0: position.x = 0 #why is this a thing lmao
 	if position.y < 0: position.y = 0 #why is this a thing lmao
+	
+	if shaking:
+		offset += $ShakeTimer.time_left * Vector2(randf_range(-8,8), randf_range(-8,8))
+
+
+func _on_shake_timer_timeout():
+	shaking = false

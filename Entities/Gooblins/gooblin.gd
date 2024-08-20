@@ -92,6 +92,9 @@ func _ready():
 	_scaler_attack_timer.wait_time = 1.0
 	_scaler_attack_timer.autostart = false
 	_scaler_attack_timer.one_shot = true
+	
+	
+	
 	add_child(_scaler_attack_timer)
 	#
 	randomize()
@@ -128,7 +131,8 @@ func _process(delta: float) -> void:
 			#a global request to get local gravity managed in the global settings
 			velocity += get_gravity() * delta
 		
-		velocity += _upcoming_fling * delta
+		if (!_is_dead):
+			velocity += _upcoming_fling * delta
 		
 		_upcoming_fling = Vector2()
 		
@@ -136,8 +140,6 @@ func _process(delta: float) -> void:
 			#put here as an example
 			_move_to_target_range(delta)
 			_attack_target()
-		else:
-			velocity = Vector2(0,0)
 		
 		move_and_slide()
 
@@ -158,6 +160,7 @@ func die():
 	despawn_timer.timeout.connect(_despawn_timeout)
 	add_child(despawn_timer)
 	_anim.play("Dead")
+	$Splat.amount = randi_range(10,40)
 	$Splat.emitting = true
 
 func fling():
@@ -225,7 +228,7 @@ func _attack_target():
 		_scaler_attack_timer.start()
 		_anim.play("ScalerAttack")
 		_scaler_attack_started = true
-		$ScalerDamage.emitting = true
+		$ScalerDamage.color = enemy_node.blood_color
 
 
 func _jump_trigger():

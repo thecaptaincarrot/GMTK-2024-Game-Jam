@@ -313,8 +313,6 @@ position = Vector2(488, 609)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_rk257")
 
-[node name="CreditsSprite" parent="Credits" instance=ExtResource("5_cd2n2")]
-
 [node name="Collaboration" type="Label" parent="Credits"]
 offset_left = 426.0
 offset_top = 483.0

@@ -148,8 +148,8 @@ func spawn_scaler_gooblin(position:Vector2):
 	goob.set_position(position)
 	goob.path_follower = follower
 	goob.unit_type = Gooblin.GooblinType.SCALER
-	add_child(goob)
 	goob.enemy_node = enemy_node
+	add_child(goob)
 	goob.gooblin_changed.connect(_on_gooblin_changed)
 	goob.died.connect(_scaler_gooblin_died)
 	_scaler_gooblins.append(goob)

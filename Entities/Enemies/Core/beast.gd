@@ -22,8 +22,10 @@ class_name Beast extends Node2D
 # just need to stop the timer in the state code and play the death animation
 signal died
 signal enemy_hurt
-@export var max_health = 1000.0 #placeholder
-var health = 0
+signal shake_screen
+@export var max_health := 1000.0 #placeholder
+var health = max_health
+@export var blood_color = Color.RED
 
 @export var gold_value = 10000.0 #how much you earn for defeating it
 #You earn a weighted percentage of 50% of total for dealing damage

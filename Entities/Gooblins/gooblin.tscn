@@ -179,6 +179,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScalerDamage:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vuu1m"]
 resource_name = "ScalerAttack"
@@ -207,6 +219,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScalerDamage:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6tbyr"]
@@ -263,17 +287,17 @@ region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Splat" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 20
-lifetime = 2.0
+amount = 40
+lifetime = 3.0
 one_shot = true
+explosiveness = 1.0
 emission_shape = 1
 emission_sphere_radius = 16.0
 direction = Vector2(0, -1)
-gravity = Vector2(0, 98)
-initial_velocity_min = 20.0
-initial_velocity_max = 50.0
-scale_amount_min = 8.0
-scale_amount_max = 8.0
+spread = 22.0
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+scale_amount_max = 4.0
 color = Color(0.188235, 0.713726, 0.439216, 1)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -286,15 +310,18 @@ libraries = {
 }
 
 [node name="ScalerDamage" type="CPUParticles2D" parent="."]
+show_behind_parent = true
 emitting = false
-amount = 20
+amount = 50
+lifetime = 0.5
 one_shot = true
 local_coords = true
 emission_shape = 1
 emission_sphere_radius = 8.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 30.0
-initial_velocity_max = 70.0
-scale_amount_min = 4.0
+direction = Vector2(0, -1)
+spread = 67.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 80.0
+initial_velocity_max = 100.0
 scale_amount_max = 4.0
+color = Color(1, 0, 0, 1)
