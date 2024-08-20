@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bq18iom53hl48"]
+[gd_scene load_steps=22 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
@@ -19,6 +19,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmt5r"]
 size = Vector2(6166, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u3om"]
+size = Vector2(20, 1000)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6yu3i"]
 font_size = 33
@@ -128,6 +131,12 @@ shape = SubResource("RectangleShape2D_jmt5r")
 position = Vector2(1711, 744)
 scale = Vector2(1, 0.998288)
 shape = SubResource("RectangleShape2D_jmt5r")
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2(-1360, 224)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("RectangleShape2D_1u3om")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
