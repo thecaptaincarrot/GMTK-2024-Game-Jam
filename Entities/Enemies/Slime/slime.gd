@@ -21,8 +21,8 @@ func _ready() -> void:
 
 	enemy.took_damage.connect(_spawn_bullits)
 	
-	var timer = get_tree().create_timer(1)
-	await timer.timeout
+	#var timer = get_tree().create_timer(1)
+	#await timer.timeout
 	skeleton.get_modification_stack().enabled = true
 
 func reacquire_targets():
