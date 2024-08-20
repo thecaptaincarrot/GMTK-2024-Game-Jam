@@ -54,7 +54,6 @@ animations = [{
 }]
 
 [node name="ShieldRunner" type="AnimatedSprite2D"]
-position = Vector2(8, 62)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vbl7f")
 script = ExtResource("2_557wc")

@@ -39,3 +39,10 @@ func _on_main_menu_new_game():
 	_hide_all()
 	OutOfCombatScreen.reset_to_default()
 	OutOfCombatScreen.visible =true
+
+
+func _on_main_menu_credits():
+	Credits.restart()
+	Credits.show()
+	
+	

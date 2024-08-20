@@ -1,0 +1,617 @@
+[gd_scene load_steps=44 format=3 uid="uid://ceci3cggo2wq8"]
+
+[ext_resource type="Texture2D" uid="uid://kn0s73qvilo" path="res://Textures/Logo/Gooblins-Logo.png" id="1_gay1a"]
+[ext_resource type="Script" path="res://Screens/Credits/credits.gd" id="1_tvayb"]
+[ext_resource type="Texture2D" uid="uid://befbw5huylnyw" path="res://Textures/Logo/TektonicSoftware.png" id="2_ciqv8"]
+[ext_resource type="Texture2D" uid="uid://c3dvmr80a5hgk" path="res://Textures/Logo/SaltySquad.png" id="3_rk257"]
+[ext_resource type="LabelSettings" uid="uid://c253d74oj45yf" path="res://Screens/Credits/CreditFont.tres" id="4_muag0"]
+[ext_resource type="PackedScene" uid="uid://dukk37ytje28p" path="res://Screens/Credits/credits_sprite.tscn" id="5_cd2n2"]
+[ext_resource type="Texture2D" uid="uid://o5712p1a2p78" path="res://Screens/Credits/SecretTeenie.png" id="5_rix6k"]
+[ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="6_cwdng"]
+[ext_resource type="Texture2D" uid="uid://dmufmfonf1yco" path="res://Screens/Credits/goobercyclops_transparent.png" id="7_b2uvx"]
+[ext_resource type="Texture2D" uid="uid://b0ebmcekrfgae" path="res://Screens/Credits/gooobknight_transparent.png" id="8_axent"]
+[ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="9_3ojhr"]
+[ext_resource type="Texture2D" uid="uid://c0spvpuiu32cn" path="res://Textures/Entities/GoblinScaler.png" id="10_n3ikl"]
+[ext_resource type="Script" path="res://Screens/Credits/runner_0.gd" id="10_yb50h"]
+[ext_resource type="Texture2D" uid="uid://b00ndm2k6r6id" path="res://Textures/Entities/GoblinShield.png" id="11_wcqij"]
+[ext_resource type="Texture2D" uid="uid://c0qv3353cdnvc" path="res://Screens/Credits/TheyWyrmTail.png" id="12_6cuwp"]
+[ext_resource type="Texture2D" uid="uid://v1l45tq12t0g" path="res://Screens/Credits/TheyWyrm.png" id="14_kmx06"]
+[ext_resource type="Texture2D" uid="uid://d3hcbi0mujaqv" path="res://Screens/Credits/gooberdragon_transparent.png" id="17_nhis8"]
+
+[sub_resource type="Gradient" id="Gradient_rskju"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.02, 0.2, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fml7u"]
+gradient = SubResource("Gradient_rskju")
+fill_from = Vector2(0.491453, 1)
+fill_to = Vector2(0.487179, 0)
+
+[sub_resource type="Animation" id="Animation_qvbyf"]
+resource_name = "RollCredits"
+length = 30.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 25, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -3500), Vector2(0, -3500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits/Credit3/Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8, 10, 12, 14, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(300, 0), Vector2(0, 0), Vector2(300, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits/Credit3/Node2D/Runner0:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(8, 10, 12, 14, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Credits/Credit3/Node2D/Runner1:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(8, 10, 12, 14, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Credits/Credit3/Node2D/Runner2:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8, 10, 12, 14, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2egrc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Credits:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Credits/Credit3/Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67dfj"]
+_data = {
+"RESET": SubResource("Animation_2egrc"),
+"RollCredits": SubResource("Animation_qvbyf")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hubth"]
+atlas = ExtResource("9_3ojhr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwfcc"]
+atlas = ExtResource("9_3ojhr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppp77"]
+atlas = ExtResource("9_3ojhr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5yyh"]
+atlas = ExtResource("9_3ojhr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4fq3"]
+atlas = ExtResource("9_3ojhr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ksk4"]
+atlas = ExtResource("9_3ojhr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvaqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hubth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwfcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppp77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5yyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4fq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ksk4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsu22"]
+atlas = ExtResource("10_n3ikl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxqfu"]
+atlas = ExtResource("10_n3ikl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtduf"]
+atlas = ExtResource("10_n3ikl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gxn4"]
+atlas = ExtResource("10_n3ikl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pijh4"]
+atlas = ExtResource("10_n3ikl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bch6j"]
+atlas = ExtResource("10_n3ikl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_etjpw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsu22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxqfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtduf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gxn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pijh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bch6j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u6im"]
+atlas = ExtResource("11_wcqij")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntnsq"]
+atlas = ExtResource("11_wcqij")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pei1"]
+atlas = ExtResource("11_wcqij")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue0nr"]
+atlas = ExtResource("11_wcqij")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gw73p"]
+atlas = ExtResource("11_wcqij")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk7wa"]
+atlas = ExtResource("11_wcqij")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5c5h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u6im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntnsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pei1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue0nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gw73p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk7wa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tvayb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_fml7u")
+
+[node name="CreditsPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_67dfj")
+}
+
+[node name="Credits" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Credits"]
+position = Vector2(639, 361)
+texture = ExtResource("1_gay1a")
+
+[node name="Tektonic" type="Sprite2D" parent="Credits"]
+position = Vector2(773, 615)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_ciqv8")
+
+[node name="SaltySquad" type="Sprite2D" parent="Credits"]
+position = Vector2(488, 609)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_rk257")
+
+[node name="CreditsSprite" parent="Credits" instance=ExtResource("5_cd2n2")]
+
+[node name="Collaboration" type="Label" parent="Credits"]
+offset_left = 426.0
+offset_top = 483.0
+offset_right = 854.0
+offset_bottom = 550.0
+text = "A Collaboration By"
+label_settings = ExtResource("4_muag0")
+
+[node name="Credit0" type="Label" parent="Credits"]
+offset_top = 720.0
+offset_right = 1279.0
+offset_bottom = 857.0
+text = "Directed By:
+Captain Carrot"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Credit1" type="Label" parent="Credits"]
+offset_top = 984.0
+offset_right = 1279.0
+offset_bottom = 1261.0
+text = "Coding By:
+Captain Carrot
+Sonicpixelation
+Pufuzuku"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="CreditsSprite" parent="Credits/Credit1" instance=ExtResource("5_cd2n2")]
+position = Vector2(541, -14)
+frame_progress = 0.611363
+
+[node name="CreditsSprite5" parent="Credits/Credit1" instance=ExtResource("5_cd2n2")]
+position = Vector2(614, -17)
+frame_progress = 0.761536
+
+[node name="CreditsSprite2" parent="Credits/Credit1" instance=ExtResource("5_cd2n2")]
+position = Vector2(569, -6)
+animation = &"Basic"
+frame_progress = 0.907956
+
+[node name="CreditsSprite3" parent="Credits/Credit1" instance=ExtResource("5_cd2n2")]
+position = Vector2(710, -15)
+animation = &"Basic"
+frame_progress = 0.0194408
+
+[node name="CreditsSprite4" parent="Credits/Credit1" instance=ExtResource("5_cd2n2")]
+position = Vector2(673, -7)
+animation = &"Scaler"
+frame_progress = 0.567167
+
+[node name="Credit2" type="Label" parent="Credits"]
+offset_top = 1499.0
+offset_right = 1279.0
+offset_bottom = 1776.0
+text = "Map, Backgrounds, and Enemy Textures By:
+Miraculousmasterofmayhem"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Credits/Credit2"]
+position = Vector2(934, -106)
+scale = Vector2(0.274667, 0.274667)
+texture = ExtResource("7_b2uvx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Credits/Credit2"]
+position = Vector2(458, -96)
+scale = Vector2(-0.275, 0.275)
+texture = ExtResource("8_axent")
+
+[node name="Credit3" type="Label" parent="Credits"]
+offset_top = 1776.0
+offset_right = 1279.0
+offset_bottom = 2053.0
+text = "Gooblin Sprites by:
+Captain Carrot
+"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="Credits/Credit3"]
+
+[node name="Runner0" type="AnimatedSprite2D" parent="Credits/Credit3/Node2D"]
+position = Vector2(535, -16)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qvaqv")
+frame_progress = 0.976989
+script = ExtResource("10_yb50h")
+
+[node name="Runner1" type="AnimatedSprite2D" parent="Credits/Credit3/Node2D"]
+position = Vector2(492, -16)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_etjpw")
+frame_progress = 0.0767437
+script = ExtResource("10_yb50h")
+
+[node name="Runner2" type="AnimatedSprite2D" parent="Credits/Credit3/Node2D"]
+position = Vector2(449, -16)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l5c5h")
+frame_progress = 0.373857
+script = ExtResource("10_yb50h")
+
+[node name="Credit5" type="Label" parent="Credits"]
+offset_top = 2053.0
+offset_right = 1279.0
+offset_bottom = 2330.0
+text = "Music and Sound Effects by:
+Captain Carrot
+"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Credit4" type="Label" parent="Credits"]
+offset_top = 2330.0
+offset_right = 1279.0
+offset_bottom = 2607.0
+text = "Additional Sound Effects by:
+antiassailant"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="CreditsSprite" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(434, -6.98438)
+animation = &"Scaler"
+frame_progress = 0.75214
+
+[node name="CreditsSprite9" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(365, -5.98438)
+animation = &"Basic"
+frame_progress = 0.0
+
+[node name="CreditsSprite2" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(532, -5.98438)
+frame_progress = 0.0
+
+[node name="CreditsSprite3" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(505, -5.98438)
+animation = &"Basic"
+frame_progress = 0.0
+
+[node name="CreditsSprite4" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(675, -5.98438)
+animation = &"Scaler"
+frame_progress = 0.0
+
+[node name="CreditsSprite5" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(746, -14.9844)
+frame_progress = 0.972062
+
+[node name="CreditsSprite6" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(806, -5.98438)
+animation = &"Basic"
+frame_progress = 0.0
+
+[node name="CreditsSprite7" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(852, -7.98438)
+frame_progress = 0.972062
+
+[node name="CreditsSprite8" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
+position = Vector2(956, -7.98438)
+animation = &"Basic"
+frame_progress = 0.0
+
+[node name="Credit6" type="Label" parent="Credits"]
+offset_top = 2607.0
+offset_right = 1279.0
+offset_bottom = 2884.0
+text = "Promotional Material and Logo by:
+Uncle Larold"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Wyrm" type="Node2D" parent="Credits/Credit6"]
+position = Vector2(-10, 125)
+
+[node name="WyrmTail6" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(1283, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(1234, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail2" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(1181, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail3" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(1130, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail4" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(1077, 6.01562)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail5" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(1023, 5.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="Head" type="Sprite2D" parent="Credits/Credit6/Wyrm"]
+position = Vector2(920, 4.01559)
+rotation = 0.581195
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("14_kmx06")
+
+[node name="Wyrm2" type="Node2D" parent="Credits/Credit6"]
+position = Vector2(1280, 124.016)
+scale = Vector2(-1, 1)
+
+[node name="WyrmTail6" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(1283, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(1234, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail2" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(1181, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail3" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(1130, 7.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail4" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(1077, 6.01562)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="WyrmTail5" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(1023, 5.01563)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_6cuwp")
+
+[node name="Head" type="Sprite2D" parent="Credits/Credit6/Wyrm2"]
+position = Vector2(920, 4.01559)
+rotation = 0.581195
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("14_kmx06")
+
+[node name="Credit8" type="Label" parent="Credits"]
+offset_top = 2884.0
+offset_right = 1279.0
+offset_bottom = 3161.0
+text = "Made in Godot
+"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Credit9" type="Label" parent="Credits"]
+offset_left = 2.0
+offset_top = 3174.0
+offset_right = 1281.0
+offset_bottom = 3451.0
+text = "Thanks For Playing!"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Credit7" type="Label" parent="Credits"]
+offset_top = 3608.0
+offset_right = 1279.0
+offset_bottom = 3885.0
+text = "In Loving Memory of Teenie"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="SecretTeenie" type="Sprite2D" parent="Credits"]
+position = Vector2(640, 3860)
+scale = Vector2(0.458333, 0.458333)
+texture = ExtResource("5_rix6k")
+
+[node name="GodotLogo" type="Sprite2D" parent="Credits"]
+position = Vector2(641, 3060)
+scale = Vector2(1.77344, 1.77344)
+texture = ExtResource("6_cwdng")
+
+[node name="Kazan" type="Sprite2D" parent="Credits/GodotLogo"]
+show_behind_parent = true
+position = Vector2(111.648, 14.0968)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("17_nhis8")
+flip_h = true
+
+[node name="CreditsOver" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="timeout" from="CreditsOver" to="." method="end_credits"]

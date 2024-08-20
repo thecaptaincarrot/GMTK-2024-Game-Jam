@@ -54,7 +54,6 @@ animations = [{
 }]
 
 [node name="ScalerRunner" type="AnimatedSprite2D"]
-position = Vector2(31, -59)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_chgxu")
 script = ExtResource("2_5h1nr")

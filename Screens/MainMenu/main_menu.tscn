@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://clqyaaowq4uap"]
+[gd_scene load_steps=8 format=3 uid="uid://clqyaaowq4uap"]
 
 [ext_resource type="Script" path="res://Screens/main_menu.gd" id="1_l4us8"]
 [ext_resource type="Texture2D" uid="uid://cplspvpj6lb6s" path="res://Textures/Backgrounds/Field/sky01.png" id="2_cwyox"]
 [ext_resource type="Texture2D" uid="uid://8vbt2ybrqm8l" path="res://Textures/Backgrounds/Field/floor01.png" id="3_glyvt"]
 [ext_resource type="Script" path="res://Screens/MainMenu/spawner.gd" id="4_rtw04"]
+[ext_resource type="AudioStream" uid="uid://b1fdxednh4gwc" path="res://SFX/click.mp3" id="5_ein3a"]
 [ext_resource type="Texture2D" uid="uid://kn0s73qvilo" path="res://Textures/Logo/Gooblins-Logo.png" id="5_rhmym"]
 [ext_resource type="Script" path="res://Screens/MainMenu/title.gd" id="6_40cfu"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("click_player", "spawner")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +16,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l4us8")
+click_player = NodePath("ClickPlayer")
+spawner = NodePath("Spawner")
 
 [node name="SkyParallax" type="Parallax2D" parent="."]
 z_index = -1000
@@ -67,11 +70,18 @@ text = "Continue"
 layout_mode = 2
 text = "New Run"
 
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Credits
+"
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ein3a")
+volume_db = -10.0
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(661, 208)
@@ -84,4 +94,5 @@ speed_scale = 2
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/NewRun" to="." method="_on_new_run_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

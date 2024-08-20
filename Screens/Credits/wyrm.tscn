@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnxvqy072gwuc"]
+
+[ext_resource type="Texture2D" uid="uid://c0qv3353cdnvc" path="res://Screens/Credits/TheyWyrmTail.png" id="1_7f8ko"]
+[ext_resource type="Texture2D" uid="uid://v1l45tq12t0g" path="res://Screens/Credits/TheyWyrm.png" id="3_n2n0w"]
+
+[sub_resource type="GDScript" id="GDScript_0tatd"]
+script/source = "extends Sprite2D
+
+var time = 0
+
+@export var y_offset = 96
+
+@export var amplitude = 10.0
+@export var rotation_amp = 1.0
+@export var time_offset = 10.0
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	time += delta
+	rotation = rotation_amp * -cos(get_parent().time_scale * time + time_offset)
+	position.y = amplitude * sin(get_parent().time_scale * time + time_offset) + y_offset
+"
+
+[node name="Wyrm" type="Node2D"]
+position = Vector2(-9, 125)
+
+[node name="WyrmTail" type="Sprite2D" parent="."]
+position = Vector2(1271, 101)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7f8ko")
+
+[node name="WyrmTail2" type="Sprite2D" parent="."]
+position = Vector2(1241, 93)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7f8ko")
+script = SubResource("GDScript_0tatd")
+amplitude = 51.83
+time_offset = 67.475
+
+[node name="WyrmTail3" type="Sprite2D" parent="."]
+position = Vector2(1208, 93)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7f8ko")
+script = SubResource("GDScript_0tatd")
+
+[node name="WyrmTail4" type="Sprite2D" parent="."]
+position = Vector2(1176, 93)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7f8ko")
+script = SubResource("GDScript_0tatd")
+
+[node name="WyrmTail5" type="Sprite2D" parent="."]
+position = Vector2(1144, 93)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7f8ko")
+script = SubResource("GDScript_0tatd")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(1080, 94.0156)
+rotation = 0.581195
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_n2n0w")
