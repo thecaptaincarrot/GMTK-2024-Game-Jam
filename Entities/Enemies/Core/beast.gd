@@ -97,8 +97,3 @@ func _on_state_machine_shake_screen():
 
 func _on_state_machine_shake_off_scalers(scaler_shakeoff_chance):
 	emit_signal("shake_off_scalers",scaler_shakeoff_chance)
-
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		take_damage(1000000)
