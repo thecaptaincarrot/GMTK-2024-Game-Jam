@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-230, 311)]
+"values": [Vector2(-120, 10)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -346,7 +346,7 @@ libraries = {
 }
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-123, 75)
+position = Vector2(-123, 81)
 rotation = 1.5708
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("CapsuleShape2D_0pag2")
@@ -373,7 +373,7 @@ update_scale = false
 
 [node name="leg" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-21, 15)
-rotation = 0.647833
+rotation = 0.188648
 scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(0.982249, 0.187529, -0.187529, 0.982249, -21, 15)
 metadata/_local_pose_override_enabled_ = true
