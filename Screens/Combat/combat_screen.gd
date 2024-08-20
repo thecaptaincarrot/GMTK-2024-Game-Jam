@@ -57,7 +57,7 @@ const ENEMY_POS = [ Vector2(1100, 640),
 					Vector2(1100,680),
 					Vector2(1400,720),
 					Vector2(1400,720),
-					Vector2(2000,400),
+					Vector2(2000,560),
 					]
 
 const GOOBLIN_RANGE = [100,
@@ -132,8 +132,8 @@ func load_level(level_index : int):
 		FieldFloor.collision_layer = 1
 		FieldFloor.collision_mask = 1
 	else:
-		FieldFloor.collision_layer = 1
-		FieldFloor.collision_mask = 1
+		FieldFloor.collision_layer = 0
+		FieldFloor.collision_mask = 0
 	
 	GooblinController.horde_range = GOOBLIN_RANGE[level_index]
 	

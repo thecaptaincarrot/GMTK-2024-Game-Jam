@@ -84,10 +84,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krs6l"]
-radius = 297.333
+radius = 175.134
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13ave"]
-radius = 217.83
+radius = 177.43
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_qlv80"]
 target_nodepath = NodePath("../IKTargets/footLTarget")
@@ -222,16 +222,14 @@ modifications/5 = SubResource("SkeletonModification2DLookAt_u62l6")
 
 [sub_resource type="Curve2D" id="Curve2D_3krad"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -284, 452, 0, 0, 0, 0, -167, 298, 0, 0, 0, 0, -72, 278, 0, 0, 0, 0, -155, 98, 0, 0, 0, 0, -135, -43, 0, 0, 0, 0, -241, -120, 0, 0, 0, 0, -251, -189, 0, 0, 0, 0, -224, -245)
+"points": PackedVector2Array(0, 0, 0, 0, -477, 944, 0, 0, 0, 0, -172, 654, 0, 0, 0, 0, -136, 438, 0, 0, 0, 0, -187, 237, 0, 0, 0, 0, -97, 117, 0, 0, 0, 0, -232, -3, 0, 0, 0, 0, -262, -120, 0, 0, 0, 0, -370, -120, 0, 0, 0, 0, -435, -335, 0, 0, 0, 0, -328, -446)
 }
-point_count = 8
+point_count = 10
 
 [node name="Dragon" type="Node2D"]
 script = ExtResource("1_kxca4")
 
 [node name="Beast" parent="." instance=ExtResource("1_n3g6u")]
-min_retarget_time = 1.0
-max_retarget_time = 3.0
 blood_color = Color(0.711271, 0.483952, 0.00747759, 1)
 
 [node name="RandomTargetTimer" parent="Beast" index="0"]
@@ -243,18 +241,10 @@ initial_state = NodePath("IdleState")
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0" node_paths=PackedStringArray("head_pointer")]
 script = ExtResource("2_npnky")
 head_pointer = NodePath("../../IKTargets/headTarget")
-stomp_range = 400
-bite_max_range = 750
-track_height = 300
 
 [node name="StompState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("foot_pointer", "hitbox", "stomper")]
 script = ExtResource("4_f4a04")
 foot_pointer = NodePath("../../IKTargets/footLTarget")
-peak = 500
-x_peak = 200
-wind_up_time = 1.0
-hold_time = 0.5
-stomp_time = 0.2
 animation = "universal_stomp"
 hitbox = NodePath("../../HitboxComponent")
 stomper = NodePath("../../HitboxComponent/Stomper")
@@ -263,7 +253,6 @@ stomper = NodePath("../../HitboxComponent/Stomper")
 script = ExtResource("5_vyu4a")
 head_pointer = NodePath("../../IKTargets/headTarget")
 head_looker = NodePath("../../IKTargets/headTarget/headLookAt")
-attack_height = 500
 animation = "bite"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
@@ -286,7 +275,7 @@ disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="1"]
-position = Vector2(-631, 377)
+position = Vector2(-390, 300)
 shape = SubResource("CircleShape2D_13ave")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
@@ -296,6 +285,7 @@ modification_stack = SubResource("SkeletonModificationStack2D_jq6pb")
 
 [node name="body1" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
 position = Vector2(0, -131)
+
 rotation = -0.335292
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.9989, -0.046881, 0.046881, 0.9989, 0, -131)
@@ -370,12 +360,12 @@ remote_path = NodePath("../../../../../../../../Sprites/head")
 update_scale = false
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head"]
-position = Vector2(-131.13, 55.6561)
+position = Vector2(-181.405, 108.31)
 remote_path = NodePath("../../../../../../../../Sprites/shadow1")
 update_scale = false
 
 [node name="tongue" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head"]
-position = Vector2(-76.3597, 82.1455)
+position = Vector2(-129.981, 119.838)
 rest = Transform2D(1, 0, 0, 1, -129.981, 119.838)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head/tongue"]
@@ -383,7 +373,7 @@ remote_path = NodePath("../../../../../../../../../Sprites/tongue")
 update_scale = false
 
 [node name="jaw" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head"]
-position = Vector2(20.3156, 2.88658)
+position = Vector2(11.8515, 42.5653)
 rotation = 0.241645
 rest = Transform2D(0.970946, 0.2393, -0.2393, 0.970946, 11.8515, 42.5653)
 auto_calculate_length_and_angle = false
@@ -396,7 +386,7 @@ remote_path = NodePath("../../../../../../../../../Sprites/jaw")
 update_scale = false
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head/jaw"]
-position = Vector2(-113.379, 168.83)
+position = Vector2(-165.821, 216.098)
 remote_path = NodePath("../../../../../../../../../Sprites/shadow2")
 update_scale = false
 
@@ -637,10 +627,11 @@ region_enabled = true
 region_rect = Rect2(824, 694, 63, 108)
 
 [node name="footLTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
-position = Vector2(-447, 328)
+position = Vector2(-721, 774)
 
 [node name="footLLookAt" type="Node2D" parent="Beast/IKTargets/footLTarget"]
 position = Vector2(-297, 35)
+
 
 [node name="LungeTransformer" type="RemoteTransform2D" parent="Beast/IKTargets/footLTarget"]
 position = Vector2(160, -152)
@@ -649,16 +640,16 @@ update_rotation = false
 update_scale = false
 
 [node name="footRTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
-position = Vector2(-260, 419)
+position = Vector2(-380, 863)
 
 [node name="footRLookAt" type="Node2D" parent="Beast/IKTargets/footRTarget"]
 position = Vector2(-247, 9)
 
 [node name="headTarget" type="Node2D" parent="Beast/IKTargets" index="2"]
-position = Vector2(-716, -291)
+position = Vector2(-1241, -572)
 
 [node name="headLookAt" type="Node2D" parent="Beast/IKTargets/headTarget"]
-position = Vector2(0, 346)
+position = Vector2(29, 460)
 
 [node name="Sprite2D" type="Sprite2D" parent="Beast/IKTargets/headTarget"]
 visible = false
@@ -668,6 +659,7 @@ texture = ExtResource("10_rbxpa")
 curve = SubResource("Curve2D_3krad")
 
 [node name="LungePoint" parent="Beast" index="9"]
+
 position = Vector2(-287, 176)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]
