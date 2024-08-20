@@ -101,16 +101,16 @@ func _ready():
 	var i = randi_range(0, 3)
 	if(i == 0):
 		_sprite.position = Vector2(0, 64)
-		_sprite.z_index = -30
+		_sprite.z_index = 3
 	elif(i == 1):
 		_sprite.position = Vector2(0, 32)
-		_sprite.z_index = -40
+		_sprite.z_index = 2
 	elif(i == 2):
 		_sprite.position = Vector2(0, 16)
-		_sprite.z_index = -50
+		_sprite.z_index = 1
 	elif(i == 3):
 		_sprite.position = Vector2(0, 0)
-		_sprite.z_index = -60
+		_sprite.z_index = 0
 	
 	#setup for the attack timeframe
 	if(unit_type == GooblinType.BASIC):
