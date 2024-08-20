@@ -181,13 +181,14 @@ rest = Transform2D(1, 0, 0, 1, -13.8633, 79.8489)
 
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(0, -118)
-rotation = 0.0156174
+rotation = 0.0141411
 rest = Transform2D(0.999187, -0.0403059, 0.0403059, 0.999187, 0, -118)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-104.095, 17.6113)
-rotation = 0.994006
+rotation = 0.996881
+scale = Vector2(1, 1)
 rest = Transform2D(0.979757, 0.200205, -0.200205, 0.979757, -104.096, 17.6109)
 metadata/_local_pose_override_enabled_ = true
 
@@ -228,8 +229,8 @@ region_rect = Rect2(582, 986, 215, 235)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -45
-position = Vector2(-187.949, -177.807)
-rotation = 1.02084
+position = Vector2(-187.861, -177.933)
+rotation = 1.02346
 scale = Vector2(0.390147, 0.390147)
 texture = ExtResource("4_d1i60")
 region_enabled = true
