@@ -327,14 +327,17 @@ animation = "idle"
 script = ExtResource("4_skfil")
 animation = "kick"
 hitbox = NodePath("../../HitboxComponent")
+damage = 1
 scaler_shakeoff_chance = 0.25
 stomper = NodePath("../../HitboxComponent/Stomper")
+fling_damage = 5
 
 [node name="SwingState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_61l8l")
 animation = "swing"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 5
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="3"]
 script = ExtResource("5_0pi2i")

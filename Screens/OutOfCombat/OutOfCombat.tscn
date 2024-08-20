@@ -109,7 +109,6 @@ shield_health_upgrade_button = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgra
 purchase_hook_button = NodePath("UpgradesHbox/ScalerUpgrades/HBoxContainer/HookPurchaseButton")
 scaler_mult_upgrade_button = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/MultUpButton")
 scaler_climb_speed_upgrade_button = NodePath("UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/ClimbUpButton")
-cost_per_gooblin = 20
 
 [node name="ReturnButton" type="Button" parent="ShopPanel"]
 layout_mode = 1

@@ -170,6 +170,8 @@ attack_height = 600
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 30
+fling_damage = 30
 
 [node name="StaggerState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("head_pointer")]
 script = ExtResource("5_78bvj")

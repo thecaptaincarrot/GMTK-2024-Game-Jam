@@ -189,6 +189,7 @@ attack_position = Vector2(-81, -5)
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 20
 
 [node name="StompState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("leg_target", "hitbox", "attacker")]
 script = ExtResource("5_ddcup")
@@ -198,12 +199,16 @@ kick_goal = Vector2(-110, -28)
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Stomper")
+damage = 5
+fling_damage = 20
 
 [node name="ActualStompState" type="Node" parent="Beast/StateMachine" index="3" node_paths=PackedStringArray("leg_target", "hitbox", "stomper")]
 script = ExtResource("6_e0m0m")
 leg_target = NodePath("../../IKTargets/legTarget")
 hitbox = NodePath("../../HitboxComponent")
+damage = 15
 stomper = NodePath("../../HitboxComponent/Stomper")
+fling_damage = 15
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="4"]
 script = ExtResource("6_11aos")

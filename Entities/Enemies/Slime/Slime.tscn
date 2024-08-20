@@ -192,9 +192,10 @@ slime_node = NodePath("../../..")
 animation = "jump_slime"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 4
+damage = 8
 scaler_shakeoff_chance = 0.8
 stomper = NodePath("../../HitboxComponent/Attacker")
+fling_damage = 40
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("undulator")]
 script = ExtResource("5_y3egq")
