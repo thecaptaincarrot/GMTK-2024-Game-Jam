@@ -407,7 +407,6 @@ update_scale = false
 [node name="footL" type="Bone2D" parent="Beast/SkeletonComponent/body1/legL/shinL"]
 position = Vector2(-183.55, 310.949)
 rotation = 2.63809
-scale = Vector2(1, 1)
 rest = Transform2D(-0.875898, 0.482497, -0.482497, -0.875898, -183.55, 310.949)
 auto_calculate_length_and_angle = false
 length = 100.0

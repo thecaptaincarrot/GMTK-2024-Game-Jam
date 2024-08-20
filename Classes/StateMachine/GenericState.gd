@@ -67,7 +67,7 @@ func hurt_gooblins():
 	
 	#assign to shields first
 	if num_shields > 0:
-		for i in range(damage):
+		for i in range(0,damage):
 			var unlucky_goob = shield_goobs.pick_random()
 			unlucky_goob.hurt()
 			if unlucky_goob.shield_health <= 0:
@@ -77,7 +77,7 @@ func hurt_gooblins():
 			if num_shields <= 0:
 				break
 
-	for i in range(to_hurt):
+	for i in range(0,to_hurt):
 		var unlucky_goob = intersecting_goobs.pick_random()
 		intersecting_goobs.erase(unlucky_goob)
 		unlucky_goob.hurt()
