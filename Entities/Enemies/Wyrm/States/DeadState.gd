@@ -18,6 +18,6 @@ func enter(_msg):
 	await tween.finished
 	
 	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", Vector2(0, death_height), .5).set_ease(Tween.EASE_OUT)
+	tween.tween_property(head_pointer, "global_position", prev_position + Vector2(0, death_height), .5).set_ease(Tween.EASE_OUT)
 	emit_signal("screen_shake")
 	

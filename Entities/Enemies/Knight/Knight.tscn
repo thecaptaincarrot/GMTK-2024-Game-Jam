@@ -83,81 +83,6 @@ tracks/5/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_2oi3i"]
-resource_name = "idle"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IKTargets/armTarget:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.73333, 2.66667, 3.7, 4.5, 5),
-"transitions": PackedFloat32Array(0.241484, 1.1487, 1, 1.8025, 1.68179, 0.241484),
-"update": 0,
-"values": [Vector2(-120, 10), Vector2(-101, 30), Vector2(-109, 21), Vector2(-59, 36), Vector2(-249, 219), Vector2(-120, 10)]
-}
-
-[sub_resource type="Animation" id="Animation_x6oct"]
-resource_name = "kick"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IKTargets/legTarget:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.666667, 1),
-"transitions": PackedFloat32Array(0.5, -2, 1, 1),
-"update": 0,
-"values": [Vector2(-39, 102), Vector2(7, 101), Vector2(-106, 37), Vector2(-39, 102)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("StateMachine/StompState")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.433333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"flingerize_gooblins"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_daohh"]
-resource_name = "swing"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IKTargets/armTarget:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.766667, 1),
-"transitions": PackedFloat32Array(0.5, 2, 0.5, -2),
-"update": 0,
-"values": [Vector2(-120, 10), Vector2(-591, -251), Vector2(61, 461), Vector2(-120, 10)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("StateMachine/SwingState")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.766667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"hurt_gooblins"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_163mb"]
 resource_name = "death"
 length = 1.2
@@ -234,6 +159,81 @@ tracks/5/keys = {
 "values": [0.0, 0.349066, -0.498939]
 }
 
+[sub_resource type="Animation" id="Animation_2oi3i"]
+resource_name = "idle"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/armTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.73333, 2.66667, 3.7, 4.5, 5),
+"transitions": PackedFloat32Array(0.241484, 1.1487, 1, 1.8025, 1.68179, 0.241484),
+"update": 0,
+"values": [Vector2(-120, 10), Vector2(-101, 30), Vector2(-109, 21), Vector2(-59, 36), Vector2(-249, 219), Vector2(-120, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_x6oct"]
+resource_name = "kick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/legTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.666667, 1),
+"transitions": PackedFloat32Array(0.5, -2, 1, 1),
+"update": 0,
+"values": [Vector2(-39, 102), Vector2(7, 101), Vector2(-106, 37), Vector2(-39, 102)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/StompState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flingerize_gooblins"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_daohh"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/armTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.766667, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, -2),
+"update": 0,
+"values": [Vector2(-120, 10), Vector2(-591, -251), Vector2(61, 461), Vector2(-120, 10)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/SwingState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.766667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sgm36"]
 _data = {
 "RESET": SubResource("Animation_rx3fo"),
@@ -291,9 +291,9 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_3jw4g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 10, 100, 0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, -18, -54, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
+"points": PackedVector2Array(0, 0, 0, 0, 10, 100, 0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
 }
-point_count = 6
+point_count = 5
 
 [node name="Knight" type="Node2D"]
 script = ExtResource("1_4enup")
@@ -359,7 +359,7 @@ update_scale = false
 
 [node name="leg" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-21, 15)
-rotation = 1.1116
+rotation = 0.647833
 scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(0.982249, 0.187529, -0.187529, 0.982249, -21, 15)
 metadata/_local_pose_override_enabled_ = true
@@ -378,13 +378,12 @@ update_scale = false
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-0.999998, -54)
 rotation = -0.0403169
-scale = Vector2(1, 1)
 rest = Transform2D(0.998003, 0.0631737, -0.0631737, 0.998003, -0.999999, -54)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-48.0825, 1.0628)
-rotation = 0.0336156
+rotation = -0.0798977
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.984793, 0.173713, -0.173713, 0.984793, -48.0822, 1.06243)
 metadata/_local_pose_override_enabled_ = true
@@ -407,8 +406,8 @@ region_rect = Rect2(879, 286, 554, 948)
 
 [node name="leg" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(-36.938, 58.2548)
-rotation = 0.188648
+position = Vector2(-54.4584, 46.7102)
+rotation = 0.647833
 scale = Vector2(0.240019, 0.240019)
 texture = ExtResource("3_rfubd")
 region_enabled = true
@@ -416,9 +415,9 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-137.999, -34.0011)
-rotation = 0.237816
-scale = Vector2(0.241663, 0.241663)
+position = Vector2(-124.605, 0.751404)
+rotation = -0.120215
+scale = Vector2(0.241664, 0.241664)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)
@@ -435,7 +434,7 @@ position = Vector2(-1, 6)
 curve = SubResource("Curve2D_3jw4g")
 
 [node name="LungePoint" parent="Beast" index="9"]
-position = Vector2(-34, 26)
+position = Vector2(1, 41)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]
 

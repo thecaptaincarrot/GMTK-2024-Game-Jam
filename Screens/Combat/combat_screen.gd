@@ -41,8 +41,8 @@ const LAKE_BG = 3
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
 						Vector2(1600,900),
-						Vector2(1400,2030),
-						Vector2(2000,1000),
+						Vector2(1600,900),
+						Vector2(2000,1100),
 						] 
 
 const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"), 
@@ -56,8 +56,8 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 const ENEMY_POS = [ Vector2(1100, 640),
 					Vector2(1100,680),
 					Vector2(1400,720),
-					Vector2(1400,720),
-					Vector2(2000,560),
+					Vector2(1500,800),
+					Vector2(1800,540),
 					]
 
 const GOOBLIN_RANGE = [100,
@@ -84,7 +84,7 @@ const ENEMY_REWARD = [100,
 const BACKGROUND = [ FIELD_BG,
 					 FIELD_BG,
 					 FIELD_BG,
-					 FIELD_BG,
+					 DRY_BG,
 					 CAVE_BG
 	
 ]

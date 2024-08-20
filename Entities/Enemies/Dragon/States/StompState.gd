@@ -19,7 +19,7 @@ func enter(_msg):
 	# animation
 	var tween
 	tween = get_tree().create_tween()
-	tween.tween_property(foot_pointer, "global_position", prev_foot_pointer_position - Vector2(x_peak, peak), wind_up_time).set_trans(Tween.TRANS_SPRING)
+	tween.tween_property(foot_pointer, "global_position", prev_foot_pointer_position - Vector2(x_peak, peak), wind_up_time).set_ease(Tween.EASE_IN)
 	await tween.finished
 	
 	tween = get_tree().create_tween()

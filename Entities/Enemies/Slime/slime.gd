@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var enemy = $Beast
 @onready var animation_player: AnimationPlayer = $Beast/AnimationPlayer
+@onready var skeleton = $Beast/SkeletonComponent
 @export var horde_controller: GooblinHordeController
 var target_list: Array
 
@@ -45,7 +46,7 @@ func _spawn_bullits(dmg):
 		counter -= 1
 
 
-# getting deleted asap, debug function
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		enemy.take_damage(1)
+## getting deleted asap, debug function
+#func _unhandled_key_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_cancel"):
+		#enemy.take_damage(1)
