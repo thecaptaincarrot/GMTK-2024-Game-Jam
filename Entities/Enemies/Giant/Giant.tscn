@@ -93,8 +93,9 @@ _data = {
 "death": SubResource("Animation_c8ya1")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_eilin"]
-radius = 79.2611
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irduo"]
+radius = 35.0001
+height = 216.001
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w7ivm"]
 radius = 41.0
@@ -159,7 +160,7 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_fhjhv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 65, 90, 0, 0, 0, 0, 65, 9, 0, 0, 0, 0, 59, -63, 0, 0, 0, 0, 67, -129, 0, 0, 0, 0, 94, -187, 0, 0, 0, 0, 34, -214, 0, 0, 0, 0, 27, -233)
+"points": PackedVector2Array(0, 0, 0, 0, 65, 43, 0, 0, 0, 0, 65, 9, 0, 0, 0, 0, 59, -63, 0, 0, 0, 0, 67, -129, 0, 0, 0, 0, 94, -187, 0, 0, 0, 0, 34, -214, 0, 0, 0, 0, 27, -233)
 }
 point_count = 7
 
@@ -210,7 +211,7 @@ libraries = {
 position = Vector2(-48, 24)
 rotation = -0.5184
 scale = Vector2(0.999997, 0.999997)
-shape = SubResource("CircleShape2D_eilin")
+shape = SubResource("CapsuleShape2D_irduo")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 

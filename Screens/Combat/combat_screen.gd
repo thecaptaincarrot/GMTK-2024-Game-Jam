@@ -41,7 +41,7 @@ const LAKE_BG = 3
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
 						Vector2(1600,1100),
-						Vector2(1800,900),
+						Vector2(1900,900),
 						Vector2(2000,1100),
 						] 
 
