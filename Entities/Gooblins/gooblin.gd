@@ -94,6 +94,9 @@ func _ready():
 	_scaler_attack_timer.wait_time = 1.0
 	_scaler_attack_timer.autostart = false
 	_scaler_attack_timer.one_shot = true
+	$ScalerDamage.color = enemy_node.blood_color
+	
+	
 	add_child(_scaler_attack_timer)
 	#
 	randomize()

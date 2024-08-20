@@ -286,15 +286,18 @@ libraries = {
 }
 
 [node name="ScalerDamage" type="CPUParticles2D" parent="."]
+show_behind_parent = true
 emitting = false
-amount = 20
+amount = 50
+lifetime = 0.5
 one_shot = true
 local_coords = true
 emission_shape = 1
 emission_sphere_radius = 8.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 30.0
-initial_velocity_max = 70.0
-scale_amount_min = 4.0
+direction = Vector2(0, -1)
+spread = 67.0
+gravity = Vector2(0, 9.8)
+initial_velocity_min = 80.0
+initial_velocity_max = 100.0
 scale_amount_max = 4.0
+color = Color(1, 0, 0, 1)
