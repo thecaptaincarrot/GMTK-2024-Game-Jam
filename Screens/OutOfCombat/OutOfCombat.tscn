@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dlcrkocalul24" path="res://Textures/Map/dot00.png" id="12_hysbw"]
 [ext_resource type="Texture2D" uid="uid://dknqsdq3b1q2m" path="res://Textures/Map/dot01.png" id="13_kvlbh"]
 [ext_resource type="AudioStream" uid="uid://bxvwr7tra72kc" path="res://SFX/purchase.mp3" id="16_rh103"]
+[ext_resource type="Script" path="res://Screens/OutOfCombat/blurb_box.gd" id="17_4qvxy"]
 [ext_resource type="AudioStream" uid="uid://b1fdxednh4gwc" path="res://SFX/click.mp3" id="17_y6veq"]
 [ext_resource type="AudioStream" uid="uid://2djenwra3ikr" path="res://Music/map.mp3" id="18_54rcf"]
 
@@ -41,7 +42,15 @@ font_size = 14
 atlas = ExtResource("4_3aia6")
 region = Rect2(0, 10, 32, 22)
 
+[sub_resource type="LabelSettings" id="LabelSettings_rqfbh"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvi6n"]
+line_spacing = -3.0
+font_size = 14
+
 [node name="OutOfCombat" type="Control" node_paths=PackedStringArray("click_sound", "background_texture", "shop_control", "planning_menus", "army_comp_panel", "army_display", "map_panel", "combat_button", "music_player")]
+
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,6 +79,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_4vn6m")
 
 [node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("purchase_sound", "click_sound", "total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "current_shields_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "current_hooks_label", "gooblin_current_climb_speed_label", "gooblin_next_climb_speed_label", "gooblin_damage_multiplier_label", "gooblin_next_damage_multiplier_label", "one_gooblin_label", "ten_gooblin_label", "buy_shield_label", "buy_hooks_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button", "purchase_hook_button", "scaler_mult_upgrade_button", "scaler_climb_speed_upgrade_button")]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -530,7 +540,6 @@ stream = ExtResource("16_rh103")
 volume_db = -10.0
 
 [node name="PlanningMenus" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -841,6 +850,69 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "To combat!"
 
+[node name="BlurbBox" type="PanelContainer" parent="PlanningMenus" node_paths=PackedStringArray("txtrect", "beast_name", "beast_text", "beast_second_text")]
+layout_mode = 2
+offset_left = 30.0
+offset_top = 375.0
+offset_right = 354.0
+offset_bottom = 694.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_4qvxy")
+txtrect = NodePath("Margins/VBoxContainer/TextureRect")
+beast_name = NodePath("Margins/VBoxContainer/BeastName")
+beast_text = NodePath("Margins/VBoxContainer/RichTextLabel")
+beast_second_text = NodePath("../../Panel/Margins/RichTextLabel2")
+
+[node name="Margins" type="MarginContainer" parent="PlanningMenus/BlurbBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlanningMenus/BlurbBox/Margins"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlanningMenus/BlurbBox/Margins/VBoxContainer"]
+layout_mode = 2
+text = "Inhabiting beast:"
+horizontal_alignment = 1
+
+[node name="BeastName" type="Label" parent="PlanningMenus/BlurbBox/Margins/VBoxContainer"]
+layout_mode = 2
+text = "MONSTER BEAST A"
+label_settings = SubResource("LabelSettings_rqfbh")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PlanningMenus/BlurbBox/Margins/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="Label" parent="PlanningMenus/BlurbBox/Margins/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_uvi6n")
+autowrap_mode = 3
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+offset_left = 382.0
+offset_top = 597.0
+offset_right = 917.0
+offset_bottom = 694.0
+
+[node name="Margins" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="RichTextLabel2" type="Label" parent="Panel/Margins"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_uvi6n")
+autowrap_mode = 3
+
 [node name="ClickSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_y6veq")
 volume_db = -10.0
@@ -863,6 +935,7 @@ volume_db = -15.0
 [connection signal="value_changed" from="PlanningMenus/ArmyCompPanel/ShieldSpinbox" to="PlanningMenus/ArmyCompPanel" method="_on_shield_spinbox_value_changed"]
 [connection signal="value_changed" from="PlanningMenus/ArmyCompPanel/ScalersSpinbox" to="PlanningMenus/ArmyCompPanel" method="_on_scalers_spinbox_value_changed"]
 [connection signal="level_changed" from="PlanningMenus/MapPanel" to="." method="_on_map_panel_level_changed"]
+[connection signal="level_changed" from="PlanningMenus/MapPanel" to="PlanningMenus/BlurbBox" method="_on_map_panel_level_changed"]
 [connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton0" to="PlanningMenus/MapPanel" method="_on_level_button_0_pressed"]
 [connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton1" to="PlanningMenus/MapPanel" method="_on_level_button_1_pressed"]
 [connection signal="pressed" from="PlanningMenus/MapPanel/MarginContainer/Map/LevelButtonControl/LevelButton2" to="PlanningMenus/MapPanel" method="_on_level_button_2_pressed"]
