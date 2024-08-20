@@ -24,24 +24,24 @@ func can_load():
 	return FileAccess.file_exists(save_path)
 
 #I guess we just have the one global, lol
-var levels_completed = 4
+var levels_completed = 0
 
-var gooblin_count = 200 #Total gooblins of any class
+var gooblin_count = 20 #Total gooblins of any class
 #army composition
 var basic_gooblins = 20
 var shield_gooblins = 0
 var climb_gooblins = 0
 var catapult_gooblins = 0
 
-var gold = 1000
+var gold = 0
 
 #equipment totals:
 var shields = 0
 var hooks = 0
 
 #Gooblin Upgrades
-var gooblin_attack = 10
-var gooblin_base_move_speed = 300.0
+var gooblin_attack = 1
+var gooblin_base_move_speed = 150.0
 var gooblin_move_speed_upgrade_increment = 50.0 #how much each level of upgrade increases the gooblin's speed
 var gooblin_speed_upgrade_level = 0
 
@@ -53,7 +53,7 @@ var shield_health = 1
 var damage_multiplier_level = 0
 var base_damage_multiplier = 4.0
 
-var base_climb_speed = 200.0
+var base_climb_speed = 100.0
 var climb_speed_level = 0
 var climb_speed_increment = 25.0
 var shake_off_chance = 0.50 #Chance to be shaken off when an enemy attacks
@@ -120,15 +120,15 @@ func get_next_scaler_climb_speed():
 
 #Cost curve calculation functions
 func get_gooblin_attack_upgrade_cost():
-	return 1000 * (pow(gooblin_attack,2))
+	return 500 * (pow(gooblin_attack,2))
 
 
 func get_gooblin_speed_upgrade_cost():
-	return 500 * (gooblin_speed_upgrade_level + 1)
+	return 250 * (gooblin_speed_upgrade_level + 1)
 
 
 func get_gooblin_shield_upgrade_cost():
-	return 400 * (pow(shield_health,2))
+	return 200 * shield_health
 
 
 func get_gooblin_scaler_mult_upgrade_cost():
