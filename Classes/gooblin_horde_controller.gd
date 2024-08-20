@@ -211,6 +211,8 @@ func _on_gooblin_changed(from_type, to_type, gooblin):
 			_shield_gooblins.erase(gooblin)
 			#push it to the front to they run up to the front line
 			_basic_gooblins.push_front(gooblin)
+			gooblin.died.disconnect(_shield_gooblin_died)
+			gooblin.died.connect(_basic_gooblin_died)
 
 
 func get_basic_gooblins():

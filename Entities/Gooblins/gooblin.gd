@@ -155,6 +155,7 @@ func hurt():
 	elif(unit_type == GooblinType.SCALER):
 		die()
 
+
 func die():
 	_is_dead = true
 	emit_signal("died", self)
@@ -185,6 +186,10 @@ func celebrate():
 func convert_to_basic_gooblin():
 	if(unit_type == GooblinType.SHIELD):
 		#spawn a shield entity to bounce around
+		var new_shield = load("res://Entities/Gooblins/trash_can.tscn").instantiate()
+		new_shield.position = position
+		get_parent().add_child(new_shield)
+		
 		_sprite.texture = load("res://Textures/Entities/GoblinBasic.png")
 		_can_attack = true
 		unit_type = GooblinType.BASIC

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://nkcmtoaqbthw"]
+
+[ext_resource type="Texture2D" uid="uid://b00ndm2k6r6id" path="res://Textures/Entities/GoblinShield.png" id="1_eq33p"]
+[ext_resource type="Script" path="res://Entities/Gooblins/trash_can.gd" id="1_fjp21"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rdhcx"]
+radius = 6.0
+height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usqao"]
+atlas = ExtResource("1_eq33p")
+region = Rect2(0, 32, 32, 32)
+
+[node name="TrashCan" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource("1_fjp21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rdhcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_usqao")
