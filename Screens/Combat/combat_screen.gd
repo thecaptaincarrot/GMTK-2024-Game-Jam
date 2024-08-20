@@ -93,7 +93,8 @@ const BACKGROUND = [ FIELD_BG,
 const FLOOR = [0,
 				0,
 				0,
-				1,
+				0,
+				1
 				]
 
 var active_loaded_level = 0
