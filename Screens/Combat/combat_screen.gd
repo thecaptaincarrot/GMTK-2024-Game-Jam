@@ -93,7 +93,8 @@ const BACKGROUND = [ FIELD_BG,
 const FLOOR = [0,
 				0,
 				0,
-				1,
+				0,
+				1
 				]
 
 var active_loaded_level = 0
@@ -131,8 +132,8 @@ func load_level(level_index : int):
 		FieldFloor.collision_layer = 1
 		FieldFloor.collision_mask = 1
 	else:
-		FieldFloor.collision_layer = 1
-		FieldFloor.collision_mask = 1
+		FieldFloor.collision_layer = 0
+		FieldFloor.collision_mask = 0
 	
 	GooblinController.horde_range = GOOBLIN_RANGE[level_index]
 	

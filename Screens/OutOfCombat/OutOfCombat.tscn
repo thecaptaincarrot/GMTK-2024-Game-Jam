@@ -67,7 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_4vn6m")
 
-[node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("purchase_sound", "click_sound", "total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "current_shields_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "current_hooks_label", "gooblin_current_climb_speed_label", "gooblin_next_climb_speed_label", "gooblin_damage_multiplier_label", "gooblin_next_damage_multiplier_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button", "purchase_hook_button", "scaler_mult_upgrade_button", "scaler_climb_speed_upgrade_button")]
+[node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("purchase_sound", "click_sound", "total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "current_shields_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "current_hooks_label", "gooblin_current_climb_speed_label", "gooblin_next_climb_speed_label", "gooblin_damage_multiplier_label", "gooblin_next_damage_multiplier_label", "one_gooblin_label", "ten_gooblin_label", "buy_shield_label", "buy_hooks_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button", "purchase_hook_button", "scaler_mult_upgrade_button", "scaler_climb_speed_upgrade_button")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -94,6 +94,10 @@ gooblin_current_climb_speed_label = NodePath("UpgradesHbox/ScalerUpgrades/ClimbU
 gooblin_next_climb_speed_label = NodePath("UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/NewMove")
 gooblin_damage_multiplier_label = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer/CurrentMult")
 gooblin_next_damage_multiplier_label = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/HBoxContainer/NewMult")
+one_gooblin_label = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2/1GooblinLabel")
+ten_gooblin_label = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer/10GooblinsLabel")
+buy_shield_label = NodePath("UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer/BuyShieldLabel")
+buy_hooks_label = NodePath("UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer/BuyHooksLabel")
 one_gooblin_button = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2/OneGooblinButton")
 ten_gooblin_button = NodePath("GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer/TenGooblinButton")
 gooblin_attack_upgrade_button = NodePath("UpgradesHbox/GooblinUpgrades/AttackUpgradeContainer/AttackUpButton")
@@ -173,7 +177,7 @@ text = "Purchase Gooblin:"
 [node name="VBoxContainer2" type="VBoxContainer" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2"]
+[node name="1GooblinLabel" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer2"]
 layout_mode = 2
 text = "1 Gooblin"
 
@@ -187,7 +191,7 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
+[node name="10GooblinsLabel" type="Label" parent="ShopPanel/GooblinInfoContainer/GooblinPurchaseContainer/VBoxContainer"]
 layout_mode = 2
 text = "10 Gooblins"
 
@@ -324,9 +328,10 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer"]
+[node name="BuyShieldLabel" type="Label" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Purchase Shield:"
+text = "Purchase 10 Shields:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ShieldUpgrades/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -434,9 +439,10 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer"]
+[node name="BuyHooksLabel" type="Label" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-text = "Purchase Hook:"
+text = "Purchase 10 Hooks:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel/UpgradesHbox/ScalerUpgrades/HBoxContainer/VBoxContainer"]
 layout_mode = 2
