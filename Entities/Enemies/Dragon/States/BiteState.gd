@@ -2,6 +2,7 @@ extends GenericState
 
 @export var head_pointer: Node2D
 @export var head_looker: Node2D
+@export var jaw_looker: Node2D
 
 @export var non_lethal_damage := 5
 @export var attack_time := 0.5
@@ -14,6 +15,11 @@ func enter(msg):
 	beast.random_target_timer.stop()
 	beast.acquire_targets()
 	var prev_position = head_pointer.global_position
+	var prev_jaw = jaw_looker.position
+	
+	var jaw_tweener
+	jaw_tweener = get_tree().create_tween()
+	jaw_tweener.tween_property(jaw_looker, "position", prev_jaw + Vector2(300,0), attack_time).set_ease(Tween.EASE_IN)
 	
 	var tween
 	tween = get_tree().create_tween()
@@ -23,7 +29,10 @@ func enter(msg):
 	tween.tween_property(head_pointer, "global_position", Vector2(msg, attack_height), attack_time).set_trans(Tween.TRANS_EXPO)
 
 	await tween.finished
-	
+
+	jaw_tweener = get_tree().create_tween()
+	jaw_tweener.tween_property(jaw_looker,"position",prev_jaw,attack_time).set_ease(Tween.EASE_IN)
+
 	## KILL
 	hurt_gooblins()
 	emit_signal("screen_shake")
