@@ -29,19 +29,19 @@ func target_and_attack():
 		else:
 			attack_to_do = 2
 		print(attack_to_do)
+		current_target = randf_range(stomp_range, bite_max_range)
 		match attack_to_do:
 			0:
-				current_target = randf_range(stomp_range, bite_max_range)
 				tween_target = beast.global_position + Vector2(-current_target, -track_height)
 				state_target = "BiteState"
 				# the generated target x position is turned into global for the bite to go to
 				msg = beast.to_global(Vector2(-current_target, 0)).x
 				#printt(current_target,tween_target)
 			1:
-				tween_target = [beast.global_position + Vector2(randf_range(stomp_range, bite_max_range),-track_height), beast.to_global(Vector2(-585, -338))].pick_random()
+				tween_target = [beast.global_position + Vector2(-current_target,-track_height), beast.to_global(Vector2(-585, -338))].pick_random()
 				state_target = "StompState"
 			2:
-				current_target = randf_range(stomp_range, bite_max_range)
+
 				tween_target = beast.global_position + Vector2(-current_target, -track_height)
 		tween = get_tree().create_tween()
 		tween.tween_property(head_pointer,"global_position" , tween_target, beast.random_target_timer.wait_time).set_trans(Tween.TRANS_SINE)

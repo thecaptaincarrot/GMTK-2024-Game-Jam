@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var enemy = $Beast
 @onready var animation_player: AnimationPlayer = $Beast/AnimationPlayer
+@onready var skeleton = $Beast/SkeletonComponent
 @export var horde_controller: GooblinHordeController
 var target_list: Array
 

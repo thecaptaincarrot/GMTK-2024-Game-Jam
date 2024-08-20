@@ -8,6 +8,45 @@
 [ext_resource type="Script" path="res://Entities/Enemies/Giant/States/StompState.gd" id="5_ddcup"]
 [ext_resource type="Script" path="res://Entities/Enemies/Giant/States/DeadState.gd" id="6_11aos"]
 
+[sub_resource type="Animation" id="Animation_0ogck"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SkeletonComponent:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTargets/armTarget:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-140, -144)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/legTarget:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-18, 17)]
+}
+
 [sub_resource type="Animation" id="Animation_c8ya1"]
 resource_name = "death"
 length = 2.5
@@ -46,45 +85,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(4.75683, 8.28212, 2),
 "update": 0,
 "values": [Vector2(-24, 94), Vector2(-43, 77), Vector2(-127, 44)]
-}
-
-[sub_resource type="Animation" id="Animation_0ogck"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SkeletonComponent:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("IKTargets/armTarget:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-140, -144)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("IKTargets/legTarget:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-18, 17)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_goimh"]
@@ -235,14 +235,14 @@ update_scale = false
 
 [node name="leg" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-75, -16)
-rotation = -0.112836
+rotation = 0.299446
 scale = Vector2(0.999979, 0.999979)
 rest = Transform2D(0.993712, -0.111754, 0.111754, 0.993712, -75, -16)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shin" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg"]
 position = Vector2(-3.4632, 16.125)
-rotation = 0.211569
+rotation = 0.197028
 scale = Vector2(0.999998, 0.999998)
 rest = Transform2D(0.994898, 0.100898, -0.100898, 0.994898, -3.46324, 16.125)
 metadata/_local_pose_override_enabled_ = true
@@ -253,8 +253,8 @@ remote_path = NodePath("../../../../../Sprites/leg")
 update_scale = false
 
 [node name="foot" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg/shin"]
-position = Vector2(-10.9246, 75.7729)
-rotation = -0.695587
+position = Vector2(-10.9246, 75.773)
+rotation = -1.05519
 scale = Vector2(1.00001, 1.00001)
 rest = Transform2D(0.996203, -0.0871562, 0.0871562, 0.996203, -10.9247, 75.7734)
 metadata/_local_pose_override_enabled_ = true
@@ -270,16 +270,15 @@ position = Vector2(-13.8633, 79.8489)
 rest = Transform2D(1, 0, 0, 1, -13.8633, 79.8489)
 
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
-
 position = Vector2(-7.62939e-06, -118)
-rotation = -0.0403169
+rotation = 0.0483922
+scale = Vector2(1, 1)
 rest = Transform2D(0.999187, -0.0403059, 0.0403059, 0.999187, 0, -118)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-104.095, 17.6113)
-
-rotation = 0.447046
+rotation = 0.930272
 scale = Vector2(1, 1)
 rest = Transform2D(0.979757, 0.200205, -0.200205, 0.979757, -104.096, 17.6109)
 metadata/_local_pose_override_enabled_ = true
@@ -304,7 +303,7 @@ region_rect = Rect2(839, 263, 533, 980)
 [node name="leg" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
 position = Vector2(-33.7575, -30.3328)
-rotation = 0.496474
+rotation = 0.496475
 scale = Vector2(0.390321, 0.390321)
 texture = ExtResource("4_d1i60")
 region_enabled = true
@@ -312,7 +311,7 @@ region_rect = Rect2(417, 982, 130, 247)
 
 [node name="foot" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -50
-position = Vector2(-48.7697, 41.3029)
+position = Vector2(-48.7696, 41.3028)
 rotation = -0.5184
 scale = Vector2(0.390907, 0.390907)
 texture = ExtResource("4_d1i60")
@@ -321,10 +320,9 @@ region_rect = Rect2(582, 986, 215, 235)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -45
-
 position = Vector2(-187.857, -177.936)
 rotation = 1.02353
-scale = Vector2(0.390279, 0.390279)
+scale = Vector2(0.39028, 0.39028)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)
@@ -339,7 +337,7 @@ position = Vector2(-18, 17)
 curve = SubResource("Curve2D_fhjhv")
 
 [node name="LungePoint" parent="Beast" index="9"]
-position = Vector2(60, 24)
+position = Vector2(65, -11)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]
 

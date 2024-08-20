@@ -15,12 +15,13 @@ func enter(msg):
 	
 	var tween
 	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", Vector2(msg, -attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(head_pointer, "global_position", Vector2(msg, prev_position.y+attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
 	await tween.finished
 	
 	## KILL
 	hurt_gooblins()
 	flingerize_gooblins()
+	emit_signal("screen_shake")
 	
 	# pass both the position and attack time to the stagger state so it can get up properly
 	state_machine.change_to_state("StaggerState", [prev_position, attack_time])
