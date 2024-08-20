@@ -207,7 +207,7 @@ libraries = {
 }
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-403.557, 271.757)
+position = Vector2(-403.591, 271.787)
 rotation = 2.88471
 scale = Vector2(0.999931, 0.999931)
 shape = SubResource("CircleShape2D_krs6l")
@@ -427,8 +427,8 @@ region_rect = Rect2(1298, 736, 233, 368)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -48
-position = Vector2(-323.669, -273.161)
-rotation = -0.258846
+position = Vector2(-323.667, -273.166)
+rotation = -0.258835
 scale = Vector2(0.999953, 0.999953)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -436,8 +436,8 @@ region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="neck2" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -47
-position = Vector2(-393.798, -331.932)
-rotation = -0.419598
+position = Vector2(-393.795, -331.938)
+rotation = -0.419629
 scale = Vector2(0.99995, 0.99995)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -481,17 +481,17 @@ region_rect = Rect2(838, 1307, 150, 214)
 
 [node name="legL" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -55
-position = Vector2(-180.905, 15.7242)
-rotation = 0.187177
-scale = Vector2(0.999909, 0.999909)
+position = Vector2(-180.946, 15.7205)
+rotation = 0.187649
+scale = Vector2(0.999911, 0.999911)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinL" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -54
-position = Vector2(-255.812, 182.264)
-rotation = 0.274108
+position = Vector2(-255.889, 182.252)
+rotation = 0.273581
 scale = Vector2(0.99981, 0.99981)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -499,27 +499,27 @@ region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -53
-position = Vector2(-382.772, 277.547)
-rotation = -0.0447457
-scale = Vector2(0.99981, 0.99981)
+position = Vector2(-382.806, 277.579)
+rotation = -0.0446415
+scale = Vector2(0.999814, 0.999814)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(364, 1445, 207, 100)
 
 [node name="legR" type="Sprite2D" parent="Beast/Sprites" index="11"]
 z_index = -40
-position = Vector2(-4.54709, 63.5784)
-rotation = -0.000429451
-scale = Vector2(0.999931, 0.999931)
+position = Vector2(-4.54658, 63.5784)
+rotation = -0.000433624
+scale = Vector2(0.999932, 0.999932)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinR" type="Sprite2D" parent="Beast/Sprites" index="12"]
 z_index = -39
-position = Vector2(-41.6738, 226.81)
-rotation = 0.284047
-scale = Vector2(0.999912, 0.999912)
+position = Vector2(-41.673, 226.81)
+rotation = 0.284052
+scale = Vector2(0.999913, 0.999913)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(354, 1221, 225, 201)
@@ -527,25 +527,25 @@ region_rect = Rect2(354, 1221, 225, 201)
 [node name="footR" type="Sprite2D" parent="Beast/Sprites" index="13"]
 z_index = -38
 position = Vector2(-172.215, 310.646)
-rotation = -0.036423
-scale = Vector2(0.999907, 0.999907)
+rotation = -0.0364232
+scale = Vector2(0.999911, 0.999911)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(364, 1445, 207, 100)
 
 [node name="shadow1" type="Sprite2D" parent="Beast/Sprites" index="14"]
 z_index = -46
-position = Vector2(-580.001, -214.001)
-rotation = -1.20857
-scale = Vector2(0.999933, 0.999933)
+position = Vector2(-580, -214)
+rotation = -1.20856
+scale = Vector2(0.999936, 0.999936)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(651, 638, 144, 106)
 
 [node name="shadow2" type="Sprite2D" parent="Beast/Sprites" index="15"]
-position = Vector2(-528.001, -196.001)
-rotation = -0.966921
-scale = Vector2(0.999933, 0.999933)
+position = Vector2(-528, -196)
+rotation = -0.966917
+scale = Vector2(0.999936, 0.999936)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(824, 694, 63, 108)

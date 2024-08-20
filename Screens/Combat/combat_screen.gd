@@ -22,6 +22,10 @@ var BeastNode : Beast
 @export var Canvas_Layer : CanvasLayer
 
 @export var DefeatPanel :Panel
+@export var VictoryPanel:Panel
+
+const FIELD_BG = 0
+const CAVE_BG = 1
 
 #Level Definitions
 #Specifics for things like camera bounds, enemy type, other things are stored in an array
@@ -29,23 +33,38 @@ var BeastNode : Beast
 #I.e. Level 0 will pull all relevant variables from arrays on index 0
 
 #Camera bounds always start at position 0,0 on upper left
-const CAMERA_BOUNDS = [ Vector2(2000,1000),
-						
+const CAMERA_BOUNDS = [ Vector2(1200,1000),
+						Vector2(2000,1000),
 						] 
 
-const ENEMY_SCENE = [ preload("res://Entities/Enemies/Dragon/Dragon.tscn"),
-					 
-					 
+const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"), 
+					  preload("res://Entities/Enemies/Dragon/Dragon.tscn"),
 					]
 
 
-const ENEMY_POS = [ Vector2(2000,560)
-					
+const ENEMY_POS = [ Vector2(1000, 792),
+					Vector2(2000,560)
 					]
 
+const GOOBLIN_RANGE = [100,
+					   128
+					]
+
+const ENEMY_HEALTH = [200,
+					  1000
+]
+
+const ENEMY_REWARD = [100,
+					  1000
+					]
+
+const BACKGROUND = [ FIELD_BG,
+					 CAVE_BG
+	
+]
 
 
-
+var active_loaded_level = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,8 +78,20 @@ func _process(delta):
 
 func load_level(level_index : int):
 	print("Loading")
+	active_loaded_level = level_index
 	camera.limit_right = CAMERA_BOUNDS[level_index].x
 	camera.limit_bottom = CAMERA_BOUNDS[level_index].y
+	
+	_hide_all_backgrounds()
+	if(BACKGROUND[level_index] == CAVE_BG):
+		$Background/BackgroundParallax/CaveBackground.visible = true
+		$"Background/Ceiling Parallax/CaveCeiling".visible = true
+		$Background/FloorParallax/CaveFloor.visible = true
+	elif(BACKGROUND[level_index] == FIELD_BG):
+		$Background/FloorParallax/FieldFloor.visible = true
+		$Background/BackgroundParallax/FieldBackground.visible = true
+	
+	GooblinController.horde_range = GOOBLIN_RANGE[level_index]
 	
 	camera.position = Vector2(0,camera.limit_bottom)
 	
@@ -68,24 +99,35 @@ func load_level(level_index : int):
 	Enemy.horde_controller = GooblinController
 	print(GooblinController)
 	Enemy.position = ENEMY_POS[level_index]
+	Enemy.get_node("Beast").max_health = ENEMY_HEALTH[level_index]
+	Enemy.get_node("Beast").gold_value = ENEMY_HEALTH[level_index]
 	add_child(Enemy)
 	BeastNode = Enemy.enemy #haha that's a naming oops
 	print(BeastNode)
 	BeastNode.enemy_hurt.connect(_on_enemy_hurt)
+	BeastNode.died.connect(_on_beast_died)
 	
 	MaxHealthLabel.text = str(BeastNode.max_health)
 	CurrentHealthLabel.text = str(BeastNode.max_health)
+	HealthBar.max_value = BeastNode.max_health
 	
 	GooblinController.enemy_node = BeastNode
-	#GooblinController.horde_target = BeastNode.get_lunge_point()
-	GooblinController.horde_target = $TEST_LUNGE_POINT
-	#GooblinController.climb_target = BeastNode.get_climb_target()
-	GooblinController.climb_target = $TEST_CLIMB_PATH
+	GooblinController.horde_target = BeastNode.get_lunge_point()
+	#GooblinController.horde_target = $TEST_LUNGE_POINT
+	GooblinController.climb_target = BeastNode.get_climb_path()
+	#GooblinController.climb_target = $TEST_CLIMB_PATH
 	
 	Canvas_Layer.show()
 	GooblinController.reset()
 	music_player.play()
 
+
+func _hide_all_backgrounds():
+	$Background/BackgroundParallax/CaveBackground.visible = false
+	$Background/BackgroundParallax/FieldBackground.visible = false
+	$"Background/Ceiling Parallax/CaveCeiling".visible = false
+	$Background/FloorParallax/CaveFloor.visible = false
+	$Background/FloorParallax/FieldFloor.visible = false
 
 func _on_enemy_hurt():
 	HealthBar.value = BeastNode.health
@@ -95,24 +137,29 @@ func _on_enemy_hurt():
 func _on_gooblin_horde_controller_gooblin_extinction():
 	#calculate gold earned
 	var percent_damage_dealt = 1.0 - (BeastNode.health / BeastNode.max_health)
-	print
 	var gold_earned = round(percent_damage_dealt * BeastNode.get_gold_value())
 	print("earned ", gold_earned, " gold")
 	GooblinUpgrades.gold += gold_earned
-	
+	GooblinController.active = false
 	DefeatPanel.update_gold_earned(gold_earned)
-	defeat_player.play()
-	$CanvasLayer/DefeatPanel.show()
+	DefeatPanel.show()
 
+func _on_beast_died():
+	var gold_earned = BeastNode.get_gold_value()
+	GooblinUpgrades.gold += gold_earned
+	if(GooblinUpgrades.levels_completed <= active_loaded_level):
+		GooblinUpgrades.levels_completed = active_loaded_level + 1
+	VictoryPanel.update_gold_earned(gold_earned)
+	VictoryPanel.show()
 
 func _on_return_button_pressed():
 	GooblinController.end_level()
 	Enemy.queue_free()
 	Canvas_Layer.hide()
 	DefeatPanel.hide()
-	music_player.stop()
-	click_player.play()
+	VictoryPanel.hide()
 	emit_signal("ReturnFromCombat")
+	GooblinController.kill_all()
 
 
 func _on_retreat_button_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bq18iom53hl48"]
+[gd_scene load_steps=21 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
@@ -6,10 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://d2estmti00yqb" path="res://Entities/Gooblins/gooblin_horde_controller.tscn" id="2_63q2r"]
 [ext_resource type="Texture2D" uid="uid://bmj6o4bixipwa" path="res://Textures/Backgrounds/Cave/ceiling_goobers.png" id="2_vdddl"]
 [ext_resource type="Texture2D" uid="uid://sysuuc5tunuc" path="res://Textures/Backgrounds/Cave/Floor.png" id="3_uf6k3"]
+[ext_resource type="Texture2D" uid="uid://cplspvpj6lb6s" path="res://Textures/Backgrounds/Field/sky01.png" id="5_w06pu"]
 [ext_resource type="Script" path="res://Screens/Combat/defeat_panel.gd" id="7_ghdby"]
+[ext_resource type="Texture2D" uid="uid://8vbt2ybrqm8l" path="res://Textures/Backgrounds/Field/floor01.png" id="8_csija"]
 [ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="8_vy8hd"]
 [ext_resource type="AudioStream" uid="uid://dxsf4rc4lfy52" path="res://Music/AShortMarch.wav" id="9_8xfbr"]
 [ext_resource type="AudioStream" uid="uid://bbnvv8rci6ono" path="res://SFX/Defeat.wav" id="10_aqo6e"]
+[ext_resource type="Script" path="res://Screens/Combat/victory_panel.gd" id="10_objnm"]
 [ext_resource type="AudioStream" uid="uid://b1fdxednh4gwc" path="res://SFX/click.mp3" id="10_w0dda"]
 [ext_resource type="AudioStream" uid="uid://dpeco5n4g15qu" path="res://SFX/Victory.wav" id="11_rhbrn"]
 
@@ -26,11 +29,15 @@ point_count = 2
 font_size = 33
 font_color = Color(1, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_6c8vc"]
+font_size = 33
+font_color = Color(7.70092e-07, 0.762958, 0.290341, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_abk6w"]
 atlas = ExtResource("8_vy8hd")
 region = Rect2(0, 0, 32, 32)
 
-[node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel")]
+[node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel", "VictoryPanel")]
 script = ExtResource("1_o8qmv")
 music_player = NodePath("MusicPlayer")
 click_player = NodePath("ClickPlayer")
@@ -43,6 +50,7 @@ CurrentHealthLabel = NodePath("CanvasLayer/HealthBar/HBoxContainer/CurrentHealth
 MaxHealthLabel = NodePath("CanvasLayer/HealthBar/HBoxContainer/MaxHealthLabel")
 Canvas_Layer = NodePath("CanvasLayer")
 DefeatPanel = NodePath("CanvasLayer/DefeatPanel")
+VictoryPanel = NodePath("CanvasLayer/VictoryPanel")
 
 [node name="GooblinHordeController" parent="." node_paths=PackedStringArray("gooblin_label") instance=ExtResource("2_63q2r")]
 gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
@@ -74,11 +82,16 @@ repeat_times = 4
 texture = ExtResource("1_ent5p")
 centered = false
 
+[node name="FieldBackground" type="Sprite2D" parent="Background/BackgroundParallax"]
+position = Vector2(648, 304)
+texture = ExtResource("5_w06pu")
+
 [node name="Ceiling Parallax" type="Parallax2D" parent="Background"]
 repeat_size = Vector2(1280, 0)
 repeat_times = 4
 
 [node name="CaveCeiling" type="Sprite2D" parent="Background/Ceiling Parallax"]
+visible = false
 texture = ExtResource("2_vdddl")
 centered = false
 offset = Vector2(0, -330)
@@ -88,9 +101,15 @@ repeat_size = Vector2(1280, 0)
 repeat_times = 4
 
 [node name="CaveFloor" type="Sprite2D" parent="Background/FloorParallax"]
+visible = false
 texture = ExtResource("3_uf6k3")
 centered = false
 offset = Vector2(0, 600)
+
+[node name="FieldFloor" type="Sprite2D" parent="Background/FloorParallax"]
+visible = false
+position = Vector2(640, 899)
+texture = ExtResource("8_csija")
 
 [node name="Flooor" type="StaticBody2D" parent="."]
 
@@ -247,6 +266,97 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "We Must Try Again!"
 
+[node name="VictoryPanel" type="Panel" parent="CanvasLayer" node_paths=PackedStringArray("VictoryTitle", "GoldLabel")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -98.0
+offset_right = 229.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("10_objnm")
+VictoryTitle = NodePath("VictoryTitle")
+GoldLabel = NodePath("HBoxContainer/GoldEarned")
+
+[node name="VictoryTitle" type="Label" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "VICTORY!"
+label_settings = SubResource("LabelSettings_6c8vc")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.5
+offset_top = 51.0
+offset_right = 136.5
+offset_bottom = 74.0
+grow_horizontal = 2
+text = "Your gooblins are forced to retreat"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.5
+offset_top = 111.0
+offset_right = 124.5
+offset_bottom = 160.0
+grow_horizontal = 2
+text = "With each victory we grow stronger!
+Our enemies will be destroyed!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.5
+offset_top = 165.0
+offset_right = 35.5
+offset_bottom = 205.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="GoldEarned" type="Label" parent="CanvasLayer/VictoryPanel/HBoxContainer"]
+layout_mode = 2
+text = "999"
+
+[node name="Label" type="Label" parent="CanvasLayer/VictoryPanel/HBoxContainer"]
+layout_mode = 2
+text = "Gold"
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.5
+offset_top = -50.0
+offset_right = 40.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Advance!"
+
 [node name="RetreatButton" type="Button" parent="CanvasLayer"]
 offset_left = 1185.0
 offset_top = 2.0
@@ -286,6 +396,7 @@ volume_db = -40.0
 [connection signal="gooblin_extinction" from="GooblinHordeController" to="." method="_on_gooblin_horde_controller_gooblin_extinction"]
 [connection signal="timeout" from="CombatCamera/ShakeTimer" to="CombatCamera" method="_on_shake_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/DefeatPanel/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryPanel/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/RetreatButton" to="." method="_on_retreat_button_pressed"]
 
 [editable path="GooblinHordeController"]

@@ -39,6 +39,7 @@ var current_target: Gooblin
 signal took_damage
 
 func _ready():
+	health = max_health
 	state_machine.state_changed.connect(_fsm_state_changed)
 	animation_player.animation_finished.connect(_on_animation_finished)
 	call_deferred("acquire_targets")
@@ -65,6 +66,12 @@ func take_damage(dmg):
 
 func die():
 	died.emit()
+
+func get_lunge_point():
+	return $LungePoint
+
+func get_climb_path():
+	return $ScalerPath
 
 # acquires the horde controller's basic gooblins by way of parent node
 # note: there isn't a specific reason it's basic gooblins only, it was arbitrary

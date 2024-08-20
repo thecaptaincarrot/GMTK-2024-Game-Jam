@@ -22,7 +22,6 @@ func reacquire_targets():
 func die():
 	enemy.state_machine.change_to_state("DeadState")
 
-
 # Surface level dmg function for the horde to access
 func take_damage(dmg):
 	enemy.take_damage(dmg)
