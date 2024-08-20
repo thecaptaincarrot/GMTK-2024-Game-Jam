@@ -17,5 +17,5 @@ func enter(_msg):
 
 # called every timeout on randomtargettimer
 func target_and_attack():
-	var state = ["StompState", "SwingState"].pick_random()
+	var state = ["StompState", "SwingState", "ActualStompState"].pick_random()
 	state_machine.change_to_state(state)
