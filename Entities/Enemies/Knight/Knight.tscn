@@ -327,14 +327,17 @@ animation = "idle"
 script = ExtResource("4_skfil")
 animation = "kick"
 hitbox = NodePath("../../HitboxComponent")
+damage = 1
 scaler_shakeoff_chance = 0.25
 stomper = NodePath("../../HitboxComponent/Stomper")
+fling_damage = 5
 
 [node name="SwingState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_61l8l")
 animation = "swing"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 5
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="3"]
 script = ExtResource("5_0pi2i")
@@ -355,7 +358,7 @@ debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="1"]
 position = Vector2(-38.4664, 99.4209)
-rotation = 0.148331
+rotation = 1.5708
 scale = Vector2(0.999987, 0.999987)
 shape = SubResource("CapsuleShape2D_q14qj")
 disabled = true
@@ -429,16 +432,15 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-
-position = Vector2(-137.996, -34.0025)
-rotation = 0.23782
-scale = Vector2(0.241667, 0.241667)
+position = Vector2(-124.605, 0.751404)
+rotation = -0.120215
+scale = Vector2(0.241666, 0.241666)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)
 
 [node name="armTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
-position = Vector2(-120, 10)
+position = Vector2(-230, 311)
 
 [node name="legTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
 position = Vector2(-39, 102)

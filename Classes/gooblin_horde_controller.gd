@@ -18,16 +18,21 @@ signal gooblin_extinction
 @export var horde_range = 128
 
 @export var spawn_basic_count = 100
+var basic_to_spawn = 0
 
 @export var spawn_shield_count = 20
+var shield_to_spawn = 0
 
 @export var spawn_scaler_count = 0
+var scaler_to_spawn = 0
 
 @export var spawn_catapult_count = 0
 
 @export var rotation_rate = 1.0
 
 @onready var gooblin_scene = preload("res://Entities/Gooblins/gooblin.tscn")
+
+var max_spawn = 1000
 
 
 var _basic_gooblins = []
@@ -62,8 +67,11 @@ func reset():
 	spawn_shield_count = GooblinUpgrades.shield_gooblins
 	spawn_scaler_count = GooblinUpgrades.climb_gooblins
 	print(spawn_basic_count)
+	basic_to_spawn = spawn_basic_count
+	scaler_to_spawn =  spawn_shield_count
+	shield_to_spawn = spawn_scaler_count
 	_setup_horde_rotation_lines()
-	spawn_gooblins()
+	#spawn_gooblins()
 
 
 func spawn_gooblins():
@@ -113,6 +121,20 @@ func _setup_horde_rotation_lines():
 
 func _process(delta: float) -> void:
 	if active:
+		if (len(_basic_gooblins) + len(_shield_gooblins) + len(_scaler_gooblins)) < max_spawn:
+			if basic_to_spawn > 0:
+				basic_to_spawn -= 1
+				var spawn_pos = get_spawn_point() + Vector2(randf_range(-32.0, 32.0),randf_range(-32.0, 32.0))
+				spawn_basic_gooblin(spawn_pos)
+			if shield_to_spawn > 0:
+				shield_to_spawn -= 1
+				var spawn_pos = get_spawn_point() + Vector2(randf_range(-32.0, 32.0),randf_range(-32.0, 32.0))
+				spawn_shield_gooblin(spawn_pos)
+			if scaler_to_spawn > 0:
+				scaler_to_spawn -= 1
+				var spawn_pos = get_spawn_point() + Vector2(randf_range(-32.0, 32.0),randf_range(-32.0, 32.0))
+				spawn_scaler_gooblin(spawn_pos)
+	
 		distribute_target_spacing()
 		gooblin_label.text = str(get_living_gooblins())
 		if gooblins_alive:
@@ -170,7 +192,7 @@ func distribute_target_spacing():
 	
 		var bindex = 0
 		for bg in _basic_gooblins:
-			bg.target_range = horde_range + (((gooblin_size.x / 3)) * bindex)
+			bg.target_range = horde_range + (((gooblin_size.x / 6.0)) * bindex)
 			bg.x_home = horde_target.get_global_position().x - bg.target_range
 			bindex += 1
 
@@ -179,7 +201,7 @@ func distribute_target_spacing():
 	
 		var sindex = 0
 		for sg in _shield_gooblins:
-			sg.target_range = horde_range + (((gooblin_size.x / 4)) * sindex)
+			sg.target_range = horde_range + (((gooblin_size.x / 4.0)) * sindex)
 			sg.x_home = horde_target.get_global_position().x - sg.target_range
 			sindex += 1
 

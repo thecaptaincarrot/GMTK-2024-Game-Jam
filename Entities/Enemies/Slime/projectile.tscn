@@ -3,11 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://dlpet2r0x26de" path="res://Textures/Entities/gelatinousmass.png" id="1_7lhuj"]
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/projectile.gd" id="1_i4bu1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hifxp"]
-radius = 60.0333
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_comia"]
+radius = 43.0
+height = 194.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lf1t1"]
-radius = 64.0703
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3wuv"]
+radius = 41.0
+height = 204.0
 
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 0
@@ -19,7 +21,8 @@ script = ExtResource("1_i4bu1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 0)
-shape = SubResource("CircleShape2D_hifxp")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_comia")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -30
@@ -33,8 +36,9 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(36, 1)
-shape = SubResource("CircleShape2D_lf1t1")
+position = Vector2(18, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_j3wuv")
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

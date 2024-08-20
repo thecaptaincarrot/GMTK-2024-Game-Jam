@@ -119,7 +119,6 @@ shield_health_upgrade_button = NodePath("UpgradesHbox/ShieldUpgrades/ShieldUpgra
 purchase_hook_button = NodePath("UpgradesHbox/ScalerUpgrades/HBoxContainer/HookPurchaseButton")
 scaler_mult_upgrade_button = NodePath("UpgradesHbox/ScalerUpgrades/AttackUpgradeContainer/MultUpButton")
 scaler_climb_speed_upgrade_button = NodePath("UpgradesHbox/ScalerUpgrades/ClimbUpgradeContainer2/ClimbUpButton")
-cost_per_gooblin = 20
 
 [node name="ReturnButton" type="Button" parent="ShopPanel"]
 layout_mode = 1
@@ -538,6 +537,14 @@ text = "9999 Gold"
 [node name="PurchaseSoundEffect" type="AudioStreamPlayer" parent="ShopPanel"]
 stream = ExtResource("16_rh103")
 volume_db = -10.0
+
+[node name="Label2" type="Label" parent="ShopPanel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 241.0
+offset_bottom = 41.0
+text = "Hold Shift to buy 10 at once"
 
 [node name="PlanningMenus" type="Control" parent="."]
 layout_mode = 1
