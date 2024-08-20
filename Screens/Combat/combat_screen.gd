@@ -29,6 +29,8 @@ var BeastNode : Beast
 
 const FIELD_BG = 0
 const CAVE_BG = 1
+const DRY_BG = 2
+const LAKE_BG = 3
 
 #Level Definitions
 #Specifics for things like camera bounds, enemy type, other things are stored in an array
@@ -39,12 +41,14 @@ const CAVE_BG = 1
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
 						Vector2(1600,900),
+						Vector2(1400,2030),
 						Vector2(2000,1000),
 						] 
 
 const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"), 
 					  preload("res://Entities/Enemies/Giant/Giant.tscn"), 
 					  preload("res://Entities/Enemies/Slime/Slime.tscn"), 
+					  preload("res://Entities/Enemies/Wyrm/wyrm.tscn"), 
 					  preload("res://Entities/Enemies/Dragon/Dragon.tscn"),
 					]
 
@@ -52,10 +56,12 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 const ENEMY_POS = [ Vector2(1100, 640),
 					Vector2(1100,680),
 					Vector2(1400,720),
+					Vector2(1400,720),
 					Vector2(2000,560),
 					]
 
 const GOOBLIN_RANGE = [100,
+					   100,
 					   100,
 					   100,
 					   128,
@@ -65,15 +71,18 @@ const ENEMY_HEALTH = [200,
 					  1000,
 					  1000,
 					  1000,
+					  1000,
 ]
 
 const ENEMY_REWARD = [100,
 					  1000,
 					  1000,
 					  1000,
+					  1000,
 					]
 
 const BACKGROUND = [ FIELD_BG,
+					 FIELD_BG,
 					 FIELD_BG,
 					 FIELD_BG,
 					 CAVE_BG
@@ -113,7 +122,10 @@ func load_level(level_index : int):
 	elif(BACKGROUND[level_index] == FIELD_BG):
 		$Background/FloorParallax/FieldFloor.visible = true
 		$Background/BackgroundParallax/FieldBackground.visible = true
-		$Background/BackgroundParallax/CaveBackground.visible = false
+	elif(BACKGROUND[level_index] == DRY_BG):
+		$Background/BackgroundParallax/FieldBackground.visible = true
+		$Background/FloorParallax/DryFloor.visible = true
+		$Background/FloorParallax.repeat_size.x = 2036
 	
 	if FLOOR[level_index] == 0:
 		FieldFloor.collision_layer = 1
@@ -158,6 +170,8 @@ func _hide_all_backgrounds():
 	$Background/CeilingParallax/CaveCeiling.visible = false
 	$Background/FloorParallax/CaveFloor.visible = false
 	$Background/FloorParallax/FieldFloor.visible = false
+	$Background/FloorParallax/DryFloor.visible = false
+	$Background/FloorParallax.repeat_size.x = 1280
 
 func _on_enemy_hurt():
 	HealthBar.value = BeastNode.health

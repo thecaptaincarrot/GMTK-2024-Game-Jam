@@ -7,7 +7,7 @@
 radius = 60.0333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf1t1"]
-radius = 134.172
+radius = 64.0703
 
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 0
@@ -33,6 +33,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(36, 1)
 shape = SubResource("CircleShape2D_lf1t1")
 debug_color = Color(0.5, 0, 0, 0.196078)
 

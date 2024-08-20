@@ -14,6 +14,7 @@ radius = 195.04
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_yl23k"]
 target_nodepath = NodePath("../IKTargets/undulator1")
 jiggle_data_chain_length = 2
+stiffness = 1.0
 joint_data/0/bone_index = 7
 joint_data/0/bone2d_node = NodePath("base/slime")
 joint_data/0/override_defaults = false
@@ -24,6 +25,7 @@ joint_data/1/override_defaults = false
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_1j6ro"]
 target_nodepath = NodePath("../IKTargets/undulator1")
 jiggle_data_chain_length = 3
+stiffness = 1.0
 joint_data/0/bone_index = 1
 joint_data/0/bone2d_node = NodePath("base/slime4")
 joint_data/0/override_defaults = false
@@ -146,7 +148,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="slime5" type="Bone2D" parent="Beast/SkeletonComponent/base/slime4"]
 position = Vector2(88.6409, 70.6637)
 rotation = -1.09547
-scale = Vector2(1, 1)
 rest = Transform2D(0.814804, -0.579743, 0.579743, 0.814804, 88.6415, 70.6639)
 metadata/_local_pose_override_enabled_ = true
 
@@ -368,54 +369,54 @@ region_rect = Rect2(164, 990, 114, 42)
 
 [node name="blob3" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -40
-position = Vector2(-280.156, -10.1573)
-rotation = 0.0574188
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(-280, -10.0005)
+rotation = 0.0482378
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(91, 948, 37, 54)
 
 [node name="bone1" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -50
-position = Vector2(-304.222, -193.824)
-rotation = 0.0408497
-scale = Vector2(1, 1)
+position = Vector2(-305.752, -193.438)
+rotation = 0.0316688
+scale = Vector2(1.00001, 1.00001)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(346, 683, 134, 213)
 
 [node name="bone2" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -50
-position = Vector2(-123.605, -348.824)
-rotation = 0.0714303
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(-135.326, -351.291)
+rotation = 0.018172
+scale = Vector2(0.999968, 0.999968)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(151, 407, 112, 206)
 
 [node name="bone3" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -43
-position = Vector2(116.977, -330.33)
-rotation = -0.0018393
-scale = Vector2(1, 1)
+position = Vector2(114.269, -331.316)
+rotation = -0.0316443
+scale = Vector2(1.00001, 1.00001)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)
 
 [node name="bone4" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -42
-position = Vector2(254.665, -131.822)
-rotation = -0.142801
-scale = Vector2(0.999994, 0.999994)
+position = Vector2(255.636, -131.931)
+rotation = -0.133632
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(356, 479, 113, 151)
 
 [node name="bone5" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -40
-position = Vector2(180.67, -133.232)
-rotation = 0.206175
-scale = Vector2(0.999886, 0.999886)
+position = Vector2(180.72, -133.151)
+rotation = 0.207048
+scale = Vector2(0.999884, 0.999884)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(588, 57, 195, 197)
@@ -423,16 +424,16 @@ region_rect = Rect2(588, 57, 195, 197)
 [node name="skull" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
 position = Vector2(-13, -216)
-rotation = -0.663054
-scale = Vector2(0.999933, 0.999933)
+rotation = -0.654349
+scale = Vector2(0.999932, 0.999932)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
-position = Vector2(2.99044, -114.3)
-rotation = -0.663054
-scale = Vector2(0.999933, 0.999933)
+position = Vector2(2.10457, -114.165)
+rotation = -0.654349
+scale = Vector2(0.999932, 0.999932)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(83, 127, 147, 112)

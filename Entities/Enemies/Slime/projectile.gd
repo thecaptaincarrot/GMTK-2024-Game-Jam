@@ -5,10 +5,12 @@ extends RigidBody2D
 
 func _ready():
 	position.y -= 140
-	apply_impulse(Vector2(randi_range(-1,1), -randi_range(0,1)) * 1000, Vector2(0,-100))
+	apply_impulse(Vector2(randi_range(-.5,.5), -randi_range(.5,1)) * 1000, Vector2(0,-100))
+
 
 func _physics_process(delta: float) -> void:
-	rotate(linear_velocity.angle() * delta)
+	rotation = linear_velocity.angle()
+
 
 func _on_body_entered(body: Node) -> void:
 	hurt_gooblins()

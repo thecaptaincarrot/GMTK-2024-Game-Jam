@@ -6,6 +6,8 @@ extends Node2D
 var target_list: Array
 
 @export var bullit_number := 4
+var damage_taken = 0
+@export var projectile_damage_threshold = 20.0
 var bullit = preload("res://Entities/Enemies/Slime/projectile.tscn")
 
 func _ready() -> void:
@@ -25,8 +27,13 @@ func die():
 func take_damage(dmg):
 	enemy.take_damage(dmg)
 	
-func _spawn_bullits():
-	var counter = bullit_number
+func _spawn_bullits(dmg):
+	damage_taken += dmg
+	var counter =  0
+	if damage_taken >= projectile_damage_threshold:
+		damage_taken = 0
+		counter =  randi_range(1,bullit_number)
+	
 	while counter > 0:
 		var bul = bullit.instantiate()
 		bul.global_position = global_position

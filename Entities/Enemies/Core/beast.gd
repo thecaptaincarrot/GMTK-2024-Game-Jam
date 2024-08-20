@@ -58,7 +58,7 @@ func _on_animation_finished(_anim):
 	pass
 
 func take_damage(dmg):
-	took_damage.emit()
+	took_damage.emit(dmg)
 	health -= dmg
 	emit_signal("enemy_hurt")
 	if health <= 0:
