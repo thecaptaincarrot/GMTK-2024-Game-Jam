@@ -130,7 +130,8 @@ func _process(delta: float) -> void:
 			#a global request to get local gravity managed in the global settings
 			velocity += get_gravity() * delta
 		
-		velocity += _upcoming_fling * delta
+		if (!_is_dead):
+			velocity += _upcoming_fling * delta
 		
 		_upcoming_fling = Vector2()
 		
@@ -138,8 +139,6 @@ func _process(delta: float) -> void:
 			#put here as an example
 			_move_to_target_range(delta)
 			_attack_target()
-		else:
-			velocity = Vector2(0,0)
 		
 		move_and_slide()
 
@@ -160,6 +159,7 @@ func die():
 	despawn_timer.timeout.connect(_despawn_timeout)
 	add_child(despawn_timer)
 	_anim.play("Dead")
+	$Splat.amount = randi_range(10,40)
 	$Splat.emitting = true
 
 func fling():
