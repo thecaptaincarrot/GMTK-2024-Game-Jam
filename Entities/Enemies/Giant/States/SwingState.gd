@@ -27,7 +27,6 @@ func enter(_msg):
 
 func physics_update(_delta):
 	intersecting_goobs = hitbox.get_overlapping_bodies()
-	attacker.position = arm_target.position - Vector2(120, 0) # the additional vector is needed to match the sprite
 
 func exit():
 	# once it's done

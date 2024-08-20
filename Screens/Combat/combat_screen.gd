@@ -37,39 +37,55 @@ const CAVE_BG = 1
 
 #Camera bounds always start at position 0,0 on upper left
 const CAMERA_BOUNDS = [ Vector2(1400,900),
+						Vector2(1400,900),
+						Vector2(1600,900),
 						Vector2(2000,1000),
 						] 
 
 const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"), 
 					  preload("res://Entities/Enemies/Giant/Giant.tscn"), 
+					  preload("res://Entities/Enemies/Slime/Slime.tscn"), 
 					  preload("res://Entities/Enemies/Dragon/Dragon.tscn"),
 					]
 
 
 const ENEMY_POS = [ Vector2(1100, 640),
-					Vector2(2000,560)
+					Vector2(1100,680),
+					Vector2(1400,720),
+					Vector2(2000,560),
 					]
 
 const GOOBLIN_RANGE = [100,
-					   128
+					   100,
+					   100,
+					   128,
 					]
 
 const ENEMY_HEALTH = [200,
-					  1000
+					  1000,
+					  1000,
+					  1000,
 ]
 
 const ENEMY_REWARD = [100,
-					  1000
+					  1000,
+					  1000,
+					  1000,
 					]
 
 const BACKGROUND = [ FIELD_BG,
+					 FIELD_BG,
+					 FIELD_BG,
 					 CAVE_BG
 	
 ]
 
 
 const FLOOR = [0,
-				1]
+				0,
+				0,
+				1,
+				]
 
 var active_loaded_level = 0
 

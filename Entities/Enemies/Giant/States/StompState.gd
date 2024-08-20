@@ -17,11 +17,11 @@ func enter(_msg):
 	tween.tween_property(leg_target, "position", pull_back, pull_back_time).set_trans(Tween.TRANS_BOUNCE)
 	await tween.finished
 	
-	flingerize_gooblins()
-
 	tween = get_tree().create_tween()
 	tween.tween_property(leg_target, "position", kick_goal, kick_time).set_trans(Tween.TRANS_QUINT)
 	await tween.finished
+	
+	flingerize_gooblins()
 	
 	state_machine.change_to_state("IdleState")
 

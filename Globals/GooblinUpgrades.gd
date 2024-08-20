@@ -24,9 +24,9 @@ func can_load():
 	return FileAccess.file_exists(save_path)
 
 #I guess we just have the one global, lol
-var levels_completed = 0
+var levels_completed = 4
 
-var gooblin_count = 20 #Total gooblins of any class
+var gooblin_count = 200 #Total gooblins of any class
 #army composition
 var basic_gooblins = 20
 var shield_gooblins = 0
