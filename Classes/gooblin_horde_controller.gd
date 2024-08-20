@@ -52,6 +52,7 @@ func end_level():
 	enemy_node = null
 	horde_target = null
 	climb_target = null
+	gooblins_alive = true
 
 
 func reset():
@@ -161,7 +162,7 @@ func distribute_target_spacing():
 	
 		var bindex = 0
 		for bg in _basic_gooblins:
-			bg.target_range = horde_range + (((gooblin_size.x / 2)) * bindex)
+			bg.target_range = horde_range + (((gooblin_size.x / 3)) * bindex)
 			bg.x_home = horde_target.get_global_position().x - bg.target_range
 			bindex += 1
 
