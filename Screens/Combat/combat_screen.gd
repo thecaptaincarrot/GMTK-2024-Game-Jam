@@ -40,7 +40,7 @@ const LAKE_BG = 3
 #Camera bounds always start at position 0,0 on upper left
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
-						Vector2(1600,900),
+						Vector2(1600,1100),
 						Vector2(1600,900),
 						Vector2(2000,1100),
 						] 
@@ -55,7 +55,7 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 
 const ENEMY_POS = [ Vector2(1100, 640),
 					Vector2(1100,680),
-					Vector2(1400,720),
+					Vector2(1400,800),
 					Vector2(1500,800),
 					Vector2(1800,540),
 					]
