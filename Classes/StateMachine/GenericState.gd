@@ -12,6 +12,8 @@ class_name GenericState extends Node
 # The animation is an export variable !!!
 @export var animation: String = "universal_idle"
 
+signal screen_shake #for really cool attacks
+
 #For Attacks
 @export var hitbox: Area2D
 @export var attacker: CollisionShape2D

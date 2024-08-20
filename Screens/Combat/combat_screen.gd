@@ -134,6 +134,7 @@ func load_level(level_index : int):
 	Enemy.get_node("Beast").gold_value = ENEMY_HEALTH[level_index]
 	add_child(Enemy)
 	BeastNode = Enemy.enemy #haha that's a naming oops
+	BeastNode.shake_screen.connect(camera.shake_screen)
 	print(BeastNode)
 	BeastNode.enemy_hurt.connect(_on_enemy_hurt)
 	BeastNode.died.connect(_on_beast_died)

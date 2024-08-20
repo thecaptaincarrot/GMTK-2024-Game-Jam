@@ -86,3 +86,8 @@ func acquire_targets():
 
 func get_gold_value():
 	return gold_value
+
+
+func _on_state_machine_shake_screen():
+	print("Hi")
+	emit_signal("shake_screen")

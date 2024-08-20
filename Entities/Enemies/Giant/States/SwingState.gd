@@ -18,6 +18,7 @@ func enter(_msg):
 	
 	## KILL
 	hurt_gooblins()
+	emit_signal("screen_shake")
 	
 	tween = get_tree().create_tween()
 	tween.tween_property(arm_target, "position", attack_position, attack_time).set_trans(Tween.TRANS_SPRING)

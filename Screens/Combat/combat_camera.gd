@@ -39,3 +39,8 @@ func _process(delta):
 
 func _on_shake_timer_timeout():
 	shaking = false
+
+
+func shake_screen():
+	shaking = true
+	$ShakeTimer.start()
