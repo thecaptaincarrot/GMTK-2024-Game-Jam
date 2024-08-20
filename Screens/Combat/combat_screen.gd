@@ -188,7 +188,9 @@ func _on_gooblin_horde_controller_gooblin_extinction():
 	GooblinUpgrades.gold += gold_earned
 	GooblinController.active = false
 	DefeatPanel.update_gold_earned(gold_earned)
+	defeat_player.play()
 	DefeatPanel.show()
+
 
 func _on_beast_died():
 	var gold_earned = BeastNode.get_gold_value()
@@ -196,10 +198,13 @@ func _on_beast_died():
 	if(GooblinUpgrades.levels_completed <= active_loaded_level):
 		GooblinUpgrades.levels_completed = active_loaded_level + 1
 	GooblinController.celebrate()
+	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
 	VictoryPanel.show()
 
+
 func _on_return_button_pressed():
+	music_player.stop()
 	GooblinController.end_level()
 	Enemy.queue_free()
 	Canvas_Layer.hide()

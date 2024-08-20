@@ -10,12 +10,12 @@
 [ext_resource type="Script" path="res://Screens/Combat/defeat_panel.gd" id="7_ghdby"]
 [ext_resource type="Texture2D" uid="uid://8vbt2ybrqm8l" path="res://Textures/Backgrounds/Field/floor01.png" id="8_csija"]
 [ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="8_vy8hd"]
-[ext_resource type="AudioStream" uid="uid://dxsf4rc4lfy52" path="res://Music/AShortMarch.wav" id="9_8xfbr"]
 [ext_resource type="Texture2D" uid="uid://3o201dsc73y0" path="res://Textures/Backgrounds/Field/floorDryWyrm.png" id="9_sd0dw"]
-[ext_resource type="AudioStream" uid="uid://bbnvv8rci6ono" path="res://SFX/Defeat.wav" id="10_aqo6e"]
 [ext_resource type="Script" path="res://Screens/Combat/victory_panel.gd" id="10_objnm"]
 [ext_resource type="AudioStream" uid="uid://b1fdxednh4gwc" path="res://SFX/click.mp3" id="10_w0dda"]
-[ext_resource type="AudioStream" uid="uid://dpeco5n4g15qu" path="res://SFX/Victory.wav" id="11_rhbrn"]
+[ext_resource type="AudioStream" uid="uid://cohv7bfr0ypdc" path="res://Music/extraperc.mp3" id="13_6w18c"]
+[ext_resource type="AudioStream" uid="uid://dhxwtyonft4cf" path="res://Music/defeat.mp3" id="15_c2y4h"]
+[ext_resource type="AudioStream" uid="uid://chbrm6d5sg1ht" path="res://SFX/victory.mp3" id="16_ijbgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmt5r"]
 size = Vector2(6166, 47)
@@ -391,20 +391,20 @@ text = "99999"
 horizontal_alignment = 1
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_8xfbr")
-volume_db = -80.0
+stream = ExtResource("13_6w18c")
+volume_db = -20.0
 
 [node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_w0dda")
 volume_db = -10.0
 
 [node name="DefeatPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_aqo6e")
-volume_db = -40.0
+stream = ExtResource("15_c2y4h")
+volume_db = -20.0
 
 [node name="VictoryPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_rhbrn")
-volume_db = -40.0
+stream = ExtResource("16_ijbgm")
+volume_db = -20.0
 
 [connection signal="gooblin_extinction" from="GooblinHordeController" to="." method="_on_gooblin_horde_controller_gooblin_extinction"]
 [connection signal="timeout" from="CombatCamera/ShakeTimer" to="CombatCamera" method="_on_shake_timer_timeout"]

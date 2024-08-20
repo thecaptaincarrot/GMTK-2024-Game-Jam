@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bpn5os62xeqhx"]
+[gd_scene load_steps=25 format=3 uid="uid://bpn5os62xeqhx"]
 
 [ext_resource type="Script" path="res://Screens/OutOfCombat/out_of_combat.gd" id="1_2xjpg"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/shop_panel.gd" id="1_tqmy8"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dknqsdq3b1q2m" path="res://Textures/Map/dot01.png" id="13_kvlbh"]
 [ext_resource type="AudioStream" uid="uid://bxvwr7tra72kc" path="res://SFX/purchase.mp3" id="16_rh103"]
 [ext_resource type="AudioStream" uid="uid://b1fdxednh4gwc" path="res://SFX/click.mp3" id="17_y6veq"]
+[ext_resource type="AudioStream" uid="uid://2djenwra3ikr" path="res://Music/map.mp3" id="18_54rcf"]
 
 [sub_resource type="Gradient" id="Gradient_oratd"]
 colors = PackedColorArray(0, 0, 0, 1, 0.005, 0, 0.15, 1)
@@ -40,7 +41,7 @@ font_size = 14
 atlas = ExtResource("4_3aia6")
 region = Rect2(0, 10, 32, 22)
 
-[node name="OutOfCombat" type="Control" node_paths=PackedStringArray("click_sound", "background_texture", "shop_control", "planning_menus", "army_comp_panel", "army_display", "map_panel", "combat_button")]
+[node name="OutOfCombat" type="Control" node_paths=PackedStringArray("click_sound", "background_texture", "shop_control", "planning_menus", "army_comp_panel", "army_display", "map_panel", "combat_button", "music_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +58,7 @@ army_comp_panel = NodePath("PlanningMenus/ArmyCompPanel")
 army_display = NodePath("PlanningMenus/ArmyDisplay")
 map_panel = NodePath("PlanningMenus/MapPanel")
 combat_button = NodePath("PlanningMenus/ToCombatButton")
+music_player = NodePath("OutOfCombatMusic")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -842,6 +844,10 @@ text = "To combat!"
 [node name="ClickSoundEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_y6veq")
 volume_db = -10.0
+
+[node name="OutOfCombatMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_54rcf")
+volume_db = -15.0
 
 [connection signal="army_composition_update" from="ShopPanel" to="PlanningMenus/ArmyCompPanel" method="update_all"]
 [connection signal="pressed" from="ShopPanel/ReturnButton" to="." method="_on_return_button_pressed"]
