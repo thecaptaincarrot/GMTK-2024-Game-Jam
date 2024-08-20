@@ -6,6 +6,10 @@ var velocity = Vector2(0,0)
 
 var shaking = false
 
+@export var max_zoom = 2.0
+@export var min_zoom = 0.5
+@export var zoom_scale = 0.1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

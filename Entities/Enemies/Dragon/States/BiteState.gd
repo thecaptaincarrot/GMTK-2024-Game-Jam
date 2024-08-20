@@ -35,6 +35,7 @@ func enter(msg):
 
 	## KILL
 	hurt_gooblins()
+	shake_off_scalers()
 	emit_signal("screen_shake")
 	
 	tween = get_tree().create_tween()

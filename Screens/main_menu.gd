@@ -15,12 +15,14 @@ func _ready():
 func _on_continue_pressed() -> void:
 	GooblinUpgrades.load()
 	click_player.play()
+	$MenuTheme.stop()
 	emit_signal("Continue")
 	
 
 
 func _on_new_run_pressed() -> void:
 	click_player.play()
+	$MenuTheme.stop()
 	emit_signal("NewGame")
 
 

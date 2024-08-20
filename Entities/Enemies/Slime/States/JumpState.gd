@@ -36,9 +36,8 @@ func enter(x_target):
 	new_timer.start()
 	print(new_timer.time_left)
 	await new_timer.timeout
-	print("Yo")
 	emit_signal("jump_over")
-	
+	shake_off_scalers()
 	hurt_gooblins()
 	flingerize_gooblins()
 	

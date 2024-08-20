@@ -13,11 +13,13 @@ class_name GenericState extends Node
 @export var animation: String = "universal_idle"
 
 signal screen_shake #for really cool attacks
+signal shake_off
 
 #For Attacks
 @export var hitbox: Area2D
 @export var attacker: CollisionShape2D
 @export var damage = 10
+@export var scaler_shakeoff_chance = 0.5
 
 #for Kicks
 @export var stomper: CollisionShape2D
@@ -39,6 +41,10 @@ func physics_update(_delta):
 
 func exit():
 	pass
+
+
+func shake_off_scalers():
+	shake_off.emit(scaler_shakeoff_chance)
 
 
 func flingerize_gooblins():

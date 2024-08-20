@@ -18,6 +18,8 @@ signal go_to_combat
 
 @export var combat_button : Button
 
+@export var music_player : AudioStreamPlayer
+
 var direction = -1
 
 var level_selection = 0
@@ -49,11 +51,13 @@ func reset_to_default():
 	planning_menus.show()
 	
 	map_panel.update_level_options()
+	music_player.play()
 
 
 
 func _on_to_combat_button_pressed() -> void:
 	click_sound.play()
+	music_player.stop()
 	emit_signal("go_to_combat",level_selection)
 
 
