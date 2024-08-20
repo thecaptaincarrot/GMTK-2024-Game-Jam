@@ -24,6 +24,9 @@ var BeastNode : Beast
 @export var DefeatPanel :Panel
 @export var VictoryPanel:Panel
 
+@export var FieldFloor : StaticBody2D
+@export var CaveFloor : StaticBody2D
+
 const FIELD_BG = 0
 const CAVE_BG = 1
 
@@ -33,16 +36,17 @@ const CAVE_BG = 1
 #I.e. Level 0 will pull all relevant variables from arrays on index 0
 
 #Camera bounds always start at position 0,0 on upper left
-const CAMERA_BOUNDS = [ Vector2(1200,1000),
+const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(2000,1000),
 						] 
 
 const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"), 
+					  preload("res://Entities/Enemies/Giant/Giant.tscn"), 
 					  preload("res://Entities/Enemies/Dragon/Dragon.tscn"),
 					]
 
 
-const ENEMY_POS = [ Vector2(1000, 792),
+const ENEMY_POS = [ Vector2(1100, 640),
 					Vector2(2000,560)
 					]
 
@@ -63,6 +67,9 @@ const BACKGROUND = [ FIELD_BG,
 	
 ]
 
+
+const FLOOR = [0,
+				1]
 
 var active_loaded_level = 0
 
@@ -85,11 +92,19 @@ func load_level(level_index : int):
 	_hide_all_backgrounds()
 	if(BACKGROUND[level_index] == CAVE_BG):
 		$Background/BackgroundParallax/CaveBackground.visible = true
-		$"Background/Ceiling Parallax/CaveCeiling".visible = true
+		$"Background/CeilingParallax/CaveCeiling".visible = true
 		$Background/FloorParallax/CaveFloor.visible = true
 	elif(BACKGROUND[level_index] == FIELD_BG):
 		$Background/FloorParallax/FieldFloor.visible = true
 		$Background/BackgroundParallax/FieldBackground.visible = true
+		$Background/BackgroundParallax/CaveBackground.visible = false
+	
+	if FLOOR[level_index] == 0:
+		FieldFloor.collision_layer = 1
+		FieldFloor.collision_mask = 1
+	else:
+		FieldFloor.collision_layer = 1
+		FieldFloor.collision_mask = 1
 	
 	GooblinController.horde_range = GOOBLIN_RANGE[level_index]
 	
@@ -113,9 +128,7 @@ func load_level(level_index : int):
 	
 	GooblinController.enemy_node = BeastNode
 	GooblinController.horde_target = BeastNode.get_lunge_point()
-	#GooblinController.horde_target = $TEST_LUNGE_POINT
 	GooblinController.climb_target = BeastNode.get_climb_path()
-	#GooblinController.climb_target = $TEST_CLIMB_PATH
 	
 	Canvas_Layer.show()
 	GooblinController.reset()
@@ -125,7 +138,7 @@ func load_level(level_index : int):
 func _hide_all_backgrounds():
 	$Background/BackgroundParallax/CaveBackground.visible = false
 	$Background/BackgroundParallax/FieldBackground.visible = false
-	$"Background/Ceiling Parallax/CaveCeiling".visible = false
+	$Background/CeilingParallax/CaveCeiling.visible = false
 	$Background/FloorParallax/CaveFloor.visible = false
 	$Background/FloorParallax/FieldFloor.visible = false
 

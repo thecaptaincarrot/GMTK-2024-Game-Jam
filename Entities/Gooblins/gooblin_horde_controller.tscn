@@ -6,4 +6,4 @@
 script = ExtResource("1_80sky")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(81, 505)
+position = Vector2(-86, 293)

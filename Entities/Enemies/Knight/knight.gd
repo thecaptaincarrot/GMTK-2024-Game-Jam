@@ -25,6 +25,5 @@ func take_damage(dmg):
 	enemy.take_damage(dmg)
 
 
-# the hitbox slider
 func _process(_delta: float) -> void:
-	attacker.global_position.x = arm_target.global_position.x - 65
+	pass

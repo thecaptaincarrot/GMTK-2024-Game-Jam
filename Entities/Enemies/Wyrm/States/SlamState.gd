@@ -2,15 +2,10 @@ extends GenericState
 
 @export var head_pointer: Node2D
 @export var head_looker: Node2D
-@export var hitbox: Area2D
-@export var attacker: CollisionShape2D
 
-@export var damage := 30
 @export var non_lethal_damage := 30
 @export var attack_time := 1.0
 @export var attack_height := 10
-
-var intersecting_goobs : Array
 
 func enter(msg):
 	attacker.disabled = false
@@ -25,6 +20,7 @@ func enter(msg):
 	
 	## KILL
 	hurt_gooblins()
+	flingerize_gooblins()
 	
 	# pass both the position and attack time to the stagger state so it can get up properly
 	state_machine.change_to_state("StaggerState", [prev_position, attack_time])
@@ -35,22 +31,3 @@ func physics_update(_delta):
 func exit():
 	# exit clean up
 	attacker.disabled = true
-
-func hurt_gooblins():
-	#print("KILLLLLL")
-	var counter = damage
-	var fling_counter = non_lethal_damage
-	for goob in intersecting_goobs:
-		if counter > 0 and goob:
-			#print(counter)
-			goob.hurt()
-			counter -= 1
-		if fling_counter > 0 and goob:
-			goob.fling()
-			fling_counter -= 1
-		#if goob.unit_type == Gooblin.GooblinType.SHIELD:
-			#if counter > GooblinUpgrades.shield_health * :
-				#goob.hurt()
-				#counter -= 1
-			#else:
-				

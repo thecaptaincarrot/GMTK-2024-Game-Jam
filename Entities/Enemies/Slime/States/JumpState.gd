@@ -1,11 +1,8 @@
 extends GenericState
 
-@export var attacker: Node2D
 
 @export var return_hint: Node2D # the ground
 
-@export var damage := 10
-@export var non_lethal_damage := 10
 @export var jump_peak := -300 #global
 @export var jump_time := 3.0 
 
@@ -23,12 +20,9 @@ func enter(x_target):
 	await tween.finished
 
 	hurt_gooblins()
+	flingerize_gooblins()
 	
 	state_machine.change_to_state("IdleState")
 
 func exit():
 	attacker.disabled = true
-
-func hurt_gooblins():
-	# i cant copy&paste again i cant
-	pass

@@ -1,7 +1,5 @@
 extends GenericState
 
-@export var attacker: CollisionShape2D
-@export var hitbox: Area2D
 @export var arm_target: Node2D
 
 @export var attack_time := 0.4
@@ -27,8 +25,6 @@ func enter(_msg):
 
 	state_machine.change_to_state("IdleState")
 
-var intersecting_goobs := []
-
 func physics_update(_delta):
 	intersecting_goobs = hitbox.get_overlapping_bodies()
 	attacker.position = arm_target.position - Vector2(120, 0) # the additional vector is needed to match the sprite
@@ -37,7 +33,3 @@ func exit():
 	# once it's done
 	attacker.disabled = true
 	beast.random_target_timer.start()
-
-func hurt_gooblins():
-	for goob in intersecting_goobs:
-		goob.hurt()

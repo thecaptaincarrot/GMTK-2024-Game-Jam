@@ -110,11 +110,11 @@ initial_state = NodePath("IdleState")
 script = ExtResource("3_wfgqw")
 animation = ""
 
-[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("attacker", "return_hint")]
+[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "attacker")]
 script = ExtResource("4_5l287")
-attacker = NodePath("../../HitboxComponent/Attacker")
 return_hint = NodePath("../../ReturnHint")
 animation = ""
+attacker = NodePath("../../HitboxComponent/Attacker")
 
 [node name="AnimationPlayer" parent="Beast" index="2"]
 libraries = {
@@ -138,20 +138,21 @@ remote_path = NodePath("../../../LungePoint")
 
 [node name="slime4" type="Bone2D" parent="Beast/SkeletonComponent/base"]
 position = Vector2(267, -26)
-rotation = 2.99003
+rotation = -1.23819
 scale = Vector2(0.999995, 0.999995)
 rest = Transform2D(-0.981109, -0.193433, 0.193433, -0.981109, 267, -26)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="slime5" type="Bone2D" parent="Beast/SkeletonComponent/base/slime4"]
 position = Vector2(88.6409, 70.6637)
-rotation = -0.640595
+rotation = -1.09547
+scale = Vector2(1, 1)
 rest = Transform2D(0.814804, -0.579743, 0.579743, 0.814804, 88.6415, 70.6639)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="slime6" type="Bone2D" parent="Beast/SkeletonComponent/base/slime4/slime5"]
 position = Vector2(21.3627, 74.4704)
-rotation = 0.54247
+rotation = 0.198907
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.847193, 0.531283, -0.531283, 0.847193, 21.3629, 74.4707)
 metadata/_local_pose_override_enabled_ = true
@@ -191,14 +192,14 @@ remote_path = NodePath("../../../../../Sprites/bone4")
 
 [node name="slime" type="Bone2D" parent="Beast/SkeletonComponent/base"]
 position = Vector2(-263, -27)
-rotation = -0.877329
+rotation = -1.26935
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(0.911449, 0.411405, -0.411405, 0.911449, -263, -27)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="slime2" type="Bone2D" parent="Beast/SkeletonComponent/base/slime"]
 position = Vector2(44.0005, -157.004)
-rotation = -0.681603
+rotation = -0.367193
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.858557, -0.512717, 0.512717, 0.858557, 44.0005, -157.004)
 metadata/_local_pose_override_enabled_ = true
@@ -272,7 +273,7 @@ rest = Transform2D(0.983059, 0.183287, -0.183287, 0.983059, 24, -107)
 
 [node name="skull" type="Bone2D" parent="Beast/SkeletonComponent/base/skullbase"]
 position = Vector2(-56.3515, -100.372)
-rotation = -0.81729
+rotation = -0.015143
 scale = Vector2(0.999932, 0.999932)
 rest = Transform2D(0.668401, -0.74371, 0.74371, 0.668401, -56.3515, -100.372)
 auto_calculate_length_and_angle = false
@@ -296,7 +297,7 @@ remote_path = NodePath("../../../../../../Sprites/skull2")
 
 [node name="bone5" type="Bone2D" parent="Beast/SkeletonComponent/base/skullbase"]
 position = Vector2(68.5977, 18.7444)
-rotation = -2.13483
+rotation = -0.0629308
 scale = Vector2(0.999884, 0.999884)
 rest = Transform2D(0.999626, 0.0227141, -0.0227141, 0.999626, 68.5977, 18.7444)
 auto_calculate_length_and_angle = false
@@ -367,8 +368,8 @@ region_rect = Rect2(164, 990, 114, 42)
 
 [node name="blob3" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -40
-position = Vector2(-280, -10.0005)
-rotation = 0.0482379
+position = Vector2(-280.156, -10.1573)
+rotation = 0.0574188
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -376,8 +377,8 @@ region_rect = Rect2(91, 948, 37, 54)
 
 [node name="bone1" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -50
-position = Vector2(-305.752, -193.438)
-rotation = 0.0316688
+position = Vector2(-304.222, -193.824)
+rotation = 0.0408497
 scale = Vector2(1, 1)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -385,8 +386,8 @@ region_rect = Rect2(346, 683, 134, 213)
 
 [node name="bone2" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -50
-position = Vector2(-135.324, -351.297)
-rotation = 0.0181727
+position = Vector2(-123.605, -348.824)
+rotation = 0.0714303
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -394,27 +395,27 @@ region_rect = Rect2(151, 407, 112, 206)
 
 [node name="bone3" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -43
-position = Vector2(114.27, -331.315)
-rotation = -0.0316498
-scale = Vector2(1.00001, 1.00001)
+position = Vector2(116.977, -330.33)
+rotation = -0.0018393
+scale = Vector2(1, 1)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)
 
 [node name="bone4" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -42
-position = Vector2(255.636, -131.93)
-rotation = -0.133632
-scale = Vector2(0.999992, 0.999992)
+position = Vector2(254.665, -131.822)
+rotation = -0.142801
+scale = Vector2(0.999994, 0.999994)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(356, 479, 113, 151)
 
 [node name="bone5" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -40
-position = Vector2(180.72, -133.152)
-rotation = 0.207047
-scale = Vector2(0.99989, 0.99989)
+position = Vector2(180.67, -133.232)
+rotation = 0.206175
+scale = Vector2(0.999886, 0.999886)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(588, 57, 195, 197)
@@ -422,16 +423,16 @@ region_rect = Rect2(588, 57, 195, 197)
 [node name="skull" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
 position = Vector2(-13, -216)
-rotation = -0.654349
-scale = Vector2(0.999942, 0.999942)
+rotation = -0.663054
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
-position = Vector2(2.10473, -114.164)
-rotation = -0.654349
-scale = Vector2(0.999942, 0.999942)
+position = Vector2(2.99044, -114.3)
+rotation = -0.663054
+scale = Vector2(0.999933, 0.999933)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(83, 127, 147, 112)

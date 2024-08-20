@@ -93,23 +93,23 @@ arm_target = NodePath("../../IKTargets/armTarget")
 leg_target = NodePath("../../IKTargets/legTarget")
 animation = ""
 
-[node name="SwingState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("attacker", "hitbox", "arm_target")]
+[node name="SwingState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("arm_target", "hitbox", "attacker")]
 script = ExtResource("4_5mfkg")
-attacker = NodePath("../../HitboxComponent/Attacker")
-hitbox = NodePath("../../HitboxComponent")
 arm_target = NodePath("../../IKTargets/armTarget")
 peak_position = Vector2(-213, -298)
 attack_position = Vector2(-81, -5)
 animation = ""
-
-[node name="StompState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("attacker", "hitbox", "leg_target")]
-script = ExtResource("5_ddcup")
-attacker = NodePath("../../HitboxComponent/Stomper")
 hitbox = NodePath("../../HitboxComponent")
+attacker = NodePath("../../HitboxComponent/Attacker")
+
+[node name="StompState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("leg_target", "hitbox", "attacker")]
+script = ExtResource("5_ddcup")
 leg_target = NodePath("../../IKTargets/legTarget")
 pull_back = Vector2(40, -36)
 kick_goal = Vector2(-110, -28)
 animation = ""
+hitbox = NodePath("../../HitboxComponent")
+attacker = NodePath("../../HitboxComponent/Stomper")
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="3"]
 script = ExtResource("6_11aos")
@@ -186,13 +186,14 @@ rest = Transform2D(1, 0, 0, 1, -13.8633, 79.8489)
 
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(0, -118)
-rotation = 0.0287075
+rotation = 0.0233832
 rest = Transform2D(0.999187, -0.0403059, 0.0403059, 0.999187, 0, -118)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-104.095, 17.6113)
-rotation = 0.968531
+rotation = 0.978891
+scale = Vector2(1, 1)
 rest = Transform2D(0.979757, 0.200205, -0.200205, 0.979757, -104.096, 17.6109)
 metadata/_local_pose_override_enabled_ = true
 
@@ -233,9 +234,9 @@ region_rect = Rect2(582, 986, 215, 235)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -45
-position = Vector2(-187.857, -177.936)
-rotation = 1.02353
-scale = Vector2(0.390138, 0.390138)
+position = Vector2(-187.874, -177.915)
+rotation = 1.02309
+scale = Vector2(0.390139, 0.390139)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)

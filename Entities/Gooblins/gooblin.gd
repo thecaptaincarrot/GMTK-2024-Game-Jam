@@ -27,6 +27,8 @@ enum GooblinType{
 
 @export var move_speed = 300.0
 
+@export var shield_health = 0
+
 @export var despawn_timer_time = 2.0
 
 @export var jump_vector = Vector2(400, 600)
@@ -117,6 +119,7 @@ func _ready():
 		_can_attack = true
 	elif(unit_type == GooblinType.SHIELD):
 		_sprite.texture = load("res://Textures/Entities/GoblinShield.png")
+		shield_health = GooblinUpgrades.shield_health
 		_can_attack = false
 	elif(unit_type == GooblinType.SCALER):
 		_sprite.texture = load("res://Textures/Entities/GoblinScaler.png")
@@ -145,7 +148,9 @@ func _process(delta: float) -> void:
 
 func hurt():
 	if(unit_type == GooblinType.SHIELD):
-		convert_to_basic_gooblin()
+		shield_health -= 1
+		if shield_health <= 0:
+			convert_to_basic_gooblin()
 	elif(unit_type == GooblinType.BASIC):
 		die()
 	elif(unit_type == GooblinType.SCALER):

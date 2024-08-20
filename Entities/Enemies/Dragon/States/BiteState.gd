@@ -2,15 +2,10 @@ extends GenericState
 
 @export var head_pointer: Node2D
 @export var head_looker: Node2D
-@export var hitbox: Area2D
-@export var attacker: CollisionShape2D
 
-@export var damage := 10
 @export var non_lethal_damage := 5
 @export var attack_time := 2.0
 @export var attack_height := 20
-
-var intersecting_goobs : Array
 
 #almost identical logic with stompstate, refer there for more detailed comments
 
@@ -43,22 +38,3 @@ func exit():
 	# exit clean up
 	attacker.disabled = true
 	beast.random_target_timer.start()
-
-func hurt_gooblins():
-	#print("KILLLLLL")
-	var counter = damage
-	var fling_counter = non_lethal_damage
-	for goob in intersecting_goobs:
-		if counter > 0 and goob:
-			#print(counter)
-			goob.hurt()
-			counter -= 1
-		if fling_counter > 0 and goob:
-			goob.fling()
-			fling_counter -= 1
-		#if goob.unit_type == Gooblin.GooblinType.SHIELD:
-			#if counter > GooblinUpgrades.shield_health * :
-				#goob.hurt()
-				#counter -= 1
-			#else:
-				

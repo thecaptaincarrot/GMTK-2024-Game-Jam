@@ -1,7 +1,5 @@
 extends GenericState
 
-@export var attacker: CollisionShape2D
-@export var hitbox: Area2D
 @export var leg_target: Node2D
 @export var pull_back_time := 1.0
 @export var kick_time := 0.5
@@ -32,11 +30,6 @@ func exit():
 	attacker.disabled = true
 	beast.random_target_timer.start()
 
-var intersecting_goobs := []
+
 func physics_update(_delta):
 	intersecting_goobs = hitbox.get_overlapping_bodies()
-
-func flingerize_gooblins():
-	#placehlder
-	for goob in intersecting_goobs:
-		goob.fling()
