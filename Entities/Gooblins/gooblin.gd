@@ -19,8 +19,6 @@ enum GooblinType{
 
 @export var x_home = 0
 
-@export var attack_strength = 0.1
-
 @export var attack_cooldown = 3.0
 
 @export var attack_radius = 256.0
@@ -245,7 +243,7 @@ func _jump_trigger():
 
 
 func _scaler_attack_timeout():
-	enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
+	enemy_node.take_damage(GooblinUpgrades.gooblin_attack * GooblinUpgrades.get_scaler_multipler())
 	fling()
 	_anim.play("Fling")
 	_climbing = false
