@@ -204,10 +204,10 @@ func _move_to_target_range(delta:float):
 					_anim.play("Fling")
 	elif(unit_type == Gooblin.GooblinType.SCALER):
 		var difference = get_position().x - path_follower.get_global_position().x
-		if(abs(difference) > 1 && is_on_floor()):
+		if(abs(difference) > 5 && is_on_floor()):
 			_anim.play("Walk")
 			velocity.x -= sign(difference) * move_speed * delta
-		elif(abs(difference) <= 1 && !_climbing):
+		elif(abs(difference) <= 5 && !_climbing):
 			_climbing = true
 		elif(_climbing and !_scaler_attack_started):
 			_anim.play("Climb")

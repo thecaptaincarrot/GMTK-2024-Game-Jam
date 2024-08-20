@@ -133,7 +133,7 @@ scale = Vector2(1, 0.998288)
 shape = SubResource("RectangleShape2D_jmt5r")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
-position = Vector2(-1360, 224)
+position = Vector2(-1380, 432)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource("RectangleShape2D_1u3om")
