@@ -41,7 +41,7 @@ const LAKE_BG = 3
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
 						Vector2(1600,1100),
-						Vector2(1600,900),
+						Vector2(1800,900),
 						Vector2(2000,1100),
 						] 
 
@@ -194,6 +194,7 @@ func _on_beast_died():
 	GooblinUpgrades.gold += gold_earned
 	if(GooblinUpgrades.levels_completed <= active_loaded_level):
 		GooblinUpgrades.levels_completed = active_loaded_level + 1
+	GooblinController.celebrate()
 	VictoryPanel.update_gold_earned(gold_earned)
 	VictoryPanel.show()
 

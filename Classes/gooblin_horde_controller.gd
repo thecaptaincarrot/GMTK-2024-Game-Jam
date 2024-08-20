@@ -91,7 +91,15 @@ func kill_all():
 	kill_list = _shield_gooblins.duplicate()
 	for gooblin in kill_list:
 		gooblin.die()
-	
+
+
+func celebrate():
+	for goob in _basic_gooblins:
+		goob.celebrate()
+	for goob in _scaler_gooblins:
+		goob.celebrate()
+	for goob in _shield_gooblins:
+		goob.celebrate()
 
 
 #this is used the exchange the back lanes for the front

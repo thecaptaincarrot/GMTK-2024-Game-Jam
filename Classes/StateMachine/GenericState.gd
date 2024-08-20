@@ -18,6 +18,7 @@ signal screen_shake #for really cool attacks
 @export var hitbox: Area2D
 @export var attacker: CollisionShape2D
 @export var damage = 10
+@export var scaler_shakeoff_chance = 0.5
 
 #for Kicks
 @export var stomper: CollisionShape2D
@@ -38,6 +39,10 @@ func physics_update(_delta):
 		intersecting_goobs = hitbox.get_overlapping_bodies()
 
 func exit():
+	pass
+
+
+func shake_off_scalers():
 	pass
 
 

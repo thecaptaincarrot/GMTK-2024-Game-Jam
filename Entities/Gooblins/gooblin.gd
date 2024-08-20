@@ -37,7 +37,6 @@ enum GooblinType{
 
 @export var scaler_climb_speed = 1.0
 
-
 @export var path_follower:PathFollow2D
 
 #used to move the velocity back to zero
@@ -54,6 +53,8 @@ var _scaler_attack_timer = Timer.new()
 var _can_attack = true
 
 var _is_dead = false
+
+var celebrating = false
 
 #sprite should be called - Sprite
 @onready var _sprite:Sprite2D = $Sprite
@@ -128,7 +129,7 @@ func _process(delta: float) -> void:
 		#a lerp might be better here. testing will need to be done
 		velocity = velocity.lerp(Vector2(), dampening)
 		
-		if(!_climbing):
+		if(!_climbing or celebrating):
 			#a global request to get local gravity managed in the global settings
 			velocity += get_gravity() * delta
 		
@@ -166,10 +167,20 @@ func die():
 	$Splat.amount = randi_range(10,40)
 	$Splat.emitting = true
 
+
 func fling():
 	_is_being_flung = true
 	_upcoming_fling = fling_vector * 100
+
+
+func celebrate():
+	celebrating = true
 	
+	if _climbing:
+		_climbing = false
+	
+	_anim.play("Victory")
+
 
 func convert_to_basic_gooblin():
 	if(unit_type == GooblinType.SHIELD):
@@ -185,6 +196,9 @@ func _despawn_timeout():
 
 
 func _move_to_target_range(delta:float):
+	if celebrating:
+		return
+
 	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
 		if(enemy_target != null):
 			if(is_on_floor()):
