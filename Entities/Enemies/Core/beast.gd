@@ -23,6 +23,8 @@ class_name Beast extends Node2D
 signal died
 signal enemy_hurt
 signal shake_screen
+signal shake_off_scalers
+
 @export var max_health := 1000.0 #placeholder
 var health = max_health
 @export var blood_color = Color.RED
@@ -91,8 +93,12 @@ func get_gold_value():
 func _on_state_machine_shake_screen():
 	print("Hi")
 	emit_signal("shake_screen")
-	
-	
+
+
+func _on_state_machine_shake_off_scalers(scaler_shakeoff_chance):
+	emit_signal("shake_off_scalers",scaler_shakeoff_chance)
+
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		take_damage(1000000)

@@ -31,6 +31,8 @@ func enter(_msg):
 	await tween.finished
 	
 	flingerize_gooblins()
+	hurt_gooblins()
+	shake_off_scalers()
 	emit_signal("screen_shake")
 	
 	state_machine.change_to_state("IdleState")

@@ -172,6 +172,7 @@ func die():
 func fling():
 	_is_being_flung = true
 	_upcoming_fling = fling_vector * 100
+	$ScalerTimeout.start()
 
 
 func celebrate():
@@ -226,7 +227,8 @@ func _move_to_target_range(delta:float):
 		if(abs(difference) > 5 && is_on_floor()):
 			_anim.play("Walk")
 			velocity.x -= sign(difference) * move_speed * delta
-		elif(abs(difference) <= 5 && !_climbing):
+		elif(abs(difference) <= 5 && !_climbing && $ScalerTimeout.is_stopped()):
+			print("climbing",$ScalerTimeout.is_stopped())
 			_climbing = true
 		elif(_climbing and !_scaler_attack_started):
 			_anim.play("Climb")

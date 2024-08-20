@@ -303,7 +303,7 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_3jw4g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 10, 100, 0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
+"points": PackedVector2Array(0, 0, 0, 0, 8, 66, 0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
 }
 point_count = 5
 
@@ -326,6 +326,7 @@ animation = "idle"
 script = ExtResource("4_skfil")
 animation = "kick"
 hitbox = NodePath("../../HitboxComponent")
+scaler_shakeoff_chance = 0.25
 stomper = NodePath("../../HitboxComponent/Stomper")
 
 [node name="SwingState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]

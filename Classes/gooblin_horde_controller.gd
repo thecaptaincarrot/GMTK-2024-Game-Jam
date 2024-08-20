@@ -184,6 +184,17 @@ func distribute_target_spacing():
 			sindex += 1
 
 
+func shake_off_scalers(shake_off_chance):
+	for goob in _scaler_gooblins:
+		if goob._climbing:
+			var dice_roll = randf_range(0,1.0)
+			if dice_roll <= shake_off_chance:
+				goob._anim.play("Fling")
+				goob._climbing = false
+				goob.path_follower.progress_ratio = 0
+				goob.fling()
+
+
 func _rotate_out_basic():
 	if(_basic_gooblins.size() > 15):
 		var goob = _basic_gooblins.pop_front()

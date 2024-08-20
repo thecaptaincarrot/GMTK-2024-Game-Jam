@@ -13,6 +13,7 @@ region = Rect2(0, 32, 32, 32)
 
 [node name="TrashCan" type="RigidBody2D"]
 collision_layer = 0
+mass = 0.1
 script = ExtResource("1_fjp21")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

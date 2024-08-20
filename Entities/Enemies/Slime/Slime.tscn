@@ -193,6 +193,7 @@ animation = "jump_slime"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
 damage = 4
+scaler_shakeoff_chance = 0.8
 stomper = NodePath("../../HitboxComponent/Attacker")
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("undulator")]

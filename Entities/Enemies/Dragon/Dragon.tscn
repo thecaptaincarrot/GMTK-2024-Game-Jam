@@ -293,6 +293,7 @@ hold_time = 0.5
 stomp_time = 0.2
 animation = "universal_stomp"
 hitbox = NodePath("../../HitboxComponent")
+scaler_shakeoff_chance = 0.75
 stomper = NodePath("../../HitboxComponent/Stomper")
 
 [node name="BiteState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("head_pointer", "head_looker", "jaw_looker", "hitbox", "attacker")]
@@ -304,6 +305,7 @@ attack_height = 750
 animation = "bite"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+scaler_shakeoff_chance = 0.45
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="3" node_paths=PackedStringArray("head_pointer", "head_looker", "jaw_looker")]
 script = ExtResource("4_vppk3")

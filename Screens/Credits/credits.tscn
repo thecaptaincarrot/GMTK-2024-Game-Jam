@@ -421,66 +421,57 @@ offset_top = 2053.0
 offset_right = 1279.0
 offset_bottom = 2330.0
 text = "Music and Sound Effects by:
-Captain Carrot
+antiassailant
 "
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
-[node name="Credit4" type="Label" parent="Credits"]
-offset_top = 2330.0
-offset_right = 1279.0
-offset_bottom = 2607.0
-text = "Additional Sound Effects by:
-antiassailant"
-label_settings = ExtResource("4_muag0")
-horizontal_alignment = 1
-
-[node name="CreditsSprite" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(434, -6.98438)
+[node name="CreditsSprite" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(431, -10)
 animation = &"Scaler"
 frame_progress = 0.75214
 
-[node name="CreditsSprite9" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(365, -5.98438)
+[node name="CreditsSprite9" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(362, -9)
 animation = &"Basic"
 frame_progress = 0.0
 
-[node name="CreditsSprite2" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(532, -5.98438)
+[node name="CreditsSprite2" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(529, -9)
 frame_progress = 0.0
 
-[node name="CreditsSprite3" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(505, -5.98438)
+[node name="CreditsSprite3" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(502, -9)
 animation = &"Basic"
 frame_progress = 0.0
 
-[node name="CreditsSprite4" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(675, -5.98438)
+[node name="CreditsSprite4" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(672, -9)
 animation = &"Scaler"
 frame_progress = 0.0
 
-[node name="CreditsSprite5" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(746, -14.9844)
+[node name="CreditsSprite5" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(743, -18)
 frame_progress = 0.972062
 
-[node name="CreditsSprite6" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(806, -5.98438)
+[node name="CreditsSprite6" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(803, -9)
 animation = &"Basic"
 frame_progress = 0.0
 
-[node name="CreditsSprite7" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(852, -7.98438)
+[node name="CreditsSprite7" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(849, -11)
 frame_progress = 0.972062
 
-[node name="CreditsSprite8" parent="Credits/Credit4" instance=ExtResource("5_cd2n2")]
-position = Vector2(956, -7.98438)
+[node name="CreditsSprite8" parent="Credits/Credit5" instance=ExtResource("5_cd2n2")]
+position = Vector2(953, -11)
 animation = &"Basic"
 frame_progress = 0.0
 
 [node name="Credit6" type="Label" parent="Credits"]
-offset_top = 2607.0
+offset_top = 2282.0
 offset_right = 1279.0
-offset_bottom = 2884.0
+offset_bottom = 2559.0
 text = "Promotional Material and Logo by:
 Uncle Larold"
 label_settings = ExtResource("4_muag0")
@@ -566,9 +557,9 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_kmx06")
 
 [node name="Credit8" type="Label" parent="Credits"]
-offset_top = 2884.0
+offset_top = 2559.0
 offset_right = 1279.0
-offset_bottom = 3161.0
+offset_bottom = 2836.0
 text = "Made in Godot
 "
 label_settings = ExtResource("4_muag0")
@@ -576,28 +567,28 @@ horizontal_alignment = 1
 
 [node name="Credit9" type="Label" parent="Credits"]
 offset_left = 2.0
-offset_top = 3174.0
+offset_top = 2849.0
 offset_right = 1281.0
-offset_bottom = 3451.0
+offset_bottom = 3126.0
 text = "Thanks For Playing!"
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
 [node name="Credit7" type="Label" parent="Credits"]
-offset_top = 3608.0
+offset_top = 3283.0
 offset_right = 1279.0
-offset_bottom = 3885.0
+offset_bottom = 3560.0
 text = "In Loving Memory of Teenie"
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
 [node name="SecretTeenie" type="Sprite2D" parent="Credits"]
-position = Vector2(640, 3860)
+position = Vector2(640, 3535)
 scale = Vector2(0.458333, 0.458333)
 texture = ExtResource("5_rix6k")
 
 [node name="GodotLogo" type="Sprite2D" parent="Credits"]
-position = Vector2(641, 3060)
+position = Vector2(641, 2735)
 scale = Vector2(1.77344, 1.77344)
 texture = ExtResource("6_cwdng")
 

@@ -151,6 +151,7 @@ func load_level(level_index : int):
 	print(BeastNode)
 	BeastNode.enemy_hurt.connect(_on_enemy_hurt)
 	BeastNode.died.connect(_on_beast_died)
+	BeastNode.shake_off_scalers.connect(GooblinController.shake_off_scalers)
 	
 	MaxHealthLabel.text = str(BeastNode.max_health)
 	CurrentHealthLabel.text = str(BeastNode.max_health)
