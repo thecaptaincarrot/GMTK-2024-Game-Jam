@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1fpqglobsqbu"]
+[gd_scene load_steps=19 format=3 uid="uid://d1fpqglobsqbu"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Knight/knight.gd" id="1_4enup"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_p11pc"]
@@ -93,6 +93,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_let37"]
 radius = 45.18
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_aprel"]
+radius = 45.0
+
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_vlpu2"]
 target_nodepath = NodePath("../IKTargets/armTarget")
 tip_nodepath = NodePath("hip/body/shoulder/arm")
@@ -181,9 +184,9 @@ disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="1"]
-position = Vector2(-133, 24)
+position = Vector2(-133, 73)
 scale = Vector2(0.999999, 0.999999)
-shape = SubResource("CircleShape2D_let37")
+shape = SubResource("CircleShape2D_aprel")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
@@ -222,12 +225,11 @@ update_scale = false
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-0.999999, -54)
 rotation = -0.0403169
-scale = Vector2(1, 1)
 rest = Transform2D(0.998003, 0.0631737, -0.0631737, 0.998003, -0.999999, -54)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
-position = Vector2(-48.0819, 1.06279)
+position = Vector2(-48.0825, 1.0628)
 rotation = 0.451055
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.984793, 0.173713, -0.173713, 0.984793, -48.0822, 1.06243)
@@ -262,7 +264,7 @@ region_rect = Rect2(346, 844, 146, 395)
 z_index = -45
 position = Vector2(-140.65, -43.8956)
 rotation = 0.410738
-scale = Vector2(0.241619, 0.241619)
+scale = Vector2(0.241621, 0.241621)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)

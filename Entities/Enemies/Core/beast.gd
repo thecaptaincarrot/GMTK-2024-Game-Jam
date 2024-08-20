@@ -22,8 +22,8 @@ class_name Beast extends Node2D
 # just need to stop the timer in the state code and play the death animation
 signal died
 signal enemy_hurt
-@export var max_health := 1000.0 #placeholder
-var health = max_health
+@export var max_health = 1000.0 #placeholder
+var health = 0
 
 @export var gold_value = 10000.0 #how much you earn for defeating it
 #You earn a weighted percentage of 50% of total for dealing damage
@@ -37,6 +37,7 @@ var current_target: Gooblin
 signal took_damage
 
 func _ready():
+	health = max_health
 	state_machine.state_changed.connect(_fsm_state_changed)
 	animation_player.animation_finished.connect(_on_animation_finished)
 	call_deferred("acquire_targets")
@@ -63,6 +64,12 @@ func take_damage(dmg):
 
 func die():
 	died.emit()
+
+func get_lunge_point():
+	return $LungePoint
+
+func get_climb_path():
+	return $ScalerPath
 
 # acquires the horde controller's basic gooblins by way of parent node
 # note: there isn't a specific reason it's basic gooblins only, it was arbitrary

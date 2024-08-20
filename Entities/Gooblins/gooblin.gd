@@ -62,8 +62,6 @@ var _is_dead = false
 
 @onready var _anim:AnimationPlayer = $AnimationPlayer
 
-
-
 var _upcoming_fling = Vector2()
 
 var _is_at_home = false
