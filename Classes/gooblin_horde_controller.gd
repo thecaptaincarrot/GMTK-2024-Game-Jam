@@ -5,6 +5,8 @@ class_name GooblinHordeController
 signal gooblin_extinction
 
 #references
+@export var gooblin_label : Label
+
 @export var enemy_node:Node2D
 
 @export var horde_target:Node2D
@@ -24,7 +26,6 @@ signal gooblin_extinction
 @export var spawn_catapult_count = 0
 
 @export var rotation_rate = 1.0
-
 
 @onready var gooblin_scene = preload("res://Entities/Gooblins/gooblin.tscn")
 
@@ -78,6 +79,19 @@ func spawn_gooblins():
 		spawn_scaler_gooblin(spawn_pos)
 
 
+func kill_all():
+	print(len(_basic_gooblins))
+	var kill_list = _basic_gooblins.duplicate()
+	for gooblin in kill_list:
+		gooblin.die()
+	kill_list = _scaler_gooblins.duplicate()
+	for gooblin in kill_list:
+		gooblin.die()
+	kill_list = _shield_gooblins.duplicate()
+	for gooblin in kill_list:
+		gooblin.die()
+	
+
 
 #this is used the exchange the back lanes for the front
 func _setup_horde_rotation_lines():
@@ -91,6 +105,7 @@ func _setup_horde_rotation_lines():
 func _process(delta: float) -> void:
 	if active:
 		distribute_target_spacing()
+		gooblin_label.text = str(get_living_gooblins())
 		if gooblins_alive:
 			if get_living_gooblins() <= 0:
 				gooblins_alive = false

@@ -1,5 +1,6 @@
 extends Panel
 
+@export var click_sound : AudioStreamPlayer
 
 #label references
 @export var available_gooblins_label : Label

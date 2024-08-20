@@ -3,6 +3,10 @@ extends Panel
 #Signals
 signal army_composition_update
 
+#Audio Stream Reference
+@export var purchase_sound : AudioStreamPlayer
+@export var click_sound : AudioStreamPlayer
+
 #label references
 @export var total_gooblin_label : Label
 @export var gold_label : Label
@@ -118,13 +122,21 @@ func update_all():
 func _on_one_gooblin_button_pressed():
 	if GooblinUpgrades.gold_purchase(10):
 		GooblinUpgrades.gooblin_count += 1
-	update_all()
+		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
+
 
 
 func _on_ten_gooblin_button_pressed():
 	if GooblinUpgrades.gold_purchase(100):
 		GooblinUpgrades.gooblin_count += 10
-	update_all()
+		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
+
 
 #Basic Goolbin Upgrades
 
@@ -132,24 +144,40 @@ func _on_basic_gooblin_attack_up_button_pressed():
 	if GooblinUpgrades.gold_purchase(GooblinUpgrades.get_gooblin_attack_upgrade_cost()):
 		GooblinUpgrades.gooblin_attack += 1
 		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
+
 
 
 func _on_basic_gooblin_speed_button_pressed():
 	if GooblinUpgrades.gold_purchase(GooblinUpgrades.get_gooblin_speed_upgrade_cost()):
 		GooblinUpgrades.gooblin_speed_upgrade_level += 1
 		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
+
 
 #Shield Gooblin Upgrades
 func _on_shield_purchase_button_pressed():
 	if GooblinUpgrades.gold_purchase(cost_per_shield):
 		GooblinUpgrades.shields += 1
 		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
+
 
 
 func _on_shield_upgrade_button_pressed():
 	if GooblinUpgrades.gold_purchase(GooblinUpgrades.get_gooblin_shield_upgrade_cost()):
 		GooblinUpgrades.shield_health += 1
 		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
+
 
 
 #Scaler Gooblin Upgrades
@@ -159,16 +187,24 @@ func _on_hook_purchase_button_pressed():
 	if GooblinUpgrades.gold_purchase(cosst_per_hook):
 		GooblinUpgrades.hooks += 1
 		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
 
 
 func _on_mult_up_button_pressed():
 	if GooblinUpgrades.gold_purchase(GooblinUpgrades.get_gooblin_scaler_mult_upgrade_cost()):
 		GooblinUpgrades.damage_multiplier_level += 1
 		update_all()
-
+		purchase_sound.play()
+	else:
+		click_sound.play()
 
 
 func _on_climb_up_button_pressed():
 	if GooblinUpgrades.gold_purchase(GooblinUpgrades.get_gooblin_scaler_climb_speed_upgrade_cost()):
 		GooblinUpgrades.climb_speed_level += 1
 		update_all()
+		purchase_sound.play()
+	else:
+		click_sound.play()
