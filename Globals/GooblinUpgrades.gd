@@ -33,7 +33,7 @@ var shield_gooblins = 0
 var climb_gooblins = 0
 var catapult_gooblins = 0
 
-var gold = 0
+var gold = 1000
 
 #equipment totals:
 var shields = 0
@@ -53,7 +53,7 @@ var shield_health = 1
 var damage_multiplier_level = 0
 var base_damage_multiplier = 4.0
 
-var base_climb_speed = 100.0
+var base_climb_speed = 25.0
 var climb_speed_level = 0
 var climb_speed_increment = 25.0
 var shake_off_chance = 0.50 #Chance to be shaken off when an enemy attacks

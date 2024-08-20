@@ -46,5 +46,6 @@ func _on_shake_timer_timeout():
 
 
 func shake_screen():
+	offset = Vector2(0,0)
 	shaking = true
 	$ShakeTimer.start()

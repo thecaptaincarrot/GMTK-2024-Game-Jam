@@ -237,7 +237,7 @@ func _move_to_target_range(delta:float):
 			_anim.play("Climb")
 			set_position(path_follower.get_global_position())
 			if(path_follower.progress_ratio < 1.0):
-				path_follower.progress += scaler_climb_speed * 50 * delta
+				path_follower.progress += scaler_climb_speed * delta
 		else:
 			pass
 
