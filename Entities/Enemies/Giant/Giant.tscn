@@ -273,7 +273,6 @@ rest = Transform2D(1, 0, 0, 1, -13.8633, 79.8489)
 
 position = Vector2(-7.62939e-06, -118)
 rotation = -0.0403169
-
 rest = Transform2D(0.999187, -0.0403059, 0.0403059, 0.999187, 0, -118)
 metadata/_local_pose_override_enabled_ = true
 
@@ -282,7 +281,6 @@ position = Vector2(-104.095, 17.6113)
 
 rotation = 0.447046
 scale = Vector2(1, 1)
-
 rest = Transform2D(0.979757, 0.200205, -0.200205, 0.979757, -104.096, 17.6109)
 metadata/_local_pose_override_enabled_ = true
 
@@ -327,7 +325,6 @@ z_index = -45
 position = Vector2(-187.857, -177.936)
 rotation = 1.02353
 scale = Vector2(0.390279, 0.390279)
-
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)

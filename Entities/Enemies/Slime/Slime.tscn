@@ -44,6 +44,7 @@ joint_data/2/override_defaults = false
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_vq10s"]
 target_nodepath = NodePath("../IKTargets/undulator1/undulator3")
 jiggle_data_chain_length = 1
+stiffness = 0.4
 joint_data/0/bone_index = 16
 joint_data/0/bone2d_node = NodePath("base/skullbase/skull")
 joint_data/0/override_defaults = false
@@ -123,6 +124,8 @@ script = ExtResource("4_5l287")
 return_hint = NodePath("../../ReturnHint")
 animation = ""
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 4
+stomper = NodePath("../../HitboxComponent/Attacker")
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("undulator")]
 script = ExtResource("5_y3egq")
@@ -289,9 +292,8 @@ rest = Transform2D(0.983059, 0.183287, -0.183287, 0.983059, 24, -107)
 
 [node name="skull" type="Bone2D" parent="Beast/SkeletonComponent/base/skullbase"]
 position = Vector2(-56.3515, -100.372)
-rotation = -0.838678
-scale = Vector2(0.999933, 0.999933)
-
+rotation = -0.015143
+scale = Vector2(0.999932, 0.999932)
 rest = Transform2D(0.668401, -0.74371, 0.74371, 0.668401, -56.3515, -100.372)
 auto_calculate_length_and_angle = false
 length = 50.0
@@ -449,7 +451,6 @@ region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
 position = Vector2(2.10466, -114.165)
-
 rotation = -0.654349
 scale = Vector2(0.999932, 0.999932)
 texture = ExtResource("4_hw4sg")

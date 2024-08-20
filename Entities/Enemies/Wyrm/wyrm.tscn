@@ -287,7 +287,6 @@ remote_path = NodePath("../../../../../../../../../../../Sprites/neck9")
 position = Vector2(-113.497, 25.2645)
 
 rotation = 0.296282
-
 scale = Vector2(0.999947, 0.999947)
 rest = Transform2D(0.956367, 0.291998, -0.291998, 0.956367, -113.502, 25.2657)
 metadata/_local_pose_override_enabled_ = true
@@ -320,7 +319,6 @@ rest = Transform2D(1, 0, 0, 1, -108, 11)
 position = Vector2(-705.991, -561.837)
 rotation = 0.193934
 scale = Vector2(0.99996, 0.99996)
-
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(297, 533, 314, 268)
@@ -330,7 +328,6 @@ z_index = -50
 position = Vector2(20.7604, -82.4257)
 rotation = 1.81753
 scale = Vector2(0.999999, 0.999999)
-
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
@@ -340,7 +337,6 @@ z_index = -49
 position = Vector2(36.7968, -215.829)
 rotation = 1.61579
 scale = Vector2(1, 1)
-
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
@@ -368,7 +364,6 @@ z_index = -46
 
 position = Vector2(-79.1027, -595.322)
 rotation = 0.978352
-
 scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("4_yb3rx")
 region_enabled = true

@@ -267,6 +267,7 @@ libraries = {
 }
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
+
 position = Vector2(-504.12, 317.999)
 rotation = 2.88471
 scale = Vector2(0.999931, 0.999931)
@@ -286,8 +287,10 @@ modification_stack = SubResource("SkeletonModificationStack2D_jq6pb")
 [node name="body1" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
 position = Vector2(0, -131)
 
+
 rotation = -0.335292
 scale = Vector2(0.999999, 0.999999)
+
 rest = Transform2D(0.9989, -0.046881, 0.046881, 0.9989, 0, -131)
 metadata/_local_pose_override_enabled_ = true
 
