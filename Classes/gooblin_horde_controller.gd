@@ -146,7 +146,7 @@ func distribute_target_spacing():
 	
 		var bindex = 0
 		for bg in _basic_gooblins:
-			bg.target_range = horde_range + (((gooblin_size.x / 8) / (_basic_gooblins.size() * .01)) * bindex)
+			bg.target_range = horde_range + (((gooblin_size.x / 2)) * bindex)
 			bg.x_home = horde_target.get_global_position().x - bg.target_range
 			bindex += 1
 
@@ -161,9 +161,9 @@ func distribute_target_spacing():
 
 
 func _rotate_out_basic():
-	if(_basic_gooblins.size() > 1):
+	if(_basic_gooblins.size() > 15):
 		var goob = _basic_gooblins.pop_front()
-		_basic_gooblins.append(goob)
+		_basic_gooblins.insert(5, goob)
 
 
 func _basic_gooblin_died(gooblin):

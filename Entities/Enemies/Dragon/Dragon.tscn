@@ -205,6 +205,7 @@ libraries = {
 "": SubResource("AnimationLibrary_fhkft")
 }
 
+[node name="HitboxComponent" parent="Beast" index="3"]
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
 position = Vector2(-403.59, 271.787)
 rotation = 2.88471
@@ -218,6 +219,9 @@ position = Vector2(-390, 300)
 shape = SubResource("CircleShape2D_13ave")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
+
+[node name="HurtboxComponent" parent="Beast" index="4" node_paths=PackedStringArray("sprites")]
+sprites = NodePath("../Sprites")
 
 [node name="SkeletonComponent" parent="Beast" index="5"]
 modification_stack = SubResource("SkeletonModificationStack2D_jq6pb")
