@@ -33,7 +33,7 @@ var shield_gooblins = 0
 var climb_gooblins = 0
 var catapult_gooblins = 0
 
-var gold = 10000
+var gold = 0
 
 #equipment totals:
 var shields = 0

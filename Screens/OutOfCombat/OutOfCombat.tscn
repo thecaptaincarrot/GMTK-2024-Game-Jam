@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://bpn5os62xeqhx"]
+[gd_scene load_steps=22 format=3 uid="uid://bpn5os62xeqhx"]
 
 [ext_resource type="Script" path="res://Screens/OutOfCombat/out_of_combat.gd" id="1_2xjpg"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/shop_panel.gd" id="1_tqmy8"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/army_comp_panel.gd" id="3_24mlq"]
 [ext_resource type="Texture2D" uid="uid://c0spvpuiu32cn" path="res://Textures/Entities/GoblinScaler.png" id="4_3aia6"]
 [ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="4_414d3"]
+[ext_resource type="Texture2D" uid="uid://b00ndm2k6r6id" path="res://Textures/Entities/GoblinShield.png" id="4_ejlmj"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/army_display.gd" id="4_qmd5j"]
 [ext_resource type="Texture2D" uid="uid://du17l32qafwjf" path="res://Textures/Map/mapdry.png" id="7_3jfk2"]
 [ext_resource type="Script" path="res://Screens/OutOfCombat/map_panel.gd" id="7_cgvmn"]
@@ -23,6 +24,10 @@ gradient = SubResource("Gradient_oratd")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_56sx3"]
 atlas = ExtResource("4_414d3")
+region = Rect2(0, 10, 32, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl0kn"]
+atlas = ExtResource("4_ejlmj")
 region = Rect2(0, 10, 32, 22)
 
 [sub_resource type="LabelSettings" id="LabelSettings_iwusg"]
@@ -60,7 +65,6 @@ grow_vertical = 2
 texture = SubResource("GradientTexture1D_4vn6m")
 
 [node name="ShopPanel" type="Panel" parent="." node_paths=PackedStringArray("total_gooblin_label", "gold_label", "gooblin_current_attack_label", "gooblin_next_attack_label", "gooblin_current_speed_label", "gooblin_next_speed_label", "current_shields_label", "gooblin_current_shield_label", "gooblin_next_shield_label", "current_hooks_label", "gooblin_current_climb_speed_label", "gooblin_next_climb_speed_label", "gooblin_damage_multiplier_label", "gooblin_next_damage_multiplier_label", "one_gooblin_button", "ten_gooblin_button", "gooblin_attack_upgrade_button", "gooblin_speed_upgrade_button", "purchase_shield_button", "shield_health_upgrade_button", "purchase_hook_button", "scaler_mult_upgrade_button", "scaler_climb_speed_upgrade_button")]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -295,7 +299,7 @@ horizontal_alignment = 1
 [node name="GooblinTexture" type="TextureRect" parent="ShopPanel/UpgradesHbox/ShieldUpgrades"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = SubResource("AtlasTexture_56sx3")
+texture = SubResource("AtlasTexture_hl0kn")
 expand_mode = 1
 stretch_mode = 5
 
@@ -509,6 +513,7 @@ layout_mode = 2
 text = "9999 Gold"
 
 [node name="PlanningMenus" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
