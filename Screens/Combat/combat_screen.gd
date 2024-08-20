@@ -4,6 +4,11 @@ signal ReturnFromCombat
 
 
 #references
+@export var music_player : AudioStreamPlayer
+@export var click_player : AudioStreamPlayer
+@export var victory_player : AudioStreamPlayer
+@export var defeat_player : AudioStreamPlayer
+
 @export var camera : Camera2D
 
 @export var GooblinController : GooblinHordeController
@@ -14,6 +19,7 @@ var BeastNode : Beast
 @export var HealthBar : ProgressBar
 @export var CurrentHealthLabel : Label
 @export var MaxHealthLabel : Label
+@export var Canvas_Layer : CanvasLayer
 
 @export var DefeatPanel :Panel
 
@@ -76,8 +82,9 @@ func load_level(level_index : int):
 	#GooblinController.climb_target = BeastNode.get_climb_target()
 	GooblinController.climb_target = $TEST_CLIMB_PATH
 	
-	HealthBar.show()
+	Canvas_Layer.show()
 	GooblinController.reset()
+	music_player.play()
 
 
 func _on_enemy_hurt():
@@ -94,12 +101,20 @@ func _on_gooblin_horde_controller_gooblin_extinction():
 	GooblinUpgrades.gold += gold_earned
 	
 	DefeatPanel.update_gold_earned(gold_earned)
+	defeat_player.play()
 	$CanvasLayer/DefeatPanel.show()
 
 
 func _on_return_button_pressed():
 	GooblinController.end_level()
 	Enemy.queue_free()
-	HealthBar.hide()
+	Canvas_Layer.hide()
 	DefeatPanel.hide()
+	music_player.stop()
+	click_player.play()
 	emit_signal("ReturnFromCombat")
+
+
+func _on_retreat_button_pressed():
+	click_player.play()
+	GooblinController.kill_all()

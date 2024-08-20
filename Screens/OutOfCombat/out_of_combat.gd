@@ -2,6 +2,8 @@ extends Control
 
 signal go_to_combat
 
+@export var click_sound : AudioStreamPlayer
+
 @export var background_texture : TextureRect
 
 @export var background_scroll_divider = 10
@@ -51,6 +53,7 @@ func reset_to_default():
 
 
 func _on_to_combat_button_pressed() -> void:
+	click_sound.play()
 	emit_signal("go_to_combat",level_selection)
 
 
@@ -58,11 +61,13 @@ func _on_shop_button_pressed():
 	planning_menus.hide()
 	shop_control.update_all()
 	shop_control.show()
+	click_sound.play()
 
 
 func _on_return_button_pressed():
 	planning_menus.show()
 	shop_control.hide()
+	click_sound.play()
 
 
 func _on_map_panel_level_changed(new_level):

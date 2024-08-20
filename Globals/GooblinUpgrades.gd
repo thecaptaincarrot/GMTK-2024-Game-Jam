@@ -33,7 +33,7 @@ var shield_gooblins = 0
 var climb_gooblins = 0
 var catapult_gooblins = 0
 
-var gold = 0
+var gold = 1000
 
 #equipment totals:
 var shields = 0
@@ -73,6 +73,9 @@ func check_gold(value):
 func gold_purchase(value):
 	if gold >= value:
 		gold -= value
+		var new_audio_stream = AudioStreamPlayer.new()
+		new_audio_stream.stream = load("res://SFX/purchase.mp3")
+		new_audio_stream.play()
 		return true
 	return false
 

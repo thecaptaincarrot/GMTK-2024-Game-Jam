@@ -2,6 +2,8 @@ extends Panel
 
 signal level_changed
 
+@export var click_sound : AudioStreamPlayer
+
 @export var map_line_0 : TextureRect
 @export var map_line_1 : TextureRect
 @export var map_line_2 : TextureRect
@@ -50,6 +52,7 @@ func _on_level_button_0_pressed():
 	level_button_3.button_pressed = false
 	level_button_4.button_pressed = false
 	emit_signal("level_changed",0)
+	click_sound.play()
 
 func _on_level_button_1_pressed():
 	level_button_0.button_pressed = false
@@ -58,6 +61,7 @@ func _on_level_button_1_pressed():
 	level_button_3.button_pressed = false
 	level_button_4.button_pressed = false
 	emit_signal("level_changed",1)
+	click_sound.play()
 
 func _on_level_button_2_pressed():
 	level_button_0.button_pressed = false
@@ -66,6 +70,7 @@ func _on_level_button_2_pressed():
 	level_button_3.button_pressed = false
 	level_button_4.button_pressed = false
 	emit_signal("level_changed",2)
+	click_sound.play()
 
 
 func _on_level_button_3_pressed():
@@ -75,6 +80,7 @@ func _on_level_button_3_pressed():
 	level_button_3.button_pressed = true
 	level_button_4.button_pressed = false
 	emit_signal("level_changed",3)
+	click_sound.play()
 
 
 func _on_level_button_4_pressed():
@@ -84,3 +90,4 @@ func _on_level_button_4_pressed():
 	level_button_3.button_pressed = false
 	level_button_4.button_pressed = true
 	emit_signal("level_changed",4)
+	click_sound.play()
