@@ -14,6 +14,7 @@ extends Node
 signal state_changed(to: String)
 var previous_state: Node
 
+@export var on = true
 
 ## Change this variable to log every state change in output
 @export var log_changes := true
@@ -24,45 +25,46 @@ func _ready():
 	for n in get_children():
 		n.screen_shake.connect(get_parent()._on_state_machine_shake_screen)
 	
-	if initial_state:
+	if initial_state and on:
 		# swap into the the default state first thing
 		call_deferred("change_to_state", initial_state)
 
 
 func _unhandled_input(event: InputEvent):
-	if initial_state:
+	if initial_state and on:
 		current_state.handle_input(event)
 
 
 func _process(delta: float):
-	if initial_state:
+	if initial_state and on:
 		current_state.update(delta)
 
 
 func _physics_process(delta: float):
-	if initial_state:
+	if initial_state and on:
 		current_state.physics_update(delta)
 
 
 func change_to_state(state: String, msg = {}):
-	# Log previous state first
-	previous_state = current_state
+	if on:
+		# Log previous state first
+		previous_state = current_state
 
-	# Call exit function on previous state
-	#if an error is thrown out here it's probably because the initial_state wasn't set properly
-	current_state.exit()
+		# Call exit function on previous state
+		#if an error is thrown out here it's probably because the initial_state wasn't set properly
+		current_state.exit()
 
-	# Swap into new state (pass the NODE NAME of the state you want to change to)
-	if find_child(state) == null:
-		prints('"', state, '"', "DOES NOT EXIST" )
-		return
-	else:
-		current_state = get_node(state)
-	
-	# Call enter function on new state, pass a message to inform new state if needed (the message can be anything)
-	current_state.enter(msg)
+		# Swap into new state (pass the NODE NAME of the state you want to change to)
+		if find_child(state) == null:
+			prints('"', state, '"', "DOES NOT EXIST" )
+			return
+		else:
+			current_state = get_node(state)
+		
+		# Call enter function on new state, pass a message to inform new state if needed (the message can be anything)
+		current_state.enter(msg)
 
-	# Emit signal
-	state_changed.emit(state)
-	if log_changes:
-		prints(owner.get_parent().name, "changed to", current_state.name)
+		# Emit signal
+		state_changed.emit(state)
+		if log_changes:
+			prints(owner.get_parent().name, "changed to", current_state.name)

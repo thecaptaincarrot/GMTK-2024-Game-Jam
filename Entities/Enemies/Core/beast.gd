@@ -91,3 +91,8 @@ func get_gold_value():
 func _on_state_machine_shake_screen():
 	print("Hi")
 	emit_signal("shake_screen")
+	
+	
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		take_damage(1000000)
