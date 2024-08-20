@@ -24,6 +24,7 @@ var previous_state: Node
 func _ready():
 	for n in get_children():
 		n.screen_shake.connect(get_parent()._on_state_machine_shake_screen)
+		n.shake_off.connect(get_parent()._on_state_machine_shake_off_scalers)
 	
 	if initial_state and on:
 		# swap into the the default state first thing

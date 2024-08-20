@@ -21,6 +21,7 @@ func enter(msg):
 	## KILL
 	hurt_gooblins()
 	flingerize_gooblins()
+	shake_off_scalers()
 	emit_signal("screen_shake")
 	
 	# pass both the position and attack time to the stagger state so it can get up properly

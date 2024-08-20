@@ -41,7 +41,7 @@ const LAKE_BG = 3
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
 						Vector2(1600,1100),
-						Vector2(1600,900),
+						Vector2(1900,900),
 						Vector2(2000,1100),
 						] 
 
@@ -151,6 +151,7 @@ func load_level(level_index : int):
 	print(BeastNode)
 	BeastNode.enemy_hurt.connect(_on_enemy_hurt)
 	BeastNode.died.connect(_on_beast_died)
+	BeastNode.shake_off_scalers.connect(GooblinController.shake_off_scalers)
 	
 	MaxHealthLabel.text = str(BeastNode.max_health)
 	CurrentHealthLabel.text = str(BeastNode.max_health)
@@ -187,17 +188,23 @@ func _on_gooblin_horde_controller_gooblin_extinction():
 	GooblinUpgrades.gold += gold_earned
 	GooblinController.active = false
 	DefeatPanel.update_gold_earned(gold_earned)
+	defeat_player.play()
 	DefeatPanel.show()
+
 
 func _on_beast_died():
 	var gold_earned = BeastNode.get_gold_value()
 	GooblinUpgrades.gold += gold_earned
 	if(GooblinUpgrades.levels_completed <= active_loaded_level):
 		GooblinUpgrades.levels_completed = active_loaded_level + 1
+	GooblinController.celebrate()
+	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
 	VictoryPanel.show()
 
+
 func _on_return_button_pressed():
+	music_player.stop()
 	GooblinController.end_level()
 	Enemy.queue_free()
 	Canvas_Layer.hide()

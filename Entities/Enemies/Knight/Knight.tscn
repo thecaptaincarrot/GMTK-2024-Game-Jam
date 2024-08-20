@@ -259,8 +259,9 @@ _data = {
 radius = 32.0
 height = 124.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_let37"]
-radius = 45.18
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q14qj"]
+radius = 20.5794
+height = 94.0012
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_vlpu2"]
 target_nodepath = NodePath("../IKTargets/armTarget")
@@ -303,9 +304,9 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_3jw4g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 10, 100, 0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
+"points": PackedVector2Array(0, 0, 0, 0, 9, 56, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
 }
-point_count = 5
+point_count = 4
 
 [node name="Knight" type="Node2D"]
 script = ExtResource("1_4enup")
@@ -326,6 +327,7 @@ animation = "idle"
 script = ExtResource("4_skfil")
 animation = "kick"
 hitbox = NodePath("../../HitboxComponent")
+scaler_shakeoff_chance = 0.25
 stomper = NodePath("../../HitboxComponent/Stomper")
 
 [node name="SwingState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
@@ -355,7 +357,7 @@ debug_color = Color(0.5, 0, 0, 0.196078)
 position = Vector2(-38.4664, 99.4209)
 rotation = 0.148331
 scale = Vector2(0.999987, 0.999987)
-shape = SubResource("CircleShape2D_let37")
+shape = SubResource("CapsuleShape2D_q14qj")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
@@ -427,6 +429,7 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
+
 position = Vector2(-137.996, -34.0025)
 rotation = 0.23782
 scale = Vector2(0.241667, 0.241667)

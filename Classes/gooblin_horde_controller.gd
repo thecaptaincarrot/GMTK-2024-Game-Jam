@@ -91,7 +91,15 @@ func kill_all():
 	kill_list = _shield_gooblins.duplicate()
 	for gooblin in kill_list:
 		gooblin.die()
-	
+
+
+func celebrate():
+	for goob in _basic_gooblins:
+		goob.celebrate()
+	for goob in _scaler_gooblins:
+		goob.celebrate()
+	for goob in _shield_gooblins:
+		goob.celebrate()
 
 
 #this is used the exchange the back lanes for the front
@@ -176,6 +184,17 @@ func distribute_target_spacing():
 			sindex += 1
 
 
+func shake_off_scalers(shake_off_chance):
+	for goob in _scaler_gooblins:
+		if goob._climbing:
+			var dice_roll = randf_range(0,1.0)
+			if dice_roll <= shake_off_chance:
+				goob._anim.play("Fling")
+				goob._climbing = false
+				goob.path_follower.progress_ratio = 0
+				goob.fling()
+
+
 func _rotate_out_basic():
 	if(_basic_gooblins.size() > 15):
 		var goob = _basic_gooblins.pop_front()
@@ -203,6 +222,8 @@ func _on_gooblin_changed(from_type, to_type, gooblin):
 			_shield_gooblins.erase(gooblin)
 			#push it to the front to they run up to the front line
 			_basic_gooblins.push_front(gooblin)
+			gooblin.died.disconnect(_shield_gooblin_died)
+			gooblin.died.connect(_basic_gooblin_died)
 
 
 func get_basic_gooblins():
