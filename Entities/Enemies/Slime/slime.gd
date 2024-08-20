@@ -2,7 +2,11 @@ extends Node2D
 
 @onready var enemy = $Beast
 @onready var animation_player: AnimationPlayer = $Beast/AnimationPlayer
+@onready var skeleton: Skeleton2D = $Beast/SkeletonComponent
+
 @export var horde_controller: GooblinHordeController
+
+
 var target_list: Array
 
 @export var bullit_number := 4
@@ -16,6 +20,10 @@ func _ready() -> void:
 	enemy.died.connect(die)
 
 	enemy.took_damage.connect(_spawn_bullits)
+	
+	var timer = get_tree().create_timer(1)
+	await timer.timeout
+	skeleton.get_modification_stack().enabled = true
 
 func reacquire_targets():
 	target_list = horde_controller.get_basic_gooblins()

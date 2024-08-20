@@ -19,7 +19,7 @@ func enter(msg):
 	tween = get_tree().create_tween()
 	# funky position code, possibly needs looking at, "msg" is the x_target decided on in the IdleState loop
 	# i advise turning on the single hidden Sprite2D down in IKTargets to see where the head is trying to go
-	tween.tween_property(head_pointer, "global_position", Vector2(msg, -attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(head_pointer, "global_position", Vector2(msg, attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
 	await tween.finished
 	
 	## KILL
