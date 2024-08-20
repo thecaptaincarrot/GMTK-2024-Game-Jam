@@ -83,7 +83,7 @@ const ENEMY_REWARD = [100,
 
 const BACKGROUND = [ FIELD_BG,
 					 FIELD_BG,
-					 FIELD_BG,
+					 CAVE_BG,
 					 DRY_BG,
 					 CAVE_BG
 	
@@ -92,7 +92,7 @@ const BACKGROUND = [ FIELD_BG,
 
 const FLOOR = [0,
 				0,
-				0,
+				1,
 				0,
 				1
 				]

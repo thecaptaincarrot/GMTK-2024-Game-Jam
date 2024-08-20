@@ -44,6 +44,7 @@ joint_data/2/override_defaults = false
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_vq10s"]
 target_nodepath = NodePath("../IKTargets/undulator1/undulator3")
 jiggle_data_chain_length = 1
+stiffness = 0.4
 joint_data/0/bone_index = 16
 joint_data/0/bone2d_node = NodePath("base/skullbase/skull")
 joint_data/0/override_defaults = false
@@ -105,10 +106,12 @@ modifications/7 = SubResource("SkeletonModification2DLookAt_nqb65")
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
+projectile_damage_threshold = 10.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
 min_retarget_time = 4.0
 max_retarget_time = 5.0
+attack_chance = 4
 blood_color = Color(0.447636, 0.24912, 0.374506, 1)
 
 [node name="StateMachine" parent="Beast" index="1"]
@@ -118,11 +121,16 @@ initial_state = NodePath("IdleState")
 script = ExtResource("3_wfgqw")
 animation = ""
 
-[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "attacker")]
+[node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("return_hint", "animation_player", "slime_node", "hitbox", "attacker", "stomper")]
 script = ExtResource("4_5l287")
 return_hint = NodePath("../../ReturnHint")
+animation_player = NodePath("../../AnimationPlayer")
+slime_node = NodePath("../../..")
 animation = ""
+hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 4
+stomper = NodePath("../../HitboxComponent/Attacker")
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("undulator")]
 script = ExtResource("5_y3egq")
@@ -286,8 +294,8 @@ rest = Transform2D(0.983059, 0.183287, -0.183287, 0.983059, 24, -107)
 
 [node name="skull" type="Bone2D" parent="Beast/SkeletonComponent/base/skullbase"]
 position = Vector2(-56.3515, -100.372)
-rotation = -0.837118
-scale = Vector2(0.999933, 0.999933)
+rotation = -0.015143
+scale = Vector2(0.999932, 0.999932)
 rest = Transform2D(0.668401, -0.74371, 0.74371, 0.668401, -56.3515, -100.372)
 auto_calculate_length_and_angle = false
 length = 50.0
@@ -445,8 +453,8 @@ region_enabled = true
 region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
-position = Vector2(2.00931, -114.151)
-rotation = -0.653413
+position = Vector2(2.10466, -114.165)
+rotation = -0.654349
 scale = Vector2(0.999932, 0.999932)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -473,5 +481,7 @@ position = Vector2(0, -112)
 [node name="ReturnHint" type="Node2D" parent="Beast"]
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_for_jump"]
+[connection signal="jump" from="Beast/StateMachine/JumpState" to="." method="_on_jump_state_jump"]
+[connection signal="jump_over" from="Beast/StateMachine/JumpState" to="." method="_on_jump_state_jump_over"]
 
 [editable path="Beast"]
