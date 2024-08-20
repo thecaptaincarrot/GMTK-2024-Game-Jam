@@ -4,7 +4,7 @@ extends GenericState
 @export var head_looker: Node2D
 
 @export var non_lethal_damage := 5
-@export var attack_time := 2.0
+@export var attack_time := 0.5
 @export var attack_height := 20
 
 #almost identical logic with stompstate, refer there for more detailed comments
@@ -19,14 +19,17 @@ func enter(msg):
 	tween = get_tree().create_tween()
 	# funky position code, possibly needs looking at, "msg" is the x_target decided on in the IdleState loop
 	# i advise turning on the single hidden Sprite2D down in IKTargets to see where the head is trying to go
-	tween.tween_property(head_pointer, "global_position", Vector2(msg, -attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
+
+	tween.tween_property(head_pointer, "global_position", Vector2(msg, attack_height), attack_time).set_trans(Tween.TRANS_EXPO)
+
 	await tween.finished
 	
 	## KILL
 	hurt_gooblins()
+	emit_signal("screen_shake")
 	
 	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", prev_position, attack_time/1.5).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(head_pointer, "global_position", prev_position, attack_time*2).set_trans(Tween.TRANS_ELASTIC)
 	await tween.finished
 	
 	state_machine.change_to_state("IdleState")
