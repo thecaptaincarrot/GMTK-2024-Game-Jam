@@ -60,8 +60,8 @@ func flingerize_gooblins():
 
 
 func hurt_gooblins():
-	if hit_sound_player:
-		hit_sound_player.play()
+	#if hit_sound_player:
+		#hit_sound_player.play()
 	
 	if len(intersecting_goobs) == 0:
 		return

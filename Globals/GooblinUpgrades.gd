@@ -41,7 +41,7 @@ var hooks = 0
 
 #Gooblin Upgrades
 var gooblin_attack = 1
-var gooblin_base_move_speed = 150.0
+var gooblin_base_move_speed = 300.0
 var gooblin_move_speed_upgrade_increment = 50.0 #how much each level of upgrade increases the gooblin's speed
 var gooblin_speed_upgrade_level = 0
 

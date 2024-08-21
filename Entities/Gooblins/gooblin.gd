@@ -128,7 +128,7 @@ func _ready():
 		_can_attack = true
 		pass
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 		#a lerp might be better here. testing will need to be done
 		velocity = velocity.lerp(Vector2(), dampening)
 		
@@ -192,7 +192,7 @@ func convert_to_basic_gooblin():
 		#spawn a shield entity to bounce around
 		var new_shield = load("res://Entities/Gooblins/trash_can.tscn").instantiate()
 		new_shield.position = position
-		get_parent().add_child(new_shield)
+		get_parent().call_deferred("add_child",new_shield)
 		
 		_sprite.texture = load("res://Textures/Entities/GoblinBasic.png")
 		_can_attack = true
