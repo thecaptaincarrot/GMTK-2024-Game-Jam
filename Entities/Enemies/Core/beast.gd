@@ -6,6 +6,7 @@ class_name Beast extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ik_targets: Node2D = $IKTargets
 @onready var hitbox_component: Area2D = $HitboxComponent
+@onready var skeleton: Skeleton2D = $SkeletonComponent
 
 # Refer to the timer itself
 @onready var random_target_timer: Timer = $RandomTargetTimer
@@ -46,12 +47,16 @@ func _ready():
 	state_machine.state_changed.connect(_fsm_state_changed)
 	animation_player.animation_finished.connect(_on_animation_finished)
 	call_deferred("acquire_targets")
+	
+	# enable rig only when this node loads in
+	# no more pain
+	skeleton.get_modification_stack().enabled = true
 
 func _fsm_state_changed(state: String):
 	# Debug printer
 	#prints(owner.name,"is registering that the state changed to", state)
 	
-	# Delegates finding the animation to the state. Fallback is universal_idle
+	# Delegates finding the animation to the state. Fallback is "universal_idle"
 	if state_machine.find_child(state).animation != "":
 		animation_player.play(state_machine.find_child(state).animation)
 

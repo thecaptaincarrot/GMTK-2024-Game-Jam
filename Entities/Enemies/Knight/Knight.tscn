@@ -297,7 +297,6 @@ joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = true
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_k1hcn"]
-enabled = true
 modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DCCDIK_vlpu2")
 modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
@@ -379,7 +378,6 @@ position = Vector2(-21, 15)
 rotation = 0.188648
 scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(0.982249, 0.187529, -0.187529, 0.982249, -21, 15)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="foot" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg"]
 position = Vector2(-1.32499, 86.1997)
@@ -395,15 +393,13 @@ update_scale = false
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-0.999998, -54)
 rotation = -0.0403169
-rest = Transform2D(0.998003, 0.0631737, -0.0631737, 0.998003, -0.999999, -54)
-metadata/_local_pose_override_enabled_ = true
+rest = Transform2D(0.999187, -0.040306, 0.040306, 0.999187, -0.999998, -54)
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-48.0825, 1.0628)
 rotation = -0.0798977
 scale = Vector2(0.999999, 0.999999)
-rest = Transform2D(0.984793, 0.173713, -0.173713, 0.984793, -48.0822, 1.06243)
-metadata/_local_pose_override_enabled_ = true
+rest = Transform2D(0.996809, -0.0798126, 0.0798126, 0.996809, -48.0825, 1.0628)
 
 [node name="arm" type="Bone2D" parent="Beast/SkeletonComponent/hip/body/shoulder"]
 position = Vector2(-55.1167, 83.4216)
@@ -432,7 +428,7 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-124.605, 0.751404)
+position = Vector2(-124.605, 0.751362)
 rotation = -0.120215
 scale = Vector2(0.241666, 0.241666)
 texture = ExtResource("3_rfubd")
