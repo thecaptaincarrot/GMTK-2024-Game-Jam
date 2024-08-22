@@ -4,6 +4,7 @@ class_name Beast extends Node2D
 
 @onready var state_machine: Node = $StateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
 @onready var ik_targets: Node2D = $IKTargets
 @onready var hitbox_component: Area2D = $HitboxComponent
 @onready var skeleton: Skeleton2D = $SkeletonComponent
@@ -51,14 +52,17 @@ func _ready():
 	# enable rig only when this node loads in
 	# no more pain
 	skeleton.get_modification_stack().enabled = true
+	# the animation tree too
+	animation_tree.active = true
 
 func _fsm_state_changed(state: String):
 	# Debug printer
 	#prints(owner.name,"is registering that the state changed to", state)
 	
 	# Delegates finding the animation to the state. Fallback is "universal_idle"
-	if state_machine.find_child(state).animation != "":
-		animation_player.play(state_machine.find_child(state).animation)
+	#if state_machine.find_child(state).animation != "":
+		#animation_player.play(state_machine.find_child(state).animation)
+	pass
 
 func _on_animation_finished(_anim):
 	# never uncomment this line under any circumstance
@@ -105,3 +109,9 @@ func _on_state_machine_shake_screen():
 
 func _on_state_machine_shake_off_scalers(scaler_shakeoff_chance):
 	emit_signal("shake_off_scalers",scaler_shakeoff_chance)
+
+
+# yes i added this again. yes im evil
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		take_damage(100000)
