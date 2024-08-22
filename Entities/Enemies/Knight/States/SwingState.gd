@@ -12,5 +12,4 @@ func enter(_msg):
 func exit():
 	# once it's done
 	attacker.disabled = true
-	#beast.animation_tree.set("parameters/conditions/swing", false)
 	beast.random_target_timer.start()

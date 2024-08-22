@@ -326,6 +326,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(26, -108)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bhjhd"]
+filter_enabled = true
+filters = ["IKTargets/legTarget:position", "StateMachine/StompState"]
 mix_mode = 1
 fadeout_time = 0.5
 
@@ -342,7 +344,7 @@ animation = &"kick"
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f833b"]
-graph_offset = Vector2(39.5694, 350.367)
+graph_offset = Vector2(5.56937, 389.367)
 nodes/Base/node = SubResource("AnimationNodeStateMachine_i7b3w")
 nodes/Base/position = Vector2(340, 500)
 nodes/Stomper/node = SubResource("AnimationNodeOneShot_bhjhd")
@@ -351,7 +353,7 @@ nodes/Swinger/node = SubResource("AnimationNodeOneShot_5yfvw")
 nodes/Swinger/position = Vector2(600, 500)
 nodes/output/position = Vector2(1060, 500)
 nodes/stom/node = SubResource("AnimationNodeAnimation_58klm")
-nodes/stom/position = Vector2(640, 740)
+nodes/stom/position = Vector2(600, 740)
 nodes/swig/node = SubResource("AnimationNodeAnimation_4k3qc")
 nodes/swig/position = Vector2(360, 740)
 node_connections = [&"Stomper", 0, &"Swinger", &"Stomper", 1, &"stom", &"Swinger", 0, &"Base", &"Swinger", 1, &"swig", &"output", 0, &"Stomper"]
