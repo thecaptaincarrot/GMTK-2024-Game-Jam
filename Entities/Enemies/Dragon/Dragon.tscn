@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://byrmqaqlddrrn"]
+[gd_scene load_steps=27 format=3 uid="uid://byrmqaqlddrrn"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/dragon.gd" id="1_kxca4"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_n3g6u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/States/StompState.gd" id="4_f4a04"]
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/States/DeadState.gd" id="4_vppk3"]
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/States/BiteState.gd" id="5_vyu4a"]
+[ext_resource type="Script" path="res://Entities/Enemies/Dragon/States/RoarState.gd" id="7_isclq"]
 [ext_resource type="Texture2D" uid="uid://n08npj3a5rxu" path="res://Textures/Entities/kazan_atlasv2.png" id="9_rmtai"]
 [ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="10_rbxpa"]
 
@@ -316,6 +317,9 @@ head_pointer = NodePath("../../IKTargets/headTarget")
 head_looker = NodePath("../../IKTargets/headTarget/headLookAt")
 jaw_looker = NodePath("../../IKTargets/headTarget/headLookAt/jawLookAt")
 animation = "death"
+
+[node name="RoarState" type="Node" parent="Beast/StateMachine" index="4"]
+script = ExtResource("7_isclq")
 
 [node name="AnimationPlayer" parent="Beast" index="2"]
 libraries = {
