@@ -8,15 +8,16 @@ extends GenericState
 @export var attack_height := 10
 
 func enter(msg):
+	var slam_anim = beast.animation_tree.get_animation("slam")
+	slam_anim.track_remove_key(0, 0)
+	slam_anim.bezier_track_insert_key(0, 0.3, msg)
+	printt("track:", beast.animation_tree.get_animation("slam").track_get_path(0))
+
 	attacker.disabled = false
 	beast.random_target_timer.stop()
-	beast.acquire_targets()
-	var prev_position = head_pointer.global_position
-	
-	var tween
-	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", Vector2(msg, prev_position.y+attack_height), attack_time).set_trans(Tween.TRANS_ELASTIC)
-	await tween.finished
+	beast.animation_tree["parameters/SlamMachine/conditions/slamming"] = true
+	beast.animation_tree["parameters/Slammer/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	await beast.animation_tree.animation_finished
 	
 	## KILL
 	hurt_gooblins()
@@ -25,11 +26,9 @@ func enter(msg):
 	emit_signal("screen_shake")
 	
 	# pass both the position and attack time to the stagger state so it can get up properly
-	state_machine.change_to_state("StaggerState", [prev_position, attack_time])
-
-func physics_update(_delta):
-	intersecting_goobs = hitbox.get_overlapping_bodies()
+	state_machine.change_to_state("StaggerState", msg)
 
 func exit():
 	# exit clean up
 	attacker.disabled = true
+	beast.animation_tree["parameters/SlamMachine/conditions/slamming"] = false

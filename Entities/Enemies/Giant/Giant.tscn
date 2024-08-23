@@ -88,74 +88,6 @@ tracks/2/keys = {
 "values": [Vector2(-24, 94), Vector2(-43, 77), Vector2(-127, 44)]
 }
 
-[sub_resource type="Animation" id="Animation_rqsrr"]
-resource_name = "swing"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SkeletonComponent:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("IKTargets/armTarget:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.733333, 1.2, 1.7333),
-"transitions": PackedFloat32Array(4.75683, 3.13834, -12.5533, 1),
-"update": 0,
-"values": [Vector2(-55, -75), Vector2(-213, -298), Vector2(-200, -298), Vector2(-94, 51)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("IKTargets/legTarget:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-11, 105)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("StateMachine/SwingState")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1.73333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"hurt_gooblins"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/SwingState")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.73333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"screen_shake"],
-"method": &"emit_signal"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_12bn1"]
 resource_name = "idle"
 length = 2.0
@@ -297,12 +229,9 @@ tracks/3/path = NodePath("StateMachine/ActualStompState")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.2, 1.2001),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"flingerize_gooblins"
-}, {
 "args": [],
 "method": &"shake_off_scalers"
 }]
@@ -315,6 +244,102 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StateMachine/ActualStompState")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flingerize_gooblins"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StateMachine/ActualStompState")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rqsrr"]
+resource_name = "swing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SkeletonComponent:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTargets/armTarget:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.733333, 1.2, 1.7333),
+"transitions": PackedFloat32Array(4.75683, 3.13834, -12.5533, 1),
+"update": 0,
+"values": [Vector2(-55, -75), Vector2(-213, -298), Vector2(-200, -298), Vector2(-94, 51)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("IKTargets/legTarget:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-11, 105)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/SwingState")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StateMachine/SwingState")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"screen_shake"],
@@ -411,7 +436,6 @@ fadeout_time = 0.25
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_biet3"]
-graph_offset = Vector2(-578.319, 175.456)
 nodes/Base/node = SubResource("AnimationNodeStateMachine_2jvcd")
 nodes/Base/position = Vector2(-220, 160)
 nodes/Leg/node = SubResource("AnimationNodeOneShot_3fgbx")
@@ -626,13 +650,11 @@ rest = Transform2D(1, 0, 0, 1, -13.8633, 79.8489)
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-7.62939e-06, -118)
 rotation = 0.053069
-scale = Vector2(1, 1)
 rest = Transform2D(0.999376, 0.0353103, -0.0353103, 0.999376, -7.62939e-06, -118)
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-104.095, 17.6113)
 rotation = -0.179762
-scale = Vector2(1, 1)
 rest = Transform2D(0.577058, 0.816703, -0.816703, 0.577058, -104.095, 17.6113)
 
 [node name="arm" type="Bone2D" parent="Beast/SkeletonComponent/hip/body/shoulder"]
@@ -665,7 +687,7 @@ region_rect = Rect2(417, 982, 130, 247)
 z_index = -50
 position = Vector2(-35.2654, 52.3675)
 rotation = -0.375116
-scale = Vector2(0.391083, 0.391083)
+scale = Vector2(0.391084, 0.391084)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(582, 986, 215, 235)
@@ -674,7 +696,7 @@ region_rect = Rect2(582, 986, 215, 235)
 z_index = -45
 position = Vector2(-109.392, -30.2426)
 rotation = -0.126693
-scale = Vector2(0.390967, 0.390967)
+scale = Vector2(0.390969, 0.390969)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)

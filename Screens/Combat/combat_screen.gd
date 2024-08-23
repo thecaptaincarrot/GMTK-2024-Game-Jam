@@ -57,7 +57,7 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 
 
 const ENEMY_POS = [ Vector2(1100, 600),
-					Vector2(1100,680),
+					Vector2(1100,630),
 					Vector2(1400,800),
 					Vector2(1500,800),
 					Vector2(1800,540),

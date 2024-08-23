@@ -451,7 +451,6 @@ libraries = {
 }
 
 [node name="AnimationTree" parent="Beast" index="3"]
-active = false
 tree_root = SubResource("AnimationNodeBlendTree_f833b")
 parameters/Base/conditions/die = false
 parameters/Base/conditions/idling = true
