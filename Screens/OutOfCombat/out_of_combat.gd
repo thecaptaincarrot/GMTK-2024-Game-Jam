@@ -83,3 +83,9 @@ func _on_return_button_pressed():
 func _on_map_panel_level_changed(new_level):
 	print("Switched to level: ", new_level)
 	level_selection = new_level
+
+
+func _on_debug_panel_update_menus():
+	shop_control.update_all()
+	army_comp_panel.update_all()
+	map_panel.update_level_options()
