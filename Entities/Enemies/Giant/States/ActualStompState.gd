@@ -1,10 +1,5 @@
 extends GenericState
 
-@export var leg_target: Node2D
-@export var leg_peak := Vector2(-69, 18)
-@export var peak_time := 1.0
-@export var stomp_time := 0.2
-
 func enter(_msg):
 	beast.random_target_timer.stop()
 	stomper.disabled = false

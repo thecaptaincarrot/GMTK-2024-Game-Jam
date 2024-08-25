@@ -1,10 +1,10 @@
 extends GenericState
-
-@export var jump_range_from := 0 # global
-@export var jump_range_to := -2000 #global again
+#
+#@export var jump_range_from := 0 # global
+#@export var jump_range_to := -2000 #global again
 
 
 func target_for_jump():
-	var target_x = randi_range(jump_range_from, jump_range_to)
+	#var target_x = randi_range(jump_range_from, jump_range_to)
 	if randi_range(1,beast.attack_chance) == 1:
-		state_machine.change_to_state("JumpState", target_x)
+		state_machine.change_to_state("JumpState")

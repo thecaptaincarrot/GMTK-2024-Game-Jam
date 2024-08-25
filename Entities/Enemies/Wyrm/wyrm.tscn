@@ -243,7 +243,6 @@ animation = &"stagger"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtg3k"]
 advance_mode = 2
-advance_condition = &"slamming"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5vgoo"]
 switch_mode = 2
@@ -263,6 +262,7 @@ transitions = ["Start", "slam", SubResource("AnimationNodeStateMachineTransition
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nohaj"]
 fadein_time = 0.2
 fadeout_time = 1.0
+break_loop_at_end = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wmy0k"]
 animation = &"death"
@@ -271,7 +271,7 @@ animation = &"death"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u5xc2"]
-graph_offset = Vector2(-731.131, 144.615)
+graph_offset = Vector2(-597.646, 87.9825)
 nodes/Life/node = SubResource("AnimationNodeTransition_kbjdy")
 nodes/Life/position = Vector2(80, 120)
 nodes/SlamMachine/node = SubResource("AnimationNodeStateMachine_k0u02")
@@ -279,7 +279,7 @@ nodes/SlamMachine/position = Vector2(-420, 300)
 nodes/Slammer/node = SubResource("AnimationNodeOneShot_nohaj")
 nodes/Slammer/position = Vector2(-180, 120)
 nodes/deadanim/node = SubResource("AnimationNodeAnimation_wmy0k")
-nodes/deadanim/position = Vector2(-100, 360)
+nodes/deadanim/position = Vector2(-160, 380)
 nodes/idleanim/node = SubResource("AnimationNodeAnimation_oq33n")
 nodes/idleanim/position = Vector2(-400, 140)
 node_connections = [&"Life", 0, &"Slammer", &"Life", 1, &"deadanim", &"Slammer", 0, &"idleanim", &"Slammer", 1, &"SlamMachine", &"output", 0, &"Life"]
@@ -420,25 +420,20 @@ sprite_box = NodePath("Beast/Sprites")
 [node name="Beast" parent="." instance=ExtResource("2_l7r84")]
 min_retarget_time = 1.0
 max_retarget_time = 2.0
+attack_chance = 2
 blood_color = Color(0.122528, 0.920102, 0, 1)
 
 [node name="StateMachine" parent="Beast" index="1"]
 initial_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="Beast/StateMachine" index="0" node_paths=PackedStringArray("head_pointer")]
+[node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_f2kur")
-head_pointer = NodePath("../../IKTargets/headTarget")
-reset_pos = Vector2(-672, -600)
-slam_min_range = 250
-slam_max_range = 1300
+slam_max_range = 800
 track_height = 750
 animation = ""
 
-[node name="SlamState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("head_pointer", "head_looker", "hitbox", "attacker")]
+[node name="SlamState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("4_km2p6")
-head_pointer = NodePath("../../IKTargets/headTarget")
-head_looker = NodePath("../../IKTargets/headTarget/headLookAt")
-attack_height = 600
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
@@ -454,7 +449,6 @@ animation = ""
 script = ExtResource("6_s2ehg")
 head_pointer = NodePath("../../IKTargets/headTarget")
 head_looker = NodePath("../../IKTargets/headTarget/headLookAt")
-death_height = 500
 animation = ""
 
 [node name="AnimationPlayer" parent="Beast" index="2"]
@@ -463,31 +457,29 @@ libraries = {
 }
 
 [node name="AnimationTree" parent="Beast" index="3"]
-active = true
 deterministic = false
 tree_root = SubResource("AnimationNodeBlendTree_u5xc2")
 parameters/Life/current_state = "alive"
 parameters/Life/transition_request = ""
 parameters/Life/current_index = 0
-parameters/SlamMachine/conditions/slamming = false
 parameters/Slammer/active = false
 parameters/Slammer/internal_active = false
 parameters/Slammer/request = 0
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-710.27, -560.043)
-rotation = 0.201299
+position = Vector2(-706.1, -561.406)
+rotation = 0.195279
 scale = Vector2(0.999955, 0.999955)
 shape = SubResource("CircleShape2D_7d5ot")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="SkeletonComponent" parent="Beast" index="6"]
-visible = false
 modification_stack = SubResource("SkeletonModificationStack2D_xsq65")
 
 [node name="neck1" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
-rotation = 1.81293
+rotation = 1.81947
+scale = Vector2(1, 1)
 rest = Transform2D(-0.244267, 0.969708, -0.969708, -0.244267, 0, 0)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1"]
@@ -496,8 +488,7 @@ remote_path = NodePath("../../../Sprites/neck1")
 
 [node name="neck2" type="Bone2D" parent="Beast/SkeletonComponent/neck1"]
 position = Vector2(-135, -7.62939e-06)
-rotation = -0.201907
-scale = Vector2(1, 1)
+rotation = -0.202182
 rest = Transform2D(0.979717, -0.200385, 0.200385, 0.979717, -135, -7.62939e-06)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2"]
@@ -505,8 +496,8 @@ position = Vector2(-85, 0)
 remote_path = NodePath("../../../../Sprites/neck2")
 
 [node name="neck3" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2"]
-position = Vector2(-135, -5.34058e-05)
-rotation = -0.205866
+position = Vector2(-135, -4.95911e-05)
+rotation = -0.206171
 scale = Vector2(1, 1)
 rest = Transform2D(0.978922, -0.204236, 0.204236, 0.978922, -135, -5.53131e-05)
 
@@ -515,8 +506,8 @@ position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../Sprites/neck3")
 
 [node name="neck4" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3"]
-position = Vector2(-135, 7.62939e-06)
-rotation = -0.211662
+position = Vector2(-135, 1.52588e-05)
+rotation = -0.21201
 scale = Vector2(1, 1)
 rest = Transform2D(0.97773, -0.209865, 0.209865, 0.97773, -135, 7.62939e-06)
 
@@ -526,8 +517,7 @@ remote_path = NodePath("../../../../../../Sprites/neck4")
 
 [node name="neck5" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4"]
 position = Vector2(-135, 4.57764e-05)
-rotation = -0.22062
-scale = Vector2(1, 1)
+rotation = -0.22103
 rest = Transform2D(0.975825, -0.218556, 0.218556, 0.975825, -135, 0)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5"]
@@ -536,7 +526,7 @@ remote_path = NodePath("../../../../../../../Sprites/neck5")
 
 [node name="neck6" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5"]
 position = Vector2(-135, 0.000183105)
-rotation = -0.235685
+rotation = -0.236187
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.972444, -0.233133, 0.233133, 0.972444, -135, 0.000183105)
 
@@ -545,8 +535,8 @@ position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../../../Sprites/neck6")
 
 [node name="neck7" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6"]
-position = Vector2(-135, -0.000213623)
-rotation = -0.264141
+position = Vector2(-135, -0.000183105)
+rotation = -0.264787
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.965463, -0.260538, 0.260538, 0.965463, -135, -0.000183105)
 
@@ -556,7 +546,8 @@ remote_path = NodePath("../../../../../../../../../Sprites/neck7")
 
 [node name="neck8" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7"]
 position = Vector2(-135, -0.000244141)
-rotation = -0.328164
+rotation = -0.329057
+scale = Vector2(1, 1)
 rest = Transform2D(0.946923, -0.321459, 0.321459, 0.946923, -135, -0.000183105)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8"]
@@ -565,8 +556,7 @@ remote_path = NodePath("../../../../../../../../../../Sprites/neck8")
 
 [node name="neck9" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8"]
 position = Vector2(-145.218, -23.4441)
-rotation = -1.27846
-scale = Vector2(1, 1)
+rotation = -1.28008
 rest = Transform2D(0.29, -0.957027, 0.957027, 0.29, -145.218, -23.444)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9"]
@@ -574,8 +564,8 @@ position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../../../../../../Sprites/neck9")
 
 [node name="neck10" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9"]
-position = Vector2(-113.497, 25.2645)
-rotation = 0.310698
+position = Vector2(-113.497, 25.2644)
+rotation = 0.312349
 scale = Vector2(0.999947, 0.999947)
 rest = Transform2D(0.956377, 0.291953, -0.291953, 0.956377, -113.497, 25.2644)
 
@@ -584,8 +574,8 @@ position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../../../../../../../Sprites/neck10")
 
 [node name="head" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10"]
-position = Vector2(-145.843, 36.8204)
-rotation = 1.02417
+position = Vector2(-145.843, 36.8203)
+rotation = 1.01496
 scale = Vector2(1.00001, 1.00001)
 rest = Transform2D(0.521649, 0.853172, -0.853172, 0.521649, -145.843, 36.8203)
 
@@ -617,8 +607,8 @@ update_rotation = false
 update_scale = false
 
 [node name="head" type="Sprite2D" parent="Beast/Sprites" index="0"]
-position = Vector2(-710.27, -560.043)
-rotation = 0.201299
+position = Vector2(-706.1, -561.406)
+rotation = 0.195279
 scale = Vector2(0.999955, 0.999955)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -626,16 +616,17 @@ region_rect = Rect2(297, 533, 314, 268)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(20.3812, -82.5203)
-rotation = 1.81293
+position = Vector2(20.9204, -82.3853)
+rotation = 1.81947
+scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck2" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -49
-position = Vector2(35.789, -215.993)
-rotation = 1.61103
+position = Vector2(37.1771, -215.755)
+rotation = 1.61729
 scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -643,17 +634,17 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck3" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -48
-position = Vector2(23.7854, -349.789)
-rotation = 1.40516
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(25.9862, -349.62)
+rotation = 1.41112
+scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck4" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -47
-position = Vector2(-15.7731, -478.126)
-rotation = 1.1935
+position = Vector2(-12.8345, -478.18)
+rotation = 1.19911
 scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -661,8 +652,8 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck5" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -46
-position = Vector2(-82.0419, -594.863)
-rotation = 0.97288
+position = Vector2(-78.4762, -595.267)
+rotation = 0.978081
 scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -670,8 +661,8 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck6" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -45
-position = Vector2(-173.118, -693.326)
-rotation = 0.737196
+position = Vector2(-169.068, -694.171)
+rotation = 0.741894
 scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -679,8 +670,8 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck7" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -44
-position = Vector2(-285.801, -765.664)
-rotation = 0.473055
+position = Vector2(-281.435, -766.989)
+rotation = 0.477108
 scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -688,8 +679,8 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck8" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -44
-position = Vector2(-414.419, -800.717)
-rotation = 0.14489
+position = Vector2(-409.921, -802.488)
+rotation = 0.148051
 scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -697,8 +688,8 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck9" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
-position = Vector2(-506.612, -755.606)
-rotation = -1.13357
+position = Vector2(-502.132, -757.61)
+rotation = -1.13203
 scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -706,15 +697,15 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck10" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-553.598, -656.782)
-rotation = -0.822869
+position = Vector2(-549.372, -658.954)
+rotation = -0.819681
 scale = Vector2(0.999945, 0.999945)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="Ground" type="Sprite2D" parent="Beast/Sprites" index="11"]
-position = Vector2(-0.0814624, -17.9998)
+position = Vector2(0.0362329, -18)
 texture = ExtResource("8_jc4bm")
 
 [node name="headTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
