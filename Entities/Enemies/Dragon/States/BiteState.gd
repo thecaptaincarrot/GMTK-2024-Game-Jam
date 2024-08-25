@@ -1,53 +1,26 @@
 extends GenericState
 
-@export var head_pointer: Node2D
-@export var head_looker: Node2D
-@export var jaw_looker: Node2D
-
-@export var non_lethal_damage := 5
-@export var attack_time := 0.5
-@export var attack_height := 20
-
-#almost identical logic with stompstate, refer there for more detailed comments
+@export var target_x_min = 350
+@export var target_x_max = 725
 
 func enter(msg):
 	attacker.disabled = false
 	beast.random_target_timer.stop()
 	beast.acquire_targets()
-	var prev_position = head_pointer.global_position
-	var prev_jaw = jaw_looker.position
 	
-	var jaw_tweener
-	jaw_tweener = get_tree().create_tween()
-	jaw_tweener.tween_property(jaw_looker, "position", prev_jaw + Vector2(300,0), attack_time).set_ease(Tween.EASE_IN)
+	var target_x = randf_range(target_x_min, target_x_max)
+	target_x *= -1
 	
-	var tween
-	tween = get_tree().create_tween()
-	# funky position code, possibly needs looking at, "msg" is the x_target decided on in the IdleState loop
-	# i advise turning on the single hidden Sprite2D down in IKTargets to see where the head is trying to go
-
-	tween.tween_property(head_pointer, "global_position", Vector2(msg, attack_height), attack_time).set_trans(Tween.TRANS_EXPO)
-
-	await tween.finished
-
-	jaw_tweener = get_tree().create_tween()
-	jaw_tweener.tween_property(jaw_looker,"position",prev_jaw,attack_time).set_ease(Tween.EASE_IN)
-
-	## KILL
-	hurt_gooblins()
-	shake_off_scalers()
-	emit_signal("screen_shake")
+	var anim = beast.animation_tree.get_animation("bite")
+	var bite_x_track = anim.find_track("IKTargets/headTarget:position:x", Animation.TYPE_VALUE)
+	anim.track_remove_key(bite_x_track, 2)
+	anim.track_insert_key(bite_x_track, 0.6, target_x)
 	
-	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", prev_position, attack_time*2).set_trans(Tween.TRANS_ELASTIC)
-	await tween.finished
-	
-	state_machine.change_to_state("IdleState")
-
-func physics_update(_delta):
-	intersecting_goobs = hitbox.get_overlapping_bodies()
+	beast.animation_tree["parameters/Biter/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	await beast.animation_tree.animation_finished
+	state_machine.change_to_state(["IdleState", "RoarState"].pick_random())
 
 func exit():
 	# exit clean up
 	attacker.disabled = true
-	beast.random_target_timer.start()
+	#beast.random_target_timer.start()

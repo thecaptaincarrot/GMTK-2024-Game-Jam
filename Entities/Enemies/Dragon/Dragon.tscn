@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://byrmqaqlddrrn"]
+[gd_scene load_steps=38 format=3 uid="uid://byrmqaqlddrrn"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Dragon/dragon.gd" id="1_kxca4"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_n3g6u"]
@@ -39,30 +39,87 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("IKTargets/footRTarget:position")
+tracks/2/path = NodePath("IKTargets/footLTarget:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-199, 449)]
+"values": [Vector2(-465, 377)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("IKTargets/footLTarget:position")
+tracks/3/path = NodePath("IKTargets/headTarget:position:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-465, 377)]
+"values": [-716.0]
 }
-
-[sub_resource type="Animation" id="Animation_vu1bn"]
-resource_name = "bite"
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IKTargets/headTarget:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-291.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("IKTargets/headTarget/headLookAt/jawLookAt:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-30, 57)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("IKTargets/footRTarget:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-199, 449)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SkeletonComponent/body1:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -131)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SkeletonComponent/body1:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.216791]
+}
 
 [sub_resource type="Animation" id="Animation_mhftn"]
 resource_name = "death"
@@ -75,7 +132,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.56667, 2.4, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(0.5, 2, -2, 1),
 "update": 0,
 "values": [Vector2(-716, -291), Vector2(-1039, -877), Vector2(-1103, -679), Vector2(-716, 300)]
 }
@@ -91,22 +148,417 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 346), Vector2(0, 346), Vector2(437, 136)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/DeadState")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SkeletonComponent/body1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.56667, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -131), Vector2(0, -131), Vector2(-44, 240)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IKTargets/footRTarget:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.56667, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-199, 449), Vector2(-199, 449), Vector2(-199, 449)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("IKTargets/footLTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.56667, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-465, 377), Vector2(-516, 288), Vector2(-465, 377)]
+}
 
 [sub_resource type="Animation" id="Animation_4x5e8"]
-resource_name = "universal_idle"
+resource_name = "idle"
+length = 1.5
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/headTarget:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(-2, 2),
+"update": 0,
+"values": [-716.0, -700.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTargets/headTarget:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(-2, 2),
+"update": 0,
+"values": [-291.0, -200.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/headTarget/headLookAt/jawLookAt:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-30, 57)]
+}
 
-[sub_resource type="Animation" id="Animation_vo41p"]
-resource_name = "universal_stomp"
+[sub_resource type="Animation" id="Animation_iosw2"]
+resource_name = "bite"
+length = 2.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/headTarget:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 2.2),
+"transitions": PackedFloat32Array(-2, -2, 2, -2),
+"update": 0,
+"values": [-716.0, -716.0, -700.0, -716.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTargets/headTarget:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1.2, 2.2),
+"transitions": PackedFloat32Array(-2, -2, 2, 3.03144, -2),
+"update": 0,
+"values": [-291.0, -400.0, -475.0, 475.0, -291.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/headTarget/headLookAt:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.2),
+"transitions": PackedFloat32Array(1, 3.03144, 3.03144),
+"update": 0,
+"values": [Vector2(0, 346), Vector2(0, 346), Vector2(0, 346)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IKTargets/headTarget/headLookAt/jawLookAt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.633333, 0.933333, 2.2),
+"transitions": PackedFloat32Array(1, 1, 3.03144, 1),
+"update": 0,
+"values": [Vector2(-30, 57), Vector2(200, 57), Vector2(-30, 57), Vector2(-30, 57)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StateMachine/BiteState")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StateMachine/BiteState")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.933333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flingerize_gooblins"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StateMachine/BiteState")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake_off_scalers"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("StateMachine/BiteState")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wf2wr"]
+resource_name = "stomp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/footLTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5),
+"update": 0,
+"values": [Vector2(-465, 377), Vector2(-500, 50), Vector2(-465, 377)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/StompState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/StompState")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flingerize_gooblins"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/StompState")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake_off_scalers"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StateMachine/StompState")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0ve7d"]
+resource_name = "roar"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/headTarget:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1.73333, 2.5),
+"transitions": PackedFloat32Array(1, 3.24901, -2, 1),
+"update": 0,
+"values": [-716.0, -1335.0, -1103.0, -716.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IKTargets/headTarget/headLookAt:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(0.258816, 2),
+"update": 0,
+"values": [Vector2(0, 346), Vector2(0, 346)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/DeadState")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 0.766667, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}, {
+"args": [],
+"method": &"shake_off_scalers"
+}, {
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IKTargets/headTarget/headLookAt/jawLookAt:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.73333, 1.3, 2.03333, 2.5),
+"transitions": PackedFloat32Array(1, 2, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-30, 57), Vector2(186, 216), Vector2(199.04, 56.7203), Vector2(-30, 57), Vector2(-30, 57)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IKTargets/headTarget:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.533333, 1.73333, 2.5),
+"transitions": PackedFloat32Array(1, 3.24901, -2, 1),
+"update": 0,
+"values": [-291.0, -419.0, -679.0, -291.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fhkft"]
 _data = {
 "RESET": SubResource("Animation_xnciy"),
-"bite": SubResource("Animation_vu1bn"),
+"bite": SubResource("Animation_iosw2"),
 "death": SubResource("Animation_mhftn"),
-"universal_idle": SubResource("Animation_4x5e8"),
-"universal_stomp": SubResource("Animation_vo41p")
+"idle": SubResource("Animation_4x5e8"),
+"roar": SubResource("Animation_0ve7d"),
+"stomp": SubResource("Animation_wf2wr")
 }
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_55heo"]
+fadeout_time = 1.0
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_iw3ot"]
+input_0/name = "alive"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "dead"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_a615f"]
+filters = ["IKTargets/headTarget/headLookAt/jawLookAt:position", "IKTargets/headTarget/headLookAt:position", "IKTargets/headTarget:position", "IKTargets/headTarget:position:x", "IKTargets/headTarget:position:y", "StateMachine/DeadState"]
+fadein_time = 0.1
+fadeout_time = 0.6
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_t00w0"]
+filter_enabled = true
+filters = ["IKTargets/footLTarget:position", "StateMachine/StompState"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b37sd"]
+animation = &"bite"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7rrpv"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eoov6"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vs4mh"]
+animation = &"roar"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qeuig"]
+animation = &"stomp"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kb00f"]
+graph_offset = Vector2(-857.992, 34.7843)
+nodes/Biter/node = SubResource("AnimationNodeOneShot_55heo")
+nodes/Biter/position = Vector2(-420, 120)
+nodes/Life/node = SubResource("AnimationNodeTransition_iw3ot")
+nodes/Life/position = Vector2(120, 140)
+nodes/Roarer/node = SubResource("AnimationNodeOneShot_a615f")
+nodes/Roarer/position = Vector2(-640, 120)
+nodes/Stomper/node = SubResource("AnimationNodeOneShot_t00w0")
+nodes/Stomper/position = Vector2(-180, 120)
+nodes/biteanim/node = SubResource("AnimationNodeAnimation_b37sd")
+nodes/biteanim/position = Vector2(-640, 380)
+nodes/deadanim/node = SubResource("AnimationNodeAnimation_7rrpv")
+nodes/deadanim/position = Vector2(-180, 380)
+nodes/idleanim/node = SubResource("AnimationNodeAnimation_eoov6")
+nodes/idleanim/position = Vector2(-860, 120)
+nodes/roaranim/node = SubResource("AnimationNodeAnimation_vs4mh")
+nodes/roaranim/position = Vector2(-860, 280)
+nodes/stompanim/node = SubResource("AnimationNodeAnimation_qeuig")
+nodes/stompanim/position = Vector2(-420, 380)
+node_connections = [&"Biter", 0, &"Roarer", &"Biter", 1, &"biteanim", &"Life", 0, &"Stomper", &"Life", 1, &"deadanim", &"Roarer", 0, &"idleanim", &"Roarer", 1, &"roaranim", &"Stomper", 0, &"Biter", &"Stomper", 1, &"stompanim", &"output", 0, &"Life"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krs6l"]
 radius = 175.134
@@ -280,30 +732,21 @@ autostart = false
 [node name="StateMachine" parent="Beast" index="1"]
 initial_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="Beast/StateMachine" index="0" node_paths=PackedStringArray("head_pointer")]
+[node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("2_npnky")
-head_pointer = NodePath("../../IKTargets/headTarget")
-bite_max_range = 800
+animation = ""
 
-[node name="StompState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("foot_pointer", "hitbox", "stomper")]
+[node name="StompState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("hitbox", "stomper")]
 script = ExtResource("4_f4a04")
-foot_pointer = NodePath("../../IKTargets/footLTarget")
-wind_up_time = 1.0
-hold_time = 0.5
-stomp_time = 0.2
-animation = "universal_stomp"
+animation = ""
 hitbox = NodePath("../../HitboxComponent")
 damage = 20
 scaler_shakeoff_chance = 0.75
 stomper = NodePath("../../HitboxComponent/Stomper")
 fling_damage = 80
 
-[node name="BiteState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("head_pointer", "head_looker", "jaw_looker", "hitbox", "attacker")]
+[node name="BiteState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_vyu4a")
-head_pointer = NodePath("../../IKTargets/headTarget")
-head_looker = NodePath("../../IKTargets/headTarget/headLookAt")
-jaw_looker = NodePath("../../IKTargets/headTarget/headLookAt/jawLookAt")
-attack_height = 750
 animation = "bite"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
@@ -311,11 +754,8 @@ damage = 100
 scaler_shakeoff_chance = 0.45
 fling_damage = 30
 
-[node name="DeadState" type="Node" parent="Beast/StateMachine" index="3" node_paths=PackedStringArray("head_pointer", "head_looker", "jaw_looker")]
+[node name="DeadState" type="Node" parent="Beast/StateMachine" index="3"]
 script = ExtResource("4_vppk3")
-head_pointer = NodePath("../../IKTargets/headTarget")
-head_looker = NodePath("../../IKTargets/headTarget/headLookAt")
-jaw_looker = NodePath("../../IKTargets/headTarget/headLookAt/jawLookAt")
 animation = "death"
 
 [node name="RoarState" type="Node" parent="Beast/StateMachine" index="4"]
@@ -326,8 +766,24 @@ libraries = {
 "": SubResource("AnimationLibrary_fhkft")
 }
 
+[node name="AnimationTree" parent="Beast" index="3"]
+deterministic = false
+tree_root = SubResource("AnimationNodeBlendTree_kb00f")
+parameters/Biter/active = false
+parameters/Biter/internal_active = false
+parameters/Biter/request = 0
+parameters/Life/current_state = "alive"
+parameters/Life/transition_request = ""
+parameters/Life/current_index = 0
+parameters/Roarer/active = false
+parameters/Roarer/internal_active = false
+parameters/Roarer/request = 0
+parameters/Stomper/active = false
+parameters/Stomper/internal_active = false
+parameters/Stomper/request = 0
+
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-523.78, 384.64)
+position = Vector2(-522.591, 383.787)
 rotation = 2.88471
 scale = Vector2(0.999931, 0.999931)
 shape = SubResource("CircleShape2D_krs6l")
@@ -340,14 +796,14 @@ shape = SubResource("CircleShape2D_13ave")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
-[node name="SkeletonComponent" parent="Beast" index="5"]
+[node name="SkeletonComponent" parent="Beast" index="6"]
 modification_stack = SubResource("SkeletonModificationStack2D_jq6pb")
 
 [node name="body1" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
 position = Vector2(0, -131)
-rotation = -0.287759
-scale = Vector2(0.999999, 0.999999)
-rest = Transform2D(0.958881, -0.283804, 0.283804, 0.958881, 0, -131)
+rotation = -0.216791
+scale = Vector2(0.999905, 0.999905)
+rest = Transform2D(0.978037, -0.207974, 0.207974, 0.978037, 0, -131)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1"]
 position = Vector2(-92, 54)
@@ -355,10 +811,10 @@ remote_path = NodePath("../../../Sprites/body1")
 update_scale = false
 
 [node name="body2" type="Bone2D" parent="Beast/SkeletonComponent/body1"]
-position = Vector2(-155.938, -4.3985)
-rotation = -0.442517
-scale = Vector2(0.999962, 0.999962)
-rest = Transform2D(0.903642, -0.428199, 0.428199, 0.903642, -155.938, -4.3985)
+position = Vector2(-155.95, -4.39781)
+rotation = -0.52627
+scale = Vector2(0.999993, 0.999993)
+rest = Transform2D(0.864681, -0.502308, 0.502308, 0.864681, -155.95, -4.39781)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2"]
 position = Vector2(-58.1791, -87.4188)
@@ -367,10 +823,10 @@ remote_path = NodePath("../../../../Sprites/body2")
 update_scale = false
 
 [node name="neck1" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2"]
-position = Vector2(15.0804, -191.769)
-rotation = -1.5891
-scale = Vector2(0.999991, 0.999991)
-rest = Transform2D(-0.0183025, -0.999824, 0.999824, -0.0183025, 15.0804, -191.769)
+position = Vector2(15.0807, -191.767)
+rotation = -1.59297
+scale = Vector2(0.99998, 0.99998)
+rest = Transform2D(-0.0221712, -0.999735, 0.999735, -0.0221712, 15.0807, -191.767)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1"]
 position = Vector2(61.6406, -1.14697)
@@ -379,10 +835,10 @@ remote_path = NodePath("../../../../../Sprites/neck1")
 update_scale = false
 
 [node name="neck2" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2/neck1"]
-position = Vector2(169.692, -26.2577)
-rotation = -0.0482133
-scale = Vector2(0.999998, 0.999998)
-rest = Transform2D(0.998836, -0.0481945, 0.0481945, 0.998836, 169.692, -26.2577)
+position = Vector2(169.69, -26.2567)
+rotation = -0.0562409
+scale = Vector2(0.999976, 0.999976)
+rest = Transform2D(0.998394, -0.0562098, 0.0562098, 0.998394, 169.69, -26.2567)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2"]
 position = Vector2(12.9491, 1.52926)
@@ -391,10 +847,10 @@ remote_path = NodePath("../../../../../../Sprites/neck2")
 update_scale = false
 
 [node name="neck3" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2"]
-position = Vector2(157.663, -133.404)
-rotation = 1.19927
+position = Vector2(157.664, -133.405)
+rotation = 1.15616
 scale = Vector2(0.999992, 0.999992)
-rest = Transform2D(0.363035, 0.931767, -0.931767, 0.363035, 157.663, -133.404)
+rest = Transform2D(0.402856, 0.915254, -0.915254, 0.402856, 157.664, -133.405)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3"]
 position = Vector2(8.54988, 25.8728)
@@ -403,10 +859,10 @@ remote_path = NodePath("../../../../../../../Sprites/neck3")
 update_scale = false
 
 [node name="head" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3"]
-position = Vector2(-110.46, -70.1815)
-rotation = 0.297907
-scale = Vector2(0.99999, 0.99999)
-rest = Transform2D(0.955943, 0.293517, -0.293517, 0.955943, -110.46, -70.1815)
+position = Vector2(-110.46, -70.1812)
+rotation = 0.358452
+scale = Vector2(0.999994, 0.999994)
+rest = Transform2D(0.936435, 0.350823, -0.350823, 0.936435, -110.46, -70.1812)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head"]
 position = Vector2(-65.1313, 2.91503)
@@ -427,9 +883,10 @@ remote_path = NodePath("../../../../../../../../../Sprites/tongue")
 update_scale = false
 
 [node name="jaw" type="Bone2D" parent="Beast/SkeletonComponent/body1/body2/neck1/neck2/neck3/head"]
-position = Vector2(36.5804, -11.9619)
-rotation = 0.463478
-rest = Transform2D(0.894503, 0.447062, -0.447062, 0.894503, 36.5804, -11.9619)
+position = Vector2(36.5797, -11.9623)
+rotation = 0.463473
+scale = Vector2(1, 1)
+rest = Transform2D(0.894506, 0.447058, -0.447058, 0.894506, 36.5797, -11.9623)
 auto_calculate_length_and_angle = false
 length = 46.767
 bone_angle = 119.098
@@ -445,10 +902,10 @@ remote_path = NodePath("../../../../../../../../../Sprites/shadow2")
 update_scale = false
 
 [node name="legR" type="Bone2D" parent="Beast/SkeletonComponent/body1"]
-position = Vector2(-77.5924, 90.8484)
-rotation = -1.21601
+position = Vector2(-77.5924, 90.8486)
+rotation = -1.30859
 scale = Vector2(0.999931, 0.999931)
-rest = Transform2D(0.347366, -0.937656, 0.937656, 0.347366, -77.5924, 90.8484)
+rest = Transform2D(0.259193, -0.965755, 0.965755, 0.259193, -77.5924, 90.8486)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/legR"]
 position = Vector2(-168.764, 24.2467)
@@ -457,10 +914,10 @@ remote_path = NodePath("../../../../Sprites/legR")
 update_scale = false
 
 [node name="shinR" type="Bone2D" parent="Beast/SkeletonComponent/body1/legR"]
-position = Vector2(-327.897, 37.8787)
-rotation = 1.49383
-scale = Vector2(0.999979, 0.999979)
-rest = Transform2D(0.0768888, 0.997019, -0.997019, 0.0768888, -327.897, 37.8787)
+position = Vector2(-327.897, 37.8785)
+rotation = 1.48184
+scale = Vector2(0.999969, 0.999969)
+rest = Transform2D(0.0888386, 0.996015, -0.996015, 0.0888386, -327.897, 37.8785)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/legR/shinR"]
 position = Vector2(-24.7819, 33.4091)
@@ -469,10 +926,10 @@ remote_path = NodePath("../../../../../Sprites/shinR")
 update_scale = false
 
 [node name="footR" type="Bone2D" parent="Beast/SkeletonComponent/body1/legR/shinR"]
-position = Vector2(-167.771, 139.665)
-rotation = 3.11559
-scale = Vector2(0.999993, 0.999993)
-rest = Transform2D(-0.999655, 0.0259994, -0.0259994, -0.999655, -167.771, 139.665)
+position = Vector2(-167.77, 139.663)
+rotation = 3.14145
+scale = Vector2(0.999995, 0.999995)
+rest = Transform2D(-0.999995, 0.000142963, -0.000142963, -0.999995, -167.77, 139.663)
 auto_calculate_length_and_angle = false
 length = 100.0
 bone_angle = 0.0
@@ -484,10 +941,10 @@ remote_path = NodePath("../../../../../../Sprites/footR")
 update_scale = false
 
 [node name="legL" type="Bone2D" parent="Beast/SkeletonComponent/body1"]
-position = Vector2(-241.612, 89.2233)
-rotation = -0.696574
-scale = Vector2(0.999909, 0.999909)
-rest = Transform2D(0.766975, -0.641535, 0.641535, 0.766975, -241.612, 89.2233)
+position = Vector2(-241.613, 89.2237)
+rotation = -0.755151
+scale = Vector2(0.999911, 0.999911)
+rest = Transform2D(0.728103, -0.685337, 0.685337, 0.728103, -241.613, 89.2237)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/legL"]
 position = Vector2(-80.6508, 25.3153)
@@ -496,10 +953,10 @@ remote_path = NodePath("../../../../Sprites/legL")
 update_scale = false
 
 [node name="shinL" type="Bone2D" parent="Beast/SkeletonComponent/body1/legL"]
-position = Vector2(-236.216, 34.6662)
-rotation = 1.28875
-scale = Vector2(0.9999, 0.9999)
-rest = Transform2D(0.278294, 0.960392, -0.960392, 0.278294, -236.216, 34.6662)
+position = Vector2(-236.216, 34.6664)
+rotation = 1.15344
+scale = Vector2(0.999899, 0.999899)
+rest = Transform2D(0.405307, 0.91407, -0.91407, 0.405307, -236.216, 34.6664)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/body1/legL/shinL"]
 position = Vector2(-9.00288, 50.1252)
@@ -508,10 +965,10 @@ remote_path = NodePath("../../../../../Sprites/shinL")
 update_scale = false
 
 [node name="footL" type="Bone2D" parent="Beast/SkeletonComponent/body1/legL/shinL"]
-position = Vector2(-109.069, 179.983)
-rotation = 2.72284
+position = Vector2(-109.069, 179.984)
+rotation = 2.83445
 scale = Vector2(1, 1)
-rest = Transform2D(-0.913597, 0.406621, -0.406621, -0.913597, -109.069, 179.983)
+rest = Transform2D(-0.953204, 0.302339, -0.302339, -0.953204, -109.069, 179.984)
 auto_calculate_length_and_angle = false
 length = 100.0
 bone_angle = 0.0
@@ -526,14 +983,15 @@ update_scale = false
 position = Vector2(58, 0)
 scale = Vector2(1.00001, 1.00001)
 remote_path = NodePath("../../../../../../HitboxComponent/Stomper")
+update_position = false
 update_rotation = false
 update_scale = false
 
 [node name="body1" type="Sprite2D" parent="Beast/Sprites" index="0"]
 z_index = -50
-position = Vector2(-72.8917, -53.1105)
-rotation = -0.287759
-scale = Vector2(1.38004, 1.15003)
+position = Vector2(-78.2238, -58.482)
+rotation = -0.216791
+scale = Vector2(1.3817, 1.15093)
 texture = ExtResource("9_rmtai")
 offset = Vector2(49.9233, -14.9194)
 region_enabled = true
@@ -541,135 +999,135 @@ region_rect = Rect2(1236, 1136, 484, 417)
 
 [node name="body2" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -49
-position = Vector2(-252.428, -117.277)
-rotation = -0.0484991
-scale = Vector2(1.38014, 1.1501)
+position = Vector2(-255.207, -126.765)
+rotation = -0.0612842
+scale = Vector2(1.38114, 1.15073)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(1298, 736, 233, 368)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -48
-position = Vector2(-310.25, -288.26)
-rotation = -0.300216
-scale = Vector2(1.38029, 1.15019)
+position = Vector2(-315.374, -296.815)
+rotation = -0.316871
+scale = Vector2(1.38195, 1.151)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="neck2" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -47
-position = Vector2(-410.374, -360.476)
-rotation = -0.506979
-scale = Vector2(1.38026, 1.15015)
+position = Vector2(-416.756, -367.279)
+rotation = -0.531662
+scale = Vector2(1.38168, 1.15047)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="neck3" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -46
-position = Vector2(-581.017, -362.871)
-rotation = -1.18139
-scale = Vector2(1.38035, 1.15019)
+position = Vector2(-587.348, -366.635)
+rotation = -1.24918
+scale = Vector2(1.38102, 1.15069)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="head" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -45
-position = Vector2(-755.751, -239.325)
-rotation = -0.870412
-scale = Vector2(1.38025, 1.15013)
+position = Vector2(-756.511, -233.836)
+rotation = -0.877662
+scale = Vector2(1.38451, 1.15237)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(670, 917, 362, 251)
 
 [node name="tongue" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -46
-position = Vector2(-716.003, -200.91)
-rotation = -0.870412
-scale = Vector2(1.38027, 1.15013)
+position = Vector2(-716.489, -195.713)
+rotation = -0.877663
+scale = Vector2(1.38501, 1.15257)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(834, 1173, 112, 119)
 
 [node name="jaw" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -46
-position = Vector2(-685.004, -200.618)
-rotation = -0.406934
-scale = Vector2(1.38041, 1.15021)
+position = Vector2(-685.492, -195.646)
+rotation = -0.41419
+scale = Vector2(1.38917, 1.15582)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(838, 1307, 150, 214)
 
 [node name="legL" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -55
-position = Vector2(-229.902, 104.302)
-rotation = 0.414677
-scale = Vector2(1.38022, 1.15016)
+position = Vector2(-241.293, 88.9635)
+rotation = 0.427068
+scale = Vector2(1.38107, 1.15058)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinL" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -54
-position = Vector2(-331.808, 284.148)
-rotation = 0.194588
-scale = Vector2(1.37998, 1.15004)
+position = Vector2(-339.143, 270.367)
+rotation = 0.0716654
+scale = Vector2(1.38214, 1.15175)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -53
-position = Vector2(-503.013, 390.493)
-rotation = -0.0416727
-scale = Vector2(1.3801, 1.15007)
+position = Vector2(-497.667, 392.884)
+rotation = -0.0529877
+scale = Vector2(1.39194, 1.15895)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(364, 1445, 207, 100)
 
 [node name="legR" type="Sprite2D" parent="Beast/Sprites" index="11"]
 z_index = -40
-position = Vector2(-35.7308, 148.131)
-rotation = -0.091789
-scale = Vector2(1.38078, 1.15046)
+position = Vector2(-39.672, 144.065)
+rotation = -0.113403
+scale = Vector2(1.38286, 1.15123)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinR" type="Sprite2D" parent="Beast/Sprites" index="12"]
 z_index = -39
-position = Vector2(-57.2343, 341.459)
-rotation = 0.17245
-scale = Vector2(1.38035, 1.15023)
+position = Vector2(-56.579, 338.076)
+rotation = 0.138844
+scale = Vector2(1.38069, 1.15044)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footR" type="Sprite2D" parent="Beast/Sprites" index="13"]
 z_index = -38
-position = Vector2(-228.364, 453.753)
-rotation = -0.0359441
-scale = Vector2(1.38021, 1.15014)
+position = Vector2(-223.956, 455.289)
+rotation = -0.0436908
+scale = Vector2(1.3907, 1.15853)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(364, 1445, 207, 100)
 
 [node name="shadow1" type="Sprite2D" parent="Beast/Sprites" index="14"]
 z_index = -47
-position = Vector2(-757.96, -154)
-rotation = -0.870412
-scale = Vector2(1.38025, 1.15013)
+position = Vector2(-758.102, -148.505)
+rotation = -0.877662
+scale = Vector2(1.38451, 1.15237)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(651, 638, 144, 106)
 
 [node name="shadow2" type="Sprite2D" parent="Beast/Sprites" index="15"]
 z_index = -47
-position = Vector2(-738.855, -126.245)
-rotation = -0.406934
-scale = Vector2(1.38041, 1.15021)
+position = Vector2(-738.797, -120.891)
+rotation = -0.41419
+scale = Vector2(1.38917, 1.15582)
 texture = ExtResource("9_rmtai")
 region_enabled = true
 region_rect = Rect2(824, 694, 63, 108)
@@ -705,10 +1163,10 @@ position = Vector2(-30, 57)
 visible = false
 texture = ExtResource("10_rbxpa")
 
-[node name="ScalerPath" parent="Beast" index="8"]
+[node name="ScalerPath" parent="Beast" index="9"]
 curve = SubResource("Curve2D_3krad")
 
-[node name="LungePoint" parent="Beast" index="9"]
+[node name="LungePoint" parent="Beast" index="10"]
 position = Vector2(-305, 225)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]

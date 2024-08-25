@@ -29,3 +29,4 @@ func take_damage(dmg):
 # the hitbox slider
 func _process(_delta: float) -> void:
 	attacker.global_position.x = head_pointer.global_position.x
+	

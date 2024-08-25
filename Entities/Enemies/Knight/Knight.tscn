@@ -344,7 +344,7 @@ animation = &"kick"
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f833b"]
-graph_offset = Vector2(5.56937, 389.367)
+graph_offset = Vector2(-81.4306, 283.605)
 nodes/Base/node = SubResource("AnimationNodeStateMachine_i7b3w")
 nodes/Base/position = Vector2(340, 500)
 nodes/Stomper/node = SubResource("AnimationNodeOneShot_bhjhd")
@@ -543,7 +543,7 @@ region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-128.026, -4.69586)
+position = Vector2(-128.026, -4.69587)
 rotation = -0.0505814
 scale = Vector2(0.241992, 0.241992)
 texture = ExtResource("3_rfubd")

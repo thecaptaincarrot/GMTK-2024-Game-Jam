@@ -469,7 +469,7 @@ parameters/Slammer/request = 0
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
 position = Vector2(-706.1, -561.406)
 rotation = 0.195279
-scale = Vector2(0.999955, 0.999955)
+scale = Vector2(0.999954, 0.999954)
 shape = SubResource("CircleShape2D_7d5ot")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
@@ -609,14 +609,14 @@ update_scale = false
 [node name="head" type="Sprite2D" parent="Beast/Sprites" index="0"]
 position = Vector2(-706.1, -561.406)
 rotation = 0.195279
-scale = Vector2(0.999955, 0.999955)
+scale = Vector2(0.999954, 0.999954)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(297, 533, 314, 268)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(20.9204, -82.3853)
+position = Vector2(20.9203, -82.3853)
 rotation = 1.81947
 scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
@@ -672,7 +672,7 @@ region_rect = Rect2(644, 499, 200, 175)
 z_index = -44
 position = Vector2(-281.435, -766.989)
 rotation = 0.477108
-scale = Vector2(0.999998, 0.999998)
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
@@ -705,7 +705,7 @@ region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="Ground" type="Sprite2D" parent="Beast/Sprites" index="11"]
-position = Vector2(0.0362329, -18)
+position = Vector2(0.0362325, -18)
 texture = ExtResource("8_jc4bm")
 
 [node name="headTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
