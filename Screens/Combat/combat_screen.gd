@@ -114,6 +114,7 @@ func _process(delta):
 
 func load_level(level_index : int):
 	print("Loading")
+	$CanvasLayer/RetreatButton.disabled = false
 	active_loaded_level = level_index
 	camera.limit_right = CAMERA_BOUNDS[level_index].x
 	camera.limit_bottom = CAMERA_BOUNDS[level_index].y
