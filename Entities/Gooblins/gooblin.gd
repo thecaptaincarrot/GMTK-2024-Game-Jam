@@ -117,27 +117,26 @@ func _ready():
 func _physics_process(delta: float) -> void:
 		#placeholder for speedups
 		delta = delta * 1.0
+		#gravity, if in the air
+		if _is_being_flung:
+			if position.y >= y_home:
+				position.y = y_home
+				_is_being_flung = false
+				velocity.y = 0
+			else:
+				velocity.y += get_gravity() * delta
+		else: #I am not being flung, so my y velocity is 0
+			velocity.x = _move_to_target_range(delta)
 		
-		#a lerp might be better here. testing will need to be done
+		position += velocity * delta
 		
-		
-		velocity = velocity.lerp(Vector2(), dampening)
-		
-		if(!_climbing or celebrating):
-			#a global request to get local gravity managed in the global settings
-			velocity += get_gravity() * delta
-		
+		#Flinging:
 		if (!_is_dead):
 			velocity += _upcoming_fling * delta
 		
 		_upcoming_fling = Vector2()
 		
-		if(!_is_dead):
-			#put here as an example
-			_move_to_target_range(delta)
-			_attack_target()
 		
-		move_and_slide()
 
 func hurt():
 	if(unit_type == GooblinType.SHIELD):
@@ -195,31 +194,22 @@ func _despawn_timeout():
 	queue_free()
 
 
-func _move_to_target_range(delta:float):
+func _move_to_target_range(delta:float): #returns the x velocity of the gooblin as it tracks its target
 	if celebrating:
-		return
+		return 0.0
 
 	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
 		if(enemy_target != null):
-			if(is_on_floor()):
-				if _is_being_flung: _is_being_flung = false
-				var difference = get_position().x - x_home
-				if(abs(difference) > 8.0):
-					velocity.x -= sign(difference) * move_speed * delta
-					_is_at_home = false
-					if(_anim.current_animation != "Walk" && is_on_floor()):
-						if(_anim.current_animation != "Jump" || !_anim.is_playing()):
-							_anim.play("Walk")
-				else:
-					_anim.play("Idle")
-					_is_at_home = true
+			var difference = get_position().x - x_home #x_home is ONLY here
+			if(abs(difference) > 8.0):
+				velocity.x -= sign(difference) * move_speed * delta
+				_is_at_home = false
 			else:
-				if _is_being_flung:
-					_anim.play("Fling")
+				_anim.play("Idle")
+				_is_at_home = true
 	elif(unit_type == Gooblin.GooblinType.SCALER):
 		var difference = get_position().x - path_follower.get_global_position().x
-		if(abs(difference) > 5 && is_on_floor()):
-			_anim.play("Walk")
+		if(abs(difference) > 5):
 			velocity.x -= sign(difference) * move_speed * delta
 		elif(abs(difference) <= 5 && !_climbing && $ScalerTimeout.is_stopped()):
 			print("climbing",$ScalerTimeout.is_stopped())
@@ -237,7 +227,7 @@ func _attack_target():
 	if(unit_type == GooblinType.BASIC):
 		#a within range check can be done in adition 
 		#to make sure the attack is acurate
-		if(_is_at_home && is_on_floor() && _can_attack):
+		if(_is_at_home && _can_attack):
 			if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
 				_anim.play("Jump")
 				_jump_timer.start()
