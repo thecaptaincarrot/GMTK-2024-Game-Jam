@@ -87,6 +87,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-24, 94), Vector2(-43, 77), Vector2(-127, 44)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/DeadState")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.46667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_12bn1"]
 resource_name = "idle"
@@ -370,6 +384,7 @@ animation = &"idle"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_frrvp"]
+xfade_time = 0.3
 advance_mode = 2
 advance_condition = &"die"
 
@@ -436,6 +451,7 @@ fadeout_time = 0.25
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_biet3"]
+graph_offset = Vector2(-311, 161)
 nodes/Base/node = SubResource("AnimationNodeStateMachine_2jvcd")
 nodes/Base/position = Vector2(-220, 160)
 nodes/Leg/node = SubResource("AnimationNodeOneShot_3fgbx")
@@ -669,7 +685,7 @@ update_scale = false
 [node name="base" type="Sprite2D" parent="Beast/Sprites" index="0"]
 z_index = -40
 position = Vector2(34, -93)
-scale = Vector2(0.390061, 0.390061)
+scale = Vector2(0.390062, 0.390062)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(839, 263, 533, 980)
@@ -678,7 +694,7 @@ region_rect = Rect2(839, 263, 533, 980)
 z_index = -50
 position = Vector2(-21.2405, -23.8517)
 rotation = 0.257423
-scale = Vector2(0.390464, 0.390464)
+scale = Vector2(0.390466, 0.390466)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(417, 982, 130, 247)
@@ -687,7 +703,7 @@ region_rect = Rect2(417, 982, 130, 247)
 z_index = -50
 position = Vector2(-35.2654, 52.3675)
 rotation = -0.375116
-scale = Vector2(0.391084, 0.391084)
+scale = Vector2(0.391086, 0.391086)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(582, 986, 215, 235)
@@ -696,7 +712,7 @@ region_rect = Rect2(582, 986, 215, 235)
 z_index = -45
 position = Vector2(-109.392, -30.2426)
 rotation = -0.126693
-scale = Vector2(0.390969, 0.390969)
+scale = Vector2(0.390973, 0.390973)
 texture = ExtResource("4_d1i60")
 region_enabled = true
 region_rect = Rect2(123, 181, 558, 696)

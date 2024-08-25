@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dx0v2drnxwsrw"]
+[gd_scene load_steps=31 format=3 uid="uid://dx0v2drnxwsrw"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Wyrm/wyrm.gd" id="1_5t11p"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="2_l7r84"]
@@ -8,88 +8,6 @@
 [ext_resource type="Script" path="res://Entities/Enemies/Wyrm/States/StaggerState.gd" id="5_78bvj"]
 [ext_resource type="Script" path="res://Entities/Enemies/Wyrm/States/DeadState.gd" id="6_s2ehg"]
 [ext_resource type="Texture2D" uid="uid://8msjuv1g2yww" path="res://Textures/Entities/snakedrybase.png" id="8_jc4bm"]
-
-[sub_resource type="Animation" id="Animation_06njj"]
-resource_name = "slam"
-length = 1.2
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("IKTargets/headTarget:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1300, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.4)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("IKTargets/headTarget:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-142, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.4)
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("StateMachine/SlamState")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"flingerize_gooblins"
-}]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("StateMachine/SlamState")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"hurt_gooblins"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("StateMachine/SlamState")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"shake_off_scalers"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("StateMachine/SlamState")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"shake_screen"],
-"method": &"emit_signal"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_moxgx"]
 length = 0.001
@@ -115,6 +33,48 @@ tracks/1/keys = {
 "points": PackedFloat32Array(-600, -0.249995, 0.208329, 0.6, -0.5),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/headTarget:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-672, -600)]
+}
+
+[sub_resource type="Animation" id="Animation_haufy"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/headTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.3, 1.63333, 1.8),
+"transitions": PackedFloat32Array(0.183011, 2, 2, 0.5, 1),
+"update": 0,
+"values": [Vector2(-672, -600), Vector2(-798, -966), Vector2(-500, -874), Vector2(-750, -275), Vector2(-739, -56)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/DeadState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.63333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_21ggc"]
 resource_name = "idle"
@@ -128,8 +88,8 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-672, -0.249996, -0.197365, 0.633333, 0.5, -700, -0.25, 0, 0.25, 0, -672, -0.266667, 33.5, 0.266667, -0.5),
-"times": PackedFloat32Array(0, 0.966667, 2.03333)
+"points": PackedFloat32Array(-672, -0.249996, -0.197365, 0.633333, 0.5, -700, -0.25, 0, 0.25, 0, -672, -0.166667, 31.5, 0.266667, -0.5),
+"times": PackedFloat32Array(0, 0.966667, 2.3)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -140,105 +100,189 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-600, -0.249995, 0.208329, 0.6, -0.5, -620, -0.25, 0, 0.25, 0, -600, -0.233333, 7.5, 0.3, 30.5),
-"times": PackedFloat32Array(0, 0.966667, 2.03333)
+"times": PackedFloat32Array(0, 0.966667, 2.3)
+}
+
+[sub_resource type="Animation" id="Animation_06njj"]
+resource_name = "slam"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateMachine/SlamState")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flingerize_gooblins"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/SlamState")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/SlamState")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shake_off_scalers"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/SlamState")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"screen_shake"],
+"method": &"emit_signal"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("IKTargets/headTarget:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [-672.0, -1300.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("IKTargets/headTarget:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [-900.0, -142.0]
 }
 
 [sub_resource type="Animation" id="Animation_fwcow"]
 resource_name = "stagger"
 length = 3.0
-tracks/0/type = "bezier"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("IKTargets/headTarget:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-1300, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(1.4)
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-1300.0, -1300.0]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("IKTargets/headTarget:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-150, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(1.4)
+"times": PackedFloat32Array(0, 1.4, 3),
+"transitions": PackedFloat32Array(2.2974, 3.03143, 1),
+"update": 0,
+"values": [-150.0, -145.0, -400.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8pqu8"]
 _data = {
 "RESET": SubResource("Animation_moxgx"),
+"death": SubResource("Animation_haufy"),
 "idle": SubResource("Animation_21ggc"),
 "slam": SubResource("Animation_06njj"),
 "stagger": SubResource("Animation_fwcow")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o47l0"]
-animation = &"RESET"
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_kbjdy"]
+xfade_time = 0.4
+input_0/name = "alive"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "dead"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v2cxo"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rgebh"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8vtms"]
-advance_mode = 2
-advance_condition = &"die"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rfhee"]
-allow_transition_to_self = true
-states/RESET/node = SubResource("AnimationNodeAnimation_o47l0")
-states/RESET/position = Vector2(696, 100)
-states/idle/node = SubResource("AnimationNodeAnimation_v2cxo")
-states/idle/position = Vector2(512, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_rgebh"), "idle", "RESET", SubResource("AnimationNodeStateMachineTransition_8vtms")]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mlseh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mr0yq"]
 animation = &"slam"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwtil"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljcoq"]
 animation = &"stagger"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ws5u"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtg3k"]
 advance_mode = 2
 advance_condition = &"slamming"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wfib6"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5vgoo"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2pyj0"]
-xfade_time = 2.0
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o4lv4"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_uv1lq"]
-states/Start/position = Vector2(224, 100)
-states/slam/node = SubResource("AnimationNodeAnimation_mlseh")
-states/slam/position = Vector2(403, 100)
-states/stagger/node = SubResource("AnimationNodeAnimation_gwtil")
-states/stagger/position = Vector2(649, 100)
-transitions = ["Start", "slam", SubResource("AnimationNodeStateMachineTransition_0ws5u"), "slam", "stagger", SubResource("AnimationNodeStateMachineTransition_wfib6"), "stagger", "End", SubResource("AnimationNodeStateMachineTransition_2pyj0")]
-graph_offset = Vector2(-15, -12)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k0u02"]
+states/slam/node = SubResource("AnimationNodeAnimation_mr0yq")
+states/slam/position = Vector2(411, 100)
+states/stagger/node = SubResource("AnimationNodeAnimation_ljcoq")
+states/stagger/position = Vector2(648, 100)
+transitions = ["Start", "slam", SubResource("AnimationNodeStateMachineTransition_xtg3k"), "slam", "stagger", SubResource("AnimationNodeStateMachineTransition_5vgoo"), "stagger", "End", SubResource("AnimationNodeStateMachineTransition_o4lv4")]
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0bn8n"]
-fadein_time = 0.5
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nohaj"]
+fadein_time = 0.2
 fadeout_time = 1.0
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4kyei"]
-graph_offset = Vector2(-494.439, 103.847)
-nodes/Base/node = SubResource("AnimationNodeStateMachine_rfhee")
-nodes/Base/position = Vector2(-100, 140)
-nodes/SlamMachine/node = SubResource("AnimationNodeStateMachine_uv1lq")
-nodes/SlamMachine/position = Vector2(-100, 340)
-nodes/Slammer/node = SubResource("AnimationNodeOneShot_0bn8n")
-nodes/Slammer/position = Vector2(100, 140)
-node_connections = [&"Slammer", 0, &"Base", &"Slammer", 1, &"SlamMachine", &"output", 0, &"Slammer"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wmy0k"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oq33n"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u5xc2"]
+graph_offset = Vector2(-731.131, 144.615)
+nodes/Life/node = SubResource("AnimationNodeTransition_kbjdy")
+nodes/Life/position = Vector2(80, 120)
+nodes/SlamMachine/node = SubResource("AnimationNodeStateMachine_k0u02")
+nodes/SlamMachine/position = Vector2(-420, 300)
+nodes/Slammer/node = SubResource("AnimationNodeOneShot_nohaj")
+nodes/Slammer/position = Vector2(-180, 120)
+nodes/deadanim/node = SubResource("AnimationNodeAnimation_wmy0k")
+nodes/deadanim/position = Vector2(-100, 360)
+nodes/idleanim/node = SubResource("AnimationNodeAnimation_oq33n")
+nodes/idleanim/position = Vector2(-400, 140)
+node_connections = [&"Life", 0, &"Slammer", &"Life", 1, &"deadanim", &"Slammer", 0, &"idleanim", &"Slammer", 1, &"SlamMachine", &"output", 0, &"Life"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7d5ot"]
 radius = 195.04
@@ -358,7 +402,6 @@ constraint_angle_invert = true
 constraint_in_localspace = true
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_xsq65"]
-enabled = true
 modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DCCDIK_uv2uo")
 modifications/1 = SubResource("SkeletonModification2DLookAt_71jul")
@@ -421,17 +464,20 @@ libraries = {
 
 [node name="AnimationTree" parent="Beast" index="3"]
 active = true
-tree_root = SubResource("AnimationNodeBlendTree_4kyei")
-parameters/Base/conditions/die = false
-parameters/SlamMachine/conditions/slamming = true
+deterministic = false
+tree_root = SubResource("AnimationNodeBlendTree_u5xc2")
+parameters/Life/current_state = "alive"
+parameters/Life/transition_request = ""
+parameters/Life/current_index = 0
+parameters/SlamMachine/conditions/slamming = false
 parameters/Slammer/active = false
 parameters/Slammer/internal_active = false
 parameters/Slammer/request = 0
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-706.013, -561.812)
-rotation = 0.193935
-scale = Vector2(1.00063, 1.00063)
+position = Vector2(-710.27, -560.043)
+rotation = 0.201299
+scale = Vector2(0.999955, 0.999955)
 shape = SubResource("CircleShape2D_7d5ot")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
@@ -441,9 +487,8 @@ visible = false
 modification_stack = SubResource("SkeletonModificationStack2D_xsq65")
 
 [node name="neck1" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
-rotation = 1.81756
+rotation = 1.81293
 rest = Transform2D(-0.244267, 0.969708, -0.969708, -0.244267, 0, 0)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1"]
 position = Vector2(-85, 0)
@@ -451,40 +496,39 @@ remote_path = NodePath("../../../Sprites/neck1")
 
 [node name="neck2" type="Bone2D" parent="Beast/SkeletonComponent/neck1"]
 position = Vector2(-135, -7.62939e-06)
-rotation = -0.201751
+rotation = -0.201907
+scale = Vector2(1, 1)
 rest = Transform2D(0.979717, -0.200385, 0.200385, 0.979717, -135, -7.62939e-06)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2"]
 position = Vector2(-85, 0)
 remote_path = NodePath("../../../../Sprites/neck2")
 
 [node name="neck3" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2"]
-position = Vector2(-135, -5.53131e-05)
-rotation = -0.205683
+position = Vector2(-135, -5.34058e-05)
+rotation = -0.205866
+scale = Vector2(1, 1)
 rest = Transform2D(0.978922, -0.204236, 0.204236, 0.978922, -135, -5.53131e-05)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3"]
 position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../Sprites/neck3")
 
 [node name="neck4" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3"]
-position = Vector2(-135, 1.52588e-05)
-rotation = -0.211437
+position = Vector2(-135, 7.62939e-06)
+rotation = -0.211662
 scale = Vector2(1, 1)
 rest = Transform2D(0.97773, -0.209865, 0.209865, 0.97773, -135, 7.62939e-06)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4"]
 position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../Sprites/neck4")
 
 [node name="neck5" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4"]
-position = Vector2(-135, 1.52588e-05)
-rotation = -0.220334
+position = Vector2(-135, 4.57764e-05)
+rotation = -0.22062
+scale = Vector2(1, 1)
 rest = Transform2D(0.975825, -0.218556, 0.218556, 0.975825, -135, 0)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5"]
 position = Vector2(-85, 0)
@@ -492,31 +536,28 @@ remote_path = NodePath("../../../../../../../Sprites/neck5")
 
 [node name="neck6" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5"]
 position = Vector2(-135, 0.000183105)
-rotation = -0.235298
+rotation = -0.235685
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.972444, -0.233133, 0.233133, 0.972444, -135, 0.000183105)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6"]
 position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../../../Sprites/neck6")
 
 [node name="neck7" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6"]
-position = Vector2(-135, -0.000183105)
-rotation = -0.26358
+position = Vector2(-135, -0.000213623)
+rotation = -0.264141
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.965463, -0.260538, 0.260538, 0.965463, -135, -0.000183105)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7"]
 position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../../../../Sprites/neck7")
 
 [node name="neck8" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7"]
-position = Vector2(-135, -0.000183105)
-rotation = -0.32727
+position = Vector2(-135, -0.000244141)
+rotation = -0.328164
 rest = Transform2D(0.946923, -0.321459, 0.321459, 0.946923, -135, -0.000183105)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8"]
 position = Vector2(-85, 0)
@@ -524,21 +565,19 @@ remote_path = NodePath("../../../../../../../../../../Sprites/neck8")
 
 [node name="neck9" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8"]
 position = Vector2(-145.218, -23.4441)
-rotation = -1.27657
+rotation = -1.27846
 scale = Vector2(1, 1)
 rest = Transform2D(0.29, -0.957027, 0.957027, 0.29, -145.218, -23.444)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9"]
 position = Vector2(-85, 0)
 remote_path = NodePath("../../../../../../../../../../../Sprites/neck9")
 
 [node name="neck10" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9"]
-position = Vector2(-113.497, 25.2644)
-rotation = 0.296284
+position = Vector2(-113.497, 25.2645)
+rotation = 0.310698
 scale = Vector2(0.999947, 0.999947)
 rest = Transform2D(0.956377, 0.291953, -0.291953, 0.956377, -113.497, 25.2644)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10"]
 position = Vector2(-85, 0)
@@ -546,10 +585,9 @@ remote_path = NodePath("../../../../../../../../../../../../Sprites/neck10")
 
 [node name="head" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10"]
 position = Vector2(-145.843, 36.8204)
-rotation = 1.02202
+rotation = 1.02417
 scale = Vector2(1.00001, 1.00001)
 rest = Transform2D(0.521649, 0.853172, -0.853172, 0.521649, -145.843, 36.8203)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10/head"]
 position = Vector2(-134, 55)
@@ -579,26 +617,25 @@ update_rotation = false
 update_scale = false
 
 [node name="head" type="Sprite2D" parent="Beast/Sprites" index="0"]
-position = Vector2(-706.013, -561.812)
-rotation = 0.193935
-scale = Vector2(1.00063, 1.00063)
+position = Vector2(-710.27, -560.043)
+rotation = 0.201299
+scale = Vector2(0.999955, 0.999955)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(297, 533, 314, 268)
 
 [node name="neck1" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -50
-position = Vector2(32.3958, -78.5844)
-rotation = 1.96181
-scale = Vector2(1, 1)
+position = Vector2(20.3812, -82.5203)
+rotation = 1.81293
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck2" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -49
-position = Vector2(64.8537, -209.161)
-rotation = 1.72732
+position = Vector2(35.789, -215.993)
+rotation = 1.61103
 scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -606,78 +643,78 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck3" type="Sprite2D" parent="Beast/Sprites" index="3"]
 z_index = -48
-position = Vector2(65.4999, -343.279)
-rotation = 1.48647
-scale = Vector2(0.999975, 0.999975)
+position = Vector2(23.7854, -349.789)
+rotation = 1.40516
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck4" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -47
-position = Vector2(33.34, -473.539)
-rotation = 1.2359
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-15.7731, -478.126)
+rotation = 1.1935
+scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck5" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -46
-position = Vector2(-30.9593, -591.145)
-rotation = 0.973299
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(-82.0419, -594.863)
+rotation = 0.97288
+scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck6" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -45
-position = Vector2(-124.607, -686.647)
-rotation = 0.690535
-scale = Vector2(0.999931, 0.999931)
+position = Vector2(-173.118, -693.326)
+rotation = 0.737196
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck7" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -44
-position = Vector2(-242.306, -749.561)
-rotation = 0.374011
-scale = Vector2(0.9998, 0.9998)
+position = Vector2(-285.801, -765.664)
+rotation = 0.473055
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck8" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -44
-position = Vector2(-373.817, -766.491)
-rotation = -0.0156526
-scale = Vector2(0.999669, 0.999669)
+position = Vector2(-414.419, -800.717)
+rotation = 0.14489
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck9" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
-position = Vector2(-455.823, -707.006)
-rotation = -1.31659
-scale = Vector2(0.999543, 0.999543)
+position = Vector2(-506.612, -755.606)
+rotation = -1.13357
+scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck10" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-518.67, -644.864)
-rotation = -0.337982
-scale = Vector2(0.999482, 0.999482)
+position = Vector2(-553.598, -656.782)
+rotation = -0.822869
+scale = Vector2(0.999945, 0.999945)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="Ground" type="Sprite2D" parent="Beast/Sprites" index="11"]
-position = Vector2(2.58931, -17.8128)
+position = Vector2(-0.0814624, -17.9998)
 texture = ExtResource("8_jc4bm")
 
 [node name="headTarget" type="Node2D" parent="Beast/IKTargets" index="0"]

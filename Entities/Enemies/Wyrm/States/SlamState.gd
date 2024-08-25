@@ -9,23 +9,24 @@ extends GenericState
 
 func enter(msg):
 	var slam_anim = beast.animation_tree.get_animation("slam")
-	slam_anim.track_remove_key(0, 0)
-	slam_anim.bezier_track_insert_key(0, 0.3, msg)
-	printt("track:", beast.animation_tree.get_animation("slam").track_get_path(0))
+	var slam_track = slam_anim.find_track("IKTargets/headTarget:position:x", Animation.TYPE_VALUE)
+	slam_anim.track_remove_key(slam_track, 1)
+	slam_anim.track_insert_key(slam_track, 0.3, msg)
+	#printt("track:", beast.animation_tree.get_animation("slam").track_get_path(slam_track))
 
 	attacker.disabled = false
 	beast.random_target_timer.stop()
 	beast.animation_tree["parameters/SlamMachine/conditions/slamming"] = true
 	beast.animation_tree["parameters/Slammer/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await beast.animation_tree.animation_finished
+	#
+	### KILL
+	#hurt_gooblins()
+	#flingerize_gooblins()
+	#shake_off_scalers()
+	#emit_signal("screen_shake")
 	
-	## KILL
-	hurt_gooblins()
-	flingerize_gooblins()
-	shake_off_scalers()
-	emit_signal("screen_shake")
-	
-	# pass both the position and attack time to the stagger state so it can get up properly
+	# pass both the position to the stagger state so it can get up properly
 	state_machine.change_to_state("StaggerState", msg)
 
 func exit():

@@ -9,15 +9,5 @@ extends GenericState
 func enter(_msg):
 	beast.random_target_timer.stop()
 	state_machine.on = false
-	
-	var prev_position = head_pointer.global_position
-	
-	var tween 
-	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", prev_position - Vector2(0, death_peak), .5).set_ease(Tween.EASE_IN)
-	await tween.finished
-	
-	tween = get_tree().create_tween()
-	tween.tween_property(head_pointer, "global_position", prev_position + Vector2(0, death_height), .5).set_ease(Tween.EASE_OUT)
-	emit_signal("screen_shake")
+	beast.animation_tree.set("parameters/Life/transition_request", "dead")
 	
