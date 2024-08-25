@@ -14,5 +14,12 @@ func target_and_attack():
 		print("gonna atack")
 		# if it is going to attack, you shouldn't start the timer until after the attack is done
 		beast.random_target_timer.stop()
-		# pass the target x coordinate as the message 
-		state_machine.change_to_state(["BiteState", "StompState"].pick_random())
+		
+		var attack_choice
+		if randf_range(0, 100) <= beast.get_parent().bite_chance_percent:
+			attack_choice = "BiteState"
+		else:
+			attack_choice = "StompState"
+		print(attack_choice)
+		state_machine.change_to_state(attack_choice)
+		

@@ -18,7 +18,13 @@ func enter(msg):
 	
 	beast.animation_tree["parameters/Biter/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await beast.animation_tree.animation_finished
-	state_machine.change_to_state(["IdleState", "RoarState"].pick_random())
+	
+	var combo
+	if randf_range(0, 100) <= beast.get_parent().bite_into_roar_percent:
+		combo = "RoarState"
+	else:
+		combo = "IdleState"
+	state_machine.change_to_state(combo)
 
 func exit():
 	# exit clean up

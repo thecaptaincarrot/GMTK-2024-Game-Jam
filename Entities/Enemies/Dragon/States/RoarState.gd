@@ -9,7 +9,13 @@ func enter(_msg):
 	#await beast.random_target_timer.timeout
 	beast.animation_tree["parameters/Roarer/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT
 	#await beast.animation_tree.animation_finished
-	state_machine.change_to_state(["BiteState", "IdleState"].pick_random())
+	
+	var combo
+	if randf_range(0, 100) <= beast.get_parent().roar_into_bite_percent:
+		combo = "BiteState"
+	else:
+		combo = "IdleState"
+	state_machine.change_to_state(combo)
 	
 #func exit():
 	#beast.random_target_timer.stop()

@@ -7,6 +7,11 @@ extends Node2D
 @onready var attacker: CollisionShape2D = $Beast/HitboxComponent/Attacker
 @onready var head_pointer: Node2D = $Beast/IKTargets/headTarget
 
+@export var roar_into_bite_percent := 25.0
+@export var bite_into_roar_percent := 40.0
+@export var bite_chance_percent := 40.0 #otherwise stomp
+
+
 var target_list: Array
 
 
