@@ -241,3 +241,27 @@ func _on_true_victory_return_button_pressed():
 	emit_signal("final_credits")
 	emit_signal("ReturnFromCombat")
 	GooblinController.kill_all()
+
+
+func _on_debug_panel_win():
+	if !Enemy:
+		return
+	else:
+		BeastNode.die()
+
+
+func _on_debug_panel_spawn_gooblings(num):
+	GooblinController.basic_to_spawn += num
+
+
+func _on_debug_panel_spawn_scalers(num):
+	GooblinController.scaler_to_spawn += num
+
+
+func _on_debug_panel_spawn_shields(num):
+	GooblinController.shield_to_spawn += num
+
+
+func _on_debug_panel_update_menus():
+	#not needed yet
+	pass # Replace with function body.
