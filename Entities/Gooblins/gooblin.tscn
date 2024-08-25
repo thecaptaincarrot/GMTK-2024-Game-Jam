@@ -336,9 +336,22 @@ _data = {
 "Walk": SubResource("Animation_6tbyr")
 }
 
-[node name="Gooblin" type="CharacterBody2D" groups=["Gooblin"]]
+[node name="Gooblin" type="Area2D" groups=["Gooblin"]]
 collision_layer = 2
 script = ExtResource("1_qqrn7")
+unit_type = null
+target_range = null
+x_home = null
+attack_radius = null
+attack_cooldown = null
+move_speed = null
+shield_health = null
+scaler_climb_speed = null
+despawn_timer_time = null
+jump_vector = null
+fling_vector = null
+dismount_fling_vector = null
+dampening = null
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

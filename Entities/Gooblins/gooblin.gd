@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 class_name Gooblin
 
@@ -9,75 +9,64 @@ enum GooblinType{
 	CATAPULT
 }
 
+signal gooblin_changed
+
+signal died
+
+#Basic vars
 @export var unit_type:GooblinType
-
 @export var enemy_node:Node2D
-
 @export var enemy_target:Node2D
+@export var path_follower:PathFollow2D
 
+#Set by horde controller
 @export var target_range = 256.0
-
 @export var x_home = 0
-
+@export var y_home = 0
+@export var attack_radius = 256.0
 @export var attack_cooldown = 3.0
 
-@export var attack_radius = 256.0
-
+#Inherited from upgrades
 @export var move_speed = 300.0
-
 @export var shield_health = 0
+@export var scaler_climb_speed = 1.0
 
 @export var despawn_timer_time = 2.0
 
+#Vectors
+var _upcoming_fling = Vector2()
 @export var jump_vector = Vector2(400, 600)
-
 @export var fling_vector = Vector2(-500, -800)
-
 @export var dismount_fling_vector = Vector2(-800, -800)
 
-@export var scaler_climb_speed = 1.0
-
-@export var path_follower:PathFollow2D
-
+var velocity = Vector2(0,0)
 #used to move the velocity back to zero
 #when input is not being sent to movement
 #functions off of a vector lerp
 @export var dampening = 0.03
 
 var _att_timer = Timer.new()
-
 var _jump_timer = Timer.new()
-
 var _scaler_attack_timer = Timer.new()
 
+#States
+var is_flying = false
 var _can_attack = true
-
 var _is_dead = false
-
 var celebrating = false
+var _is_at_home = false
+var _climbing = false
+var _climb_started = false
+var _scaler_attack_started = false
+var _is_being_flung = false
+
 
 #sprite should be called - Sprite
 @onready var _sprite:Sprite2D = $Sprite
 #collider should be called - Collider
 @onready var _collider:CollisionShape2D = $Collider
-
 @onready var _anim:AnimationPlayer = $AnimationPlayer
 
-var _upcoming_fling = Vector2()
-
-var _is_at_home = false
-
-var _climbing = false
-
-var _climb_started = false
-
-var _scaler_attack_started = false
-
-var _is_being_flung = false
-
-signal gooblin_changed
-
-signal died
 
 func _ready():
 	#get stuff from gooblinupgrades
@@ -86,34 +75,30 @@ func _ready():
 	#this timer is used to delay a jump
 	#and allow for the anticipation animation to play
 	_jump_timer.autostart = false
-	_jump_timer.set_wait_time(0.3)
+	_jump_timer.set_wait_time(0.3) #Should this be usable?
 	_jump_timer.one_shot = true
 	_jump_timer.timeout.connect(_jump_trigger)
 	add_child(_jump_timer)
-	
 	
 	_scaler_attack_timer.timeout.connect(_scaler_attack_timeout)
 	_scaler_attack_timer.wait_time = 1.0
 	_scaler_attack_timer.autostart = false
 	_scaler_attack_timer.one_shot = true
+	add_child(_scaler_attack_timer) #Do we need a scaler timer if we're not a scaler?
 	
 	
-	
-	add_child(_scaler_attack_timer)
-	#
-	randomize()
-	var i = randi_range(0, 3)
+	var i = randi_range(0, 3) #Should this be more varied?
 	if(i == 0):
-		_sprite.position = Vector2(0, 64)
+		y_home = 48
 		_sprite.z_index = 3
 	elif(i == 1):
-		_sprite.position = Vector2(0, 32)
+		y_home = 32
 		_sprite.z_index = 2
 	elif(i == 2):
-		_sprite.position = Vector2(0, 16)
+		y_home = 16
 		_sprite.z_index = 1
 	elif(i == 3):
-		_sprite.position = Vector2(0, 0)
+		y_home = 0
 		_sprite.z_index = 0
 	
 	#setup for the attack timeframe
@@ -128,8 +113,14 @@ func _ready():
 		_can_attack = true
 		pass
 
+
 func _physics_process(delta: float) -> void:
+		#placeholder for speedups
+		delta = delta * 1.0
+		
 		#a lerp might be better here. testing will need to be done
+		
+		
 		velocity = velocity.lerp(Vector2(), dampening)
 		
 		if(!_climbing or celebrating):
