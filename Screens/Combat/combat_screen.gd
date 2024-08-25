@@ -202,6 +202,7 @@ func _on_beast_died():
 	if(GooblinUpgrades.levels_completed <= active_loaded_level):
 		GooblinUpgrades.levels_completed = active_loaded_level + 1
 	GooblinController.celebrate()
+	$CanvasLayer/RetreatButton.disabled = true
 	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
 	if active_loaded_level == 4:
