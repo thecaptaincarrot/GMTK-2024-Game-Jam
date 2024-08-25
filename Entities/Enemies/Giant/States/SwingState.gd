@@ -9,26 +9,11 @@ extends GenericState
 func enter(_msg):
 	beast.random_target_timer.stop()
 	attacker.disabled = false
-	var prev_position = arm_target.position
-
-	var tween
-	tween = get_tree().create_tween()
-	tween.tween_property(arm_target, "position", peak_position, attack_time *2 ).set_trans(Tween.TRANS_CIRC)
-	await tween.finished
 	
-	## KILL
-	hurt_gooblins()
-	shake_off_scalers()
-	emit_signal("screen_shake")
-	
-	tween = get_tree().create_tween()
-	tween.tween_property(arm_target, "position", attack_position, attack_time).set_trans(Tween.TRANS_SPRING)
-	await tween.finished
+	beast.animation_tree["parameters/Swinger/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	await beast.animation_tree.animation_finished
 
 	state_machine.change_to_state("IdleState")
-
-func physics_update(_delta):
-	intersecting_goobs = hitbox.get_overlapping_bodies()
 
 func exit():
 	# once it's done

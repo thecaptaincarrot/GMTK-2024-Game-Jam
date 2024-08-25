@@ -1,16 +1,17 @@
 extends GenericState
 
 @export var head_pointer: Node2D
-@export var lying_time := 3
 
 func enter(msg):
-	var timer = get_tree().create_timer(lying_time)
-	await timer.timeout
-	var tween
-	tween = get_tree().create_tween()
-	# retrieve previous position (msg[0]) and get up time (msg[1]) to get up
-	tween.tween_property(head_pointer, "global_position", msg[0], msg[1]/1.5).set_trans(Tween.TRANS_EXPO)
-	await tween.finished
+	var slam_anim = beast.animation_tree.get_animation("stagger")
+	var slam_track = slam_anim.find_track("IKTargets/headTarget:position:x", Animation.TYPE_VALUE)
+	var key1 = slam_anim.track_get_key_time(0, 0)
+	slam_anim.track_remove_key(0, 0)
+	slam_anim.track_insert_key(0, key1, msg, 2.0)
+	var key2 = slam_anim.track_get_key_time(0, 1.4)
+	slam_anim.track_remove_key(0, key2)
+	slam_anim.track_insert_key(0, 1.4, msg)
+	await beast.animation_tree.animation_finished
 	state_machine.change_to_state("IdleState")
 
 

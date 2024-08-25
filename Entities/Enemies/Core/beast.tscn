@@ -16,6 +16,10 @@ hit_sound_player = NodePath("../HitSound")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+anim_player = NodePath("../AnimationPlayer")
+
 [node name="HitboxComponent" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
