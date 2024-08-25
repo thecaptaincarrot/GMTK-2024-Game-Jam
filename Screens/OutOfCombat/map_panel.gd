@@ -39,6 +39,10 @@ func _process(delta):
 
 func update_level_options():
 	var levels_complete = GooblinUpgrades.levels_completed
+	for line in map_lines:
+		line.hide()
+	for button in level_buttons:
+		button.hide()
 	if levels_complete < 5: ## added this line because it crashes after beating the dragon otherwise
 		for i in range(0,levels_complete + 1):
 			level_buttons[i].show()
