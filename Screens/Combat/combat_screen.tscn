@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bq18iom53hl48"]
+[gd_scene load_steps=47 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
@@ -13,9 +13,24 @@
 [ext_resource type="Texture2D" uid="uid://3o201dsc73y0" path="res://Textures/Backgrounds/Field/floorDryWyrm.png" id="9_sd0dw"]
 [ext_resource type="Script" path="res://Screens/Combat/victory_panel.gd" id="10_objnm"]
 [ext_resource type="AudioStream" uid="uid://b1fdxednh4gwc" path="res://SFX/click.mp3" id="10_w0dda"]
+[ext_resource type="Texture2D" uid="uid://caef483w180as" path="res://Textures/Interface/resize_d_diagonal.svg" id="13_6rg2m"]
 [ext_resource type="AudioStream" uid="uid://cohv7bfr0ypdc" path="res://Music/extraperc.mp3" id="13_6w18c"]
+[ext_resource type="Texture2D" uid="uid://dn16t7e50vqbg" path="res://Textures/Interface/resize_e_diagonal.svg" id="14_70fkc"]
+[ext_resource type="Texture2D" uid="uid://dnba7fy4r0gwr" path="res://Textures/Interface/hand_point_n.svg" id="14_tv574"]
+[ext_resource type="Texture2D" uid="uid://biblu7d10y1sr" path="res://Textures/Interface/hand_point.svg" id="15_bavw2"]
 [ext_resource type="AudioStream" uid="uid://dhxwtyonft4cf" path="res://Music/defeat.mp3" id="15_c2y4h"]
+[ext_resource type="Texture2D" uid="uid://clgnx6hfqawbf" path="res://Textures/Interface/hand_small_point.svg" id="16_4tgvf"]
+[ext_resource type="Texture2D" uid="uid://dkeax3e8eixkl" path="res://Textures/Interface/resize_a_cross.svg" id="16_fv34x"]
 [ext_resource type="AudioStream" uid="uid://chbrm6d5sg1ht" path="res://SFX/victory.mp3" id="16_ijbgm"]
+[ext_resource type="Texture2D" uid="uid://cg4ibhlu0jkmu" path="res://Textures/Interface/mouse_outline.svg" id="17_56jr5"]
+[ext_resource type="Texture2D" uid="uid://ffevphnuir7f" path="res://Textures/Interface/mouse_left_outline.svg" id="18_m8i7u"]
+[ext_resource type="Texture2D" uid="uid://ctjsorav0odxr" path="res://Textures/Interface/mouse_move.svg" id="19_wqiqx"]
+[ext_resource type="Texture2D" uid="uid://cfrbud6syino0" path="res://Textures/Interface/mouse_scroll_vertical_outline.svg" id="20_plocb"]
+[ext_resource type="Texture2D" uid="uid://06yclw64s1l1" path="res://Textures/Interface/keyboard_arrows_none.png" id="21_7mndo"]
+[ext_resource type="Texture2D" uid="uid://ccbp02ujl13tc" path="res://Textures/Interface/keyboard_arrows_left_outline.png" id="22_0cl3b"]
+[ext_resource type="Texture2D" uid="uid://b21o4f20eqam8" path="res://Textures/Interface/keyboard_arrows_right_outline.png" id="23_0itgg"]
+[ext_resource type="Texture2D" uid="uid://b040m2pmurent" path="res://Textures/Interface/keyboard_arrows_down_outline.png" id="24_du2wf"]
+[ext_resource type="Texture2D" uid="uid://cwn5q8d3s4lhb" path="res://Textures/Interface/keyboard_arrows_up_outline.png" id="25_snbhu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2s50d"]
 distance = 22.0
@@ -37,6 +52,105 @@ font_color = Color(7.70092e-07, 0.762958, 0.290341, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_abk6w"]
 atlas = ExtResource("8_vy8hd")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fmvq2"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_ckt5y"]
+font_size = 24
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4sdj"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("18_m8i7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_56jr5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hvcp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_wqiqx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1okyk"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("21_7mndo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_0itgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0cl3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_du2wf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_snbhu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tc05y"]
+font_size = 36
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymyl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_4tgvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_tv574")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fv0rc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_70fkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_6rg2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0483m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_56jr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_plocb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel", "VictoryPanel", "TrueVictoryPanel", "FieldFloor", "CaveFloor")]
 script = ExtResource("1_o8qmv")
@@ -63,11 +177,12 @@ gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
 [node name="SpawnPoint" parent="GooblinHordeController" index="0"]
 position = Vector2(-73, 659)
 
-[node name="CombatCamera" type="Camera2D" parent="."]
+[node name="CombatCamera" type="Camera2D" parent="." node_paths=PackedStringArray("instructions")]
 anchor_mode = 0
 limit_left = 0
 limit_top = 0
 script = ExtResource("1_kjt0t")
+instructions = NodePath("../CanvasLayer/Instructions")
 
 [node name="ShakeTimer" type="Timer" parent="CombatCamera"]
 wait_time = 0.75
@@ -79,7 +194,6 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="BackgroundParallax" type="Parallax2D" parent="Background"]
-visible = false
 scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(1280, 600)
 repeat_times = 4
@@ -143,6 +257,7 @@ position = Vector2(-1380, 432)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource("RectangleShape2D_1u3om")
+disabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -487,6 +602,114 @@ offset_right = 107.0
 offset_bottom = 31.0
 text = "99999"
 horizontal_alignment = 1
+
+[node name="Instructions" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.5
+offset_top = -219.0
+offset_right = 492.5
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Instructions"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Container" type="HBoxContainer" parent="CanvasLayer/Instructions/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 210
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Instructions/MarginContainer/Container"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TO LOOK:"
+label_settings = SubResource("LabelSettings_fmvq2")
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Use mouse or keyboard or touch"
+label_settings = SubResource("LabelSettings_ckt5y")
+vertical_alignment = 1
+
+[node name="LookFinger" type="Sprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+position = Vector2(352.5, 126)
+texture = ExtResource("15_bavw2")
+
+[node name="LookMove" type="Sprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+position = Vector2(330.5, 109)
+texture = ExtResource("16_fv34x")
+
+[node name="LookClick" type="AnimatedSprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+position = Vector2(80.5, 120)
+sprite_frames = SubResource("SpriteFrames_j4sdj")
+autoplay = "default"
+
+[node name="LookDrag" type="AnimatedSprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+position = Vector2(130.5, 121)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_0hvcp")
+autoplay = "default"
+
+[node name="LookKB" type="AnimatedSprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer"]
+position = Vector2(219.5, 123)
+sprite_frames = SubResource("SpriteFrames_1okyk")
+autoplay = "default"
+frame = 3
+frame_progress = 0.20955
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Instructions/MarginContainer/Container"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "TO ZOOM:"
+label_settings = SubResource("LabelSettings_tc05y")
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Scroll or pinch"
+label_settings = SubResource("LabelSettings_ckt5y")
+vertical_alignment = 1
+
+[node name="ZoomFinger" type="AnimatedSprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer2"]
+position = Vector2(139.5, 132)
+sprite_frames = SubResource("SpriteFrames_ymyl0")
+autoplay = "default"
+
+[node name="ZoomMove" type="AnimatedSprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer2"]
+position = Vector2(114.5, 119)
+sprite_frames = SubResource("SpriteFrames_fv0rc")
+autoplay = "default"
+
+[node name="ZoomScroll" type="AnimatedSprite2D" parent="CanvasLayer/Instructions/MarginContainer/Container/VBoxContainer2"]
+position = Vector2(35.5, 125)
+sprite_frames = SubResource("SpriteFrames_0483m")
+autoplay = "default"
+frame_progress = 0.633615
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_6w18c")
