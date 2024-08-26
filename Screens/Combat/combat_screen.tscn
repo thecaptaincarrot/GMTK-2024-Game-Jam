@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bq18iom53hl48"]
+[gd_scene load_steps=23 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
@@ -17,8 +17,11 @@
 [ext_resource type="AudioStream" uid="uid://dhxwtyonft4cf" path="res://Music/defeat.mp3" id="15_c2y4h"]
 [ext_resource type="AudioStream" uid="uid://chbrm6d5sg1ht" path="res://SFX/victory.mp3" id="16_ijbgm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmt5r"]
-size = Vector2(6166, 47)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2s50d"]
+distance = 22.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_55nic"]
+distance = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1u3om"]
 size = Vector2(20, 1000)
@@ -52,6 +55,7 @@ VictoryPanel = NodePath("CanvasLayer/VictoryPanel")
 TrueVictoryPanel = NodePath("CanvasLayer/TrueVictory")
 FieldFloor = NodePath("FieldFloor")
 CaveFloor = NodePath("CaveFloor")
+metadata/_edit_horizontal_guides_ = [922.0, 720.0]
 
 [node name="GooblinHordeController" parent="." node_paths=PackedStringArray("gooblin_label") instance=ExtResource("2_63q2r")]
 gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
@@ -75,6 +79,7 @@ metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="BackgroundParallax" type="Parallax2D" parent="Background"]
+visible = false
 scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(1280, 600)
 repeat_times = 4
@@ -124,14 +129,14 @@ offset = Vector2(0, 350)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaveFloor"]
 position = Vector2(1712, 946)
 scale = Vector2(1, 0.998288)
-shape = SubResource("RectangleShape2D_jmt5r")
+shape = SubResource("WorldBoundaryShape2D_2s50d")
 
 [node name="FieldFloor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FieldFloor"]
 position = Vector2(1711, 744)
 scale = Vector2(1, 0.998288)
-shape = SubResource("RectangleShape2D_jmt5r")
+shape = SubResource("WorldBoundaryShape2D_55nic")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 position = Vector2(-1380, 432)

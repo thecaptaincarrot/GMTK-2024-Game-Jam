@@ -118,6 +118,8 @@ func load_level(level_index : int):
 	active_loaded_level = level_index
 	camera.limit_right = CAMERA_BOUNDS[level_index].x
 	camera.limit_bottom = CAMERA_BOUNDS[level_index].y
+	# set starting zoom
+	camera.zoom = Vector2.ONE * 1.4
 	
 	_hide_all_backgrounds()
 	if(BACKGROUND[level_index] == CAVE_BG):
