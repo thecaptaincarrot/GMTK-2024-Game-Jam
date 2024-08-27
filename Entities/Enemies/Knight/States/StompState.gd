@@ -4,7 +4,8 @@ extends GenericState
 func enter(_msg):
 	beast.random_target_timer.stop()
 	stomper.disabled = false
-	await beast.animation_player.animation_finished
+	beast.animation_tree.set("parameters/Stomper/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	await beast.animation_tree.animation_finished
 	state_machine.change_to_state("IdleState")
 
 

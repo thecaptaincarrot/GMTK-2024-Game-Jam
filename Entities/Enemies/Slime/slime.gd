@@ -12,17 +12,7 @@ var target_list: Array
 var damage_taken = 0
 @export var projectile_damage_threshold = 20.0
 var bullit = preload("res://Entities/Enemies/Slime/projectile.tscn")
-
-var jump = false
-var jump_target
-var jump_time
-var base_jump_position
-var jump_time_passed = 0
-var jump_floor
-
-
-
-@export var jump_height = 600
+var can_bullit = true
 
 func _ready() -> void:
 	enemy.reacquire_targets.connect(reacquire_targets)
@@ -30,16 +20,6 @@ func _ready() -> void:
 	enemy.died.connect(die)
 
 	enemy.took_damage.connect(_spawn_bullits)
-	jump_floor = position.y
-
-
-func _physics_process(delta):
-	if jump:
-		jump_time_passed += delta
-		position.x += delta * (jump_target - base_jump_position) / jump_time
-		#print(sin( (PI/2) * jump_time_passed / jump_time))
-		position.y = jump_floor - jump_height * sin( (PI/2) * jump_time_passed)
-
 
 func reacquire_targets():
 	target_list = horde_controller.get_basic_gooblins()
@@ -53,26 +33,19 @@ func take_damage(dmg):
 	enemy.take_damage(dmg)
 	
 func _spawn_bullits(dmg):
-	damage_taken += dmg
-	var counter =  0
-	if damage_taken >= projectile_damage_threshold:
-		damage_taken = 0
-		counter =  randi_range(1,bullit_number)
-	
-	while counter > 0:
-		var bul = bullit.instantiate()
-		bul.global_position = global_position + projectile_spawn_offset
-		get_parent().add_child(bul)
-		counter -= 1
-
-func _on_jump_state_jump( new_target , new_jump_time):
-	jump = true
-	jump_target = new_target
-	jump_time = new_jump_time
-	base_jump_position = position.x
-	jump_time_passed = 0
-
-
-func _on_jump_state_jump_over():
-	jump = false
-	#print("Stop")
+	if can_bullit:
+		damage_taken += dmg
+		var counter =  0
+		if damage_taken >= projectile_damage_threshold:
+			damage_taken = 0
+			counter =  randi_range(1,bullit_number)
+		
+		while counter > 0:
+			var bul = bullit.instantiate()
+			bul.global_position = enemy.global_position + projectile_spawn_offset
+			get_parent().add_child(bul)
+			counter -= 1
+	can_bullit = false
+	var timer = get_tree().create_timer(1)
+	await timer.timeout
+	can_bullit = true

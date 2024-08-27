@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d1fpqglobsqbu"]
+[gd_scene load_steps=34 format=3 uid="uid://d1fpqglobsqbu"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Knight/knight.gd" id="1_4enup"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_p11pc"]
@@ -171,7 +171,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.73333, 2.66667, 3.7, 4.5, 5),
-"transitions": PackedFloat32Array(0.241484, 1.1487, 1, 1.8025, 1.68179, 0.241484),
+"transitions": PackedFloat32Array(0.5, 1.1487, 1, 1.8025, 1.68179, 0.241484),
 "update": 0,
 "values": [Vector2(-120, 10), Vector2(-101, 30), Vector2(-109, 21), Vector2(-59, 36), Vector2(-249, 219), Vector2(-120, 10)]
 }
@@ -216,6 +216,18 @@ tracks/1/keys = {
 "method": &"flingerize_gooblins"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IKTargets/armTarget:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-120, 10)]
+}
 
 [sub_resource type="Animation" id="Animation_daohh"]
 resource_name = "swing"
@@ -238,13 +250,31 @@ tracks/1/path = NodePath("StateMachine/SwingState")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.766667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.266667, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"shake_off_scalers"
+}, {
 "args": [],
 "method": &"hurt_gooblins"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/SwingState")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_obtnu"]
+resource_name = "walk"
+loop_mode = 1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sgm36"]
 _data = {
@@ -252,12 +282,85 @@ _data = {
 "death": SubResource("Animation_163mb"),
 "idle": SubResource("Animation_2oi3i"),
 "kick": SubResource("Animation_x6oct"),
-"swing": SubResource("Animation_daohh")
+"swing": SubResource("Animation_daohh"),
+"walk": SubResource("Animation_obtnu")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_880eb"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ckxfp"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egdfi"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2rtty"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lrldc"]
+xfade_time = 1.0
+advance_mode = 2
+advance_condition = &"walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ipoim"]
+xfade_time = 0.5
+advance_mode = 2
+advance_condition = &"idling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bfoj3"]
+xfade_time = 0.2
+priority = 2
+advance_mode = 2
+advance_condition = &"die"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i7b3w"]
+states/End/position = Vector2(617, 100)
+states/death/node = SubResource("AnimationNodeAnimation_880eb")
+states/death/position = Vector2(507, -6)
+states/idle/node = SubResource("AnimationNodeAnimation_ckxfp")
+states/idle/position = Vector2(416, 100)
+states/walk/node = SubResource("AnimationNodeAnimation_egdfi")
+states/walk/position = Vector2(416, 209)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2rtty"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_lrldc"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ipoim"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_bfoj3")]
+graph_offset = Vector2(26, -108)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bhjhd"]
+filter_enabled = true
+filters = ["IKTargets/legTarget:position", "StateMachine/StompState"]
+mix_mode = 1
+fadeout_time = 0.5
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5yfvw"]
+filter_enabled = true
+filters = ["IKTargets/armTarget:position", "StateMachine/SwingState"]
+mix_mode = 1
+fadeout_time = 0.25
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58klm"]
+animation = &"kick"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4k3qc"]
+animation = &"swing"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f833b"]
+graph_offset = Vector2(-81.4306, 283.605)
+nodes/Base/node = SubResource("AnimationNodeStateMachine_i7b3w")
+nodes/Base/position = Vector2(340, 500)
+nodes/Stomper/node = SubResource("AnimationNodeOneShot_bhjhd")
+nodes/Stomper/position = Vector2(840, 500)
+nodes/Swinger/node = SubResource("AnimationNodeOneShot_5yfvw")
+nodes/Swinger/position = Vector2(600, 500)
+nodes/output/position = Vector2(1060, 500)
+nodes/stom/node = SubResource("AnimationNodeAnimation_58klm")
+nodes/stom/position = Vector2(600, 740)
+nodes/swig/node = SubResource("AnimationNodeAnimation_4k3qc")
+nodes/swig/position = Vector2(360, 740)
+node_connections = [&"Stomper", 0, &"Swinger", &"Stomper", 1, &"stom", &"Swinger", 0, &"Base", &"Swinger", 1, &"swig", &"output", 0, &"Stomper"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0pag2"]
-radius = 32.0
-height = 124.0
+radius = 33.0
+height = 140.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q14qj"]
 radius = 20.5794
@@ -297,7 +400,6 @@ joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = true
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_k1hcn"]
-enabled = true
 modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DCCDIK_vlpu2")
 modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
@@ -321,11 +423,11 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_8jgim")
-animation = "idle"
+animation = ""
 
 [node name="StompState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("hitbox", "stomper")]
 script = ExtResource("4_skfil")
-animation = "kick"
+animation = ""
 hitbox = NodePath("../../HitboxComponent")
 damage = 1
 scaler_shakeoff_chance = 0.25
@@ -334,7 +436,7 @@ fling_damage = 5
 
 [node name="SwingState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_61l8l")
-animation = "swing"
+animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
 damage = 5
@@ -348,8 +450,20 @@ libraries = {
 "": SubResource("AnimationLibrary_sgm36")
 }
 
+[node name="AnimationTree" parent="Beast" index="3"]
+tree_root = SubResource("AnimationNodeBlendTree_f833b")
+parameters/Base/conditions/die = false
+parameters/Base/conditions/idling = true
+parameters/Base/conditions/walking = false
+parameters/Stomper/active = false
+parameters/Stomper/internal_active = false
+parameters/Stomper/request = 0
+parameters/Swinger/active = false
+parameters/Swinger/internal_active = false
+parameters/Swinger/request = 0
+
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-123, 81)
+position = Vector2(-145, 81)
 rotation = 1.5708
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("CapsuleShape2D_0pag2")
@@ -364,7 +478,7 @@ shape = SubResource("CapsuleShape2D_q14qj")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
-[node name="SkeletonComponent" parent="Beast" index="5"]
+[node name="SkeletonComponent" parent="Beast" index="6"]
 modification_stack = SubResource("SkeletonModificationStack2D_k1hcn")
 
 [node name="hip" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
@@ -379,7 +493,6 @@ position = Vector2(-21, 15)
 rotation = 0.188648
 scale = Vector2(0.99999, 0.99999)
 rest = Transform2D(0.982249, 0.187529, -0.187529, 0.982249, -21, 15)
-metadata/_local_pose_override_enabled_ = true
 
 [node name="foot" type="Bone2D" parent="Beast/SkeletonComponent/hip/leg"]
 position = Vector2(-1.32499, 86.1997)
@@ -394,16 +507,14 @@ update_scale = false
 
 [node name="body" type="Bone2D" parent="Beast/SkeletonComponent/hip"]
 position = Vector2(-0.999998, -54)
-rotation = -0.0403169
-rest = Transform2D(0.998003, 0.0631737, -0.0631737, 0.998003, -0.999999, -54)
-metadata/_local_pose_override_enabled_ = true
+rotation = -0.0390366
+rest = Transform2D(0.999187, -0.040306, 0.040306, 0.999187, -0.999998, -54)
 
 [node name="shoulder" type="Bone2D" parent="Beast/SkeletonComponent/hip/body"]
 position = Vector2(-48.0825, 1.0628)
-rotation = -0.0798977
-scale = Vector2(0.999999, 0.999999)
-rest = Transform2D(0.984793, 0.173713, -0.173713, 0.984793, -48.0822, 1.06243)
-metadata/_local_pose_override_enabled_ = true
+rotation = -0.0115448
+scale = Vector2(0.999998, 0.999998)
+rest = Transform2D(0.996809, -0.0798126, 0.0798126, 0.996809, -48.0825, 1.0628)
 
 [node name="arm" type="Bone2D" parent="Beast/SkeletonComponent/hip/body/shoulder"]
 position = Vector2(-55.1167, 83.4216)
@@ -416,7 +527,7 @@ update_scale = false
 
 [node name="base" type="Sprite2D" parent="Beast/Sprites" index="0"]
 z_index = -40
-scale = Vector2(0.240003, 0.240003)
+scale = Vector2(0.240004, 0.240004)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(879, 286, 554, 948)
@@ -425,16 +536,16 @@ region_rect = Rect2(879, 286, 554, 948)
 z_index = -50
 position = Vector2(-36.938, 58.2548)
 rotation = 0.188648
-scale = Vector2(0.240019, 0.240019)
+scale = Vector2(0.240115, 0.240115)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(346, 844, 146, 395)
 
 [node name="arm" type="Sprite2D" parent="Beast/Sprites" index="2"]
 z_index = -45
-position = Vector2(-124.605, 0.751404)
-rotation = -0.120215
-scale = Vector2(0.241666, 0.241666)
+position = Vector2(-128.026, -4.69587)
+rotation = -0.0505814
+scale = Vector2(0.241992, 0.241992)
 texture = ExtResource("3_rfubd")
 region_enabled = true
 region_rect = Rect2(42, 313, 733, 418)
@@ -446,11 +557,11 @@ position = Vector2(-120, 10)
 position = Vector2(-39, 102)
 scale = Vector2(0.999979, 0.999979)
 
-[node name="ScalerPath" parent="Beast" index="8"]
+[node name="ScalerPath" parent="Beast" index="9"]
 position = Vector2(-1, 6)
 curve = SubResource("Curve2D_3jw4g")
 
-[node name="LungePoint" parent="Beast" index="9"]
+[node name="LungePoint" parent="Beast" index="10"]
 position = Vector2(1, 41)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]

@@ -57,7 +57,7 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 
 
 const ENEMY_POS = [ Vector2(1100, 600),
-					Vector2(1100,680),
+					Vector2(1100,630),
 					Vector2(1400,800),
 					Vector2(1500,800),
 					Vector2(1800,540),
@@ -114,6 +114,7 @@ func _process(delta):
 
 func load_level(level_index : int):
 	print("Loading")
+	$CanvasLayer/RetreatButton.disabled = false
 	active_loaded_level = level_index
 	camera.limit_right = CAMERA_BOUNDS[level_index].x
 	camera.limit_bottom = CAMERA_BOUNDS[level_index].y
@@ -202,6 +203,7 @@ func _on_beast_died():
 	if(GooblinUpgrades.levels_completed <= active_loaded_level):
 		GooblinUpgrades.levels_completed = active_loaded_level + 1
 	GooblinController.celebrate()
+	$CanvasLayer/RetreatButton.disabled = true
 	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
 	if active_loaded_level == 4:
@@ -240,3 +242,27 @@ func _on_true_victory_return_button_pressed():
 	emit_signal("final_credits")
 	emit_signal("ReturnFromCombat")
 	GooblinController.kill_all()
+
+
+func _on_debug_panel_win():
+	if !Enemy:
+		return
+	else:
+		BeastNode.die()
+
+
+func _on_debug_panel_spawn_gooblings(num):
+	GooblinController.basic_to_spawn += num
+
+
+func _on_debug_panel_spawn_scalers(num):
+	GooblinController.scaler_to_spawn += num
+
+
+func _on_debug_panel_spawn_shields(num):
+	GooblinController.shield_to_spawn += num
+
+
+func _on_debug_panel_update_menus():
+	#not needed yet
+	pass # Replace with function body.

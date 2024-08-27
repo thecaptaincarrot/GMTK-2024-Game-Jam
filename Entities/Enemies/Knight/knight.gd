@@ -13,6 +13,7 @@ func _ready() -> void:
 	enemy.reacquire_targets.connect(reacquire_targets)
 	reacquire_targets()
 	enemy.died.connect(die)
+	#Engine.time_scale *= 2 lol
 	
 func reacquire_targets():
 	target_list = horde_controller.get_basic_gooblins()
