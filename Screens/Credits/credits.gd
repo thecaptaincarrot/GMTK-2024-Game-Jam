@@ -12,7 +12,6 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		end_credits()
 
-
 func restart():
 	$CreditsOver.start()
 	$CreditsPlayer.stop()

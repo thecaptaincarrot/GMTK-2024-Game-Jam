@@ -40,6 +40,8 @@ signal final_credits
 #Array indicies correspond to the level being entered.
 #I.e. Level 0 will pull all relevant variables from arrays on index 0
 
+const CAM_OFFSET = Vector2(640,360)
+
 #Camera bounds always start at position 0,0 on upper left
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
