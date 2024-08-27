@@ -67,7 +67,6 @@ var prev_state = GooblinStates.IDLE
 var _can_attack = true
 var _is_at_home = false
 var _jump_started = false
-var _climb_started = false
 var _scaler_attack_started = false
 
 
@@ -113,6 +112,7 @@ func _ready():
 	elif(unit_type == GooblinType.SCALER):
 		_sprite.texture = load("res://Textures/Entities/GoblinScaler.png")
 		_can_attack = true
+		$Splat.color = Color.MEDIUM_PURPLE
 		pass
 
 
@@ -124,6 +124,7 @@ func _physics_process(delta: float) -> void:
 		#placeholder for speedups
 	delta = delta * 1.0
 		#state machine
+	
 	match state:
 		GooblinStates.IDLE:
 			velocity.x = lerp(velocity.x,_move_to_target_range(),dampening)
@@ -140,7 +141,14 @@ func _physics_process(delta: float) -> void:
 					velocity.y = 0
 				else:
 					velocity.y += get_gravity() * delta
-		#GooblinStates.CLIMBING:
+		GooblinStates.CLIMBING:
+			velocity = Vector2(0,0)
+			position = path_follower.global_position
+			if !_scaler_attack_started:
+				path_follower.progress += scaler_climb_speed * delta
+				if path_follower.progress_ratio == 1.0: #completed my climb
+					_scaler_attack_started = true
+					_anim.play("ScalerAttack")
 		GooblinStates.FLYING:
 			if position.y >= y_home:
 				position.y = y_home
@@ -219,6 +227,7 @@ func _despawn_timeout():
 func _move_to_target_range(): #returns the x velocity of the gooblin as it tracks its target
 	#I want to remove all animations from this
 	var x_velocity = 0.0
+	
 	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
 		if(enemy_target != null):
 			var difference = get_position().x - x_home #x_home is where the gooblin wants to go
@@ -231,19 +240,16 @@ func _move_to_target_range(): #returns the x velocity of the gooblin as it track
 				_state_changed(GooblinStates.IDLE)
 				_is_at_home = true
 	elif(unit_type == Gooblin.GooblinType.SCALER):
-		var difference = get_position().x - path_follower.get_global_position().x
-		if(abs(difference) > 5):
-			x_velocity -= sign(difference)
-			if state != GooblinStates.MOVING:
-				_state_changed(GooblinStates.MOVING)
-		elif(abs(difference) <= 5 && state != GooblinStates.CLIMBING && $ScalerTimeout.is_stopped()):
-			_state_changed(GooblinStates.CLIMBING)
-		elif(state == GooblinStates.CLIMBING and !_scaler_attack_started):
-			set_position(path_follower.get_global_position())
-			if(path_follower.progress_ratio < 1.0):
-				path_follower.progress += scaler_climb_speed
-		else:
-			pass
+		if enemy_node :
+			var difference = get_position().x - path_follower.get_global_position().x
+			if(abs(difference) > 5):
+				x_velocity -= sign(difference)  * move_speed
+				if state != GooblinStates.MOVING:
+					_state_changed(GooblinStates.MOVING)
+			elif(abs(difference) <= 5 && state != GooblinStates.CLIMBING && $ScalerTimeout.is_stopped()):
+				_state_changed(GooblinStates.CLIMBING)
+	else:
+		pass
 	return x_velocity
 
 
@@ -254,11 +260,6 @@ func _attack_target():
 		if(_is_at_home && _can_attack):
 			if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
 				_state_changed(GooblinStates.JUMPATTACK)
-	
-	if(unit_type == GooblinType.SCALER && path_follower.progress_ratio == 1 && state == GooblinStates.CLIMBING && !_scaler_attack_started):
-		_scaler_attack_timer.start()
-		_scaler_attack_started = true
-		$ScalerDamage.color = enemy_node.blood_color
 
 
 func _jump_trigger():
@@ -298,7 +299,7 @@ func _state_changed(new_state):
 		GooblinStates.JUMPATTACK:
 			_anim.play("Jump")
 		GooblinStates.CLIMBING:
-			path_follower.progress_ratio = 0
+			path_follower.progress_ratio = 0.0
 			_anim.play("Climb")
 		GooblinStates.FLYING:
 			_anim.play("Fling")
