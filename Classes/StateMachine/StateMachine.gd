@@ -69,5 +69,5 @@ func change_to_state(state: String, msg = {}):
 
 		# Emit signal
 		state_changed.emit(state)
-		if log_changes:
-			prints(owner.get_parent().name, "changed to", current_state.name)
+		#if log_changes:
+			#prints(owner.get_parent().name, "changed to", current_state.name)

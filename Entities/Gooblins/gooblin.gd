@@ -9,6 +9,18 @@ enum GooblinType{
 	CATAPULT
 }
 
+
+enum GooblinStates{
+	IDLE,
+	MOVING,
+	JUMPATTACK,
+	CLIMBING,
+	FLYING,
+	DEAD,
+	CELEBRATING
+}
+
+
 signal gooblin_changed
 
 signal died
@@ -34,31 +46,29 @@ signal died
 @export var despawn_timer_time = 2.0
 
 #Vectors
-var _upcoming_fling = Vector2()
-@export var jump_vector = Vector2(400, 600)
-@export var fling_vector = Vector2(-500, -800)
-@export var dismount_fling_vector = Vector2(-800, -800)
+@export var jump_power = 600.0
+@export var fling_vector = Vector2(-50, -80)
+@export var dismount_fling_vector = Vector2(-80, -80)
 
 var velocity = Vector2(0,0)
 #used to move the velocity back to zero
 #when input is not being sent to movement
 #functions off of a vector lerp
-@export var dampening = 0.03
+@export var dampening = 0.2
 
 var _att_timer = Timer.new()
 var _jump_timer = Timer.new()
 var _scaler_attack_timer = Timer.new()
 
 #States
-var is_flying = false
+@export var state = GooblinStates.IDLE
+var prev_state = GooblinStates.IDLE
+
 var _can_attack = true
-var _is_dead = false
-var celebrating = false
 var _is_at_home = false
-var _climbing = false
+var _jump_started = false
 var _climb_started = false
 var _scaler_attack_started = false
-var _is_being_flung = false
 
 
 #sprite should be called - Sprite
@@ -72,13 +82,6 @@ func _ready():
 	#get stuff from gooblinupgrades
 	move_speed = GooblinUpgrades.get_gooblin_speed()
 	scaler_climb_speed = GooblinUpgrades.get_scaler_climb_speed()
-	#this timer is used to delay a jump
-	#and allow for the anticipation animation to play
-	_jump_timer.autostart = false
-	_jump_timer.set_wait_time(0.3) #Should this be usable?
-	_jump_timer.one_shot = true
-	_jump_timer.timeout.connect(_jump_trigger)
-	add_child(_jump_timer)
 	
 	_scaler_attack_timer.timeout.connect(_scaler_attack_timeout)
 	_scaler_attack_timer.wait_time = 1.0
@@ -89,18 +92,17 @@ func _ready():
 	
 	var i = randi_range(0, 3) #Should this be more varied?
 	if(i == 0):
-		y_home = 48
+		y_home = position.y
 		_sprite.z_index = 3
 	elif(i == 1):
-		y_home = 32
+		y_home = position.y
 		_sprite.z_index = 2
 	elif(i == 2):
-		y_home = 16
+		y_home = position.y
 		_sprite.z_index = 1
 	elif(i == 3):
-		y_home = 0
+		y_home = position.y
 		_sprite.z_index = 0
-	
 	#setup for the attack timeframe
 	if(unit_type == GooblinType.BASIC):
 		_can_attack = true
@@ -114,29 +116,53 @@ func _ready():
 		pass
 
 
+func _process(delta):
+	pass
+
+
 func _physics_process(delta: float) -> void:
 		#placeholder for speedups
-		delta = delta * 1.0
-		#gravity, if in the air
-		if _is_being_flung:
+	delta = delta * 1.0
+		#state machine
+	match state:
+		GooblinStates.IDLE:
+			velocity.x = lerp(velocity.x,_move_to_target_range(),dampening)
+			_attack_target()
+		GooblinStates.MOVING:
+			velocity.x = lerp(velocity.x,_move_to_target_range(),dampening)
+			_attack_target()
+		GooblinStates.JUMPATTACK:
+			#I wish this wasn't needed. Please find a way to get rid of it.
+			if _jump_started:
+				if position.y > y_home:
+					position.y = y_home
+					_state_changed(GooblinStates.IDLE)
+					velocity.y = 0
+				else:
+					velocity.y += get_gravity() * delta
+		#GooblinStates.CLIMBING:
+		GooblinStates.FLYING:
 			if position.y >= y_home:
 				position.y = y_home
-				_is_being_flung = false
+				_state_changed(GooblinStates.IDLE)
 				velocity.y = 0
 			else:
 				velocity.y += get_gravity() * delta
-		else: #I am not being flung, so my y velocity is 0
-			velocity.x = _move_to_target_range(delta)
+		GooblinStates.DEAD:
+			if position.y >= y_home:
+				position.y = y_home
+				velocity.y = 0
+			else:
+				velocity.y += get_gravity() * delta
+		GooblinStates.CELEBRATING:
+			if position.y >= y_home:
+				position.y = y_home
+				velocity.y = 0
+			else:
+				velocity.y += get_gravity() * delta
 		
-		position += velocity * delta
-		
-		#Flinging:
-		if (!_is_dead):
-			velocity += _upcoming_fling * delta
-		
-		_upcoming_fling = Vector2()
-		
-		
+	position += velocity * delta
+
 
 func hurt():
 	if(unit_type == GooblinType.SHIELD):
@@ -150,7 +176,7 @@ func hurt():
 
 
 func die():
-	_is_dead = true
+	_state_changed(GooblinStates.DEAD)
 	emit_signal("died", self)
 	var despawn_timer = Timer.new()
 	despawn_timer.autostart = true
@@ -163,18 +189,13 @@ func die():
 
 
 func fling():
-	_is_being_flung = true
-	_upcoming_fling = fling_vector * 100
+	state =GooblinStates.FLYING
+	velocity = fling_vector * 100
 	$ScalerTimeout.start()
 
 
 func celebrate():
-	celebrating = true
-	
-	if _climbing:
-		_climbing = false
-	
-	_anim.play("Victory")
+	_state_changed(GooblinStates.CELEBRATING)
 
 
 func convert_to_basic_gooblin():
@@ -194,33 +215,35 @@ func _despawn_timeout():
 	queue_free()
 
 
-func _move_to_target_range(delta:float): #returns the x velocity of the gooblin as it tracks its target
-	if celebrating:
-		return 0.0
-
+func _move_to_target_range(): #returns the x velocity of the gooblin as it tracks its target
+	#I want to remove all animations from this
+	var x_velocity = 0.0
 	if(unit_type == Gooblin.GooblinType.SHIELD || unit_type == Gooblin.GooblinType.BASIC):
 		if(enemy_target != null):
-			var difference = get_position().x - x_home #x_home is ONLY here
+			var difference = get_position().x - x_home #x_home is where the gooblin wants to go
 			if(abs(difference) > 8.0):
-				velocity.x -= sign(difference) * move_speed * delta
+				x_velocity -= sign(difference) * move_speed
+				if state != GooblinStates.MOVING:
+					_state_changed(GooblinStates.MOVING)
 				_is_at_home = false
 			else:
-				_anim.play("Idle")
+				_state_changed(GooblinStates.IDLE)
 				_is_at_home = true
 	elif(unit_type == Gooblin.GooblinType.SCALER):
 		var difference = get_position().x - path_follower.get_global_position().x
 		if(abs(difference) > 5):
-			velocity.x -= sign(difference) * move_speed * delta
-		elif(abs(difference) <= 5 && !_climbing && $ScalerTimeout.is_stopped()):
-			print("climbing",$ScalerTimeout.is_stopped())
-			_climbing = true
-		elif(_climbing and !_scaler_attack_started):
-			_anim.play("Climb")
+			x_velocity -= sign(difference)
+			if state != GooblinStates.MOVING:
+				_state_changed(GooblinStates.MOVING)
+		elif(abs(difference) <= 5 && state != GooblinStates.CLIMBING && $ScalerTimeout.is_stopped()):
+			_state_changed(GooblinStates.CLIMBING)
+		elif(state == GooblinStates.CLIMBING and !_scaler_attack_started):
 			set_position(path_follower.get_global_position())
 			if(path_follower.progress_ratio < 1.0):
-				path_follower.progress += scaler_climb_speed * delta
+				path_follower.progress += scaler_climb_speed
 		else:
 			pass
+	return x_velocity
 
 
 func _attack_target():
@@ -229,32 +252,59 @@ func _attack_target():
 		#to make sure the attack is acurate
 		if(_is_at_home && _can_attack):
 			if(abs(get_position().x - enemy_target.get_global_position().x) <= attack_radius):
-				_anim.play("Jump")
-				_jump_timer.start()
+				_state_changed(GooblinStates.JUMPATTACK)
 	
-	if(unit_type == GooblinType.SCALER && path_follower.progress_ratio == 1 && _climbing == true && !_scaler_attack_started):
+	if(unit_type == GooblinType.SCALER && path_follower.progress_ratio == 1 && state == GooblinStates.CLIMBING && !_scaler_attack_started):
 		_scaler_attack_timer.start()
-		_anim.play("ScalerAttack")
 		_scaler_attack_started = true
 		$ScalerDamage.color = enemy_node.blood_color
 
 
 func _jump_trigger():
 	var diff = (get_position() - enemy_target.get_global_position()).normalized()
-	if(_upcoming_fling == Vector2()):
-		_upcoming_fling = -diff * jump_vector * 100
-		#add damange multiplyers in here when it comes up
-		enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
+	velocity = -diff * jump_power
+	_jump_started = true
+
+
+func damage_target():
+	enemy_node.take_damage(GooblinUpgrades.gooblin_attack)
 
 
 func _scaler_attack_timeout():
 	enemy_node.take_damage(GooblinUpgrades.gooblin_attack * GooblinUpgrades.get_scaler_multipler())
 	fling()
-	_anim.play("Fling")
-	_climbing = false
+	_state_changed(GooblinStates.FLYING)
 	path_follower.progress_ratio = 0
 	_scaler_attack_started = false
 
 
+func _state_changed(new_state): #This only handles animation changes, or other things that change when an animation changes
+	#it does NOT handle what causes a state to change
+	prev_state = state
+	new_state = state
+	#If you can find a way to get rid of this reset, please do so.
+	_jump_started = false
+	#Back to your regularly scheduled function
+	match state:
+		GooblinStates.IDLE:
+			_anim.play("Idle")
+		GooblinStates.MOVING:
+			_anim.play("Walk")
+		GooblinStates.JUMPATTACK:
+			_anim.play("Jump")
+		GooblinStates.CLIMBING:
+			path_follower.progress_ratio = 0
+			_anim.play("Climb")
+		GooblinStates.FLYING:
+			_anim.play("Fling")
+		GooblinStates.DEAD:
+			_anim.play("Dead")
+		GooblinStates.CELEBRATING:
+			_anim.play("Victory")
+
+
 func is_dead():
-	return _is_dead
+	if state == GooblinStates.DEAD:
+		return true
+	else:
+		return false

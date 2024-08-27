@@ -32,7 +32,7 @@ var scaler_to_spawn = 0
 
 @onready var gooblin_scene = preload("res://Entities/Gooblins/gooblin.tscn")
 
-var max_spawn = 500
+var max_spawn = 800
 
 
 var _basic_gooblins = []

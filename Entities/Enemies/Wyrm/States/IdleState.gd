@@ -24,7 +24,6 @@ func target_and_attack():
 		current_target = randf_range(slam_min_range, slam_max_range)
 		tween_target = beast.global_position + Vector2(-current_target, -track_height)
 		msg = beast.to_global(Vector2(-current_target, 0)).x
-		print(msg)
 		
 		var tween
 		tween = get_tree().create_tween()
@@ -32,7 +31,6 @@ func target_and_attack():
 		await tween.finished
 
 		if randi_range(1,beast.attack_chance) == 1:
-			print("gonna atack")
 			beast.random_target_timer.stop()
 			# pass the target gooblin object as the message 
 			state_machine.change_to_state("SlamState", msg)

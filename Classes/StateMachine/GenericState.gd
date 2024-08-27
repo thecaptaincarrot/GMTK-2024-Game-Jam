@@ -37,8 +37,8 @@ func update(_delta):
 
 var intersecting_goobs := []
 func physics_update(_delta):
-	if hitbox:
-		intersecting_goobs = hitbox.get_overlapping_bodies()
+	pass
+
 
 func exit():
 	pass
@@ -49,6 +49,8 @@ func shake_off_scalers():
 
 
 func flingerize_gooblins():
+	if hitbox:
+		intersecting_goobs = hitbox.get_overlapping_areas()
 	if len(intersecting_goobs) == 0:
 		return
 	var to_fling = fling_damage
@@ -62,6 +64,8 @@ func flingerize_gooblins():
 func hurt_gooblins():
 	#if hit_sound_player:
 		#hit_sound_player.play()
+	if hitbox:
+		intersecting_goobs = hitbox.get_overlapping_areas()
 	
 	if len(intersecting_goobs) == 0:
 		return

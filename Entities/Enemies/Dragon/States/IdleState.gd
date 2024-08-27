@@ -47,7 +47,7 @@ func target_and_attack():
 		tween.tween_property(head_pointer,"global_position" , tween_target, beast.random_target_timer.wait_time).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		if randi_range(1,beast.attack_chance) == 1 and state_target:
-			print("gonna atack")
+			#print("gonna atack")
 			# if it is going to attack, you shouldn't start the timer until after the attack is done
 			beast.random_target_timer.stop()
 			# pass the target x coordinate as the message 

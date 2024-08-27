@@ -7,7 +7,6 @@
 script = ExtResource("1_80sky")
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(-86, 293)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_iyxat")

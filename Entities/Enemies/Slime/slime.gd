@@ -75,4 +75,4 @@ func _on_jump_state_jump( new_target , new_jump_time):
 
 func _on_jump_state_jump_over():
 	jump = false
-	print("Stop")
+	#print("Stop")

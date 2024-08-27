@@ -29,12 +29,10 @@ func enter(x_target):
 	attacker.disabled = false
 	
 	emit_signal("jump",target_position, jump_time)
-	print("Yo1")
 	var new_timer = Timer.new()
 	new_timer.wait_time = jump_time
 	add_child(new_timer)
 	new_timer.start()
-	print(new_timer.time_left)
 	await new_timer.timeout
 	emit_signal("jump_over")
 	shake_off_scalers()
