@@ -26,7 +26,7 @@ func can_load():
 #I guess we just have the one global, lol
 var levels_completed = 0
 
-var gooblin_count = 1000 #Total gooblins of any class
+var gooblin_count = 10 #Total gooblins of any class
 #army composition
 var basic_gooblins = 0
 var shield_gooblins = 0

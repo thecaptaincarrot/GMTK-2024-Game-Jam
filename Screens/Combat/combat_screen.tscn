@@ -57,7 +57,7 @@ CaveFloor = NodePath("CaveFloor")
 gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
 
 [node name="SpawnPoint" parent="GooblinHordeController" index="0"]
-position = Vector2(5, 681)
+position = Vector2(-30, 718)
 
 [node name="CombatCamera" type="Camera2D" parent="."]
 anchor_mode = 0

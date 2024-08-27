@@ -47,7 +47,7 @@ signal died
 
 #Vectors
 @export var jump_power = 600.0
-@export var fling_vector = Vector2(-50, -80)
+@export var fling_vector = Vector2(-400, -800)
 @export var dismount_fling_vector = Vector2(-80, -80)
 
 var velocity = Vector2(0,0)
@@ -132,7 +132,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x,_move_to_target_range(),dampening)
 			_attack_target()
 		GooblinStates.JUMPATTACK:
-			#I wish this wasn't needed. Please find a way to get rid of it.
+			#I wish _jump_started wasn't needed. Please find a way to get rid of it.
 			if _jump_started:
 				if position.y > y_home:
 					position.y = y_home
@@ -152,12 +152,14 @@ func _physics_process(delta: float) -> void:
 			if position.y >= y_home:
 				position.y = y_home
 				velocity.y = 0
+				velocity.x = lerp(velocity.x,0.0,dampening)
 			else:
 				velocity.y += get_gravity() * delta
 		GooblinStates.CELEBRATING:
 			if position.y >= y_home:
 				position.y = y_home
 				velocity.y = 0
+				velocity.x = lerp(velocity.x,0.0,dampening)
 			else:
 				velocity.y += get_gravity() * delta
 		
@@ -183,14 +185,13 @@ func die():
 	despawn_timer.set_wait_time(despawn_timer_time)
 	despawn_timer.timeout.connect(_despawn_timeout)
 	add_child(despawn_timer)
-	_anim.play("Dead")
 	$Splat.amount = randi_range(10,40)
 	$Splat.emitting = true
 
 
 func fling():
-	state =GooblinStates.FLYING
-	velocity = fling_vector * 100
+	_state_changed(GooblinStates.FLYING)
+	velocity = fling_vector
 	$ScalerTimeout.start()
 
 
@@ -261,8 +262,10 @@ func _attack_target():
 
 
 func _jump_trigger():
-	var diff = (get_position() - enemy_target.get_global_position()).normalized()
-	velocity = -diff * jump_power
+	#var diff = (get_position() - enemy_target.get_global_position()).normalized()
+	#TODO:REFERENCE THE TARGET POSITION, NOT JUST A BOGUS VECTOR
+	var dif = Vector2(0.4,-0.6)
+	velocity = dif * jump_power
 	_jump_started = true
 
 
@@ -278,10 +281,12 @@ func _scaler_attack_timeout():
 	_scaler_attack_started = false
 
 
-func _state_changed(new_state): #This only handles animation changes, or other things that change when an animation changes
+func _state_changed(new_state): 
+	#This only handles animation changes, or other things that change when an animation changes
 	#it does NOT handle what causes a state to change
+	
 	prev_state = state
-	new_state = state
+	state = new_state
 	#If you can find a way to get rid of this reset, please do so.
 	_jump_started = false
 	#Back to your regularly scheduled function

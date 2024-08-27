@@ -358,12 +358,14 @@ collision_layer = 2
 script = ExtResource("1_qqrn7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
 scale = Vector2(2, 2)
 texture = ExtResource("2_uqsqc")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Splat" type="CPUParticles2D" parent="."]
+position = Vector2(0, -32)
 emitting = false
 amount = 40
 lifetime = 3.0
@@ -379,7 +381,7 @@ scale_amount_max = 4.0
 color = Color(0.188235, 0.713726, 0.439216, 1)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5)
+position = Vector2(-1, -27)
 shape = SubResource("CapsuleShape2D_yumhv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -389,6 +391,7 @@ libraries = {
 
 [node name="ScalerDamage" type="CPUParticles2D" parent="."]
 show_behind_parent = true
+position = Vector2(0, -32)
 emitting = false
 amount = 50
 lifetime = 0.5
