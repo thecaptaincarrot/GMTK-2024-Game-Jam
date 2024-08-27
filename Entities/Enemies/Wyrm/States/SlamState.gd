@@ -8,7 +8,6 @@ func enter(msg):
 	#printt("track:", beast.animation_tree.get_animation("slam").track_get_path(slam_track))
 
 	attacker.disabled = false
-	beast.random_target_timer.stop()
 	beast.animation_tree["parameters/Slammer/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await beast.animation_tree.animation_finished
 	#

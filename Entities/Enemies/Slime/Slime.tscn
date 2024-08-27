@@ -322,7 +322,7 @@ min_retarget_time = 4.0
 max_retarget_time = 5.0
 blood_color = Color(0.447636, 0.24912, 0.374506, 1)
 
-[node name="StateMachine" parent="Beast" index="1"]
+[node name="StateMachine" parent="Beast" index="2"]
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
@@ -344,12 +344,12 @@ fling_damage = 40
 script = ExtResource("5_y3egq")
 undulator = NodePath("../../IKTargets/undulator1")
 
-[node name="AnimationPlayer" parent="Beast" index="2"]
+[node name="AnimationPlayer" parent="Beast" index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_aove2")
 }
 
-[node name="AnimationTree" parent="Beast" index="3"]
+[node name="AnimationTree" parent="Beast" index="4"]
 active = true
 deterministic = false
 tree_root = SubResource("AnimationNodeBlendTree_f5kkg")
@@ -365,7 +365,7 @@ shape = SubResource("CircleShape2D_wgu7w")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
-[node name="SkeletonComponent" parent="Beast" index="6"]
+[node name="SkeletonComponent" parent="Beast" index="7"]
 modification_stack = SubResource("SkeletonModificationStack2D_mm7ye")
 
 [node name="base" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
@@ -625,7 +625,6 @@ region_rect = Rect2(151, 407, 112, 206)
 z_index = -43
 position = Vector2(43.9982, -328.475)
 rotation = -0.0316538
-scale = Vector2(1, 1)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)
@@ -659,7 +658,7 @@ region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-4.46018, -90.945)
+position = Vector2(-4.46019, -90.945)
 rotation = -0.639
 scale = Vector2(0.999931, 0.999931)
 texture = ExtResource("4_hw4sg")
@@ -681,10 +680,10 @@ position = Vector2(-466, 36)
 [node name="rightgoopLookAt" type="Node2D" parent="Beast/IKTargets" index="2"]
 position = Vector2(559, 8)
 
-[node name="ScalerPath" parent="Beast" index="9"]
+[node name="ScalerPath" parent="Beast" index="10"]
 curve = SubResource("Curve2D_u0ito")
 
-[node name="LungePoint" parent="Beast" index="10"]
+[node name="LungePoint" parent="Beast" index="11"]
 position = Vector2(0, -112)
 
 [node name="ReturnHint" type="Node2D" parent="Beast"]

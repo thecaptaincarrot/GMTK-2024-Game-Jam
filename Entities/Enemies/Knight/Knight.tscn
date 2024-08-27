@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d1fpqglobsqbu"]
+[gd_scene load_steps=29 format=3 uid="uid://d1fpqglobsqbu"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Knight/knight.gd" id="1_4enup"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="1_p11pc"]
@@ -216,18 +216,6 @@ tracks/1/keys = {
 "method": &"flingerize_gooblins"
 }]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("IKTargets/armTarget:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-120, 10)]
-}
 
 [sub_resource type="Animation" id="Animation_daohh"]
 resource_name = "swing"
@@ -286,44 +274,18 @@ _data = {
 "walk": SubResource("Animation_obtnu")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_880eb"]
-animation = &"death"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vije0"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ckxfp"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egdfi"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2rtty"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lrldc"]
-xfade_time = 1.0
-advance_mode = 2
-advance_condition = &"walking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ipoim"]
-xfade_time = 0.5
-advance_mode = 2
-advance_condition = &"idling"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bfoj3"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_6jcmy"]
 xfade_time = 0.2
-priority = 2
-advance_mode = 2
-advance_condition = &"die"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i7b3w"]
-states/End/position = Vector2(617, 100)
-states/death/node = SubResource("AnimationNodeAnimation_880eb")
-states/death/position = Vector2(507, -6)
-states/idle/node = SubResource("AnimationNodeAnimation_ckxfp")
-states/idle/position = Vector2(416, 100)
-states/walk/node = SubResource("AnimationNodeAnimation_egdfi")
-states/walk/position = Vector2(416, 209)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2rtty"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_lrldc"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ipoim"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_bfoj3")]
-graph_offset = Vector2(26, -108)
+input_0/name = "alive"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "dead"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_bhjhd"]
 filter_enabled = true
@@ -337,6 +299,9 @@ filters = ["IKTargets/armTarget:position", "StateMachine/SwingState"]
 mix_mode = 1
 fadeout_time = 0.25
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_36g1v"]
+animation = &"idle"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58klm"]
 animation = &"kick"
 
@@ -344,19 +309,23 @@ animation = &"kick"
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f833b"]
-graph_offset = Vector2(-81.4306, 283.605)
-nodes/Base/node = SubResource("AnimationNodeStateMachine_i7b3w")
-nodes/Base/position = Vector2(340, 500)
+graph_offset = Vector2(-65.9797, 320.06)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_vije0")
+nodes/Animation/position = Vector2(860, 780)
+nodes/Life/node = SubResource("AnimationNodeTransition_6jcmy")
+nodes/Life/position = Vector2(1040, 500)
 nodes/Stomper/node = SubResource("AnimationNodeOneShot_bhjhd")
 nodes/Stomper/position = Vector2(840, 500)
 nodes/Swinger/node = SubResource("AnimationNodeOneShot_5yfvw")
 nodes/Swinger/position = Vector2(600, 500)
-nodes/output/position = Vector2(1060, 500)
+nodes/idleanim/node = SubResource("AnimationNodeAnimation_36g1v")
+nodes/idleanim/position = Vector2(331.51, 522.423)
+nodes/output/position = Vector2(1220, 500)
 nodes/stom/node = SubResource("AnimationNodeAnimation_58klm")
 nodes/stom/position = Vector2(600, 740)
 nodes/swig/node = SubResource("AnimationNodeAnimation_4k3qc")
 nodes/swig/position = Vector2(360, 740)
-node_connections = [&"Stomper", 0, &"Swinger", &"Stomper", 1, &"stom", &"Swinger", 0, &"Base", &"Swinger", 1, &"swig", &"output", 0, &"Stomper"]
+node_connections = [&"Life", 0, &"Stomper", &"Life", 1, &"Animation", &"Stomper", 0, &"Swinger", &"Stomper", 1, &"stom", &"Swinger", 0, &"idleanim", &"Swinger", 1, &"swig", &"output", 0, &"Life"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0pag2"]
 radius = 33.0
@@ -414,11 +383,12 @@ point_count = 4
 script = ExtResource("1_4enup")
 
 [node name="Beast" parent="." instance=ExtResource("1_p11pc")]
+position = Vector2(1, -102)
 min_retarget_time = 1.0
 max_retarget_time = 2.0
 blood_color = Color(0.638884, 2.02149e-06, 4.81307e-07, 1)
 
-[node name="StateMachine" parent="Beast" index="1"]
+[node name="StateMachine" parent="Beast" index="2"]
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
@@ -445,16 +415,16 @@ damage = 5
 script = ExtResource("5_0pi2i")
 animation = "death"
 
-[node name="AnimationPlayer" parent="Beast" index="2"]
+[node name="AnimationPlayer" parent="Beast" index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_sgm36")
 }
 
-[node name="AnimationTree" parent="Beast" index="3"]
+[node name="AnimationTree" parent="Beast" index="4"]
 tree_root = SubResource("AnimationNodeBlendTree_f833b")
-parameters/Base/conditions/die = false
-parameters/Base/conditions/idling = true
-parameters/Base/conditions/walking = false
+parameters/Life/current_state = ""
+parameters/Life/transition_request = "alive"
+parameters/Life/current_index = -1
 parameters/Stomper/active = false
 parameters/Stomper/internal_active = false
 parameters/Stomper/request = 0
@@ -478,7 +448,7 @@ shape = SubResource("CapsuleShape2D_q14qj")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
-[node name="SkeletonComponent" parent="Beast" index="6"]
+[node name="SkeletonComponent" parent="Beast" index="7"]
 modification_stack = SubResource("SkeletonModificationStack2D_k1hcn")
 
 [node name="hip" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
@@ -557,11 +527,11 @@ position = Vector2(-120, 10)
 position = Vector2(-39, 102)
 scale = Vector2(0.999979, 0.999979)
 
-[node name="ScalerPath" parent="Beast" index="9"]
+[node name="ScalerPath" parent="Beast" index="10"]
 position = Vector2(-1, 6)
 curve = SubResource("Curve2D_3jw4g")
 
-[node name="LungePoint" parent="Beast" index="10"]
+[node name="LungePoint" parent="Beast" index="11"]
 position = Vector2(1, 41)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]
