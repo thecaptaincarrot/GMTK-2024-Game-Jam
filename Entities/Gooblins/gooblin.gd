@@ -76,6 +76,9 @@ var _scaler_attack_started = false
 @onready var _collider:CollisionShape2D = $Collider
 @onready var _anim:AnimationPlayer = $AnimationPlayer
 
+#this was moved up here to shift the "lag" to the start of the game
+#and not the first time this scene get's spawned
+@onready var trash_can_scene = preload("res://Entities/Gooblins/trash_can.tscn")
 
 func _ready():
 	#get stuff from gooblinupgrades
@@ -88,20 +91,10 @@ func _ready():
 	_scaler_attack_timer.one_shot = true
 	add_child(_scaler_attack_timer) #Do we need a scaler timer if we're not a scaler?
 	
+	#The y offset also defines the layer the gooblin will render on
+	y_home = position.y
+	_sprite.z_index = y_home
 	
-	var i = randi_range(0, 3) #Should this be more varied?
-	if(i == 0):
-		y_home = position.y
-		_sprite.z_index = 3
-	elif(i == 1):
-		y_home = position.y
-		_sprite.z_index = 2
-	elif(i == 2):
-		y_home = position.y
-		_sprite.z_index = 1
-	elif(i == 3):
-		y_home = position.y
-		_sprite.z_index = 0
 	#setup for the attack timeframe
 	if(unit_type == GooblinType.BASIC):
 		_can_attack = true
@@ -210,7 +203,7 @@ func celebrate():
 func convert_to_basic_gooblin():
 	if(unit_type == GooblinType.SHIELD):
 		#spawn a shield entity to bounce around
-		var new_shield = load("res://Entities/Gooblins/trash_can.tscn").instantiate()
+		var new_shield = trash_can_scene.instantiate()
 		new_shield.position = position
 		get_parent().call_deferred("add_child",new_shield)
 		
