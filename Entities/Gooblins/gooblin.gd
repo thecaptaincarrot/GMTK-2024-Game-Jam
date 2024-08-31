@@ -106,6 +106,7 @@ func _ready():
 		_sprite.texture = load("res://Textures/Entities/GoblinScaler.png")
 		_can_attack = true
 		$Splat.color = Color.MEDIUM_PURPLE
+		$ScalerDamage.color = enemy_node.blood_color
 		pass
 
 
@@ -141,6 +142,7 @@ func _physics_process(delta: float) -> void:
 				path_follower.progress += scaler_climb_speed * delta
 				if path_follower.progress_ratio == 1.0: #completed my climb
 					_scaler_attack_started = true
+					$ScalerDamage.show()
 					_anim.play("ScalerAttack")
 		GooblinStates.FLYING:
 			if position.y >= y_home:
@@ -193,6 +195,8 @@ func die():
 func fling():
 	_state_changed(GooblinStates.FLYING)
 	velocity = fling_vector
+	#$ScalerDamage.emitting = false
+	$ScalerDamage.hide()
 	$ScalerTimeout.start()
 
 
