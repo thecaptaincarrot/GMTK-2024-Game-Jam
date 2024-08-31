@@ -22,7 +22,7 @@ func enter(_msg):
 	jump_anim.track_insert_key(undulator_x, 1, beast.position.x - (target_position / 10))
 	
 	attacker.disabled = false
-	beast.random_target_timer.stop()
+	#beast.random_target_timer.stop()
 	beast.animation_tree["parameters/Jumper/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await beast.animation_tree.animation_finished
 	
@@ -47,4 +47,4 @@ func enter(_msg):
 
 func exit():
 	attacker.disabled = true
-	beast.random_target_timer.start()
+	#beast.random_target_timer.start()

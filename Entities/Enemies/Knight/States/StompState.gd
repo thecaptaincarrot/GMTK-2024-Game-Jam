@@ -2,7 +2,7 @@ extends GenericState
 
 
 func enter(_msg):
-	beast.random_target_timer.stop()
+	#beast.random_target_timer.stop()
 	stomper.disabled = false
 	beast.animation_tree.set("parameters/Stomper/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	await beast.animation_tree.animation_finished
@@ -12,4 +12,4 @@ func enter(_msg):
 func exit():
 	# once it's done
 	stomper.disabled = true
-	beast.random_target_timer.start()
+	#beast.random_target_timer.start()

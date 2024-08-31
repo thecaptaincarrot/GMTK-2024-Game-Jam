@@ -5,7 +5,7 @@ extends GenericState
 
 func enter(msg):
 	attacker.disabled = false
-	beast.random_target_timer.stop()
+	#beast.random_target_timer.stop()
 	beast.acquire_targets()
 	
 	var target_x = randf_range(target_x_min, target_x_max)

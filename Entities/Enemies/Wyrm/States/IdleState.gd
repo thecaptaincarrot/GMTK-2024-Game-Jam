@@ -7,7 +7,7 @@ extends GenericState
 func enter(_msg):
 # very similar to the dragon code except it goes into StaggerState where it does nothing for a while after attacking
 	#beast.animation_tree["parameters/Base/conditions/idling"] = true
-	pass
+		beast.random_target_timer.start()
 	
 
 func target_and_attack():
@@ -17,6 +17,7 @@ func target_and_attack():
 	#tween_target = beast.global_position + Vector2(-current_target, -track_height)
 	#msg = beast.to_global(Vector2(-current_target, 0)).x
 	if randi_range(1,beast.attack_chance) == 1:
+		beast.random_target_timer.stop()
 		print("gonna atack")
 		#beast.random_target_timer.stop()
 		# pass the target gooblin object as the message 

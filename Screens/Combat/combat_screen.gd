@@ -56,11 +56,11 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 					]
 
 
-const ENEMY_POS = [ Vector2(1100, 600),
-					Vector2(1100,630),
+const ENEMY_POS = [ Vector2(1100, 700),
+					Vector2(1100,730),
 					Vector2(1400,800),
 					Vector2(1500,800),
-					Vector2(1800,540),
+					Vector2(1800,950),
 					]
 
 const GOOBLIN_RANGE = [64,
@@ -207,6 +207,7 @@ func _on_beast_died():
 	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
 	if active_loaded_level == 4:
+		TrueVictoryPanel.update_gold_earned(gold_earned)
 		TrueVictoryPanel.show()
 	else:
 		VictoryPanel.show()

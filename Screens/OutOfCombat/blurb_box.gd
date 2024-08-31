@@ -77,6 +77,8 @@ func _on_map_panel_level_changed(lvl) -> void:
 			\t- You guys go on ahead I'll catch up",
 			"The bully-dragon lays bare! Attack!"
 			]
+		_:
+			print("OH NO!!")
 	beast_name.text = new_beast[0]
 	beast_text.text = new_beast[1]
 	beast_second_text.text = new_beast[2]

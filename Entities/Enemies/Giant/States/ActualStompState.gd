@@ -4,7 +4,7 @@ func enter(_msg):
 	beast.random_target_timer.stop()
 	stomper.disabled = false
 
-	beast.animation_tree["parameters/LegAction/conditions/stomping"] = true
+	beast.animation_tree["parameters/StompType/transition_request"] = "actualstomp"
 	beast.animation_tree["parameters/Leg/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await beast.animation_tree.animation_finished
 	
@@ -13,5 +13,5 @@ func enter(_msg):
 func exit():
 	# once it's done
 	stomper.disabled = true
-	beast.animation_tree["parameters/LegAction/conditions/stomping"] = false
+	#beast.animation_tree["parameters/LegAction/conditions/kicking"] = false
 	beast.random_target_timer.start()
