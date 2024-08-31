@@ -16,4 +16,4 @@ func enter(msg):
 
 
 func exit():
-	beast.random_target_timer.start()
+	pass

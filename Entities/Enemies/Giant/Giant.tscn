@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dsv5m156bqugq"]
+[gd_scene load_steps=44 format=3 uid="uid://dsv5m156bqugq"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Giant/giant.gd" id="1_bnpgt"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="2_pwn4p"]
@@ -419,7 +419,6 @@ animation = &"stomp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_am0ho"]
 advance_mode = 2
-advance_condition = &"stomping"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgrga"]
 advance_mode = 2
@@ -442,28 +441,50 @@ states/stomp/position = Vector2(587, 46)
 transitions = ["Start", "stomp", SubResource("AnimationNodeStateMachineTransition_am0ho"), "Start", "kick", SubResource("AnimationNodeStateMachineTransition_bgrga"), "stomp", "End", SubResource("AnimationNodeStateMachineTransition_a43el"), "kick", "End", SubResource("AnimationNodeStateMachineTransition_cn0r6")]
 graph_offset = Vector2(116, -36)
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_00xtj"]
+input_0/name = "kick"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "actualstomp"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5aqkg"]
 filters = ["IKTargets/armTarget:position", "SkeletonComponent:rotation", "StateMachine/SwingState"]
 fadein_time = 0.25
 fadeout_time = 0.25
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yn0k2"]
+animation = &"stomp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ytxaw"]
+animation = &"kick"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sy4td"]
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_biet3"]
-graph_offset = Vector2(-311, 161)
+graph_offset = Vector2(-542.746, 200.047)
 nodes/Base/node = SubResource("AnimationNodeStateMachine_2jvcd")
 nodes/Base/position = Vector2(-220, 160)
 nodes/Leg/node = SubResource("AnimationNodeOneShot_3fgbx")
 nodes/Leg/position = Vector2(0, 160)
 nodes/LegAction/node = SubResource("AnimationNodeStateMachine_2ad1u")
-nodes/LegAction/position = Vector2(-220, 420)
+nodes/LegAction/position = Vector2(-640, 420)
+nodes/StompType/node = SubResource("AnimationNodeTransition_00xtj")
+nodes/StompType/position = Vector2(-220, 420)
 nodes/Swinger/node = SubResource("AnimationNodeOneShot_5aqkg")
 nodes/Swinger/position = Vector2(200, 160)
+nodes/actualstompanim/node = SubResource("AnimationNodeAnimation_yn0k2")
+nodes/actualstompanim/position = Vector2(-420, 580)
+nodes/kickanim/node = SubResource("AnimationNodeAnimation_ytxaw")
+nodes/kickanim/position = Vector2(-392.371, 432.135)
 nodes/output/position = Vector2(380, 160)
 nodes/swing/node = SubResource("AnimationNodeAnimation_sy4td")
 nodes/swing/position = Vector2(0, 420)
-node_connections = [&"Leg", 0, &"Base", &"Leg", 1, &"LegAction", &"Swinger", 0, &"Leg", &"Swinger", 1, &"swing", &"output", 0, &"Swinger"]
+node_connections = [&"Leg", 0, &"Base", &"Leg", 1, &"StompType", &"StompType", 0, &"kickanim", &"StompType", 1, &"actualstompanim", &"Swinger", 0, &"Leg", &"Swinger", 1, &"swing", &"output", 0, &"Swinger"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irduo"]
 radius = 35.0001
@@ -539,9 +560,10 @@ point_count = 5
 script = ExtResource("1_bnpgt")
 
 [node name="Beast" parent="." instance=ExtResource("2_pwn4p")]
+position = Vector2(0, -93)
 blood_color = Color(0.0344282, 0.410303, 0.615203, 1)
 
-[node name="StateMachine" parent="Beast" index="1"]
+[node name="StateMachine" parent="Beast" index="2"]
 initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0" node_paths=PackedStringArray("arm_target", "leg_target")]
@@ -560,20 +582,16 @@ hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
 damage = 20
 
-[node name="StompState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("leg_target", "hitbox", "attacker")]
+[node name="StompState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_ddcup")
-leg_target = NodePath("../../IKTargets/legTarget")
-pull_back = Vector2(40, -36)
-kick_goal = Vector2(-110, -28)
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Stomper")
 damage = 5
 fling_damage = 20
 
-[node name="ActualStompState" type="Node" parent="Beast/StateMachine" index="3" node_paths=PackedStringArray("leg_target", "hitbox", "stomper")]
+[node name="ActualStompState" type="Node" parent="Beast/StateMachine" index="3" node_paths=PackedStringArray("hitbox", "stomper")]
 script = ExtResource("6_e0m0m")
-leg_target = NodePath("../../IKTargets/legTarget")
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 damage = 15
@@ -584,12 +602,12 @@ fling_damage = 15
 script = ExtResource("6_11aos")
 animation = "death"
 
-[node name="AnimationPlayer" parent="Beast" index="2"]
+[node name="AnimationPlayer" parent="Beast" index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_goimh")
 }
 
-[node name="AnimationTree" parent="Beast" index="3"]
+[node name="AnimationTree" parent="Beast" index="4"]
 tree_root = SubResource("AnimationNodeBlendTree_biet3")
 parameters/Base/conditions/die = false
 parameters/Base/conditions/idling = true
@@ -598,7 +616,9 @@ parameters/Leg/active = false
 parameters/Leg/internal_active = false
 parameters/Leg/request = 0
 parameters/LegAction/conditions/kicking = true
-parameters/LegAction/conditions/stomping = false
+parameters/StompType/current_state = ""
+parameters/StompType/transition_request = "Kick"
+parameters/StompType/current_index = -1
 parameters/Swinger/active = false
 parameters/Swinger/internal_active = false
 parameters/Swinger/request = 0
@@ -618,7 +638,7 @@ shape = SubResource("CapsuleShape2D_w7ivm")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
-[node name="SkeletonComponent" parent="Beast" index="6"]
+[node name="SkeletonComponent" parent="Beast" index="7"]
 modification_stack = SubResource("SkeletonModificationStack2D_k1hcn")
 
 [node name="hip" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
@@ -723,10 +743,10 @@ position = Vector2(-55, -75)
 [node name="legTarget" type="Node2D" parent="Beast/IKTargets" index="1"]
 position = Vector2(-11, 105)
 
-[node name="ScalerPath" parent="Beast" index="9"]
+[node name="ScalerPath" parent="Beast" index="10"]
 curve = SubResource("Curve2D_fhjhv")
 
-[node name="LungePoint" parent="Beast" index="10"]
+[node name="LungePoint" parent="Beast" index="11"]
 position = Vector2(65, -11)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]
