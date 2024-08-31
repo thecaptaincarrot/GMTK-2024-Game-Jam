@@ -442,7 +442,7 @@ alignment = 1
 
 [node name="GoldEarned" type="Label" parent="CanvasLayer/TrueVictory/HBoxContainer"]
 layout_mode = 2
-text = "999"
+text = "100000"
 
 [node name="Label" type="Label" parent="CanvasLayer/TrueVictory/HBoxContainer"]
 layout_mode = 2
