@@ -132,13 +132,6 @@ func load_level(level_index : int):
 		$Background/FloorParallax/DryFloor.visible = true
 		$Background/FloorParallax.repeat_size.x = 2036
 	
-	if FLOOR[level_index] == 0:
-		FieldFloor.collision_layer = 1
-		FieldFloor.collision_mask = 1
-	else:
-		FieldFloor.collision_layer = 0
-		FieldFloor.collision_mask = 0
-	
 	GooblinController.horde_range = GOOBLIN_RANGE[level_index]
 	
 	camera.position = Vector2(0,camera.limit_bottom)

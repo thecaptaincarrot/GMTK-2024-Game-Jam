@@ -145,7 +145,7 @@ func _physics_process(delta: float) -> void:
 					$ScalerDamage.show()
 					_anim.play("ScalerAttack")
 		GooblinStates.FLYING:
-			if position.y >= y_home:
+			if position.y > y_home:
 				position.y = y_home
 				_state_changed(GooblinStates.IDLE)
 				velocity.y = 0
