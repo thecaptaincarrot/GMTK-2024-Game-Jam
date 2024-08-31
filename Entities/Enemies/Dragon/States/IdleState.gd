@@ -23,7 +23,7 @@ func target_and_attack():
 			attack_choice = "StompState"
 		print(attack_choice)
 		state_machine.change_to_state(attack_choice)
-		
 
 func exit():
 	pass
+

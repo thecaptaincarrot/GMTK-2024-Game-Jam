@@ -1,5 +1,6 @@
 [gd_scene load_steps=51 format=3 uid="uid://bq18iom53hl48"]
 
+
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_screen.gd" id="1_o8qmv"]
@@ -33,15 +34,6 @@
 [ext_resource type="Texture2D" uid="uid://cwn5q8d3s4lhb" path="res://Textures/Interface/keyboard_arrows_up_outline.png" id="25_snbhu"]
 [ext_resource type="Texture2D" uid="uid://dehxlkyyaqsrb" path="res://Textures/Interface/zoomIn.png" id="28_lonfx"]
 [ext_resource type="Texture2D" uid="uid://ct3wosbsn45qt" path="res://Textures/Interface/zoomOut.png" id="29_7nqp7"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2s50d"]
-distance = 22.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_55nic"]
-distance = 22.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u3om"]
-size = Vector2(20, 1000)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6yu3i"]
 font_size = 33
@@ -175,15 +167,14 @@ Canvas_Layer = NodePath("CanvasLayer")
 DefeatPanel = NodePath("CanvasLayer/DefeatPanel")
 VictoryPanel = NodePath("CanvasLayer/VictoryPanel")
 TrueVictoryPanel = NodePath("CanvasLayer/TrueVictory")
-FieldFloor = NodePath("FieldFloor")
-CaveFloor = NodePath("CaveFloor")
-metadata/_edit_horizontal_guides_ = [922.0, 720.0]
+FieldFloor = NodePath("")
+CaveFloor = NodePath("")
 
 [node name="GooblinHordeController" parent="." node_paths=PackedStringArray("gooblin_label") instance=ExtResource("2_63q2r")]
 gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
 
 [node name="SpawnPoint" parent="GooblinHordeController" index="0"]
-position = Vector2(-73, 659)
+position = Vector2(-30, 718)
 
 [node name="CombatCamera" type="Camera2D" parent="." node_paths=PackedStringArray("instructions")]
 limit_left = 0
@@ -244,27 +235,6 @@ offset = Vector2(0, 350)
 texture = ExtResource("9_sd0dw")
 centered = false
 offset = Vector2(0, 350)
-
-[node name="CaveFloor" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CaveFloor"]
-position = Vector2(1712, 946)
-scale = Vector2(1, 0.998288)
-shape = SubResource("WorldBoundaryShape2D_2s50d")
-
-[node name="FieldFloor" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FieldFloor"]
-position = Vector2(1711, 744)
-scale = Vector2(1, 0.998288)
-shape = SubResource("WorldBoundaryShape2D_55nic")
-
-[node name="LeftWall" type="StaticBody2D" parent="."]
-position = Vector2(-1380, 432)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
-shape = SubResource("RectangleShape2D_1u3om")
-disabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false

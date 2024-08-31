@@ -95,7 +95,7 @@ func acquire_targets():
 	else:
 		reacquire_targets.emit()
 		targets = owner.target_list
-		print("target_list valid")
+		#print("target_list valid")
 
 
 func get_gold_value():
@@ -103,7 +103,6 @@ func get_gold_value():
 
 
 func _on_state_machine_shake_screen():
-	print("Hi")
 	emit_signal("shake_screen")
 
 

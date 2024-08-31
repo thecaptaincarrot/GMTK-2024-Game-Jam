@@ -14,9 +14,3 @@ func _process(delta):
 
 func spawn_initial():
 	pass
-
-
-
-func spawn_gooblin():
-	for i in GooblinUpgrades.basic_gooblins:
-		print(i)

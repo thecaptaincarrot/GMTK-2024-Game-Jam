@@ -89,6 +89,10 @@ grab_camera={
 2d_physics/layer_2="Hurtboxes"
 2d_physics/layer_3="Hitboxes"
 
+[physics]
+
+3d/default_gravity=0.98
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

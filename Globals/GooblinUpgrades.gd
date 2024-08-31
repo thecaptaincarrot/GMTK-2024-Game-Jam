@@ -26,9 +26,9 @@ func can_load():
 #I guess we just have the one global, lol
 var levels_completed := 0
 
-var gooblin_count = 20 #Total gooblins of any class
+var gooblin_count = 10 #Total gooblins of any class
 #army composition
-var basic_gooblins = 20
+var basic_gooblins = 0
 var shield_gooblins = 0
 var climb_gooblins = 0
 var catapult_gooblins = 0
@@ -41,7 +41,7 @@ var hooks = 0
 
 #Gooblin Upgrades
 var gooblin_attack = 1
-var gooblin_base_move_speed = 300.0
+var gooblin_base_move_speed = 150.0
 var gooblin_move_speed_upgrade_increment = 50.0 #how much each level of upgrade increases the gooblin's speed
 var gooblin_speed_upgrade_level = 0
 

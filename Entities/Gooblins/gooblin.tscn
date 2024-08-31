@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 64, 32, 32)]
+"values": [Rect2(32, 64, 32, 32)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -182,6 +182,23 @@ tracks/3/keys = {
 "method": &"play"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_jump_trigger"
+}, {
+"args": [],
+"method": &"damage_target"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_j5onn"]
 length = 0.001
@@ -224,7 +241,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_vuu1m"]
 resource_name = "ScalerAttack"
-length = 0.6
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -233,7 +249,7 @@ tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(0, 32, 32, 32), Rect2(32, 32, 32, 32), Rect2(64, 32, 32, 32), Rect2(96, 32, 32, 32), Rect2(128, 32, 32, 32), Rect2(160, 32, 32, 32)]
@@ -257,10 +273,27 @@ tracks/2/path = NodePath("ScalerDamage:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"damage_target"
+}, {
+"args": [],
+"method": &"fling"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_m6opf"]
@@ -336,17 +369,19 @@ _data = {
 "Walk": SubResource("Animation_6tbyr")
 }
 
-[node name="Gooblin" type="CharacterBody2D" groups=["Gooblin"]]
+[node name="Gooblin" type="Area2D" groups=["Gooblin"]]
 collision_layer = 2
 script = ExtResource("1_qqrn7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
 scale = Vector2(2, 2)
 texture = ExtResource("2_uqsqc")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Splat" type="CPUParticles2D" parent="."]
+position = Vector2(0, -32)
 emitting = false
 amount = 40
 lifetime = 3.0
@@ -362,7 +397,7 @@ scale_amount_max = 4.0
 color = Color(0.188235, 0.713726, 0.439216, 1)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5)
+position = Vector2(-1, -27)
 shape = SubResource("CapsuleShape2D_yumhv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -372,6 +407,7 @@ libraries = {
 
 [node name="ScalerDamage" type="CPUParticles2D" parent="."]
 show_behind_parent = true
+position = Vector2(0, -32)
 emitting = false
 amount = 50
 lifetime = 0.5

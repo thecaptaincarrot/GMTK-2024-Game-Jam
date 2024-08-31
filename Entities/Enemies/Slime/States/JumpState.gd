@@ -42,8 +42,6 @@ func enter(_msg):
 	#hurt_gooblins()
 	#flingerize_gooblins()
 	
-	
-	
 	state_machine.change_to_state("IdleState")
 
 

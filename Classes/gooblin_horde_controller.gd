@@ -32,7 +32,7 @@ var scaler_to_spawn = 0
 
 @onready var gooblin_scene = preload("res://Entities/Gooblins/gooblin.tscn")
 
-var max_spawn = 500
+var max_spawn = 800
 
 
 var _basic_gooblins = []
@@ -211,13 +211,11 @@ func distribute_target_spacing():
 
 func shake_off_scalers(shake_off_chance):
 	for goob in _scaler_gooblins:
-		if goob._climbing:
+		if goob.state == goob.GooblinStates.CLIMBING:
 			var dice_roll = randf_range(0,1.0)
 			if dice_roll <= shake_off_chance:
-				goob._anim.play("Fling")
-				goob._climbing = false
-				goob.path_follower.progress_ratio = 0
 				goob.fling()
+				goob.path_follower.progress_ratio = 0
 
 
 func _rotate_out_basic():
