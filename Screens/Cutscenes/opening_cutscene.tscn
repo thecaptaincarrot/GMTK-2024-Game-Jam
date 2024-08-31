@@ -576,7 +576,7 @@ anchor_bottom = 1.0
 offset_top = -23.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "We live here in our village in the hills,as family.
+text = "We live here in our village in the hills, as family.
  Since long ago we have called this land home."
 label_settings = SubResource("LabelSettings_otynt")
 horizontal_alignment = 1

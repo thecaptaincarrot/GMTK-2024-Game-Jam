@@ -2,6 +2,7 @@ extends GenericState
 
 @export var track_height := 250
 
+
 func enter(_msg):
 	beast.random_target_timer.start()
 
@@ -23,3 +24,6 @@ func target_and_attack():
 		print(attack_choice)
 		state_machine.change_to_state(attack_choice)
 		
+
+func exit():
+	pass
