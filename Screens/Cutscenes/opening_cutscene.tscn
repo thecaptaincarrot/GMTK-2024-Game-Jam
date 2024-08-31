@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cstlix2ejqore"]
+[gd_scene load_steps=9 format=3 uid="uid://cstlix2ejqore"]
 
 [ext_resource type="Texture2D" uid="uid://by57clem8y3ea" path="res://Textures/Cutscene/gooblinintro.png" id="1_1hk7b"]
 [ext_resource type="AudioStream" uid="uid://577e707cjtsq" path="res://Music/cutscene.mp3" id="2_er8k3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v4sv"]
+size = Vector2(1280, 720)
 
 [sub_resource type="LabelSettings" id="LabelSettings_otynt"]
 font_size = 32
@@ -527,6 +530,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MobileSkipper" type="TouchScreenButton" parent="."]
+position = Vector2(640, 360)
+shape = SubResource("RectangleShape2D_4v4sv")
+action = "ui_cancel"
+visibility_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_1hk7b")

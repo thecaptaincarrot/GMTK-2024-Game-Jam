@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ceci3cggo2wq8"]
+[gd_scene load_steps=45 format=3 uid="uid://ceci3cggo2wq8"]
 
 [ext_resource type="Texture2D" uid="uid://kn0s73qvilo" path="res://Textures/Logo/Gooblins-Logo.png" id="1_gay1a"]
 [ext_resource type="Script" path="res://Screens/Credits/credits.gd" id="1_tvayb"]
@@ -273,6 +273,9 @@ animations = [{
 "name": &"default",
 "speed": 15.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5xym"]
+size = Vector2(1280, 720)
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -602,5 +605,11 @@ flip_h = true
 [node name="CreditsOver" type="Timer" parent="."]
 wait_time = 30.0
 one_shot = true
+
+[node name="MobileSkipper" type="TouchScreenButton" parent="."]
+position = Vector2(640, 360)
+shape = SubResource("RectangleShape2D_l5xym")
+action = "ui_cancel"
+visibility_mode = 1
 
 [connection signal="timeout" from="CreditsOver" to="." method="end_credits"]

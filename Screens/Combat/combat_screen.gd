@@ -40,6 +40,8 @@ signal final_credits
 #Array indicies correspond to the level being entered.
 #I.e. Level 0 will pull all relevant variables from arrays on index 0
 
+const CAM_OFFSET = Vector2(640,360)
+
 #Camera bounds always start at position 0,0 on upper left
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
@@ -118,6 +120,8 @@ func load_level(level_index : int):
 	active_loaded_level = level_index
 	camera.limit_right = CAMERA_BOUNDS[level_index].x
 	camera.limit_bottom = CAMERA_BOUNDS[level_index].y
+	# set starting zoom
+	camera.zoom = Vector2.ONE * 1.4
 	
 	_hide_all_backgrounds()
 	if(BACKGROUND[level_index] == CAVE_BG):
