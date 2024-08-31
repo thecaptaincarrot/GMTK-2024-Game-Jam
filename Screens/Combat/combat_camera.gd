@@ -23,7 +23,7 @@ var zoomed_once := false:
 func try_to_fade_instructions_out():
 	if moved_once or zoomed_once:
 		var tween = get_tree().create_tween()
-		tween.tween_property(instructions, "modulate", Color.TRANSPARENT, 3.0)
+		tween.tween_property(instructions, "modulate", Color.TRANSPARENT, 1.5)
 
 var mouse_anchor: Vector2
 
