@@ -207,6 +207,7 @@ func _on_beast_died():
 	victory_player.play()
 	VictoryPanel.update_gold_earned(gold_earned)
 	if active_loaded_level == 4:
+		TrueVictoryPanel.update_gold_earned(gold_earned)
 		TrueVictoryPanel.show()
 	else:
 		VictoryPanel.show()
