@@ -53,6 +53,8 @@ func update_level_options():
 	else:
 		for btn in level_buttons:
 			btn.show()
+		for line in map_lines:
+			line.show()
 
 func swap_shown_level(last_level: int):
 	if last_level < 5:
