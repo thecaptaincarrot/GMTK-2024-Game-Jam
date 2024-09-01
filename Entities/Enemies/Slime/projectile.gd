@@ -52,11 +52,11 @@ func hurt_gooblins():
 			return
 
 
-func _on_area_2d_body_entered(body):
-	if body is Gooblin:
-		intersecting_goobs.append(body)
+func _on_area_2d_area_entered(area):
+	if area is Gooblin:
+		intersecting_goobs.append(area)
 
 
-func _on_area_2d_body_exited(body):
-	if body is Gooblin:
-		intersecting_goobs.erase(body)
+func _on_area_2d_area_exited(area):
+	if area is Gooblin:
+		intersecting_goobs.erase(area)

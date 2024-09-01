@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_comia"]
 radius = 43.0
-height = 194.0
+height = 128.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3wuv"]
 radius = 82.0
@@ -32,7 +32,7 @@ region_enabled = true
 region_rect = Rect2(1072, 126, 210, 53)
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 6
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -42,5 +42,5 @@ shape = SubResource("CapsuleShape2D_j3wuv")
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
