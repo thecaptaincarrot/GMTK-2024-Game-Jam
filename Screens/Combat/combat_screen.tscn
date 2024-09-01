@@ -151,7 +151,7 @@ animations = [{
 radius = 75.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7tt1t"]
-radius = 40.0
+radius = 45.0
 
 [node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel", "VictoryPanel", "TrueVictoryPanel")]
 script = ExtResource("1_o8qmv")
@@ -709,48 +709,48 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="ZoomerIn" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(48, 518)
+position = Vector2(540, 561)
 texture_normal = ExtResource("28_lonfx")
 shape = SubResource("CircleShape2D_ifgky")
 action = "zoom_in"
 visibility_mode = 1
 
 [node name="ZoomerOut" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(202, 587)
+position = Vector2(752, 582)
 texture_normal = ExtResource("29_7nqp7")
 shape = SubResource("CircleShape2D_ifgky")
 action = "zoom_out"
 visibility_mode = 1
 
 [node name="MoveShow" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(1133, 593)
+position = Vector2(148, 516)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("16_fv34x")
 visibility_mode = 1
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(0, -50)
+position = Vector2(32.6667, -18.6667)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_up"
 visibility_mode = 1
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(50, 0)
+position = Vector2(82.6667, 31.3333)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_right"
 visibility_mode = 1
 
 [node name="TouchScreenButton3" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(0, 50)
+position = Vector2(32.6667, 81.3333)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_down"
 visibility_mode = 1
 
 [node name="TouchScreenButton4" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(-50, 0)
+position = Vector2(-17.3333, 31.3333)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_left"
