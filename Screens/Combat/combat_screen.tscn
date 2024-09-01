@@ -1,5 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bq18iom53hl48"]
-
+[gd_scene load_steps=48 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
@@ -152,7 +151,7 @@ radius = 75.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7tt1t"]
 radius = 40.0
 
-[node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel", "VictoryPanel", "TrueVictoryPanel", "FieldFloor", "CaveFloor")]
+[node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel", "VictoryPanel", "TrueVictoryPanel")]
 script = ExtResource("1_o8qmv")
 music_player = NodePath("MusicPlayer")
 click_player = NodePath("ClickPlayer")
@@ -167,8 +166,6 @@ Canvas_Layer = NodePath("CanvasLayer")
 DefeatPanel = NodePath("CanvasLayer/DefeatPanel")
 VictoryPanel = NodePath("CanvasLayer/VictoryPanel")
 TrueVictoryPanel = NodePath("CanvasLayer/TrueVictory")
-FieldFloor = NodePath("")
-CaveFloor = NodePath("")
 
 [node name="GooblinHordeController" parent="." node_paths=PackedStringArray("gooblin_label") instance=ExtResource("2_63q2r")]
 gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
