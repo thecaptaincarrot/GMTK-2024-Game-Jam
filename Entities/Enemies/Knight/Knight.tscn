@@ -274,8 +274,6 @@ _data = {
 "walk": SubResource("Animation_obtnu")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vije0"]
-
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_6jcmy"]
 xfade_time = 0.2
 input_0/name = "alive"
@@ -299,6 +297,9 @@ filters = ["IKTargets/armTarget:position", "StateMachine/SwingState"]
 mix_mode = 1
 fadeout_time = 0.25
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vije0"]
+animation = &"death"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_36g1v"]
 animation = &"idle"
 
@@ -309,15 +310,15 @@ animation = &"kick"
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f833b"]
-graph_offset = Vector2(-65.9797, 320.06)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_vije0")
-nodes/Animation/position = Vector2(860, 780)
+graph_offset = Vector2(181.028, 360.875)
 nodes/Life/node = SubResource("AnimationNodeTransition_6jcmy")
 nodes/Life/position = Vector2(1040, 500)
 nodes/Stomper/node = SubResource("AnimationNodeOneShot_bhjhd")
 nodes/Stomper/position = Vector2(840, 500)
 nodes/Swinger/node = SubResource("AnimationNodeOneShot_5yfvw")
 nodes/Swinger/position = Vector2(600, 500)
+nodes/death/node = SubResource("AnimationNodeAnimation_vije0")
+nodes/death/position = Vector2(860, 780)
 nodes/idleanim/node = SubResource("AnimationNodeAnimation_36g1v")
 nodes/idleanim/position = Vector2(331.51, 522.423)
 nodes/output/position = Vector2(1220, 500)
@@ -325,15 +326,15 @@ nodes/stom/node = SubResource("AnimationNodeAnimation_58klm")
 nodes/stom/position = Vector2(600, 740)
 nodes/swig/node = SubResource("AnimationNodeAnimation_4k3qc")
 nodes/swig/position = Vector2(360, 740)
-node_connections = [&"Life", 0, &"Stomper", &"Life", 1, &"Animation", &"Stomper", 0, &"Swinger", &"Stomper", 1, &"stom", &"Swinger", 0, &"idleanim", &"Swinger", 1, &"swig", &"output", 0, &"Life"]
+node_connections = [&"Life", 0, &"Stomper", &"Life", 1, &"death", &"Stomper", 0, &"Swinger", &"Stomper", 1, &"stom", &"Swinger", 0, &"idleanim", &"Swinger", 1, &"swig", &"output", 0, &"Life"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0pag2"]
-radius = 33.0
-height = 140.0
+radius = 37.0
+height = 144.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q14qj"]
-radius = 20.5794
-height = 94.0012
+radius = 32.0004
+height = 130.002
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_vlpu2"]
 target_nodepath = NodePath("../IKTargets/armTarget")
@@ -375,7 +376,7 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_3jw4g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 11, 75, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, 8, -69, 0, 0, 0, 0, -1, -83)
+"points": PackedVector2Array(0, 0, 0, 0, 12, 89, 0, 0, 0, 0, 4, 24, 0, 0, 0, 0, 4, -50, 0, 0, 0, 0, -14, -71)
 }
 point_count = 4
 
@@ -433,7 +434,7 @@ parameters/Swinger/internal_active = false
 parameters/Swinger/request = 0
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-145, 81)
+position = Vector2(-131, 78)
 rotation = 1.5708
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("CapsuleShape2D_0pag2")
@@ -441,7 +442,7 @@ disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="1"]
-position = Vector2(-38.4664, 99.4209)
+position = Vector2(-32, 88)
 rotation = 1.5708
 scale = Vector2(0.999987, 0.999987)
 shape = SubResource("CapsuleShape2D_q14qj")

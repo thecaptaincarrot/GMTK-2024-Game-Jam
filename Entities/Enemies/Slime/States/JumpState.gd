@@ -4,12 +4,12 @@ extends GenericState
 
 @export var animation_player : AnimationPlayer
 
-@export var jump_min = -700
-@export var jump_max = 1000
+@export var jump_min = 0
+@export var jump_max = -2000
 
-func enter(_msg):
+func enter(target_position):
 	#Select position on the field to jump to
-	var target_position: float = randf_range(jump_min + sprite_radius, jump_max - sprite_radius)
+	
 	#var target_position: float = jump_min + sprite_radius
 	
 	var jump_anim = beast.animation_tree.get_animation("jump_slime")
@@ -19,7 +19,7 @@ func enter(_msg):
 	
 	var undulator_x = jump_anim.find_track("IKTargets/undulator1:position:x", Animation.TYPE_VALUE)
 	jump_anim.track_remove_key(undulator_x, 1)
-	jump_anim.track_insert_key(undulator_x, 1, beast.position.x - (target_position / 10))
+	jump_anim.track_insert_key(undulator_x, 2, target_position)
 	
 	attacker.disabled = false
 	#beast.random_target_timer.stop()

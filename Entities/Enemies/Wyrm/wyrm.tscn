@@ -418,8 +418,7 @@ sprite_box = NodePath("Beast/Sprites")
 
 [node name="Beast" parent="." instance=ExtResource("2_l7r84")]
 min_retarget_time = 1.0
-max_retarget_time = 2.0
-attack_chance = 2
+max_retarget_time = 1.5
 blood_color = Color(0.122528, 0.920102, 0, 1)
 
 [node name="StateMachine" parent="Beast" index="2"]

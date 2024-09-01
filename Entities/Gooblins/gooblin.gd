@@ -208,7 +208,7 @@ func convert_to_basic_gooblin():
 	if(unit_type == GooblinType.SHIELD):
 		#spawn a shield entity to bounce around
 		var new_shield = trash_can_scene.instantiate()
-		new_shield.position = position
+		new_shield.position = position - Vector2(0, _sprite.get_rect().size.y)
 		get_parent().call_deferred("add_child",new_shield)
 		
 		_sprite.texture = load("res://Textures/Entities/GoblinBasic.png")

@@ -8,7 +8,7 @@ radius = 43.0
 height = 194.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j3wuv"]
-radius = 41.0
+radius = 82.0
 height = 204.0
 
 [node name="Projectile" type="RigidBody2D"]

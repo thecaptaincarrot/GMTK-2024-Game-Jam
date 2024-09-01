@@ -371,6 +371,7 @@ _data = {
 
 [node name="Gooblin" type="Area2D" groups=["Gooblin"]]
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_qqrn7")
 
 [node name="Sprite" type="Sprite2D" parent="."]

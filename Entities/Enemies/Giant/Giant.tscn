@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dsv5m156bqugq"]
+[gd_scene load_steps=37 format=3 uid="uid://dsv5m156bqugq"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Giant/giant.gd" id="1_bnpgt"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="2_pwn4p"]
@@ -404,42 +404,12 @@ states/death/position = Vector2(619, 14)
 states/idle/node = SubResource("AnimationNodeAnimation_m7a60")
 states/idle/position = Vector2(527, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_60vhe"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_frrvp"), "idle", "RESET", SubResource("AnimationNodeStateMachineTransition_l3nts"), "RESET", "idle", SubResource("AnimationNodeStateMachineTransition_rxu7i")]
-graph_offset = Vector2(-9, 0)
+graph_offset = Vector2(148, 4)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_3fgbx"]
 filters = ["IKTargets/legTarget:position", "SkeletonComponent:rotation", "StateMachine/StompState"]
 mix_mode = 1
 fadeout_time = 0.2
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wpxxg"]
-animation = &"kick"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rnuhf"]
-animation = &"stomp"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_am0ho"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgrga"]
-advance_mode = 2
-advance_condition = &"kicking"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a43el"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cn0r6"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2ad1u"]
-states/Start/position = Vector2(319, 100)
-states/kick/node = SubResource("AnimationNodeAnimation_wpxxg")
-states/kick/position = Vector2(587, 138)
-states/stomp/node = SubResource("AnimationNodeAnimation_rnuhf")
-states/stomp/position = Vector2(587, 46)
-transitions = ["Start", "stomp", SubResource("AnimationNodeStateMachineTransition_am0ho"), "Start", "kick", SubResource("AnimationNodeStateMachineTransition_bgrga"), "stomp", "End", SubResource("AnimationNodeStateMachineTransition_a43el"), "kick", "End", SubResource("AnimationNodeStateMachineTransition_cn0r6")]
-graph_offset = Vector2(116, -36)
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_00xtj"]
 input_0/name = "kick"
@@ -466,13 +436,11 @@ animation = &"kick"
 animation = &"swing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_biet3"]
-graph_offset = Vector2(-542.746, 200.047)
+graph_offset = Vector2(-465.746, 35.047)
 nodes/Base/node = SubResource("AnimationNodeStateMachine_2jvcd")
 nodes/Base/position = Vector2(-220, 160)
 nodes/Leg/node = SubResource("AnimationNodeOneShot_3fgbx")
 nodes/Leg/position = Vector2(0, 160)
-nodes/LegAction/node = SubResource("AnimationNodeStateMachine_2ad1u")
-nodes/LegAction/position = Vector2(-640, 420)
 nodes/StompType/node = SubResource("AnimationNodeTransition_00xtj")
 nodes/StompType/position = Vector2(-220, 420)
 nodes/Swinger/node = SubResource("AnimationNodeOneShot_5aqkg")
@@ -487,8 +455,8 @@ nodes/swing/position = Vector2(0, 420)
 node_connections = [&"Leg", 0, &"Base", &"Leg", 1, &"StompType", &"StompType", 0, &"kickanim", &"StompType", 1, &"actualstompanim", &"Swinger", 0, &"Leg", &"Swinger", 1, &"swing", &"output", 0, &"Swinger"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irduo"]
-radius = 35.0001
-height = 216.001
+radius = 52.8451
+height = 160.267
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w7ivm"]
 radius = 41.0
@@ -552,7 +520,7 @@ modifications/1 = SubResource("SkeletonModification2DCCDIK_c2ge4")
 
 [sub_resource type="Curve2D" id="Curve2D_fhjhv"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 67, 55, 0, 0, 0, 0, 64, -55, 0, 0, 0, 0, 51, -133, 0, 0, 0, 0, 70, -194, 0, 0, 0, 0, 27, -233)
+"points": PackedVector2Array(0, 0, 0, 0, 66, 87, 0, 0, 0, 0, 61, -9, 0, 0, 0, 0, 70, -95, 0, 0, 0, 0, 55, -155, 0, 0, 0, 0, 24, -196)
 }
 point_count = 5
 
@@ -560,7 +528,7 @@ point_count = 5
 script = ExtResource("1_bnpgt")
 
 [node name="Beast" parent="." instance=ExtResource("2_pwn4p")]
-position = Vector2(0, -93)
+position = Vector2(0, -104)
 blood_color = Color(0.0344282, 0.410303, 0.615203, 1)
 
 [node name="StateMachine" parent="Beast" index="2"]
@@ -615,7 +583,6 @@ parameters/Base/conditions/walking = false
 parameters/Leg/active = false
 parameters/Leg/internal_active = false
 parameters/Leg/request = 0
-parameters/LegAction/conditions/kicking = true
 parameters/StompType/current_state = ""
 parameters/StompType/transition_request = "Kick"
 parameters/StompType/current_index = -1
@@ -624,7 +591,7 @@ parameters/Swinger/internal_active = false
 parameters/Swinger/request = 0
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-48, 24)
+position = Vector2(-50, 59)
 rotation = -0.5184
 scale = Vector2(0.999997, 0.999997)
 shape = SubResource("CapsuleShape2D_irduo")
