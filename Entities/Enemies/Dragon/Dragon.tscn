@@ -1007,7 +1007,7 @@ update_scale = false
 
 [node name="body1" type="Sprite2D" parent="Beast/Sprites" index="0"]
 z_index = -50
-position = Vector2(-78.2238, -58.482)
+position = Vector2(-78.2239, -58.482)
 rotation = -0.216791
 scale = Vector2(1.38172, 1.15094)
 texture = ExtResource("9_rmtai")
@@ -1017,7 +1017,7 @@ region_rect = Rect2(1236, 1136, 484, 417)
 
 [node name="body2" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -49
-position = Vector2(-255.206, -126.765)
+position = Vector2(-255.207, -126.765)
 rotation = -0.0612839
 scale = Vector2(1.3813, 1.15081)
 texture = ExtResource("9_rmtai")
@@ -1080,7 +1080,7 @@ region_rect = Rect2(838, 1307, 150, 214)
 
 [node name="legL" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -55
-position = Vector2(-241.293, 88.9634)
+position = Vector2(-241.293, 88.9635)
 rotation = 0.427068
 scale = Vector2(1.381, 1.15054)
 texture = ExtResource("9_rmtai")
@@ -1098,7 +1098,7 @@ region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -53
-position = Vector2(-497.667, 392.883)
+position = Vector2(-497.668, 392.883)
 rotation = -0.052982
 scale = Vector2(1.39183, 1.15888)
 texture = ExtResource("9_rmtai")
@@ -1116,7 +1116,7 @@ region_rect = Rect2(378, 845, 191, 345)
 
 [node name="shinR" type="Sprite2D" parent="Beast/Sprites" index="12"]
 z_index = -39
-position = Vector2(-56.5799, 338.076)
+position = Vector2(-56.58, 338.076)
 rotation = 0.138848
 scale = Vector2(1.38048, 1.15033)
 texture = ExtResource("9_rmtai")
@@ -1125,7 +1125,7 @@ region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footR" type="Sprite2D" parent="Beast/Sprites" index="13"]
 z_index = -38
-position = Vector2(-223.957, 455.289)
+position = Vector2(-223.958, 455.289)
 rotation = -0.0436863
 scale = Vector2(1.39067, 1.15853)
 texture = ExtResource("9_rmtai")
@@ -1143,7 +1143,7 @@ region_rect = Rect2(651, 638, 144, 106)
 
 [node name="shadow2" type="Sprite2D" parent="Beast/Sprites" index="15"]
 z_index = -47
-position = Vector2(-738.797, -120.892)
+position = Vector2(-738.798, -120.892)
 rotation = -0.414187
 scale = Vector2(1.38896, 1.15572)
 texture = ExtResource("9_rmtai")

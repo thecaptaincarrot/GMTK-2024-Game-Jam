@@ -284,7 +284,7 @@ nodes/idleanim/position = Vector2(-400, 140)
 node_connections = [&"Life", 0, &"Slammer", &"Life", 1, &"deadanim", &"Slammer", 0, &"idleanim", &"Slammer", 1, &"SlamMachine", &"output", 0, &"Life"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7d5ot"]
-radius = 195.04
+radius = 225.142
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_uv2uo"]
 target_nodepath = NodePath("../IKTargets/headTarget")
@@ -412,8 +412,8 @@ scaler_path = NodePath("Beast/ScalerPath")
 sprite_box = NodePath("Beast/Sprites")
 
 [node name="Beast" parent="." instance=ExtResource("2_l7r84")]
-min_retarget_time = 1.5
-max_retarget_time = 2.0
+min_retarget_time = 1.0
+max_retarget_time = 1.5
 attack_chance = 2
 blood_color = Color(0.122528, 0.920102, 0, 1)
 
@@ -422,6 +422,7 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_f2kur")
+slam_min_range = 200
 slam_max_range = 800
 track_height = 750
 animation = ""
@@ -431,7 +432,7 @@ script = ExtResource("4_km2p6")
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 30
+damage = 50
 fling_damage = 30
 
 [node name="StaggerState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("head_pointer")]

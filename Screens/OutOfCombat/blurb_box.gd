@@ -51,7 +51,7 @@ func _on_map_panel_level_changed(lvl) -> void:
 				WEIGHT: Surprisingly light (and aerodynamic)\n
 				GOOP: Unclimbable\n
 				FEATURES:\n
-				\t- Lodged bones (do the come off if we hit them?)",
+				\t- Lodged bones (will they come off if we hit them?)",
 				"No Gooblin wants to begin to think what would happen if they got stuck inside this thing..."
 			
 			]

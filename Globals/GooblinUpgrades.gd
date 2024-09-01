@@ -56,7 +56,7 @@ var base_damage_multiplier = 4.0
 var base_climb_speed = 25.0
 var climb_speed_level = 0
 var climb_speed_increment = 15.0
-var shake_off_chance = 0.50 #Chance to be shaken off when an enemy attacks
+var shake_off_chance = 0.35 #Chance to be shaken off when an enemy attacks
 
 #Catapult Upgrades
 #PLACEHOLDER
@@ -120,7 +120,7 @@ func get_next_scaler_climb_speed():
 
 #Cost curve calculation functions
 func get_gooblin_attack_upgrade_cost():
-	return 1500 * (pow(gooblin_attack,2))
+	return 1200 * (pow(gooblin_attack,2))
 
 
 func get_gooblin_speed_upgrade_cost():

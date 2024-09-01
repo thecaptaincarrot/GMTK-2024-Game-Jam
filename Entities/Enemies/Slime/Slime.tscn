@@ -632,7 +632,6 @@ region_rect = Rect2(151, 407, 112, 206)
 z_index = -43
 position = Vector2(43.9982, -328.475)
 rotation = -0.0316538
-scale = Vector2(1, 1)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)
