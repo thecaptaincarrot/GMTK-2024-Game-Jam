@@ -394,11 +394,6 @@ joint_data/10/editor_draw_gizmo = false
 bone_index = 10
 bone2d_node = NodePath("neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10/head")
 target_nodepath = NodePath("../IKTargets/headTarget/headLookAt")
-enable_constraint = true
-constraint_angle_min = 60.42
-constraint_angle_max = -62.896
-constraint_angle_invert = true
-constraint_in_localspace = true
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_xsq65"]
 modification_count = 2
@@ -417,8 +412,9 @@ scaler_path = NodePath("Beast/ScalerPath")
 sprite_box = NodePath("Beast/Sprites")
 
 [node name="Beast" parent="." instance=ExtResource("2_l7r84")]
-min_retarget_time = 1.0
-max_retarget_time = 1.5
+min_retarget_time = 1.5
+max_retarget_time = 2.0
+attack_chance = 2
 blood_color = Color(0.122528, 0.920102, 0, 1)
 
 [node name="StateMachine" parent="Beast" index="2"]
@@ -687,7 +683,7 @@ region_rect = Rect2(644, 499, 200, 175)
 
 [node name="neck10" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-549.375, -658.951)
+position = Vector2(-549.375, -658.952)
 rotation = -0.819685
 scale = Vector2(0.999945, 0.999945)
 texture = ExtResource("4_yb3rx")

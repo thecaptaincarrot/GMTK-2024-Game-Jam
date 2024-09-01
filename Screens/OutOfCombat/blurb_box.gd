@@ -4,7 +4,7 @@ extends PanelContainer
 @export var beast_name: Label
 @export var beast_text: Label
 @export var beast_second_text: Label
-
+var boss = preload("res://Screens/Combat/combat_screen.gd")
 #enum BeastTexture{
 	#KNIGHT: preload("res://Screens/Credits/gooobknight_transparent.png"),
 	#GIANT: preload("res://Screens/Credits/goobercyclops_transparent.png"),
@@ -23,7 +23,7 @@ func _on_map_panel_level_changed(lvl) -> void:
 		0:
 			new_beast = [
 				"Knight-Errant of Diaz",
-				"HEALTH: Equivalent to snapping 200 twigs\n
+				"HEALTH: Equivalent to snapping %s twigs\n
 				HEIGHT: About one horse\n
 				WEIGHT: Definitely lighter than a horse\n
 				FEATURES:\n
@@ -34,7 +34,7 @@ func _on_map_panel_level_changed(lvl) -> void:
 		1:
 			new_beast = [
 				"Giant Mercenary",
-				"HEALTH: Equivalent to throwing 800 pebbles\n
+				"HEALTH: Equivalent to throwing %s pebbles\n
 				HEIGHT: Two or three humans\n
 				WEIGHT: Earth-shaking\n
 				EYES: One\n
@@ -46,7 +46,7 @@ func _on_map_panel_level_changed(lvl) -> void:
 		2:
 			new_beast = [
 				"Gelatinous Mass",
-				"HEALTH: Equivalent to pushing 2000 snails\n
+				"HEALTH: Equivalent to pushing %s snails\n
 				HEIGHT: Pine tree\n
 				WEIGHT: Surprisingly light (and aerodynamic)\n
 				GOOP: Unclimbable\n
@@ -57,7 +57,7 @@ func _on_map_panel_level_changed(lvl) -> void:
 			]
 		3: new_beast = [
 			"Stonejaw Wyrm",
-			"HEALTH: Equivalent to wrestling 4000 beetles\n
+			"HEALTH: Equivalent to wrestling %s beetles\n
 			HEIGHT: Many, many boulders\n
 			WEIGHT: Mountainous\n
 			SYMBOL: There again\n
@@ -80,6 +80,7 @@ func _on_map_panel_level_changed(lvl) -> void:
 		_:
 			print("OH NO!!")
 	beast_name.text = new_beast[0]
-	beast_text.text = new_beast[1]
+	if lvl == 4: beast_text.text = new_beast[1]
+	else: beast_text.text = new_beast[1] % boss.ENEMY_HEALTH[lvl] 
 	beast_second_text.text = new_beast[2]
 	

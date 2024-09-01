@@ -316,7 +316,8 @@ point_count = 5
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
-projectile_damage_threshold = 1.0
+bullit_number = 3
+projectile_damage_threshold = 30.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
 position = Vector2(0, -87)
