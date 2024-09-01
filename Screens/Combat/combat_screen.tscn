@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bq18iom53hl48"]
+[gd_scene load_steps=48 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]

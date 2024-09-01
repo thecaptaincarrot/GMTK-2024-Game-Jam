@@ -310,7 +310,7 @@ modifications/7 = SubResource("SkeletonModification2DLookAt_nqb65")
 
 [sub_resource type="Curve2D" id="Curve2D_u0ito"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -1, -1, 0, 0, 0, 0, -15, -51, 0, 0, 0, 0, 48, -111, 0, 0, 0, 0, 23, -176, 0, 0, 0, 0, -11, -208)
+"points": PackedVector2Array(0, 0, 0, 0, -1, -1, 0, 0, 0, 0, -42, -24, 0, 0, 0, 0, 55, -110, 0, 0, 0, 0, 98, -194, 0, 0, 0, 0, -18, -170)
 }
 point_count = 5
 
