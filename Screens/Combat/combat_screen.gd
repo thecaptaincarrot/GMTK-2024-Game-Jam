@@ -80,7 +80,7 @@ const ENEMY_HEALTH = [300,
 ]
 
 const ENEMY_REWARD = [500,
-					  2500,
+					  4000,
 					  15000,
 					  25000,
 					  100000,

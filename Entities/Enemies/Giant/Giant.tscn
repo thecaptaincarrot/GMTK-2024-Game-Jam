@@ -528,7 +528,7 @@ point_count = 5
 script = ExtResource("1_bnpgt")
 
 [node name="Beast" parent="." instance=ExtResource("2_pwn4p")]
-position = Vector2(0, -104)
+position = Vector2(0, -115)
 blood_color = Color(0.0344282, 0.410303, 0.615203, 1)
 
 [node name="StateMachine" parent="Beast" index="2"]

@@ -195,14 +195,15 @@ func die():
 
 
 func fling():
-	_scaler_attack_started = false
-	if path_follower:
-		path_follower.progress_ratio = 0
-	_state_changed(GooblinStates.FLYING)
-	velocity = fling_vector
-	#$ScalerDamage.emitting = false
-	$ScalerDamage.hide()
-	$ScalerTimeout.start()
+	if not is_dead():
+		_scaler_attack_started = false
+		if path_follower:
+			path_follower.progress_ratio = 0
+		_state_changed(GooblinStates.FLYING)
+		velocity = fling_vector
+		#$ScalerDamage.emitting = false
+		$ScalerDamage.hide()
+		$ScalerTimeout.start()
 
 
 func celebrate():
