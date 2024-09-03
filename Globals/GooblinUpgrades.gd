@@ -28,16 +28,16 @@ var levels_completed := 0
 
 var gooblin_count = 7 #Total gooblins of any class
 #army composition
-var basic_gooblins = 0
-var shield_gooblins = 0
-var climb_gooblins = 0
+var basic_gooblins = 6
+var shield_gooblins = 5
+var climb_gooblins = 5
 var catapult_gooblins = 0
 
 var gold = 0
 
 #equipment totals:
-var shields = 0
-var hooks = 0
+var shields = 5
+var hooks = 5
 
 #Gooblin Upgrades
 var gooblin_attack = 1
@@ -46,14 +46,14 @@ var gooblin_move_speed_upgrade_increment = 40.0 #how much each level of upgrade 
 var gooblin_speed_upgrade_level = 0
 
 #Shieldbearer Upgrades
-var shield_health = 1
+var shield_health = 3
 
 
 #Scaler Upgrades
 var damage_multiplier_level = 0
 var base_damage_multiplier = 3.0
 
-var base_climb_speed = 40.0
+var base_climb_speed = 60.0
 var climb_speed_level = 0
 var climb_speed_increment = 20.0
 var shake_off_chance = 0.4 #Chance to be shaken off when an enemy attacks

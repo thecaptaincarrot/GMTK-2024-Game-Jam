@@ -340,7 +340,7 @@ height = 152.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q14qj"]
 radius = 42.0006
-height = 130.002
+height = 100.001
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_vlpu2"]
 target_nodepath = NodePath("../IKTargets/armTarget")
@@ -448,7 +448,7 @@ disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
 
 [node name="Stomper" type="CollisionShape2D" parent="Beast/HitboxComponent" index="1"]
-position = Vector2(-41, 95)
+position = Vector2(-55, 93)
 rotation = 1.5708
 scale = Vector2(0.999987, 0.999987)
 shape = SubResource("CapsuleShape2D_q14qj")

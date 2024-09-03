@@ -105,7 +105,7 @@ func _ready():
 	elif(unit_type == GooblinType.SCALER):
 		_sprite.texture = load("res://Textures/Entities/GoblinScaler.png")
 		_can_attack = true
-		move_speed = GooblinUpgrades.gooblin_base_move_speed - 15.0
+		#move_speed = GooblinUpgrades.gooblin_base_move_speed - 15.0
 		$Splat.color = Color.MEDIUM_PURPLE
 		$ScalerDamage.color = enemy_node.blood_color
 
