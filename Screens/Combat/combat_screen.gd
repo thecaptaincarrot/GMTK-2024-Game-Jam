@@ -65,7 +65,7 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 					#Vector2(1800,950),
 					#]
 
-const GOOBLIN_RANGE = [64,
+const GOOBLIN_RANGE = [80,
 					   128,
 					   100,
 					   100,
@@ -73,16 +73,16 @@ const GOOBLIN_RANGE = [64,
 					]
 
 const ENEMY_HEALTH = [120,
-					  600,
-					  1000,
+					  500,
+					  900,
 					  2000,
 					  9999,
 ]
 
 const ENEMY_REWARD = [1500,
 					  8000,
-					  12000,
-					  9000,
+					  10000,
+					  15000,
 					  100000,
 					]
 

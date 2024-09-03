@@ -614,6 +614,7 @@ offset_left = 149.0
 offset_right = 232.063
 offset_bottom = 31.0
 grow_vertical = 2
+value = 4.0
 
 [node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/ShieldSpinbox"]
 layout_mode = 1
@@ -660,6 +661,7 @@ offset_top = 2.0
 offset_right = 423.063
 offset_bottom = 33.0
 grow_vertical = 2
+value = 4.0
 
 [node name="Label" type="Label" parent="PlanningMenus/ArmyCompPanel/ScalersSpinbox"]
 layout_mode = 1

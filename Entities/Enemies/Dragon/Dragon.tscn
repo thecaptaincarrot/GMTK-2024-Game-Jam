@@ -736,7 +736,7 @@ script = ExtResource("4_f4a04")
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 damage = 20
-scaler_shakeoff_chance = 0.75
+scaler_shakeoff_chance = 0.4
 stomper = NodePath("../../HitboxComponent/Stomper")
 fling_damage = 80
 
@@ -746,7 +746,7 @@ animation = "bite"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
 damage = 100
-scaler_shakeoff_chance = 0.35
+scaler_shakeoff_chance = 0.25
 fling_damage = 30
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="3"]

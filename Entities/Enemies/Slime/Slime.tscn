@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://by0cqitx42f6i"]
+[gd_scene load_steps=28 format=3 uid="uid://by0cqitx42f6i"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/slime.gd" id="1_rb4j3"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="2_uj5dt"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/States/JumpState.gd" id="4_5l287"]
 [ext_resource type="Texture2D" uid="uid://dlpet2r0x26de" path="res://Textures/Entities/gelatinousmass.png" id="4_hw4sg"]
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/States/DeadState.gd" id="5_y3egq"]
-[ext_resource type="Texture2D" uid="uid://gxjrl6xw1jg5" path="res://icon.svg" id="7_d4lou"]
 
 [sub_resource type="Animation" id="Animation_86cql"]
 length = 0.001
@@ -316,6 +315,7 @@ point_count = 5
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
+bullit_number = 1
 projectile_damage_threshold = 30.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
@@ -341,7 +341,7 @@ jump_max = -800
 animation = "jump_slime"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 60
+damage = 40
 scaler_shakeoff_chance = 0.8
 stomper = NodePath("../../HitboxComponent/Attacker")
 fling_damage = 50
@@ -356,7 +356,6 @@ libraries = {
 }
 
 [node name="AnimationTree" parent="Beast" index="4"]
-active = true
 deterministic = false
 tree_root = SubResource("AnimationNodeBlendTree_f5kkg")
 parameters/Jumper/active = false
@@ -679,20 +678,8 @@ position = Vector2(0, -341)
 [node name="undulator2" type="Node2D" parent="Beast/IKTargets/undulator1"]
 position = Vector2(423, 27)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Beast/IKTargets/undulator1/undulator2"]
-visible = false
-texture = ExtResource("7_d4lou")
-
 [node name="undulator3" type="Node2D" parent="Beast/IKTargets/undulator1"]
 position = Vector2(-407, 18)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Beast/IKTargets/undulator1/undulator3"]
-visible = false
-texture = ExtResource("7_d4lou")
-
-[node name="Sprite2D" type="Sprite2D" parent="Beast/IKTargets/undulator1"]
-visible = false
-texture = ExtResource("7_d4lou")
 
 [node name="leftgoopLookAt" type="Node2D" parent="Beast/IKTargets" index="1"]
 position = Vector2(-466, 36)

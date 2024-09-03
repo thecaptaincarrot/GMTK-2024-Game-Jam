@@ -26,18 +26,19 @@ func can_load():
 #I guess we just have the one global, lol
 var levels_completed := 0
 
-var gooblin_count = 7 #Total gooblins of any class
+var gooblin_count = 13 #Total gooblins of any class
 #army composition
-var basic_gooblins = 6
-var shield_gooblins = 5
-var climb_gooblins = 5
+var basic_gooblins = 5
+var shield_gooblins = 4
+var climb_gooblins = 4
 var catapult_gooblins = 0
 
 var gold = 0
 
 #equipment totals:
-var shields = 5
-var hooks = 5
+var shields = 4
+var hooks = 4
+#NOTE: change the starting values of the spinboxes to be the same as these 
 
 #Gooblin Upgrades
 var gooblin_attack = 1
@@ -128,7 +129,7 @@ func get_gooblin_speed_upgrade_cost() -> int:
 
 
 func get_gooblin_shield_upgrade_cost() -> int:
-	return 200 * pow(shield_health,2)
+	return 200 * pow(shield_health-1,2)
 
 
 func get_gooblin_scaler_mult_upgrade_cost() -> int:

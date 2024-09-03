@@ -18,8 +18,7 @@ center_of_mass = Vector2(100, 0)
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_i4bu1")
-damage = 25
-non_lethal_damage = 20
+damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, 0)

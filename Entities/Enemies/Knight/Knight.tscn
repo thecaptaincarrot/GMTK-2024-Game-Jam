@@ -416,6 +416,7 @@ script = ExtResource("5_61l8l")
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
+damage = 8
 fling_damage = 5
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="3"]
