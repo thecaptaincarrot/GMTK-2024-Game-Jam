@@ -72,17 +72,17 @@ const GOOBLIN_RANGE = [64,
 					   128,
 					]
 
-const ENEMY_HEALTH = [300,
-					  750,
-					  2200,
-					  5000,
+const ENEMY_HEALTH = [120,
+					  600,
+					  1000,
+					  2000,
 					  9999,
 ]
 
-const ENEMY_REWARD = [500,
-					  4000,
-					  15000,
-					  25000,
+const ENEMY_REWARD = [1500,
+					  8000,
+					  12000,
+					  9000,
 					  100000,
 					]
 

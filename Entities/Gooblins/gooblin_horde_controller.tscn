@@ -5,6 +5,7 @@
 
 [node name="GooblinHordeController" type="Node2D"]
 script = ExtResource("1_80sky")
+horde_range = 200
 
 [node name="SpawnPoint" type="Node2D" parent="."]
 

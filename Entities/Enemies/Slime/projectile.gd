@@ -7,7 +7,7 @@ var intersecting_goobs = []
 
 func _ready():
 	position.y -= 140
-	apply_impulse(Vector2(randf_range(-.3,.3), -randf_range(.5,1)) * 1000)
+	apply_impulse(Vector2(randf_range(-.4,.1), -randf_range(.5,1)) * 1000)
 
 
 func _physics_process(delta: float) -> void:

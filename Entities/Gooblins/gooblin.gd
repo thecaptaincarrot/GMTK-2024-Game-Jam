@@ -105,9 +105,9 @@ func _ready():
 	elif(unit_type == GooblinType.SCALER):
 		_sprite.texture = load("res://Textures/Entities/GoblinScaler.png")
 		_can_attack = true
+		move_speed = GooblinUpgrades.gooblin_base_move_speed - 15.0
 		$Splat.color = Color.MEDIUM_PURPLE
 		$ScalerDamage.color = enemy_node.blood_color
-		pass
 
 
 func _process(delta):
@@ -202,7 +202,7 @@ func fling():
 			path_follower.progress_ratio = 0
 		_state_changed(GooblinStates.FLYING)
 		velocity = fling_vector
-		#$ScalerDamage.emitting = false
+		$ScalerDamage.emitting = false
 		$ScalerDamage.hide()
 		$ScalerTimeout.start()
 
@@ -279,6 +279,7 @@ func damage_target():
 
 
 func _scaler_attack_timeout():
+	#printt("Damaging for",GooblinUpgrades.gooblin_attack * GooblinUpgrades.get_scaler_multipler())
 	enemy_node.take_damage(GooblinUpgrades.gooblin_attack * GooblinUpgrades.get_scaler_multipler())
 	fling()
 	_state_changed(GooblinStates.FLYING)
@@ -286,7 +287,7 @@ func _scaler_attack_timeout():
 	_scaler_attack_started = false
 
 
-func _state_changed(new_state): 
+func _state_changed(new_state):
 	#This only handles animation changes, or other things that change when an animation changes
 	#it does NOT handle what causes a state to change
 	

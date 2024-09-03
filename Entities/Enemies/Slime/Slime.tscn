@@ -212,7 +212,7 @@ nodes/output/position = Vector2(300, 140)
 node_connections = [&"Jumper", 0, &"idleanim", &"Jumper", 1, &"jumpanim", &"Life", 0, &"Jumper", &"Life", 1, &"deadanim", &"output", 0, &"Life"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgu7w"]
-radius = 195.04
+radius = 339.346
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_yl23k"]
 target_nodepath = NodePath("../IKTargets/undulator1")
@@ -316,7 +316,6 @@ point_count = 5
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
-bullit_number = 3
 projectile_damage_threshold = 30.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
@@ -342,10 +341,10 @@ jump_max = -800
 animation = "jump_slime"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 8
+damage = 60
 scaler_shakeoff_chance = 0.8
 stomper = NodePath("../../HitboxComponent/Attacker")
-fling_damage = 40
+fling_damage = 50
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("undulator")]
 script = ExtResource("5_y3egq")
@@ -368,6 +367,7 @@ parameters/Life/transition_request = ""
 parameters/Life/current_index = 0
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
+position = Vector2(0, -112)
 shape = SubResource("CircleShape2D_wgu7w")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
@@ -632,6 +632,7 @@ region_rect = Rect2(151, 407, 112, 206)
 z_index = -43
 position = Vector2(43.9982, -328.475)
 rotation = -0.0316538
+scale = Vector2(1, 1)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)

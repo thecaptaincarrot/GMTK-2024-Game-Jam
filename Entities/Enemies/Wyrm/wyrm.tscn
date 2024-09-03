@@ -412,8 +412,8 @@ scaler_path = NodePath("Beast/ScalerPath")
 sprite_box = NodePath("Beast/Sprites")
 
 [node name="Beast" parent="." instance=ExtResource("2_l7r84")]
-min_retarget_time = 1.0
-max_retarget_time = 1.5
+min_retarget_time = 0.7
+max_retarget_time = 1.0
 attack_chance = 2
 blood_color = Color(0.122528, 0.920102, 0, 1)
 
@@ -433,6 +433,7 @@ animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
 damage = 50
+scaler_shakeoff_chance = 0.75
 fling_damage = 30
 
 [node name="StaggerState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("head_pointer")]
@@ -678,7 +679,7 @@ region_rect = Rect2(644, 499, 200, 175)
 [node name="neck8" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -44
 position = Vector2(-347.159, -779.237)
-rotation = 0.00556137
+rotation = 0.0055614
 scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
@@ -703,7 +704,7 @@ region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="Ground" type="Sprite2D" parent="Beast/Sprites" index="11"]
-position = Vector2(3.04419, -17.7407)
+position = Vector2(3.04418, -17.7407)
 texture = ExtResource("8_jc4bm")
 
 [node name="headTarget" type="Node2D" parent="Beast/IKTargets" index="0"]

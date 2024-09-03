@@ -189,9 +189,12 @@ tracks/3/path = NodePath("StateMachine/StompState")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.66667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.56667, 1.66667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"hurt_gooblins"
+}, {
 "args": [],
 "method": &"flingerize_gooblins"
 }]
@@ -339,11 +342,14 @@ tracks/3/path = NodePath("StateMachine/SwingState")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.6, 1.66667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"hurt_gooblins"
+}, {
+"args": [],
+"method": &"flingerize_gooblins"
 }]
 }
 tracks/4/type = "method"
@@ -455,12 +461,12 @@ nodes/swing/position = Vector2(0, 420)
 node_connections = [&"Leg", 0, &"Base", &"Leg", 1, &"StompType", &"StompType", 0, &"kickanim", &"StompType", 1, &"actualstompanim", &"Swinger", 0, &"Leg", &"Swinger", 1, &"swing", &"output", 0, &"Swinger"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irduo"]
-radius = 52.8451
-height = 160.267
+radius = 73.9306
+height = 189.776
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w7ivm"]
-radius = 41.0
-height = 226.0
+radius = 63.0
+height = 334.0
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_vlpu2"]
 target_nodepath = NodePath("../IKTargets/armTarget")
@@ -529,6 +535,8 @@ script = ExtResource("1_bnpgt")
 
 [node name="Beast" parent="." instance=ExtResource("2_pwn4p")]
 position = Vector2(0, -115)
+min_retarget_time = 0.75
+max_retarget_time = 1.5
 blood_color = Color(0.0344282, 0.410303, 0.615203, 1)
 
 [node name="StateMachine" parent="Beast" index="2"]
@@ -548,7 +556,9 @@ attack_position = Vector2(-81, -5)
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 20
+damage = 25
+scaler_shakeoff_chance = 0.2
+fling_damage = 15
 
 [node name="StompState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_ddcup")
@@ -556,13 +566,14 @@ animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Stomper")
 damage = 5
-fling_damage = 20
+fling_damage = 25
 
 [node name="ActualStompState" type="Node" parent="Beast/StateMachine" index="3" node_paths=PackedStringArray("hitbox", "stomper")]
 script = ExtResource("6_e0m0m")
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 damage = 15
+scaler_shakeoff_chance = 0.4
 stomper = NodePath("../../HitboxComponent/Stomper")
 fling_damage = 15
 

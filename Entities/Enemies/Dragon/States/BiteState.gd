@@ -13,8 +13,8 @@ func enter(msg):
 	
 	var anim = beast.animation_tree.get_animation("bite")
 	var bite_x_track = anim.find_track("IKTargets/headTarget:position:x", Animation.TYPE_VALUE)
-	anim.track_remove_key(bite_x_track, 2)
-	anim.track_insert_key(bite_x_track, 0.6, target_x)
+	anim.track_remove_key(bite_x_track, 3)
+	anim.track_insert_key(bite_x_track, 1.2, target_x)
 	
 	beast.animation_tree["parameters/Biter/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	await beast.animation_tree.animation_finished

@@ -53,7 +53,7 @@ signal army_composition_update
 #Cost references
 @export var cost_per_gooblin = 10
 @export var cost_per_shield = 20
-@export var cost_per_hook = 60
+@export var cost_per_hook = 50
 #NOTE: FOR COSTS OF UPGRADES, SEE EQUATION IN GooblinUpgrades
 
 
