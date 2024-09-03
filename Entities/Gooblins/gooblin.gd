@@ -84,7 +84,7 @@ func _ready():
 	#get stuff from gooblinupgrades
 	move_speed = GooblinUpgrades.get_gooblin_speed()
 	scaler_climb_speed = GooblinUpgrades.get_scaler_climb_speed()
-	
+
 	_scaler_attack_timer.timeout.connect(_scaler_attack_timeout)
 	_scaler_attack_timer.wait_time = 1.0
 	_scaler_attack_timer.autostart = false
@@ -142,6 +142,7 @@ func _physics_process(delta: float) -> void:
 				path_follower.progress += scaler_climb_speed * delta
 				if path_follower.progress_ratio == 1.0: #completed my climb
 					_scaler_attack_started = true
+					_scaler_attack_timer.start()
 					$ScalerDamage.show()
 					_anim.play("ScalerAttack")
 			else:
