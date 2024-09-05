@@ -475,7 +475,6 @@ modification_stack = SubResource("SkeletonModificationStack2D_xsq65")
 
 [node name="neck1" type="Bone2D" parent="Beast/SkeletonComponent" index="0"]
 rotation = 1.9874
-scale = Vector2(1, 1)
 rest = Transform2D(-0.404655, 0.914469, -0.914469, -0.404655, 0, 0)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1"]
@@ -495,7 +494,6 @@ remote_path = NodePath("../../../../Sprites/neck2")
 [node name="neck3" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2"]
 position = Vector2(-135.001, 6.48499e-05)
 rotation = -0.236764
-scale = Vector2(1, 1)
 rest = Transform2D(0.972103, -0.234558, 0.234558, 0.972103, -135.001, 6.48499e-05)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3"]
@@ -505,7 +503,6 @@ remote_path = NodePath("../../../../../Sprites/neck3")
 [node name="neck4" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3"]
 position = Vector2(-135.001, 3.05176e-05)
 rotation = -0.246002
-scale = Vector2(1, 1)
 rest = Transform2D(0.969894, -0.243528, 0.243528, 0.969894, -135.001, 3.05176e-05)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4"]
@@ -525,7 +522,6 @@ remote_path = NodePath("../../../../../../../Sprites/neck5")
 [node name="neck6" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5"]
 position = Vector2(-135, 0.000732422)
 rotation = -0.282236
-scale = Vector2(1, 1)
 rest = Transform2D(0.960436, -0.278504, 0.278504, 0.960436, -135, 0.000732422)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6"]
@@ -545,7 +541,6 @@ remote_path = NodePath("../../../../../../../../../Sprites/neck7")
 [node name="neck8" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7"]
 position = Vector2(-135, -0.0012207)
 rotation = -0.404579
-scale = Vector2(1, 1)
 rest = Transform2D(0.919268, -0.393632, 0.393632, 0.919268, -135, -0.0012207)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8"]
@@ -555,7 +550,6 @@ remote_path = NodePath("../../../../../../../../../../Sprites/neck8")
 [node name="neck9" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8"]
 position = Vector2(-145.22, -23.4443)
 rotation = -0.871208
-scale = Vector2(1, 1)
 rest = Transform2D(0.643905, -0.765111, 0.765111, 0.643905, -145.22, -23.4443)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9"]
@@ -617,7 +611,6 @@ region_rect = Rect2(297, 533, 314, 268)
 z_index = -50
 position = Vector2(34.3957, -77.7299)
 rotation = 1.9874
-scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
@@ -635,7 +628,6 @@ region_rect = Rect2(644, 499, 200, 175)
 z_index = -48
 position = Vector2(75.3267, -341.012)
 rotation = 1.52024
-scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
@@ -644,7 +636,6 @@ region_rect = Rect2(644, 499, 200, 175)
 z_index = -47
 position = Vector2(47.9605, -472.239)
 rotation = 1.27424
-scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
@@ -689,7 +680,6 @@ region_rect = Rect2(644, 499, 200, 175)
 z_index = -44
 position = Vector2(-462.341, -738.287)
 rotation = -0.865647
-scale = Vector2(1, 1)
 texture = ExtResource("4_yb3rx")
 region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)

@@ -707,9 +707,9 @@ modifications/6 = SubResource("SkeletonModification2DLookAt_17nyw")
 
 [sub_resource type="Curve2D" id="Curve2D_3krad"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -207, 479, 0, 0, 0, 0, -84, 338, 0, 0, 0, 0, -10, 262, 0, 0, 0, 0, -144, 54, 0, 0, 0, 0, -156, -74, 0, 0, 0, 0, -271, -131, 0, 0, 0, 0, -99, -198)
+"points": PackedVector2Array(0, 0, 0, 0, -207, 479, 0, 0, 0, 0, -84, 338, 0, 0, 0, 0, -10, 262, 0, 0, 0, 0, -144, 54, 0, 0, 0, 0, -125, -31, 0, 0, 0, 0, 51, -54)
 }
-point_count = 7
+point_count = 6
 
 [node name="Dragon" type="Node2D"]
 script = ExtResource("1_kxca4")
@@ -738,7 +738,7 @@ hitbox = NodePath("../../HitboxComponent")
 damage = 20
 scaler_shakeoff_chance = 0.4
 stomper = NodePath("../../HitboxComponent/Stomper")
-fling_damage = 80
+fling_damage = 120
 
 [node name="BiteState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("hitbox", "attacker")]
 script = ExtResource("5_vyu4a")
@@ -1021,7 +1021,7 @@ region_rect = Rect2(1236, 1136, 484, 417)
 [node name="body2" type="Sprite2D" parent="Beast/Sprites" index="1"]
 z_index = -49
 position = Vector2(-255.206, -126.765)
-rotation = -0.0612839
+rotation = -0.061284
 scale = Vector2(1.3813, 1.15081)
 texture = ExtResource("9_rmtai")
 region_enabled = true
@@ -1047,7 +1047,7 @@ region_rect = Rect2(1004, 614, 215, 228)
 
 [node name="neck3" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -46
-position = Vector2(-587.348, -366.636)
+position = Vector2(-587.348, -366.635)
 rotation = -1.24918
 scale = Vector2(1.38094, 1.15064)
 texture = ExtResource("9_rmtai")
@@ -1101,8 +1101,8 @@ region_rect = Rect2(354, 1221, 225, 201)
 
 [node name="footL" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -53
-position = Vector2(-497.667, 392.883)
-rotation = -0.052982
+position = Vector2(-497.668, 392.883)
+rotation = -0.0529819
 scale = Vector2(1.39183, 1.15888)
 texture = ExtResource("9_rmtai")
 region_enabled = true

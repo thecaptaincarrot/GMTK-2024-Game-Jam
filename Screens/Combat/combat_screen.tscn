@@ -241,7 +241,6 @@ centered = false
 offset = Vector2(0, 350)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="CameraBoundsRect" type="ReferenceRect" parent="CanvasLayer"]
 visible = false
@@ -709,21 +708,21 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="ZoomerIn" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(540, 561)
+position = Vector2(1009, 606)
 texture_normal = ExtResource("28_lonfx")
 shape = SubResource("CircleShape2D_ifgky")
 action = "zoom_in"
 visibility_mode = 1
 
 [node name="ZoomerOut" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(752, 582)
+position = Vector2(1166, 609)
 texture_normal = ExtResource("29_7nqp7")
 shape = SubResource("CircleShape2D_ifgky")
 action = "zoom_out"
 visibility_mode = 1
 
 [node name="MoveShow" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(148, 516)
+position = Vector2(74, 565)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("16_fv34x")
 visibility_mode = 1

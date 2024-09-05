@@ -46,6 +46,6 @@ func _spawn_bullits(dmg):
 			get_parent().add_child(bul)
 			counter -= 1
 	can_bullit = false
-	#var timer = get_tree().create_timer(1)
-	#await timer.timeout
+	var timer = get_tree().create_timer(1)
+	await timer.timeout
 	can_bullit = true

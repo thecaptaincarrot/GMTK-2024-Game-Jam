@@ -315,7 +315,7 @@ point_count = 5
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
-bullit_number = 1
+bullit_number = 3
 projectile_damage_threshold = 30.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
@@ -665,7 +665,7 @@ region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-4.4602, -90.945)
+position = Vector2(-4.46019, -90.945)
 rotation = -0.639
 scale = Vector2(0.999931, 0.999931)
 texture = ExtResource("4_hw4sg")
