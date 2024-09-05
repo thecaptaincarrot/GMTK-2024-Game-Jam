@@ -317,6 +317,7 @@ point_count = 5
 script = ExtResource("1_rb4j3")
 bullit_number = 3
 projectile_damage_threshold = 30.0
+projectile_cooldown = 0.5
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
 position = Vector2(0, -87)
@@ -331,6 +332,7 @@ initial_state = NodePath("IdleState")
 script = ExtResource("3_wfgqw")
 jump_min = -400
 jump_max = -800
+first_jump_target = -1000.0
 animation = "idle"
 
 [node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("animation_player", "hitbox", "attacker", "stomper")]
@@ -665,7 +667,7 @@ region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-4.46019, -90.945)
+position = Vector2(-4.4602, -90.945)
 rotation = -0.639
 scale = Vector2(0.999931, 0.999931)
 texture = ExtResource("4_hw4sg")

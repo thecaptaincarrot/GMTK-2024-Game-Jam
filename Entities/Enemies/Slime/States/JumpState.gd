@@ -28,6 +28,8 @@ func enter(target_position):
 	
 	jump_anim.track_remove_key(beast_x, 0)
 	jump_anim.track_insert_key(beast_x, 0, target_position)
+	
+	state_machine.change_to_state("IdleState")
 
 	#emit_signal("jump",target_position, jump_time)
 	#print("Yo1")
@@ -42,7 +44,6 @@ func enter(target_position):
 	#hurt_gooblins()
 	#flingerize_gooblins()
 	
-	state_machine.change_to_state("IdleState")
 
 
 func exit():
