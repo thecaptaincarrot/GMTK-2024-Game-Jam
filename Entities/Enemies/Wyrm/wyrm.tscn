@@ -184,7 +184,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(2, 2),
 "update": 0,
-"values": [-900.0, -155.0]
+"values": [-900.0, -220.0]
 }
 
 [sub_resource type="Animation" id="Animation_fwcow"]
@@ -271,6 +271,7 @@ animation = &"death"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u5xc2"]
+graph_offset = Vector2(-338, 20)
 nodes/Life/node = SubResource("AnimationNodeTransition_kbjdy")
 nodes/Life/position = Vector2(80, 120)
 nodes/SlamMachine/node = SubResource("AnimationNodeStateMachine_k0u02")
@@ -412,8 +413,8 @@ scaler_path = NodePath("Beast/ScalerPath")
 sprite_box = NodePath("Beast/Sprites")
 
 [node name="Beast" parent="." instance=ExtResource("2_l7r84")]
-min_retarget_time = 0.7
-max_retarget_time = 1.0
+min_retarget_time = 0.2
+max_retarget_time = 0.4
 attack_chance = 2
 blood_color = Color(0.122528, 0.920102, 0, 1)
 
@@ -422,8 +423,8 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_f2kur")
-slam_min_range = 200
-slam_max_range = 800
+slam_min_range = 40
+slam_max_range = 400
 track_height = 750
 animation = ""
 
@@ -594,7 +595,7 @@ update_rotation = false
 update_scale = false
 
 [node name="GroundTransformer" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1"]
-position = Vector2(-17.4552, 4.39507)
+position = Vector2(-0.769918, 4.40537)
 remote_path = NodePath("../../../Sprites/Ground")
 update_rotation = false
 update_scale = false
@@ -697,7 +698,8 @@ region_enabled = true
 region_rect = Rect2(644, 499, 200, 175)
 
 [node name="Ground" type="Sprite2D" parent="Beast/Sprites" index="11"]
-position = Vector2(3.04422, -17.7407)
+position = Vector2(-3.71702, -2.48673)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("8_jc4bm")
 
 [node name="headTarget" type="Node2D" parent="Beast/IKTargets" index="0"]
@@ -710,7 +712,7 @@ position = Vector2(-356, -33)
 curve = SubResource("Curve2D_qix37")
 
 [node name="LungePoint" parent="Beast" index="11"]
-position = Vector2(-40, -164)
+position = Vector2(-27, -209)
 
 [connection signal="timeout" from="Beast/RandomTargetTimer" to="Beast/StateMachine/IdleState" method="target_and_attack"]
 

@@ -38,9 +38,9 @@ func _spawn_bullits(dmg):
 	if can_bullit:
 		damage_taken += dmg
 		var counter =  0
-		printt("TOOK",damage_taken,"DAMAGE")
+		#printt("TOOK",damage_taken,"DAMAGE")
 		if damage_taken >= projectile_damage_threshold:
-			print("I DESIRE BULLIT")
+			#print("I DESIRE BULLIT")
 			damage_taken = 0
 			counter =  randi_range(2,bullit_number)
 			can_bullit = false
