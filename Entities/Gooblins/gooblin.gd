@@ -143,6 +143,7 @@ func _physics_process(delta: float) -> void:
 				if path_follower.progress_ratio == 1.0: #completed my climb
 					_scaler_attack_started = true
 					_scaler_attack_timer.start()
+					$ScalerDamage.restart()
 					$ScalerDamage.show()
 					_anim.play("ScalerAttack")
 			else:

@@ -271,7 +271,7 @@ animation = &"death"
 animation = &"idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u5xc2"]
-graph_offset = Vector2(-338, 20)
+graph_offset = Vector2(-653, 110)
 nodes/Life/node = SubResource("AnimationNodeTransition_kbjdy")
 nodes/Life/position = Vector2(80, 120)
 nodes/SlamMachine/node = SubResource("AnimationNodeStateMachine_k0u02")
@@ -285,7 +285,7 @@ nodes/idleanim/position = Vector2(-400, 140)
 node_connections = [&"Life", 0, &"Slammer", &"Life", 1, &"deadanim", &"Slammer", 0, &"idleanim", &"Slammer", 1, &"SlamMachine", &"output", 0, &"Life"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7d5ot"]
-radius = 225.142
+radius = 250.0
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_uv2uo"]
 target_nodepath = NodePath("../IKTargets/headTarget")
@@ -423,7 +423,7 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_f2kur")
-slam_min_range = 40
+slam_min_range = 60
 slam_max_range = 400
 track_height = 750
 animation = ""
@@ -433,7 +433,7 @@ script = ExtResource("4_km2p6")
 animation = ""
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 50
+damage = 85
 scaler_shakeoff_chance = 0.75
 fling_damage = 30
 
@@ -464,7 +464,7 @@ parameters/Slammer/internal_active = false
 parameters/Slammer/request = 0
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
-position = Vector2(-705.986, -561.84)
+position = Vector2(-623, -557)
 rotation = 0.193936
 scale = Vector2(0.999952, 0.999952)
 shape = SubResource("CircleShape2D_7d5ot")
@@ -578,7 +578,7 @@ position = Vector2(-134, 55)
 remote_path = NodePath("../../../../../../../../../../../../../Sprites/head")
 
 [node name="HitboxTransform" type="RemoteTransform2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10/head"]
-position = Vector2(-134, 55)
+position = Vector2(-51.6332, 43.755)
 remote_path = NodePath("../../../../../../../../../../../../../HitboxComponent/Attacker")
 
 [node name="jaw" type="Bone2D" parent="Beast/SkeletonComponent/neck1/neck2/neck3/neck4/neck5/neck6/neck7/neck8/neck9/neck10/head"]
