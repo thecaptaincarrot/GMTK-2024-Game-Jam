@@ -423,8 +423,8 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_f2kur")
-slam_min_range = 60
-slam_max_range = 400
+slam_min_range = 200
+slam_max_range = 800
 track_height = 750
 animation = ""
 

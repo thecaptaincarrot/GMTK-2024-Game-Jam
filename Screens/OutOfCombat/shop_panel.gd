@@ -222,6 +222,9 @@ func _on_shield_purchase_button_pressed():
 	if !Input.is_key_pressed(KEY_SHIFT):
 		if GooblinUpgrades.gold_purchase(cost_per_shield):
 			GooblinUpgrades.shields += 1
+			if GooblinUpgrades.basic_gooblins > 0:
+				GooblinUpgrades.shield_gooblins += 1
+				army_composition_update.emit()
 			update_all()
 			purchase_sound.play()
 		else:
@@ -229,6 +232,9 @@ func _on_shield_purchase_button_pressed():
 	else:
 		if GooblinUpgrades.gold_purchase(cost_per_shield * 10) and Input.is_key_pressed(KEY_SHIFT):
 			GooblinUpgrades.shields += 10
+			if GooblinUpgrades.basic_gooblins > 10:
+				GooblinUpgrades.shield_gooblins += 10
+				army_composition_update.emit()
 			update_all()
 			purchase_sound.play()
 		else:
@@ -252,6 +258,9 @@ func _on_hook_purchase_button_pressed():
 	if !Input.is_key_pressed(KEY_SHIFT):
 		if GooblinUpgrades.gold_purchase(cost_per_hook):
 			GooblinUpgrades.hooks += 1
+			if GooblinUpgrades.basic_gooblins > 0:
+				GooblinUpgrades.climb_gooblins += 1
+				army_composition_update.emit()
 			update_all()
 			purchase_sound.play()
 		else:
@@ -259,6 +268,9 @@ func _on_hook_purchase_button_pressed():
 	else:
 		if GooblinUpgrades.gold_purchase(cost_per_hook * 10) and Input.is_key_pressed(KEY_SHIFT):
 			GooblinUpgrades.hooks += 10
+			if GooblinUpgrades.basic_gooblins > 10:
+				GooblinUpgrades.climb_gooblins += 10
+				army_composition_update.emit()
 			update_all()
 			purchase_sound.play()
 		else:

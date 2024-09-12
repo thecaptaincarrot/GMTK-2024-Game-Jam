@@ -75,7 +75,7 @@ const GOOBLIN_RANGE = [80,
 const ENEMY_HEALTH = [200,
 					  700,
 					  1300,
-					  3100,
+					  2800,
 					  9999,
 ]
 
