@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtbkr6sw241vr"]
+[gd_scene load_steps=18 format=3 uid="uid://dtbkr6sw241vr"]
 
 [ext_resource type="Script" path="res://Entities/Gooblins/gooblin.gd" id="1_qqrn7"]
 [ext_resource type="Texture2D" uid="uid://b4au2x3u7deau" path="res://Textures/Entities/GoblinBasic.png" id="2_uqsqc"]
@@ -369,8 +369,20 @@ _data = {
 "Walk": SubResource("Animation_6tbyr")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l5lce"]
+random_pitch = 1.1
+random_volume_offset_db = 0.1
+streams_count = 1
+stream_0/stream = ExtResource("3_uhu1l")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lwp3s"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("4_smbfl")
+
 [node name="Gooblin" type="Area2D" groups=["Gooblin"]]
 collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_qqrn7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -427,9 +439,9 @@ color = Color(1, 0, 0, 1)
 one_shot = true
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_uhu1l")
+stream = SubResource("AudioStreamRandomizer_l5lce")
 volume_db = -15.0
 
 [node name="Attack" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_smbfl")
-volume_db = -20.0
+stream = SubResource("AudioStreamRandomizer_lwp3s")
+volume_db = -30.0

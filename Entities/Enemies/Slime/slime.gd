@@ -14,6 +14,8 @@ var damage_taken = 0
 var bullit = preload("res://Entities/Enemies/Slime/projectile.tscn")
 var can_bullit = true
 
+@export var projectile_cooldown := 0.2
+
 func _ready() -> void:
 	enemy.reacquire_targets.connect(reacquire_targets)
 	reacquire_targets()
@@ -36,16 +38,18 @@ func _spawn_bullits(dmg):
 	if can_bullit:
 		damage_taken += dmg
 		var counter =  0
+		#printt("TOOK",damage_taken,"DAMAGE")
 		if damage_taken >= projectile_damage_threshold:
+			#print("I DESIRE BULLIT")
 			damage_taken = 0
-			counter =  randi_range(1,bullit_number)
+			counter =  randi_range(2,bullit_number)
+			can_bullit = false
+			var timer = get_tree().create_timer(projectile_cooldown)
+			await timer.timeout
+			can_bullit = true
 		
 		while counter > 0:
 			var bul = bullit.instantiate()
 			bul.global_position = enemy.global_position + projectile_spawn_offset
 			get_parent().add_child(bul)
 			counter -= 1
-	can_bullit = false
-	var timer = get_tree().create_timer(1)
-	await timer.timeout
-	can_bullit = true

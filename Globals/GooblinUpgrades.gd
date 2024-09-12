@@ -26,37 +26,38 @@ func can_load():
 #I guess we just have the one global, lol
 var levels_completed := 0
 
-var gooblin_count = 10 #Total gooblins of any class
+var gooblin_count = 13 #Total gooblins of any class
 #army composition
-var basic_gooblins = 0
-var shield_gooblins = 0
-var climb_gooblins = 0
+var basic_gooblins = 5
+var shield_gooblins = 4
+var climb_gooblins = 4
 var catapult_gooblins = 0
 
 var gold = 0
 
 #equipment totals:
-var shields = 0
-var hooks = 0
+var shields = 4
+var hooks = 4
+#NOTE: change the starting values of the spinboxes to be the same as these 
 
 #Gooblin Upgrades
 var gooblin_attack = 1
-var gooblin_base_move_speed = 150.0
-var gooblin_move_speed_upgrade_increment = 50.0 #how much each level of upgrade increases the gooblin's speed
+var gooblin_base_move_speed = 130.0
+var gooblin_move_speed_upgrade_increment = 40.0 #how much each level of upgrade increases the gooblin's speed
 var gooblin_speed_upgrade_level = 0
 
 #Shieldbearer Upgrades
-var shield_health = 1
+var shield_health = 3
 
 
 #Scaler Upgrades
 var damage_multiplier_level = 0
-var base_damage_multiplier = 4.0
+var base_damage_multiplier = 3.0
 
-var base_climb_speed = 25.0
+var base_climb_speed = 50.0
 var climb_speed_level = 0
 var climb_speed_increment = 25.0
-var shake_off_chance = 0.50 #Chance to be shaken off when an enemy attacks
+var shake_off_chance = 0.4 #Chance to be shaken off when an enemy attacks
 
 #Catapult Upgrades
 #PLACEHOLDER
@@ -98,42 +99,42 @@ func get_gooblin_shield_health():
 	return shield_health
 
 
-func get_next_gooblin_shield_health():
+func get_next_gooblin_shield_health() -> int:
 	return shield_health + 1
 
 
-func get_scaler_multipler():
+func get_scaler_multipler() -> int:
 	return base_damage_multiplier + damage_multiplier_level
 
 
-func get_next_scaler_multiplier():
+func get_next_scaler_multiplier() -> int:
 	return base_damage_multiplier + damage_multiplier_level + 1
 
 
-func get_scaler_climb_speed():
+func get_scaler_climb_speed() -> int:
 	return base_climb_speed + climb_speed_level * climb_speed_increment
 
 
-func get_next_scaler_climb_speed():
+func get_next_scaler_climb_speed() -> int:
 	return base_climb_speed + (1 + climb_speed_level) * climb_speed_increment
 
 
 #Cost curve calculation functions
-func get_gooblin_attack_upgrade_cost():
-	return 1000 * (pow(gooblin_attack,2))
+func get_gooblin_attack_upgrade_cost() -> int:
+	return 1000 * (pow(gooblin_attack,2.5))
 
 
-func get_gooblin_speed_upgrade_cost():
-	return 250 * pow(gooblin_speed_upgrade_level + 1,2)
+func get_gooblin_speed_upgrade_cost() -> int:
+	return 300 * pow(gooblin_speed_upgrade_level + 1,2)
 
 
-func get_gooblin_shield_upgrade_cost():
-	return 400 * pow(shield_health,2)
+func get_gooblin_shield_upgrade_cost() -> int:
+	return 200 * pow(shield_health-1,2)
 
 
-func get_gooblin_scaler_mult_upgrade_cost():
-	return 500 * pow((damage_multiplier_level + 1),2)
+func get_gooblin_scaler_mult_upgrade_cost() -> int:
+	return 250 * pow((damage_multiplier_level + 1),1+((damage_multiplier_level +1)*.2))
 
 
-func get_gooblin_scaler_climb_speed_upgrade_cost():
-	return 500 * pow((climb_speed_level + 1),2)
+func get_gooblin_scaler_climb_speed_upgrade_cost() -> int:
+	return 250 * pow((climb_speed_level + 1),2+(climb_speed_level*.2))

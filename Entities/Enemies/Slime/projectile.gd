@@ -7,7 +7,7 @@ var intersecting_goobs = []
 
 func _ready():
 	position.y -= 140
-	apply_impulse(Vector2(randf_range(-.3,.3), -randf_range(.5,1)) * 1000)
+	apply_impulse(Vector2(randf_range(-.4,.1), -randf_range(.5,1)) * 1000)
 
 
 func _physics_process(delta: float) -> void:
@@ -52,11 +52,11 @@ func hurt_gooblins():
 			return
 
 
-func _on_area_2d_body_entered(body):
-	if body is Gooblin:
-		intersecting_goobs.append(body)
+func _on_area_2d_area_entered(area):
+	if area is Gooblin:
+		intersecting_goobs.append(area)
 
 
-func _on_area_2d_body_exited(body):
-	if body is Gooblin:
-		intersecting_goobs.erase(body)
+func _on_area_2d_area_exited(area):
+	if area is Gooblin:
+		intersecting_goobs.erase(area)

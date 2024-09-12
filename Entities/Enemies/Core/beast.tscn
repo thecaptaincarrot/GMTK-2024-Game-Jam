@@ -9,10 +9,12 @@
 script = ExtResource("1_wynlo")
 
 [node name="RandomTargetTimer" type="Timer" parent="."]
+one_shot = true
 script = ExtResource("2_bboou")
 
 [node name="DebugTimer" type="Timer" parent="." node_paths=PackedStringArray("state_machine")]
 wait_time = 5.0
+one_shot = true
 script = ExtResource("3_hfcfw")
 state_machine = NodePath("../StateMachine")
 

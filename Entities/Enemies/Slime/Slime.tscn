@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://by0cqitx42f6i"]
+[gd_scene load_steps=29 format=3 uid="uid://by0cqitx42f6i"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Slime/slime.gd" id="1_rb4j3"]
 [ext_resource type="PackedScene" uid="uid://cshwo6wiegxqm" path="res://Entities/Enemies/Core/beast.tscn" id="2_uj5dt"]
@@ -46,6 +46,22 @@ tracks/2/keys = {
 "values": [-410.0]
 }
 
+[sub_resource type="Animation" id="Animation_l850a"]
+resource_name = "dead"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IKTargets/undulator1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, -341), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_cdhd3"]
 resource_name = "idle"
 length = 2.0
@@ -73,7 +89,7 @@ tracks/0/path = NodePath("IKTargets/undulator1:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
@@ -112,7 +128,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
-"values": [0.0, -500.0, 0.0]
+"values": [-87.0, -587.0, -87.0]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -166,6 +182,7 @@ tracks/6/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aove2"]
 _data = {
 "RESET": SubResource("Animation_86cql"),
+"dead": SubResource("Animation_l850a"),
 "idle": SubResource("Animation_cdhd3"),
 "jump_slime": SubResource("Animation_vooej")
 }
@@ -188,7 +205,7 @@ input_1/break_loop_at_end = false
 input_1/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vyiqe"]
-animation = &"RESET"
+animation = &"dead"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e1iv3"]
 animation = &"idle"
@@ -197,6 +214,7 @@ animation = &"idle"
 animation = &"jump_slime"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_f5kkg"]
+graph_offset = Vector2(-473.273, 100.364)
 nodes/Jumper/node = SubResource("AnimationNodeOneShot_7ycsp")
 nodes/Jumper/position = Vector2(-60, 140)
 nodes/Life/node = SubResource("AnimationNodeTransition_21ok5")
@@ -211,7 +229,7 @@ nodes/output/position = Vector2(300, 140)
 node_connections = [&"Jumper", 0, &"idleanim", &"Jumper", 1, &"jumpanim", &"Life", 0, &"Jumper", &"Life", 1, &"deadanim", &"output", 0, &"Life"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgu7w"]
-radius = 195.04
+radius = 339.346
 
 [sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_yl23k"]
 target_nodepath = NodePath("../IKTargets/undulator1")
@@ -315,9 +333,12 @@ point_count = 5
 
 [node name="Slime" type="Node2D"]
 script = ExtResource("1_rb4j3")
-projectile_damage_threshold = 30.0
+bullit_number = 3
+projectile_damage_threshold = 5.0
+projectile_cooldown = 1.0
 
 [node name="Beast" parent="." instance=ExtResource("2_uj5dt")]
+position = Vector2(0, -87.8163)
 min_retarget_time = 4.0
 max_retarget_time = 5.0
 blood_color = Color(0.447636, 0.24912, 0.374506, 1)
@@ -327,18 +348,23 @@ initial_state = NodePath("IdleState")
 
 [node name="IdleState" type="Node" parent="Beast/StateMachine" index="0"]
 script = ExtResource("3_wfgqw")
+jump_min = -400
+jump_max = -800
+first_jump_target = -1000.0
 animation = "idle"
 
 [node name="JumpState" type="Node" parent="Beast/StateMachine" index="1" node_paths=PackedStringArray("animation_player", "hitbox", "attacker", "stomper")]
 script = ExtResource("4_5l287")
 animation_player = NodePath("../../AnimationPlayer")
+jump_min = -400
+jump_max = -800
 animation = "jump_slime"
 hitbox = NodePath("../../HitboxComponent")
 attacker = NodePath("../../HitboxComponent/Attacker")
-damage = 8
+damage = 40
 scaler_shakeoff_chance = 0.8
 stomper = NodePath("../../HitboxComponent/Attacker")
-fling_damage = 40
+fling_damage = 50
 
 [node name="DeadState" type="Node" parent="Beast/StateMachine" index="2" node_paths=PackedStringArray("undulator")]
 script = ExtResource("5_y3egq")
@@ -350,7 +376,6 @@ libraries = {
 }
 
 [node name="AnimationTree" parent="Beast" index="4"]
-active = true
 deterministic = false
 tree_root = SubResource("AnimationNodeBlendTree_f5kkg")
 parameters/Jumper/active = false
@@ -361,6 +386,7 @@ parameters/Life/transition_request = ""
 parameters/Life/current_index = 0
 
 [node name="Attacker" type="CollisionShape2D" parent="Beast/HitboxComponent" index="0"]
+position = Vector2(0, -112)
 shape = SubResource("CircleShape2D_wgu7w")
 disabled = true
 debug_color = Color(0.5, 0, 0, 0.196078)
@@ -401,7 +427,7 @@ length = 92.343
 bone_angle = 64.608
 
 [node name="bone3" type="Bone2D" parent="Beast/SkeletonComponent/base/slime4/slime5/slime6/slime7"]
-position = Vector2(29.7867, 12.4758)
+position = Vector2(4.76355, -19.6468)
 rotation = -2.69494
 scale = Vector2(1.00001, 1.00001)
 rest = Transform2D(-0.901907, -0.431953, 0.431953, -0.901907, 4.76355, -19.6468)
@@ -445,7 +471,7 @@ length = 81.046
 bone_angle = -24.971
 
 [node name="bone2" type="Bone2D" parent="Beast/SkeletonComponent/base/slime/slime2/slime3"]
-position = Vector2(-88.1411, 11.0046)
+position = Vector2(-61.4649, 24.1342)
 rotation = 0.132522
 rest = Transform2D(0.991232, 0.132134, -0.132134, 0.991232, -61.4649, 24.1342)
 auto_calculate_length_and_angle = false
@@ -527,7 +553,7 @@ position = Vector2(-26, 40)
 remote_path = NodePath("../../../../../../Sprites/skull2")
 
 [node name="bone5" type="Bone2D" parent="Beast/SkeletonComponent/base/skullbase"]
-position = Vector2(6.68126, -46.004)
+position = Vector2(68.5977, 18.7444)
 rotation = -0.00766712
 scale = Vector2(0.999884, 0.999884)
 rest = Transform2D(0.999855, -0.00766616, 0.00766616, 0.999855, 68.5977, 18.7444)
@@ -606,7 +632,7 @@ region_rect = Rect2(91, 948, 37, 54)
 [node name="bone1" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -50
 position = Vector2(-283, -184)
-rotation = 0.031668
+rotation = 0.0316686
 scale = Vector2(1.00001, 1.00001)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -614,8 +640,8 @@ region_rect = Rect2(346, 683, 134, 213)
 
 [node name="bone2" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -50
-position = Vector2(-149.438, -323.913)
-rotation = 0.0181691
+position = Vector2(-121.438, -313.913)
+rotation = 0.0181686
 scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -623,8 +649,8 @@ region_rect = Rect2(151, 407, 112, 206)
 
 [node name="bone3" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -43
-position = Vector2(43.9982, -328.475)
-rotation = -0.0316538
+position = Vector2(80.9982, -311.475)
+rotation = -0.0316535
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)
@@ -632,7 +658,7 @@ region_rect = Rect2(368, 283, 102, 179)
 [node name="bone4" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -42
 position = Vector2(255.636, -131.931)
-rotation = -0.13363
+rotation = -0.133629
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -640,7 +666,7 @@ region_rect = Rect2(356, 479, 113, 151)
 
 [node name="bone5" type="Sprite2D" parent="Beast/Sprites" index="8"]
 z_index = -40
-position = Vector2(162.941, -217.942)
+position = Vector2(211.941, -142.942)
 rotation = 0.176662
 scale = Vector2(0.999883, 0.999883)
 texture = ExtResource("4_hw4sg")
@@ -649,18 +675,18 @@ region_rect = Rect2(588, 57, 195, 197)
 
 [node name="skull" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
-position = Vector2(-18, -193)
+position = Vector2(-17.9999, -193)
 rotation = -0.639
-scale = Vector2(0.999931, 0.999931)
+scale = Vector2(0.99993, 0.99993)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-4.46019, -90.945)
+position = Vector2(-4.46014, -90.9451)
 rotation = -0.639
-scale = Vector2(0.999931, 0.999931)
+scale = Vector2(0.99993, 0.99993)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(83, 127, 147, 112)

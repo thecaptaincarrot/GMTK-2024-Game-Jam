@@ -45,9 +45,9 @@ const CAM_OFFSET = Vector2(640,360)
 #Camera bounds always start at position 0,0 on upper left
 const CAMERA_BOUNDS = [ Vector2(1400,900),
 						Vector2(1400,900),
-						Vector2(2400,1100),
+						Vector2(2400,950),
 						Vector2(1900,900),
-						Vector2(2000,1100),
+						Vector2(2000,950),
 						] 
 
 const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"), 
@@ -58,14 +58,14 @@ const ENEMY_SCENE = [ preload("res://Entities/Enemies/Knight/Knight.tscn"),
 					]
 
 
-const ENEMY_POS = [ Vector2(1100, 700),
-					Vector2(1100,730),
-					Vector2(1400,800),
-					Vector2(1500,800),
-					Vector2(1800,950),
-					]
+#const ENEMY_POS = [ Vector2(1100, 700),
+					#Vector2(1100,730),
+					#Vector2(1400,800),
+					#Vector2(1500,800),
+					#Vector2(1800,950),
+					#]
 
-const GOOBLIN_RANGE = [64,
+const GOOBLIN_RANGE = [80,
 					   128,
 					   100,
 					   100,
@@ -73,16 +73,16 @@ const GOOBLIN_RANGE = [64,
 					]
 
 const ENEMY_HEALTH = [200,
-					  800,
-					  2000,
-					  4000,
-					  10000,
+					  700,
+					  1300,
+					  2800,
+					  9999,
 ]
 
-const ENEMY_REWARD = [500,
-					  2500,
-					  15000,
-					  25000,
+const ENEMY_REWARD = [1200,
+					  6000,
+					  8000,
+					  11000,
 					  100000,
 					]
 
@@ -143,7 +143,7 @@ func load_level(level_index : int):
 	Enemy = ENEMY_SCENE[level_index].instantiate()
 	Enemy.horde_controller = GooblinController
 	print(GooblinController)
-	Enemy.position = ENEMY_POS[level_index]
+	Enemy.position = Vector2(CAMERA_BOUNDS[level_index].x - 200, GooblinController.get_spawn_point().y)#ENEMY_POS[level_index]
 	Enemy.get_node("Beast").max_health = ENEMY_HEALTH[level_index]
 	Enemy.get_node("Beast").gold_value = ENEMY_HEALTH[level_index]
 	add_child(Enemy)

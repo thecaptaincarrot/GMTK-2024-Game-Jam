@@ -26,4 +26,3 @@ func target_and_attack():
 
 func exit():
 	pass
-

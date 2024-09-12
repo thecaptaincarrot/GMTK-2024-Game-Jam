@@ -17,7 +17,6 @@ func _ready() -> void:
 func _physics_process(delta):
 	update_scaler_path()
 
-
 func reacquire_targets():
 	target_list = horde_controller.get_basic_gooblins()
 

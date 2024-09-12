@@ -7,6 +7,8 @@ signal spawn_shields
 signal spawn_scalers
 signal update_menus
 
+@export var active := false
+
 @export var GoldSpinbox :SpinBox
 @export var GooblinSpinbox : SpinBox
 @export var LevelSpinbox : SpinBox
@@ -19,7 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("debug"):
+	if Input.is_action_just_pressed("debug") and active:
 		if visible:
 			hide()
 		else:

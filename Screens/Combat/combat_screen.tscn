@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bq18iom53hl48"]
+[gd_scene load_steps=49 format=3 uid="uid://bq18iom53hl48"]
 
 [ext_resource type="Texture2D" uid="uid://dtku8e2oa7l24" path="res://Textures/Backgrounds/Cave/background_goobers.png" id="1_ent5p"]
 [ext_resource type="Script" path="res://Screens/Combat/combat_camera.gd" id="1_kjt0t"]
@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://cwn5q8d3s4lhb" path="res://Textures/Interface/keyboard_arrows_up_outline.png" id="25_snbhu"]
 [ext_resource type="Texture2D" uid="uid://dehxlkyyaqsrb" path="res://Textures/Interface/zoomIn.png" id="28_lonfx"]
 [ext_resource type="Texture2D" uid="uid://ct3wosbsn45qt" path="res://Textures/Interface/zoomOut.png" id="29_7nqp7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_alse7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6yu3i"]
 font_size = 33
@@ -149,7 +151,7 @@ animations = [{
 radius = 75.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7tt1t"]
-radius = 40.0
+radius = 45.0
 
 [node name="CombatScreen" type="Node2D" node_paths=PackedStringArray("music_player", "click_player", "victory_player", "defeat_player", "camera", "GooblinController", "HealthBar", "CurrentHealthLabel", "MaxHealthLabel", "Canvas_Layer", "DefeatPanel", "VictoryPanel", "TrueVictoryPanel")]
 script = ExtResource("1_o8qmv")
@@ -173,6 +175,12 @@ gooblin_label = NodePath("../CanvasLayer/RemainingGooblins")
 [node name="SpawnPoint" parent="GooblinHordeController" index="0"]
 position = Vector2(-30, 718)
 
+[node name="ShieldCollider" type="StaticBody2D" parent="GooblinHordeController/SpawnPoint" index="0"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GooblinHordeController/SpawnPoint/ShieldCollider"]
+shape = SubResource("WorldBoundaryShape2D_alse7")
+
 [node name="CombatCamera" type="Camera2D" parent="." node_paths=PackedStringArray("instructions")]
 limit_left = 0
 limit_top = 0
@@ -194,11 +202,12 @@ repeat_size = Vector2(1280, 600)
 repeat_times = 4
 
 [node name="CaveBackground" type="Sprite2D" parent="Background/BackgroundParallax"]
-visible = false
 texture = ExtResource("1_ent5p")
 centered = false
+offset = Vector2(0, -50)
 
 [node name="FieldBackground" type="Sprite2D" parent="Background/BackgroundParallax"]
+visible = false
 texture = ExtResource("5_w06pu")
 centered = false
 
@@ -207,7 +216,6 @@ repeat_size = Vector2(1280, 0)
 repeat_times = 4
 
 [node name="CaveCeiling" type="Sprite2D" parent="Background/CeilingParallax"]
-visible = false
 texture = ExtResource("2_vdddl")
 centered = false
 offset = Vector2(0, -330)
@@ -217,18 +225,17 @@ repeat_size = Vector2(2036, 0)
 repeat_times = 4
 
 [node name="CaveFloor" type="Sprite2D" parent="Background/FloorParallax"]
-visible = false
 texture = ExtResource("3_uf6k3")
 centered = false
-offset = Vector2(0, 600)
+offset = Vector2(0, 450)
 
 [node name="FieldFloor" type="Sprite2D" parent="Background/FloorParallax"]
-visible = false
 texture = ExtResource("8_csija")
 centered = false
 offset = Vector2(0, 350)
 
 [node name="DryFloor" type="Sprite2D" parent="Background/FloorParallax"]
+visible = false
 texture = ExtResource("9_sd0dw")
 centered = false
 offset = Vector2(0, 350)
@@ -702,48 +709,48 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="ZoomerIn" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(48, 518)
+position = Vector2(1009, 606)
 texture_normal = ExtResource("28_lonfx")
 shape = SubResource("CircleShape2D_ifgky")
 action = "zoom_in"
 visibility_mode = 1
 
 [node name="ZoomerOut" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(202, 587)
+position = Vector2(1166, 609)
 texture_normal = ExtResource("29_7nqp7")
 shape = SubResource("CircleShape2D_ifgky")
 action = "zoom_out"
 visibility_mode = 1
 
 [node name="MoveShow" type="TouchScreenButton" parent="CanvasLayer/MobileControls"]
-position = Vector2(1133, 593)
+position = Vector2(74, 565)
 scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("16_fv34x")
 visibility_mode = 1
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(0, -50)
+position = Vector2(32.6667, -18.6667)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_up"
 visibility_mode = 1
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(50, 0)
+position = Vector2(82.6667, 31.3333)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_right"
 visibility_mode = 1
 
 [node name="TouchScreenButton3" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(0, 50)
+position = Vector2(32.6667, 81.3333)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_down"
 visibility_mode = 1
 
 [node name="TouchScreenButton4" type="TouchScreenButton" parent="CanvasLayer/MobileControls/MoveShow"]
-position = Vector2(-50, 0)
+position = Vector2(-17.3333, 31.3333)
 shape = SubResource("CircleShape2D_7tt1t")
 passby_press = true
 action = "camera_left"

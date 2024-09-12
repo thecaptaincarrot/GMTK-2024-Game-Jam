@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ceci3cggo2wq8"]
+[gd_scene load_steps=57 format=3 uid="uid://ceci3cggo2wq8"]
 
 [ext_resource type="Texture2D" uid="uid://kn0s73qvilo" path="res://Textures/Logo/Gooblins-Logo.png" id="1_gay1a"]
 [ext_resource type="Script" path="res://Screens/Credits/credits.gd" id="1_tvayb"]
@@ -15,8 +15,16 @@
 [ext_resource type="Script" path="res://Screens/Credits/runner_0.gd" id="10_yb50h"]
 [ext_resource type="Texture2D" uid="uid://b00ndm2k6r6id" path="res://Textures/Entities/GoblinShield.png" id="11_wcqij"]
 [ext_resource type="Texture2D" uid="uid://c0qv3353cdnvc" path="res://Screens/Credits/TheyWyrmTail.png" id="12_6cuwp"]
+[ext_resource type="Texture2D" uid="uid://nfi5jvy4h1um" path="res://Screens/Credits/gelatindake.png" id="13_bpgcf"]
+[ext_resource type="Texture2D" uid="uid://06yclw64s1l1" path="res://Textures/Interface/keyboard_arrows_none.png" id="14_k8cp5"]
 [ext_resource type="Texture2D" uid="uid://v1l45tq12t0g" path="res://Screens/Credits/TheyWyrm.png" id="14_kmx06"]
+[ext_resource type="Texture2D" uid="uid://b21o4f20eqam8" path="res://Textures/Interface/keyboard_arrows_right_outline.png" id="15_1ytd0"]
+[ext_resource type="Texture2D" uid="uid://b040m2pmurent" path="res://Textures/Interface/keyboard_arrows_down_outline.png" id="16_sgubq"]
 [ext_resource type="Texture2D" uid="uid://d3hcbi0mujaqv" path="res://Screens/Credits/gooberdragon_transparent.png" id="17_nhis8"]
+[ext_resource type="Texture2D" uid="uid://dlcrkocalul24" path="res://Textures/Map/dot00.png" id="17_r3otd"]
+[ext_resource type="Texture2D" uid="uid://dknqsdq3b1q2m" path="res://Textures/Map/dot01.png" id="18_yavqd"]
+[ext_resource type="Texture2D" uid="uid://dnba7fy4r0gwr" path="res://Textures/Interface/hand_point_n.svg" id="19_01w54"]
+[ext_resource type="Texture2D" uid="uid://biblu7d10y1sr" path="res://Textures/Interface/hand_point.svg" id="20_m3w6c"]
 
 [sub_resource type="Gradient" id="Gradient_rskju"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0.02, 0.2, 1)
@@ -52,6 +60,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Credits/Credit4/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.570868, 0.570868)]
+}
 
 [sub_resource type="Animation" id="Animation_qvbyf"]
 resource_name = "RollCredits"
@@ -67,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 25, 30),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -3200), Vector2(0, -3200)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -3400), Vector2(0, -3400)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -116,6 +136,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Credits/Credit4/Sprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8, 11.5, 15.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.570868, 0.570868), Vector2(0.6, 0.4), Vector2(0.571, 0.3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_67dfj"]
@@ -274,6 +306,80 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_fqj8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_k8cp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1ytd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_k8cp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_sgubq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1ytd0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_81e3q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_k8cp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1ytd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_k8cp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1ytd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1ytd0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_47527"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": ExtResource("17_r3otd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_yavqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcn5g"]
+animations = [{
+"frames": [{
+"duration": 2.5,
+"texture": ExtResource("19_01w54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_m3w6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l5xym"]
 size = Vector2(1280, 720)
 
@@ -328,16 +434,17 @@ label_settings = ExtResource("4_muag0")
 offset_top = 720.0
 offset_right = 1279.0
 offset_bottom = 857.0
-text = "Directed By:
+text = "Directed by:
 Captain Carrot"
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
 [node name="Credit1" type="Label" parent="Credits"]
-offset_top = 984.0
-offset_right = 1279.0
-offset_bottom = 1261.0
-text = "Coding By:
+offset_left = 2.0
+offset_top = 958.0
+offset_right = 1281.0
+offset_bottom = 1235.0
+text = "Coding by:
 Captain Carrot
 Sonicpixelation
 Pufuzuku"
@@ -368,10 +475,11 @@ animation = &"Scaler"
 frame_progress = 0.567167
 
 [node name="Credit2" type="Label" parent="Credits"]
-offset_top = 1499.0
-offset_right = 1279.0
-offset_bottom = 1776.0
-text = "Map, Backgrounds, and Enemy Textures By:
+offset_left = 2.0
+offset_top = 1434.0
+offset_right = 1281.0
+offset_bottom = 1711.0
+text = "Map, Backgrounds, and Enemy Textures by:
 Miraculousmasterofmayhem"
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
@@ -387,9 +495,10 @@ scale = Vector2(-0.275, 0.275)
 texture = ExtResource("8_axent")
 
 [node name="Credit3" type="Label" parent="Credits"]
-offset_top = 1776.0
-offset_right = 1279.0
-offset_bottom = 2053.0
+offset_left = 4.0
+offset_top = 1644.0
+offset_right = 1283.0
+offset_bottom = 1921.0
 text = "Gooblin Sprites by:
 Captain Carrot
 "
@@ -419,10 +528,66 @@ sprite_frames = SubResource("SpriteFrames_l5c5h")
 frame_progress = 0.373857
 script = ExtResource("10_yb50h")
 
+[node name="Credit4" type="Label" parent="Credits"]
+z_index = 1
+offset_left = 4.0
+offset_top = 1854.0
+offset_right = 1283.0
+offset_bottom = 1991.0
+text = "Writing by:
+Pufuzuku"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Credits/Credit4"]
+z_index = -1
+position = Vector2(656, 50.5)
+scale = Vector2(0.570868, 0.570868)
+texture = ExtResource("13_bpgcf")
+
+[node name="Credit10" type="Label" parent="Credits"]
+offset_left = 4.0
+offset_top = 2258.0
+offset_right = 1283.0
+offset_bottom = 2395.0
+text = "QA/Playtesting by:
+MCMW10o1"
+label_settings = ExtResource("4_muag0")
+horizontal_alignment = 1
+
+[node name="LookKB" type="AnimatedSprite2D" parent="Credits/Credit10"]
+position = Vector2(851.419, 98.4111)
+rotation = 0.246695
+scale = Vector2(1.63259, 1.63259)
+sprite_frames = SubResource("SpriteFrames_fqj8w")
+autoplay = "default"
+
+[node name="LookKB2" type="AnimatedSprite2D" parent="Credits/Credit10"]
+position = Vector2(851.419, 98.4111)
+rotation = 0.246695
+scale = Vector2(1.63259, 1.63259)
+sprite_frames = SubResource("SpriteFrames_81e3q")
+autoplay = "default"
+frame = 2
+
+[node name="button" type="AnimatedSprite2D" parent="Credits/Credit10"]
+position = Vector2(942.677, 88.6687)
+rotation = -0.189506
+sprite_frames = SubResource("SpriteFrames_47527")
+autoplay = "default"
+
+[node name="fingy" type="AnimatedSprite2D" parent="Credits/Credit10"]
+position = Vector2(963.677, 107.669)
+rotation = -0.189506
+scale = Vector2(1.87336, 1.87336)
+sprite_frames = SubResource("SpriteFrames_gcn5g")
+autoplay = "default"
+frame_progress = 0.71188
+
 [node name="Credit5" type="Label" parent="Credits"]
-offset_top = 2053.0
+offset_top = 2094.0
 offset_right = 1279.0
-offset_bottom = 2330.0
+offset_bottom = 2371.0
 text = "Music and Sound Effects by:
 antiassailant
 "
@@ -472,9 +637,10 @@ animation = &"Basic"
 frame_progress = 0.0
 
 [node name="Credit6" type="Label" parent="Credits"]
-offset_top = 2282.0
-offset_right = 1279.0
-offset_bottom = 2559.0
+offset_left = 4.0
+offset_top = 2450.0
+offset_right = 1283.0
+offset_bottom = 2727.0
 text = "Promotional Material and Logo by:
 Uncle Larold"
 label_settings = ExtResource("4_muag0")
@@ -560,38 +726,39 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("14_kmx06")
 
 [node name="Credit8" type="Label" parent="Credits"]
-offset_top = 2559.0
-offset_right = 1279.0
-offset_bottom = 2836.0
+offset_left = 2.0
+offset_top = 2693.0
+offset_right = 1281.0
+offset_bottom = 2970.0
 text = "Made in Godot
 "
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
 [node name="Credit9" type="Label" parent="Credits"]
-offset_left = 2.0
-offset_top = 2849.0
-offset_right = 1281.0
-offset_bottom = 3126.0
+offset_left = 4.0
+offset_top = 2983.0
+offset_right = 1283.0
+offset_bottom = 3260.0
 text = "Thanks For Playing!"
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
 [node name="Credit7" type="Label" parent="Credits"]
-offset_top = 3283.0
+offset_top = 3531.0
 offset_right = 1279.0
-offset_bottom = 3560.0
+offset_bottom = 3808.0
 text = "In Loving Memory of Teenie"
 label_settings = ExtResource("4_muag0")
 horizontal_alignment = 1
 
 [node name="SecretTeenie" type="Sprite2D" parent="Credits"]
-position = Vector2(640, 3535)
+position = Vector2(640, 3783)
 scale = Vector2(0.458333, 0.458333)
 texture = ExtResource("5_rix6k")
 
 [node name="GodotLogo" type="Sprite2D" parent="Credits"]
-position = Vector2(641, 2735)
+position = Vector2(643, 2869)
 scale = Vector2(1.77344, 1.77344)
 texture = ExtResource("6_cwdng")
 

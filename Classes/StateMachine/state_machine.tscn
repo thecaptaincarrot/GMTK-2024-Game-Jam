@@ -4,3 +4,4 @@
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_jm6uo")
+log_changes = false

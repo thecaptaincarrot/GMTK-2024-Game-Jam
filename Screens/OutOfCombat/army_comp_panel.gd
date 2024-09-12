@@ -32,11 +32,13 @@ func update_available_gooblins(): #THIS MUST ALWAYS BE DONE FIRST AND I'M SORRY 
 
 func update_shield_gooblins_controls(): #THIS DOES NOT CHANGE THE ACTUAL NUMBER OF SHIELD GOOBLINS
 	shield_gooblin_spinbox.max_value = GooblinUpgrades.shield_gooblins + min(GooblinUpgrades.basic_gooblins,GooblinUpgrades.shields - GooblinUpgrades.shield_gooblins)
+	shield_gooblin_spinbox.value = GooblinUpgrades.shield_gooblins
 	available_shields_label.text = str(GooblinUpgrades.shields - GooblinUpgrades.shield_gooblins)
 
 
 func update_hook_gooblins_controls():
 	hook_gooblin_spinbox.max_value = GooblinUpgrades.climb_gooblins + min(GooblinUpgrades.basic_gooblins,GooblinUpgrades.hooks - GooblinUpgrades.climb_gooblins)
+	hook_gooblin_spinbox.value = GooblinUpgrades.climb_gooblins
 	available_hook_label.text = str(GooblinUpgrades.hooks - GooblinUpgrades.climb_gooblins)
 
 
