@@ -632,7 +632,7 @@ region_rect = Rect2(91, 948, 37, 54)
 [node name="bone1" type="Sprite2D" parent="Beast/Sprites" index="4"]
 z_index = -50
 position = Vector2(-283, -184)
-rotation = 0.0316686
+rotation = 0.031668
 scale = Vector2(1.00001, 1.00001)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -641,7 +641,7 @@ region_rect = Rect2(346, 683, 134, 213)
 [node name="bone2" type="Sprite2D" parent="Beast/Sprites" index="5"]
 z_index = -50
 position = Vector2(-121.438, -313.913)
-rotation = 0.0181686
+rotation = 0.0181691
 scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -650,7 +650,8 @@ region_rect = Rect2(151, 407, 112, 206)
 [node name="bone3" type="Sprite2D" parent="Beast/Sprites" index="6"]
 z_index = -43
 position = Vector2(80.9982, -311.475)
-rotation = -0.0316535
+rotation = -0.0316538
+scale = Vector2(1, 1)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(368, 283, 102, 179)
@@ -658,7 +659,7 @@ region_rect = Rect2(368, 283, 102, 179)
 [node name="bone4" type="Sprite2D" parent="Beast/Sprites" index="7"]
 z_index = -42
 position = Vector2(255.636, -131.931)
-rotation = -0.133629
+rotation = -0.13363
 scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
@@ -675,18 +676,18 @@ region_rect = Rect2(588, 57, 195, 197)
 
 [node name="skull" type="Sprite2D" parent="Beast/Sprites" index="9"]
 z_index = -44
-position = Vector2(-17.9999, -193)
+position = Vector2(-18, -193)
 rotation = -0.639
-scale = Vector2(0.99993, 0.99993)
+scale = Vector2(0.999931, 0.999931)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(284, 76, 234, 162)
 
 [node name="skull2" type="Sprite2D" parent="Beast/Sprites" index="10"]
 z_index = -44
-position = Vector2(-4.46014, -90.9451)
+position = Vector2(-4.46018, -90.945)
 rotation = -0.639
-scale = Vector2(0.99993, 0.99993)
+scale = Vector2(0.999931, 0.999931)
 texture = ExtResource("4_hw4sg")
 region_enabled = true
 region_rect = Rect2(83, 127, 147, 112)

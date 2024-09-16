@@ -28,22 +28,22 @@ var levels_completed := 0
 
 var gooblin_count = 13 #Total gooblins of any class
 #army composition
-var basic_gooblins = 5
-var shield_gooblins = 4
-var climb_gooblins = 4
+var basic_gooblins = 15
+var shield_gooblins = 0
+var climb_gooblins = 0
 var catapult_gooblins = 0
 
 var gold = 0
 
 #equipment totals:
-var shields = 4
-var hooks = 4
+var shields = 0
+var hooks = 0
 #NOTE: change the starting values of the spinboxes to be the same as these 
 
 #Gooblin Upgrades
 var gooblin_attack = 1
 var gooblin_base_move_speed = 130.0
-var gooblin_move_speed_upgrade_increment = 40.0 #how much each level of upgrade increases the gooblin's speed
+var gooblin_move_speed_upgrade_increment = 20.0 #how much each level of upgrade increases the gooblin's speed
 var gooblin_speed_upgrade_level = 0
 
 #Shieldbearer Upgrades
@@ -125,11 +125,11 @@ func get_gooblin_attack_upgrade_cost() -> int:
 
 
 func get_gooblin_speed_upgrade_cost() -> int:
-	return 300 * pow(gooblin_speed_upgrade_level + 1,2)
+	return 400 * pow(gooblin_speed_upgrade_level + 1,2)
 
 
 func get_gooblin_shield_upgrade_cost() -> int:
-	return 200 * pow(shield_health-1,2)
+	return 250 * pow(shield_health-1,2)
 
 
 func get_gooblin_scaler_mult_upgrade_cost() -> int:

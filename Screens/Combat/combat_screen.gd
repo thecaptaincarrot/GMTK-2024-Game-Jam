@@ -82,8 +82,8 @@ const ENEMY_HEALTH = [200,
 const ENEMY_REWARD = [1200,
 					  6000,
 					  8000,
-					  11000,
-					  100000,
+					  10000,
+					  50000,
 					]
 
 const BACKGROUND = [ FIELD_BG,

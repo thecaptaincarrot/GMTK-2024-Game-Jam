@@ -29,6 +29,7 @@ visible = false
 
 [node name="DebugPanel" parent="CanvasLayer" instance=ExtResource("6_10yof")]
 visible = false
+active = true
 
 [node name="CombatScreen" parent="." instance=ExtResource("4_3lo2r")]
 visible = false
